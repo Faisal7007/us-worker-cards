@@ -1,7 +1,9 @@
 import { Allison, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import 'react-accessible-accordion/dist/fancy-example.css';
+// import 'react-accessible-accordion/dist/fancy-example.css';
 import Navbar from "./components/Navbar";
+import { ChakraProvider } from "@chakra-ui/react";
+
 
 
 const allison_init = Allison({
@@ -30,9 +32,14 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${allison_init.variable}  antialiased`}
       >
+          <ChakraProvider>
+
+
       <Navbar/>
       
         {children}
+        </ChakraProvider>
+
       </body>
     </html>
   );

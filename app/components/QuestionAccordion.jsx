@@ -1,36 +1,42 @@
 "use client"
 import React, { createContext } from 'react'
-import items from '../accordionData';
 import {
     Accordion,
     AccordionItem,
-    AccordionItemHeading,
-    AccordionItemButton,
-    AccordionItemPanel,
-} from 'react-accessible-accordion';
-import 'react-accessible-accordion/dist/fancy-example.css';
+    AccordionButton,
+    AccordionPanel,
+    AccordionIcon,
+    Box
+} from '@chakra-ui/react'
+import items from '../accordionData';
 
+
+// react-accessible-accordion,
 
 const QuestionAccordion = () => {
     return (
         <div>
-            <Accordion allowZeroExpanded className='mb-10'>
-                {
-                    items.map((item, id) => {
-                        return (
-                            <AccordionItem key={id}>
-                                <AccordionItemHeading>
-                                    <AccordionItemButton>
-                                        {item.heading}
-                                    </AccordionItemButton>
-                                </AccordionItemHeading>
-                                <AccordionItemPanel>
-                                    {item.content}
-                                </AccordionItemPanel>
-                            </AccordionItem>
-                        )
-                    })
-                }
+            <Accordion allowToggle>
+    {
+        items.map((item,id)=>{
+            return(
+                <AccordionItem>
+                    <h2>
+                        <AccordionButton>
+                            <Box as='span' flex='1' className='font-bold' textAlign='left'>
+                                {item.heading}
+                            </Box>
+                            <AccordionIcon />
+                        </AccordionButton>
+                    </h2>
+                    <AccordionPanel pb={4}>
+                      {item.content}
+                    </AccordionPanel>
+                </AccordionItem>
+
+            )
+        })
+    }
             </Accordion>
         </div>
     )
