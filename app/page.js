@@ -1,7 +1,7 @@
 "use client"
 import Image from "next/image";
 import { useState } from "react";
-import { FaAngleDoubleDown, FaHardHat, FaIdCard, FaUsers } from "react-icons/fa";
+import { FaAngleDoubleDown, FaCheckCircle, FaHardHat, FaIdCard, FaUsers } from "react-icons/fa";
 import HomeCard from "./components/HomeCard";
 import { MdOutlineLaptopMac } from "react-icons/md";
 export default function Home() {
@@ -16,12 +16,16 @@ export default function Home() {
 </div>
 <div className="px-36">
    <div className="flex items-center gap-24 mb-8">
-    <Image src="/cscs-card.webp"
-    className="h-[500px] rounded-lg"
-      alt="home-image"
-      height={400}
-      width={600}
-    />
+   <div className="  h-[400px] flex items-center justify-center">
+  <Image 
+    src="/CSCS-Cards-Managers.jpg"
+    alt="home-image"
+    className="h-full w-full rounded-lg"
+    width={500}
+    height={500} // Matches the container height
+  />
+</div>
+
     <div className=" min-h-[320px]">
       <h1 className="text-[50px] text-purple_primary font-semibold">Complete All Requirements to Secure On-Site Access</h1>
       <div className="flex justify-center items-center">
@@ -94,20 +98,28 @@ export default function Home() {
       {/* Right Side - Content */}
       <div className="lg:w-1/2 w-full lg:pl-8">
         <h2 className="text-2xl font-bold text-purple_primary mb-4">
-          Booking Your CITB Health, Safety & Environment Test
+        Scheduling Your CITB Health, Safety & Environment Test
         </h2>
         <p className="text-gray-700 mb-4">
-          Booking your CITB Health, Safety & Environment Test (commonly known
-          as CITB Touchscreen Test) is easier with Construction Worker Support.
+       
+Booking your CITB Touchscreen Test, officially called the CITB Health, Safety & Environment Test, is simpler with Construction Worker Support.
         </p>
-        <ol className="list-decimal pl-6 mb-4 text-gray-700">
-          <li>Fill the CITB Test Booking application here.</li>
-          <li>Choose your preferred date & test centre.</li>
-          <li>Review your booking and complete the payment.</li>
-        </ol>
+        <ul className="pl-6 mb-4 text-gray-700">
+      <li className="flex items-center mb-2">
+        <FaCheckCircle className="text-blue-500 mr-2" />
+        Fill out the CITB Test Booking application here.
+      </li>
+      <li className="flex items-center mb-2">
+        <FaCheckCircle className="text-blue-500 mr-2" />
+        Select your preferred test centre and date.
+      </li>
+      <li className="flex items-center mb-2">
+        <FaCheckCircle className="text-blue-500 mr-2" />
+        Complete the payment and review your booking.
+      </li>
+    </ul>
         <p className="text-gray-700 mb-4">
-          That’s it. You will receive the confirmation via email and/or text on
-          your registered email address within a few minutes.
+        Within a few minutes, you will receive the confirmation via email and/or text at your registered email address. That’s it!
         </p>
         <p className="text-gray-700">
           <strong>Not sure which test to book?</strong> Find the correct test
