@@ -1,6 +1,14 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Allison, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import 'react-accessible-accordion/dist/fancy-example.css';
+import Navbar from "./components/Navbar";
 
+
+const allison_init = Allison({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-allison",
+});
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -20,8 +28,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${allison_init.variable}  antialiased`}
       >
+      <Navbar/>
+      
         {children}
       </body>
     </html>
