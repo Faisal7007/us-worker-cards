@@ -15,7 +15,7 @@ export default function Home() {
 
 </div>
 <div className="px-36">
-   <div className="flex items-center gap-24 mb-8">
+   <div className="flex items-center gap-24 mb-20">
    <div className="  h-[400px] flex items-center justify-center">
   <Image 
     src="/CSCS-Cards-Managers.jpg"
@@ -82,10 +82,10 @@ export default function Home() {
 </div>
 
 {/*  */}
-<h1 className="text-purple_primary text-[25px] font-bold mt-6">Your Guide to Booking the CITB Test</h1>
+<h1 className="text-black text-[30px] text-center font-bold my-12">Your Guide to Booking the CITB Test</h1>
 <div className="flex flex-col lg:flex-row items-center lg:items-start  mt-6 rounded-lg ">
       {/* Left Side - Image */}
-      <div className="bg-[#C3EDC0] rounded-md h-[400px] flex justify-center items-center lg:w-1/2 w-full mb-6 lg:mb-0">
+      <div className="bg-[#f1a078] rounded-md h-[400px] flex justify-center items-center lg:w-1/2 w-full mb-6 lg:mb-0">
         <Image
         height={400}
         width={500}
@@ -129,6 +129,57 @@ Booking your CITB Touchscreen Test, officially called the CITB Health, Safety & 
           </a>
           .
         </p>
+      </div>
+    </div>
+
+
+    <h1 className="text-black text-[30px] text-center font-bold my-12">Apply for CSCS Card</h1>
+
+    <div className="  flex flex-col lg:flex-row-reverse lg:justify-between  items-center lg:items-start  mt-6 rounded-lg ">
+      {/* Left Side - Image */}
+      <div className="bg-[#fff] rounded-md h-[400px] flex justify-center items-start lg:w-1/2 w-full mb-6 lg:mb-0">
+        <Image
+        height={400}
+        width={500}
+          src="/green-card-img.png"
+          alt="CITB Test Booking"
+          className="rounded-lg w-full "
+        />
+      </div>
+
+      {/* Right Side - Content */}
+      <div className="lg:w-1/2 w-full ">
+       
+        <ul className="mb-4 text-gray-700">
+      <li className="flex items-center mb-2">
+        <FaCheckCircle className="text-blue-500 mr-2" />
+        Fill the Application here and choose the CSCS Card based on your qualification.
+      </li>
+      <li className="flex items-center mb-2">
+        <FaCheckCircle className="text-blue-500 mr-2" />
+        
+Select the type of card booking you want to proceed with.
+      </li>
+      <li className="flex items-center mb-2 ml-6">
+      If you are applying for the first time, select New Card.
+      </li>
+      <li className="flex items-center mb-2 ml-6">
+      If you want a replacement for your existing CSCS card, select Lost Card.
+      </li> 
+      <li className="flex items-center mb-2">
+        <FaCheckCircle className="text-blue-500 mr-2 mb-4 size-7" />
+        <span>To continue, click Submit Application to add your CITB test ID, expired CSCS Card number (for Renew Card), and card delivery address.</span>
+      </li>  <li className="flex items-center mb-2">
+        <FaCheckCircle className="text-blue-500 mr-2" />
+        Make the payment and confirm your details.
+      </li> 
+      <li className="flex items-start mb-2">
+  <FaCheckCircle className="text-blue-500 mr-2 size-5 mt-1" />
+  Once approved, you will receive your CSCS Card in approximately 7 working days. That’s it!
+</li>
+
+    </ul>
+        
       </div>
     </div>
 
