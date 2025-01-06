@@ -3,6 +3,7 @@ import "./globals.css";
 // import 'react-accessible-accordion/dist/fancy-example.css';
 import Navbar from "./components/Navbar";
 import { ChakraProvider } from "@chakra-ui/react";
+import Footer from "./components/Footer";
 
 
 
@@ -38,6 +39,8 @@ export default function RootLayout({ children }) {
       <Navbar/>
       
         {children}
+
+        <Footer/>
         </ChakraProvider>
 
       </body>

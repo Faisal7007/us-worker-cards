@@ -46,7 +46,7 @@ const CitbForm = () => {
 <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-4">
 
     <div>
-      <label htmlFor="title" className="block text-sm font-medium">
+      <label htmlFor="title" className="block text-md font-medium">
         Title
       </label>
       <select
@@ -69,7 +69,7 @@ const CitbForm = () => {
 </div>
 
         <div>
-          <label htmlFor="firstName" className="block text-sm font-medium">
+          <label htmlFor="firstName" className="block text-md font-medium">
             First Name
           </label>
           <input
@@ -84,7 +84,7 @@ const CitbForm = () => {
           />
         </div>
         <div>
-          <label htmlFor="middleName" className="block text-sm font-medium">
+          <label htmlFor="middleName" className="block text-md font-medium">
             Middle Name
           </label>
           <input
@@ -98,7 +98,7 @@ const CitbForm = () => {
           />
         </div>
         <div>
-          <label htmlFor="lastName" className="block text-sm font-medium">
+          <label htmlFor="lastName" className="block text-md font-medium">
             Last Name
           </label>
           <input
@@ -114,7 +114,7 @@ const CitbForm = () => {
         </div>
      <div>
 
-      <label htmlFor="dob" className="block text-sm font-medium">
+      <label htmlFor="dob" className="block text-md font-medium">
         Date of Birth
       </label>
       <input
@@ -130,7 +130,7 @@ const CitbForm = () => {
      </div>
 
 <div>
-      <label htmlFor="nationalInsuranceNumber" className="block text-sm font-medium">
+      <label htmlFor="nationalInsuranceNumber" className="block text-md font-medium">
         National Insurance Number (Optional)
       </label>
       <input
@@ -154,7 +154,7 @@ const CitbForm = () => {
 
    <div>
 
-      <label htmlFor="phoneNumber" className="block text-sm font-medium">
+      <label htmlFor="phoneNumber" className="block text-md font-medium">
         Phone Number
       </label>
       <input
@@ -171,7 +171,7 @@ const CitbForm = () => {
 
 <div>
 
-      <label htmlFor="email" className="block text-sm font-medium">
+      <label htmlFor="email" className="block text-md font-medium">
         Email Address
       </label>
       <input
@@ -196,7 +196,7 @@ const CitbForm = () => {
 
 <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-4">
 <div className="col-span-1 md:col-span-2">
-      <label htmlFor="houseNumber" className="block text-sm font-medium">
+      <label htmlFor="houseNumber" className="block text-md font-medium">
         House Number and Street Name
       </label>
       <input
@@ -213,7 +213,7 @@ const CitbForm = () => {
 
 <div>
 
-      <label htmlFor="locality" className="block text-sm font-medium">
+      <label htmlFor="locality" className="block text-md font-medium">
         Locality (Optional)
       </label>
       <input
@@ -231,7 +231,7 @@ const CitbForm = () => {
 <div>
 
 
-      <label htmlFor="townCity" className="block text-sm font-medium">
+      <label htmlFor="townCity" className="block text-md font-medium">
         Town/City
       </label>
       <input
@@ -250,7 +250,7 @@ const CitbForm = () => {
 <div>
 
 
-      <label htmlFor="county" className="block text-sm font-medium">
+      <label htmlFor="county" className="block text-md font-medium">
         Country
       </label>
       <input
@@ -268,7 +268,7 @@ const CitbForm = () => {
      <div>
 
 
-      <label htmlFor="postcode" className="block text-sm font-medium">
+      <label htmlFor="postcode" className="block text-md font-medium">
         Postcode
       </label>
       <input

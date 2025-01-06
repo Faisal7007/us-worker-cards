@@ -1,40 +1,57 @@
 "use client"
 import Image from "next/image";
 import { useState } from "react";
-import { FaAngleDoubleDown, FaCheckCircle, FaHardHat, FaIdCard, FaUsers } from "react-icons/fa";
+import { FaAngleDoubleDown, FaCheckCircle, FaDotCircle, FaHardHat, FaIdCard, FaLongArrowAltRight, FaUsers } from "react-icons/fa";
+import {GoDotFill} from "react-icons/go"
 import HomeCard from "./components/HomeCard";
 import { MdOutlineLaptopMac } from "react-icons/md";
+import Link from "next/link";
+import Contact from "./components/Contact";
 export default function Home() {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(true)
   const handleToggle=()=>{
-    setIsOpen(!isOpen)
+    setIsOpen(true)
   }
   return (
     <div className="">
 <div className="min-h-screen bg-[url('/background-img.jpg')] mb-4 bg-cover bg-center">
+<span className="absolute top-52 left-16 text-[40px] font-bold  rounded-lg px-6 bg-white  bg-opacity-50 text-purple_primary ">
+  Secure Your Future in Construction <br /> with Confidence
+</span>
 
 </div>
 <div className="px-36">
    <div className="flex items-center gap-24 mb-20">
-   <div className="  h-[400px] flex items-center justify-center">
-  <Image 
-    src="/CSCS-Cards-Managers.jpg"
+   <div className="  h-[400px] w-[600px] flex items-center justify-center">
+  <Image
+    src="/untitled-design.png"
     alt="home-image"
     className="h-full w-full rounded-lg"
-    width={500}
-    height={500} // Matches the container height
+    width={800}
+    height={1000} // Matches the container height
   />
 </div>
 
-    <div className=" min-h-[320px]">
+    <div className=" min-h-[340px] ">
       <h1 className="text-[50px] text-purple_primary font-semibold">Complete All Requirements to Secure On-Site Access</h1>
       <div className="flex justify-center items-center">
 
-      <div onClick={handleToggle} className=" flex justify-center cursor-pointer  mt-10 items-center bg-purple_primary text-white text-[20px] font-semibold px-8 py-2 rounded-full"><span>I am currently searching for<FaAngleDoubleDown className="ml-[50%]" /></span>
-      </div>
+      <div
+  onClick={handleToggle}
+  className="flex justify-center  mt-24 capitalize items-center bg-purple_primary text-white text-[20px] font-semibold px-8 py-2 rounded-md hover:shadow-md"
+>
+{/* animate-pulse */}
+  <span>
+    I am currently searching for
+    {/* animate-bounce */}
+    <FaAngleDoubleDown className="ml-[50%] " />
+  </span>
+</div>
+
+
       </div>
       {
-        isOpen ?  <div className=" flex justify-between mt-5">
+        isOpen ?  <div className=" flex justify-between mt-10 ">
         <button className="custom-btn btn-3"><span>CSCS Card</span></button>
         <button className="custom-btn btn-3"><span>CITB HS&E Test</span></button>
         <button className="custom-btn btn-3"><span>Health & Safety</span></button>
@@ -106,15 +123,15 @@ Booking your CITB Touchscreen Test, officially called the CITB Health, Safety & 
         </p>
         <ul className="pl-6 mb-4 text-gray-700">
       <li className="flex items-center mb-2">
-        <FaCheckCircle className="text-blue-500 mr-2" />
-        Fill out the CITB Test Booking application here.
+        <FaHardHat className="text-purple_primary mr-2" />
+        Fill out the CITB Test Booking application <Link href="#" className="text-purple_primary ml-1 underline"> here.</Link>
       </li>
       <li className="flex items-center mb-2">
-        <FaCheckCircle className="text-blue-500 mr-2" />
+        <FaHardHat className="text-purple_primary mr-2" />
         Select your preferred test centre and date.
       </li>
       <li className="flex items-center mb-2">
-        <FaCheckCircle className="text-blue-500 mr-2" />
+        <FaHardHat className="text-purple_primary mr-2" />
         Complete the payment and review your booking.
       </li>
     </ul>
@@ -124,7 +141,7 @@ Booking your CITB Touchscreen Test, officially called the CITB Health, Safety & 
         <p className="text-gray-700">
           <strong>Not sure which test to book?</strong> Find the correct test
           according to your occupation{" "}
-          <a href="#" className="text-blue-500 underline">
+          <a href="#" className="text-purple_primary underline">
             here
           </a>
           .
@@ -148,33 +165,37 @@ Booking your CITB Touchscreen Test, officially called the CITB Health, Safety & 
       </div>
 
       {/* Right Side - Content */}
-      <div className="lg:w-1/2 w-full ">
+      <div className="lg:w-[560px] w-full text-justify ">
        
         <ul className="mb-4 text-gray-700">
-      <li className="flex items-center mb-2">
-        <FaCheckCircle className="text-blue-500 mr-2" />
+      <li className="flex items-start">
+        <FaHardHat className="text-purple_primary mt-1 mr-2" />
         Fill the Application here and choose the CSCS Card based on your qualification.
       </li>
       <li className="flex items-center mb-2">
-        <FaCheckCircle className="text-blue-500 mr-2" />
+        <FaHardHat className="text-purple_primary mr-2" />
         
 Select the type of card booking you want to proceed with.
       </li>
       <li className="flex items-center mb-2 ml-6">
-      If you are applying for the first time, select New Card.
+      <GoDotFill className="text-purple_primary" />
+
+      If you are applying for the first time, select <span className="font-semibold ml-1">New Card</span>.
       </li>
       <li className="flex items-center mb-2 ml-6">
-      If you want a replacement for your existing CSCS card, select Lost Card.
+      <GoDotFill className="text-purple_primary" />
+
+      If you want a replacement for your existing CSCS card, select <span className="font-semibold ml-1">Lost Card</span>.
       </li> 
-      <li className="flex items-center mb-2">
-        <FaCheckCircle className="text-blue-500 mr-2 mb-4 size-7" />
-        <span>To continue, click Submit Application to add your CITB test ID, expired CSCS Card number (for Renew Card), and card delivery address.</span>
+      <li className="flex items-start mb-2">
+        <FaHardHat className="text-purple_primary mr-2 size-7" />
+        <span>To continue, click <span className="font-semibold ml-1">Submit Application</span> to add your CITB test ID, expired CSCS Card number (for Renew Card), and card delivery address.</span>
       </li>  <li className="flex items-center mb-2">
-        <FaCheckCircle className="text-blue-500 mr-2" />
+        <FaHardHat className="text-purple_primary mr-2" />
         Make the payment and confirm your details.
       </li> 
       <li className="flex items-start mb-2">
-  <FaCheckCircle className="text-blue-500 mr-2 size-5 mt-1" />
+  <FaHardHat className="text-purple_primary mr-2 size-5 mt-1" />
   Once approved, you will receive your CSCS Card in approximately 7 working days. That’s it!
 </li>
 
@@ -184,6 +205,8 @@ Select the type of card booking you want to proceed with.
     </div>
 
 </div>
+
+<Contact banner/>
 
    </div>
 

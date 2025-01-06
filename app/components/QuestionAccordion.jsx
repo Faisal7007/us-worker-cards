@@ -20,7 +20,7 @@ const QuestionAccordion = () => {
     {
         items.map((item,id)=>{
             return(
-                <AccordionItem>
+                <AccordionItem key={id}>
                     <h2>
                         <AccordionButton>
                             <Box as='span' flex='1' className='font-bold' textAlign='left'>

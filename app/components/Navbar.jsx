@@ -29,12 +29,12 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="bg-purple_primary text-white py-6">
+    <nav className="bg-purple_primary text-white py-6 sticky top-0 z-30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Left Part */}
           <div className="flex items-start">
-            <div className="text-xl font-bold mr-4">LOGO</div>
+            <Link href="/" className="text-xl font-bold mr-4">LOGO</Link>
             <div className="flex flex-col">
               <span className="text-sm inline-flex items-center">
                 <FaPhoneVolume />
@@ -222,7 +222,7 @@ const Navbar = () => {
               Group Booking
             </a>
 
-            <a href="#" className="hover:text-gray-300">
+            <a href="/contact-us" className="hover:text-gray-300">
               Contact Us
             </a>
           </div>
