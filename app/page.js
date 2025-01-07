@@ -35,7 +35,6 @@ export default function Home() {
     <div className=" min-h-[340px] ">
       <h1 className="text-[50px] text-purple_primary font-semibold">Complete All Requirements to Secure On-Site Access</h1>
       <div className="flex justify-center items-center">
-
       <div
   onClick={handleToggle}
   className="flex justify-center  mt-24 capitalize items-center bg-purple_primary text-white text-[20px] font-semibold px-8 py-2 rounded-md hover:shadow-md"
@@ -47,8 +46,6 @@ export default function Home() {
     <FaAngleDoubleDown className="ml-[50%] " />
   </span>
 </div>
-
-
       </div>
       {
         isOpen ?  <div className=" flex justify-between mt-10 ">
@@ -59,11 +56,12 @@ export default function Home() {
       }
     </div>
    </div>
-
    <div className="text-center mb-8">
   <h2 className="text-xl font-bold inline-block bg-purple_primary px-4 pb-1 rounded-full text-white">Our Services</h2>
   <p className="text-lg text-gray-600 mt-2">Explore the various services we offer to help with your construction and safety needs.</p>
 </div>
+<div className="flex justify-center ">
+
    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 justify-center items-center">
   <HomeCard 
     icon={<FaIdCard className="size-10 text-white" />}
@@ -97,6 +95,9 @@ export default function Home() {
     link_to="#"
   />
 </div>
+
+</div>
+
 
 {/*  */}
 <h1 className="text-black text-[30px] text-center font-bold my-12">Your Guide to Booking the CITB Test</h1>

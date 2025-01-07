@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 const Page = () => {
   return (
-    <div className='px-36 py-8'>
+    <div className='px-36 py-8 '>
     <h1 className='text-[24px] font-bold mb-6 capitalize'>Red Provisional Card</h1>
     <Link href='#' className='inline-flex items-center text-purple_primary '><IoIosArrowForward/><span>Go to full card types list</span></Link>
     <div className='h-[1px] w-full bg-slate-300 my-4'></div>
@@ -21,7 +21,7 @@ const Page = () => {
 
 {/* Form */}
 
-<div className='flex justify-between items-start mt-8'>
+<div className='flex justify-evenly  items-center mt-8'>
   <div>
   <Image src='/red-card-img.png'
     alt='card-image'

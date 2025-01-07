@@ -4,8 +4,9 @@ import { IoIosArrowForward } from "react-icons/io";
 import CardForm from '../components/CardForm';
 import Image from 'next/image';
 import { MdOutlineLaptopMac } from "react-icons/md";
-import { FaAward } from "react-icons/fa";
+import { FaAward, FaHardHat, FaIdCard, FaUsers } from "react-icons/fa";
 import { FaExclamationTriangle } from 'react-icons/fa';
+import HomeCard from '../components/HomeCard';
 
 
 const Page = () => {
@@ -25,7 +26,7 @@ const Page = () => {
 
 {/* Form */}
 
-<div className='flex justify-between items-start mt-8'>
+<div className='flex justify-evenly items-center  mt-8'>
   <div>
   <Image src='/green-card-img.png'
     alt='card-image'
@@ -33,35 +34,35 @@ const Page = () => {
     height={400}
     className='rounded-lg max-w-[500px] h-auto  '
   />
-
   </div>
   <div>
     <CardForm titleOne='Green Labourer Card' titleTwo='Easy apply for CSCS Green Card - Labourers Card.' ringColor='green'/>
   </div>
 </div>
-    <h1 className='capitalize text-[20px] font-semibold mb-2'>Eligibility Requirements</h1>
-    <div className='flex gap-10'>
-      <div className='shadow-lg rounded-md w-fit px-10 py-16 flex justify-between  items-center'>
-        <div className='bg-blue_primary p-3 rounded-full mr-4 '>
-                <MdOutlineLaptopMac className='size-10 text-white'/>
-        </div>
-        <div>
-        <div className='text-blue_primary text-[18px] font-bold mb-2'>CITB Test(Operatives)</div>
-        <button className='bg-blue_primary text-white py-2 px-4 rounded-sm font-bold'>Book Now</button>
-        </div>
-      </div>
-      <div className='shadow-lg rounded-md w-fit px-10 py-16 flex justify-between  items-center'>
-        <div className='bg-blue_primary p-3 rounded-full mr-4 '>
-                <FaExclamationTriangle className='size-10 text-white'/>
-        </div>
-        <div>
-        <div className='text-blue_primary text-[18px] font-bold mb-2'>
-Health & Safety Awareness Course
+  <div className='flex justify-center'>
+    <h1 className='capitalize text-[25px] text-white inline-block px-4  bg-purple_primary rounded-full  font-semibold mb-2 text-center my-8'>Eligibility Requirements</h1>
+  </div>
+    
+<div className='flex justify-center mt-8'>
+
+    <div className="grid grid-cols-1 justify-center items-center sm:grid-cols-2 lg:grid-cols-2 gap-8 ">
+  <HomeCard 
+    icon={<FaIdCard className="size-10 text-white" />}
+    title="CITB Test(Operative)"
+    button_text="Book Now"
+    link_to="#"
+  />
+
+
+  <HomeCard 
+    icon={<FaUsers className="size-10 text-white" />}
+    title="Health & Safety Awareness Course"
+    button_text="Book Now"
+    link_to="#"
+  />
 </div>
-        <button className='bg-blue_primary text-white py-2 px-4 rounded-sm font-bold'>Book Now</button>
-        </div>
-      </div>
-    </div>
+</div>
+
     </div>
   )
 }

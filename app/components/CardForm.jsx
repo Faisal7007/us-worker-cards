@@ -3,7 +3,7 @@ import { FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
 
 const CardForm = ({titleOne,titleTwo,ringColor}) => {
   return (
-    <div className="max-w-xl mx-auto p-8 bg-gray-200 shadow-md rounded-lg">
+    <div className="w-[480px]  p-8 bg-gray-200 shadow-md rounded-lg">
       <h2 className="text-xl font-bold text-center mb-4">{titleOne}</h2>
       <h2 className="text-lg font-semibold  text-center mb-4">{titleTwo}</h2>
 
@@ -16,7 +16,7 @@ const CardForm = ({titleOne,titleTwo,ringColor}) => {
             id="firstName"
             name="firstName"
             placeholder="Enter your first name"
-            className={`mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-${ringColor}-700`}
+            className={`mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple_primary`}
           />
         </div>
 
@@ -28,7 +28,7 @@ const CardForm = ({titleOne,titleTwo,ringColor}) => {
             id="lastName"
             name="lastName"
             placeholder="Enter your last name"
-            className={`mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-${ringColor}-700`}
+            className={`mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple_primary`}
           />
         </div>
 
@@ -44,7 +44,7 @@ const CardForm = ({titleOne,titleTwo,ringColor}) => {
               id="phone"
               name="phone"
               placeholder="Enter your phone number"
-              className={`mt-1 block w-full pl-10 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-${ringColor}-700`}
+              className={`mt-1 block w-full pl-10 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple_primary `}
             />
           </div>
         </div>
@@ -61,7 +61,7 @@ const CardForm = ({titleOne,titleTwo,ringColor}) => {
               id="email"
               name="email"
               placeholder="Enter your email"
-              className={`mt-1 block w-full pl-10 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-${ringColor}-700`}
+              className={`mt-1 block w-full pl-10 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple_primary`}
             />
           </div>
         </div>
@@ -70,7 +70,7 @@ const CardForm = ({titleOne,titleTwo,ringColor}) => {
         <div>
           <button
             type="submit"
-            className="w-full bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+            className="w-full bg-purple_primary text-white py-2 px-4 rounded-md hover:bg-[#84286a] focus:outline-none focus:ring-2 focus:ring-purple_primary focus:ring-offset-2"
           >
             Submit
           </button>

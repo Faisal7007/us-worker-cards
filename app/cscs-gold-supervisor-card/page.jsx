@@ -21,7 +21,7 @@ const Page = () => {
 
 {/* Form */}
 
-<div className='flex justify-between items-start mt-8'>
+<div className='flex justify-evenly  items-center mt-8'>
   <div>
   <Image src='/gold-supervisor-card-img.png'
     alt='card-image'
@@ -29,7 +29,6 @@ const Page = () => {
     height={400}
     className='rounded-lg max-w-[500px] h-auto  '
   />
-
   </div>
   <div>
     <CardForm titleOne='Gold supervisor Card' titleTwo='Easy apply for CSCS Gold Card - Supervisor.' ringColor='yellow'/>

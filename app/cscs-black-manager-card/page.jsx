@@ -21,7 +21,7 @@ const Page = () => {
 
 {/* Form */}
 
-<div className='flex justify-between items-start mt-8'>
+<div className='flex justify-evenly items-center mt-8'>
   <div>
   <Image src='/black-manager-card-img.png'
     alt='card-image'

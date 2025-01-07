@@ -12,7 +12,7 @@ const HomeCard = ({icon,title,description,button_text,link_to}) => {
       </div>
       <div className="text-center">
         <div className="text-blue_primary text-[18px] font-bold mb-2">{title}</div>
-        <div className="mb-4 h-[100px]">
+        <div className={`mb-4 ${description ? 'h-[100px]' : 'h-[0px]'}`}>
         {description}
         </div>
         <Link href={link_to} className="custom-btn btn-3"><span>{button_text}</span></Link>
