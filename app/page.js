@@ -7,20 +7,18 @@ import HomeCard from "./components/HomeCard";
 import { MdOutlineLaptopMac } from "react-icons/md";
 import Link from "next/link";
 import Contact from "./components/Contact";
+import Banner from "./components/Banner";
 export default function Home() {
   const [isOpen, setIsOpen] = useState(true)
   const handleToggle=()=>{
     setIsOpen(true)
   }
   return (
-    <div className="">
-<div className="min-h-screen bg-[url('/background-img.jpg')] mb-4 bg-cover bg-center">
-<span className="absolute top-52 left-16 text-[40px] font-bold  rounded-lg px-6 bg-white  bg-opacity-50 text-purple_primary ">
-  Secure Your Future in Construction <br /> with Confidence
-</span>
+    <>
 
-</div>
-<div className="px-36">
+<Banner/>
+    <div className="max-w-[1440px] mx-auto">
+<div className="px-16">
    <div className="flex items-center gap-24 mb-20">
    <div className="  h-[400px] w-[600px] flex items-center justify-center">
   <Image
@@ -60,35 +58,35 @@ export default function Home() {
   <h2 className="text-xl font-bold inline-block bg-purple_primary px-4 pb-1 rounded-full text-white">Our Services</h2>
   <p className="text-lg text-gray-600 mt-2">Explore the various services we offer to help with your construction and safety needs.</p>
 </div>
-<div className="flex justify-center ">
+<div className="flex justify-center">
 
-   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 justify-center items-center">
+   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-20 justify-center items-center">
   <HomeCard 
-    icon={<FaIdCard className="size-10 text-white" />}
+    icon={<FaIdCard className="size-8 text-white" />}
     title="Get a CSCS Card"
-    description="Apply online for a CSCS Card, renew your CSCS Card, or request a replacement for a lost card. The CSCS Card booking fee is £65, which includes the £36 CSCS fee, a booking fee, and VAT."
+    description="Apply online for a CSCS Card, renew your CSCS Card, or request a replacement for a lost card. The CSCS Card booking fee is £54, which includes the £36 CSCS fee, a booking fee, and VAT."
     button_text="Apply Now"
     link_to="#"
   />
 
   <HomeCard 
-    icon={<MdOutlineLaptopMac className="size-10 text-white" />}
+    icon={<MdOutlineLaptopMac className="size-8 text-white" />}
     title="Schedule the CITB HS&E Test."
-    description="Schedule your CITB Health, Safety & Environment Test at the nearest test center."
+    description="Schedule your CITB Health, Safety & Environment Test at the nearest test center.booking fee of CITB Test 35 pounds for one chance and for 2 chances it will cost 55 pounds."
     button_text="Apply Now"
     link_to="#"
   />
 
   <HomeCard 
-    icon={<FaHardHat className="size-10 text-white" />}
-    title="Construction Course that Leads to a Green Card"
+    icon={<FaHardHat className="size-8 text-white" />}
+    title="Construction Course Leads to a Green Card"
     description="Schedule your Health & Safety Awareness Course online or offline."
     button_text="Apply Now"
     link_to="#"
   />
 
   <HomeCard 
-    icon={<FaUsers className="size-10 text-white" />}
+    icon={<FaUsers className="size-8 text-white" />}
     title="Group booking available."
     description="Get exclusive discounts when you book the CITB Health & Safety Test, CSCS Cards, and Construction Course leading to the Green Card for multiple delegates."
     button_text="Apply Now"
@@ -103,7 +101,7 @@ export default function Home() {
 <h1 className="text-black text-[30px] text-center font-bold my-12">Your Guide to Booking the CITB Test</h1>
 <div className="flex flex-col lg:flex-row items-center lg:items-start  mt-6 rounded-lg ">
       {/* Left Side - Image */}
-      <div className="bg-[#f1a078] rounded-md h-[400px] flex justify-center items-center lg:w-1/2 w-full mb-6 lg:mb-0">
+      <div className="rounded-md h-[400px] flex justify-center items-center lg:w-1/2 w-full mb-6 lg:mb-0">
         <Image
         height={400}
         width={500}
@@ -207,9 +205,9 @@ Select the type of card booking you want to proceed with.
 
 </div>
 
-<Contact banner/>
-
    </div>
+<Contact banner/>
+   </>
 
   );
 }

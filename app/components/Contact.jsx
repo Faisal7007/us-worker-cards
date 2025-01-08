@@ -54,10 +54,11 @@ function Contact({banner}) {
   };
 
   return (
-    
-    <div>
+    <div className="bg-gray-50 ">
+
+    <div className="max-w-[1440px] mx-auto">
       {
-        banner?"":<div className=" w-full relative">
+        banner?"":<div className="w-full relative">
         <Image
           src="/contact-us-banner.jpg"
           className="max-h-[380px] w-full"
@@ -73,7 +74,7 @@ function Contact({banner}) {
       </div>
       }
      
-      <div className="  pb-10 bg-gray-50 flex flex-col lg:flex-row justify-between items-start px-6 sm:px-12 lg:px-20 pt-5 gap-10">
+      <div className="pb-10 bg-gray-50 flex flex-col lg:flex-row justify-between items-start px-6 sm:px-12 lg:px-20 pt-5 gap-10">
         {/* Address Section */}
         <div className="w-full lg:w-1/2 space-y-6">
           <div className="text-2xl text-purple_primary sm:text-3xl font-semibold">Come, meet us!</div>
@@ -187,8 +188,9 @@ function Contact({banner}) {
           </div>
         </div>
       </div>
-      {/* <Footer/> */}
     </div>
+    </div>
+
   );
 }
 

@@ -20,7 +20,7 @@
   width: 130px;
   height: 40px;
   color: #fff;
-  border-radius: 5px;
+  /* border-radius: 5px; */
   padding: 10px 25px;
   font-family: 'Lato', sans-serif;
   font-weight: 500;
@@ -38,7 +38,7 @@
 .btn-3 {
   background: rgb(93, 1, 90);
 background: linear-gradient(0deg, rgb(143, 8, 150) 0%, rgb(120, 2, 130) 100%);
-  width: 130px;
+  width: 120px;
   height: 40px;
   line-height: 42px;
   padding: 0;
@@ -105,3 +105,25 @@ background: linear-gradient(0deg, rgb(143, 8, 150) 0%, rgb(120, 2, 130) 100%);
   width: 100%;
 }
 
+
+
+
+/* Target the scrollbar track (background) */
+::-webkit-scrollbar {
+  width: 12px; /* Adjust the width for vertical scrollbars */
+  height: 12px; /* Adjust the height for horizontal scrollbars */
+}
+
+/* The scrollbar handle (thumb) */
+::-webkit-scrollbar-thumb {
+  background-color: #6A1E55; 
+  /* background-color:#b2258a; */
+  border-radius: 6px; /* Rounded corners */
+  border: 3px solid #ffffff; /* Add some space around the thumb */
+}
+
+/* The background of the scrollbar track */
+::-webkit-scrollbar-track {
+  background-color: #fff; /* Change to your desired background color */
+  border-radius: 6px; /* Optional: round the corners */
+}

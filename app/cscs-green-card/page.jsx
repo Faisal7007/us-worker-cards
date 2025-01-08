@@ -63,7 +63,18 @@ const Page = () => {
 </div>
 </div>
 
-    </div>
+
+<div>
+<h1 className='capitalize text-[25px] text-black font-semibold mb-2  my-8'>Validity - 5 Years</h1>
+
+<h2>How can you replace your CSCS Green Card?</h2>
+<p className='mb-4'>Submit your details through the <Link href="/#" className='font-bold text-purple_primary'>online application service</Link> to request a replacement for your lost, stolen, or damaged CSCS Card.</p>
+<p className='mb-6'>A labourer card remains valid for five years, however, it cannot be renewed at this time. Once your card expires, you will need to apply for a new one. The cost of booking a CSCS Card is £54, which covers the £36 CSCS fee, booking charges, and VAT.</p>
+
+<h2>Requirements for the Card</h2>
+<p>Applicants are required to pass the <Link href="/#">CITB Health, Safety, and Environment test for operatives</Link> and possess one of the following:</p>
+</div>
+</div>
   )
 }
 
