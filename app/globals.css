@@ -1,7 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Allison&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url("https://fonts.googleapis.com/css2?family=Allison&display=swap");
 
 
 *{
@@ -37,8 +38,8 @@
 }
 
 .btn-3 {
-  background: rgb(93, 1, 90);
-background: linear-gradient(0deg, rgb(143, 8, 150) 0%, rgb(120, 2, 130) 100%);
+background: #6A1E55;
+background: linear-gradient(0deg, #9c4d85 0%, #6A1E55 100%);
   width: 120px;
   height: 40px;
   line-height: 42px;

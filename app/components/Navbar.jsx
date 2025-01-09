@@ -34,7 +34,7 @@ const Navbar = () => {
 
     <div className="max-w-[1440px] mx-auto ">
 
-    <nav className="bg-purple_primary text-white py-6 ">
+    <nav className="bg-purple_primary text-white py-6">
       <div className=" px-4">
         <div className="flex justify-between items-center h-16">
           {/* Left Part */}

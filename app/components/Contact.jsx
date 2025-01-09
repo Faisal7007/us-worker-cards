@@ -55,7 +55,7 @@ function Contact({no_banner}) {
   };
 
   return (
-    <div className="bg-gray-50">
+    <div className="bg-gray-50 py-24">
  {
         no_banner?"":<ContactUsBanner/>
       }
