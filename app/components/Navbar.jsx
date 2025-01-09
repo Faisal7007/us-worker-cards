@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
 import React, { useState, useEffect, useRef } from "react";
 import { FaAngleDown, FaPhoneVolume } from "react-icons/fa6";
@@ -29,28 +30,31 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className="bg-purple_primary">
+    <div className="bg-purple_primary sticky top-0 z-50">
 
     <div className="max-w-[1440px] mx-auto ">
 
-    <nav className="bg-purple_primary text-white py-6 sticky top-0 z-50 ">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav className="bg-purple_primary text-white py-6 ">
+      <div className=" px-4">
         <div className="flex justify-between items-center h-16">
           {/* Left Part */}
-          <div className="flex items-start">
-            <Link href="/" className="text-xl font-bold mr-4">LOGO</Link>
-            <div className="flex flex-col">
+          <div className="flex justify-between items-center">
+          <Link href="/">
+        <Image src={"/logo-white.png"} width={100} height={100} alt="Logo" className="mr-12" />
+          </Link>
+            
+            <div className="flex flex-col gap-4">
               <span className="text-sm inline-flex items-center">
-                <FaPhoneVolume />
+                <FaPhoneVolume className="size-5" />
                 <span className="ml-2 text-[25px] font-bold">+123 456 7890</span>
               </span>
-              <span className="text-xs mt-1">Mon-Sat (9 AM-7 PM)</span>
+              <span className="text-xs mt-1 text-center">Mon-Sat (9 AM-7 PM)</span>
             </div>
           </div>
 
           {/* Right Part */}
           <div
-            className="flex items-center space-x-6 font-semibold"
+            className="flex items-end space-x-6 font-semibold"
             ref={dropdownRef} // Attach ref to the dropdown container
           >
             {/* CITB Test */}
@@ -226,9 +230,9 @@ const Navbar = () => {
               Group Booking
             </a>
 
-            <a href="/contact-us" className="hover:text-gray-300">
+            <Link href="/contact-us" className="hover:text-gray-300">
               Contact Us
-            </a>
+            </Link>
           </div>
         </div>
       </div>

@@ -15,52 +15,42 @@ export default function Home() {
   }
   return (
     <>
-
 <Banner/>
     <div className="max-w-[1440px] mx-auto">
-<div className="px-16">
-   <div className="flex items-center gap-24 mb-20">
-   <div className="  h-[400px] w-[600px] flex items-center justify-center">
+<div className="px-4">
+   <div className="flex items-start justify-between mb-12">
+   <div className="flex items-start  ">
   <Image
-    src="/untitled-design.png"
+    src="/worker-img.png"
     alt="home-image"
     className="h-full w-full rounded-lg"
     width={800}
-    height={1000} // Matches the container height
+    height={1000}
   />
 </div>
-
-    <div className=" min-h-[340px] ">
-      <h1 className="text-[50px] text-purple_primary font-semibold">Complete All Requirements to Secure On-Site Access</h1>
-      <div className="flex justify-center items-center">
-      <div
-  onClick={handleToggle}
-  className="flex justify-center  mt-24 capitalize items-center bg-purple_primary text-white text-[20px] font-semibold px-8 py-2 rounded-md hover:shadow-md"
->
-{/* animate-pulse */}
-  <span>
-    I am currently searching for
-    {/* animate-bounce */}
-    <FaAngleDoubleDown className="ml-[50%] " />
-  </span>
-</div>
+    <div className="flex flex-col gap-10">
+      <div>
+      <h1 className="text-[70px] leading-[75px] text-black font-bold mb-5 ">Complete All Requirements to Secure On-Site Access</h1>
+      <br />
+      <h2 className="text-[40px] font-semibold leading-12">Verify credentials and stay compliant with industry standards.</h2>
       </div>
-      {
-        isOpen ?  <div className=" flex justify-between mt-10 ">
+      
+      <div className=" flex gap-5 ">
         <button className="custom-btn btn-3"><span>CSCS Card</span></button>
-        <button className="custom-btn btn-3"><span>CITB HS&E Test</span></button>
+        <button className="custom-btn btn-3"><span>CITB HS&E </span></button>
         <button className="custom-btn btn-3"><span>Health & Safety</span></button>
-      </div>:''
-      }
-    </div>
+      </div>
+      </div>
+
    </div>
    <div className="text-center mb-8">
   <h2 className="text-xl font-bold inline-block bg-purple_primary px-4 pb-1 rounded-full text-white">Our Services</h2>
   <p className="text-lg text-gray-600 mt-2">Explore the various services we offer to help with your construction and safety needs.</p>
 </div>
-<div className="flex justify-center">
 
-   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-20 justify-center items-center">
+{/* className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-32 justify-center items-center" */}
+   <div className="flex justify-between  " >
+ <div>
   <HomeCard 
     icon={<FaIdCard className="size-8 text-white" />}
     title="Get a CSCS Card"
@@ -68,6 +58,9 @@ export default function Home() {
     button_text="Apply Now"
     link_to="#"
   />
+ </div>
+
+<div>
 
   <HomeCard 
     icon={<MdOutlineLaptopMac className="size-8 text-white" />}
@@ -76,14 +69,20 @@ export default function Home() {
     button_text="Apply Now"
     link_to="#"
   />
+</div>
+   <div>
+
 
   <HomeCard 
     icon={<FaHardHat className="size-8 text-white" />}
-    title="Construction Course Leads to a Green Card"
+    title="Construction Course  Green Card"
     description="Schedule your Health & Safety Awareness Course online or offline."
     button_text="Apply Now"
     link_to="#"
   />
+   </div>
+
+<div>
 
   <HomeCard 
     icon={<FaUsers className="size-8 text-white" />}
@@ -92,27 +91,33 @@ export default function Home() {
     button_text="Apply Now"
     link_to="#"
   />
-</div>
+  </div>
+
 
 </div>
-
 
 {/*  */}
 <h1 className="text-black text-[30px] text-center font-bold my-12">Your Guide to Booking the CITB Test</h1>
-<div className="flex flex-col lg:flex-row items-center lg:items-start  mt-6 rounded-lg ">
+<div className="flex flex-col lg:flex-row lg:justify-between items-center lg:items-center  mt-6 rounded-lg  ">
       {/* Left Side - Image */}
-      <div className="rounded-md h-[400px] flex justify-center items-center lg:w-1/2 w-full mb-6 lg:mb-0">
+      
+        {/* <Image
+        height={400}
+        width={500}
+          src="/citb-img.png"
+          alt="CITB Test Booking"
+          className="rounded-lg w-full"
+        /> */}
         <Image
         height={400}
         width={500}
           src="/citb-img.png"
           alt="CITB Test Booking"
-          className="rounded-lg w-full "
+          className="rounded-lg w-[450px]  "
         />
-      </div>
-
+      
       {/* Right Side - Content */}
-      <div className="lg:w-1/2 w-full lg:pl-8">
+      <div className="max-w-[800px]">
         <h2 className="text-2xl font-bold text-purple_primary mb-4">
         Scheduling Your CITB Health, Safety & Environment Test
         </h2>
@@ -151,20 +156,20 @@ Booking your CITB Touchscreen Test, officially called the CITB Health, Safety & 
 
     <h1 className="text-black text-[30px] text-center font-bold my-12">Apply for CSCS Card</h1>
 
-    <div className="  flex flex-col lg:flex-row-reverse lg:justify-between  items-center lg:items-start  mt-6 rounded-lg ">
+    <div className="  flex flex-col lg:flex-row-reverse lg:justify-between items-center lg:items-start  mt-6 rounded-lg ">
       {/* Left Side - Image */}
-      <div className="bg-[#fff] rounded-md h-[400px] flex justify-center items-start lg:w-1/2 w-full mb-6 lg:mb-0">
+      
         <Image
         height={400}
         width={500}
           src="/green-card-img.png"
           alt="CITB Test Booking"
-          className="rounded-lg w-full "
+          className="rounded-lg w-[450px]  "
         />
-      </div>
+      
 
       {/* Right Side - Content */}
-      <div className="lg:w-[560px] w-full text-justify ">
+      <div className=" max-w-[800px] ">
        
         <ul className="mb-4 text-gray-700">
       <li className="flex items-start">
@@ -187,14 +192,14 @@ Select the type of card booking you want to proceed with.
       If you want a replacement for your existing CSCS card, select <span className="font-semibold ml-1">Lost Card</span>.
       </li> 
       <li className="flex items-start mb-2">
-        <FaHardHat className="text-purple_primary mr-2 size-7" />
+        <FaHardHat className="text-purple_primary mr-2 size-5 " />
         <span>To continue, click <span className="font-semibold ml-1">Submit Application</span> to add your CITB test ID, expired CSCS Card number (for Renew Card), and card delivery address.</span>
       </li>  <li className="flex items-center mb-2">
         <FaHardHat className="text-purple_primary mr-2" />
         Make the payment and confirm your details.
       </li> 
       <li className="flex items-start mb-2">
-  <FaHardHat className="text-purple_primary mr-2 size-5 mt-1" />
+  <FaHardHat className="text-purple_primary mr-2 size-4 mt-1" />
   Once approved, you will receive your CSCS Card in approximately 7 working days. That’s it!
 </li>
 
@@ -206,7 +211,7 @@ Select the type of card booking you want to proceed with.
 </div>
 
    </div>
-<Contact banner/>
+<Contact no_banner/>
    </>
 
   );

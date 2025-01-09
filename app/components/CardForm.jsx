@@ -3,7 +3,7 @@ import { FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
 
 const CardForm = ({titleOne,titleTwo,ringColor}) => {
   return (
-    <div className="w-[480px]  p-8 bg-gray-200 shadow-md rounded-lg">
+    <div className=" min-w-[700px] p-8 bg-gray-200 shadow-md rounded-lg">
       <h2 className="text-xl font-bold text-center mb-4">{titleOne}</h2>
       <h2 className="text-lg font-semibold  text-center mb-4">{titleTwo}</h2>
 

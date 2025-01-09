@@ -3,12 +3,13 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { IoIosMail } from "react-icons/io";
 import { IoLocation } from "react-icons/io5";
+import ContactUsBanner from "./ContactUsBanner";
 // import emailjs from "emailjs-com";
 // import { ToastContainer, toast } from "react-toastify";
 // import "react-toastify/dist/ReactToastify.css";
 
 // serviceID-service_s955usf
-function Contact({banner}) {
+function Contact({no_banner}) {
 //   const successSend = () => toast("Message Send Successfully");
 
 
@@ -54,27 +55,14 @@ function Contact({banner}) {
   };
 
   return (
-    <div className="bg-gray-50 ">
-
-    <div className="max-w-[1440px] mx-auto">
-      {
-        banner?"":<div className="w-full relative">
-        <Image
-          src="/contact-us-banner.jpg"
-          className="max-h-[380px] w-full"
-          alt="banner"
-          width={1400}
-          height={700}
-        />
-        <div className="text-balck font-semibold text-4xl sm:text-5xl lg:text-[65px] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
-          Contact Us
-        </div>
-      {/* <ToastContainer/> */}
-
-      </div>
+    <div className="bg-gray-50">
+ {
+        no_banner?"":<ContactUsBanner/>
       }
+    <div className="max-w-[1440px] mx-auto">
      
-      <div className="pb-10 bg-gray-50 flex flex-col lg:flex-row justify-between items-start px-6 sm:px-12 lg:px-20 pt-5 gap-10">
+     
+      <div className="pb-10 bg-gray-50 flex flex-col lg:flex-row justify-between items-start px-6 sm:px-12 lg:px-4 pt-5 gap-10">
         {/* Address Section */}
         <div className="w-full lg:w-1/2 space-y-6">
           <div className="text-2xl text-purple_primary sm:text-3xl font-semibold">Come, meet us!</div>

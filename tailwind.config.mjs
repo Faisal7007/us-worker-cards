@@ -7,6 +7,15 @@ export default {
   ],
   theme: {
     extend: {
+      keyframes: {
+        bounceHorizontal: {
+          '0%, 100%': { transform: 'translateX(0)' },
+          '50%': { transform: 'translateX(15px)' },
+        },
+      },
+      animation: {
+        bounceHorizontal: 'bounceHorizontal 5s infinite',
+      },
       colors: {
         background: "var(--background)",
         purple_primary:'#6A1E55',

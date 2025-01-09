@@ -17,11 +17,12 @@
 
 
 .custom-btn {
-  width: 130px;
-  height: 40px;
+  width: fit-content;
+  height: fit-content;
   color: #fff;
   /* border-radius: 5px; */
   padding: 10px 25px;
+  padding: 0 20px;
   font-family: 'Lato', sans-serif;
   font-weight: 500;
   background: transparent;
@@ -104,6 +105,105 @@ background: linear-gradient(0deg, rgb(143, 8, 150) 0%, rgb(120, 2, 130) 100%);
 .btn-3 span:hover:after {
   width: 100%;
 }
+
+
+
+/* Small Button */
+
+
+.custom-btn-small{
+  width: fit-content;
+  height: fit-content;
+  color: #fff;
+  /* border-radius: 5px; */
+  padding: 10px 25px;
+  padding: 0 20px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 500;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+   /* box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1); */
+  outline: none;
+}
+
+.btn-small{
+  background: rgb(93, 1, 90);
+background: linear-gradient(0deg, rgb(143, 8, 150) 0%, rgb(120, 2, 130) 100%);
+  width: 90px;
+  height: 40px;
+  line-height: 42px;
+  padding: 0;
+  border: none;
+  /* border-radius: 5px; */
+  
+}
+.btn-small span {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+}
+.btn-small:before,
+.btn-small:after {
+  position: absolute;
+  content: "";
+  right: 0;
+  top: 0;
+   background: rgb(93, 1, 90);
+  transition: all 0.3s ease;
+}
+.btn-small:before {
+  height: 0%;
+  width: 2px;
+}
+.btn-small:after {
+  width: 0%;
+  height: 2px;
+}
+.btn-small:hover{
+   background: transparent;
+  box-shadow: none;
+  border-radius: 5px;
+}
+.btn-small:hover:before {
+  height: 100%;
+}
+.btn-small:hover:after {
+  width: 100%;
+}
+.btn-small span:hover{
+   color: rgb(93, 1, 90);
+}
+.btn-small span:before,
+.btn-small span:after {
+  position: absolute;
+  content: "";
+  left: 0;
+  bottom: 0;
+   background: rgb(93, 1, 90);
+  transition: all 0.7s ease;
+}
+.btn-small span:before {
+  width: 2px;
+  height: 0%;
+}
+.btn-small span:after {
+  width: 0%;
+  height: 2px;
+}
+.btn-small span:hover:before {
+  height: 100%;
+}
+.btn-small span:hover:after {
+  width: 100%;
+}
+
 
 
 

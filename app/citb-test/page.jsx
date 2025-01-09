@@ -15,7 +15,9 @@ const page = () => {
 
   }]
   return (
-    <div className='px-36 py-8'>
+    <div className='max-w-[1440px] mx-auto'>
+
+    <div className='px-4 py-8'>
     <h1 className='text-[24px] font-bold'>Book a CITB Health, Safety and Environment test</h1>
     <h3>Required for CSCS Card</h3>
     <div className='h-[1px] w-full bg-slate-300 my-4'></div>
@@ -36,6 +38,8 @@ const page = () => {
     </div>
       
     </div>
+    </div>
+
   )
 }
 

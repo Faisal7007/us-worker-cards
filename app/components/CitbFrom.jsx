@@ -40,7 +40,7 @@ const CitbForm = () => {
       onSubmit={handleSubmit}
       className="max-w-full mx-auto  rounded  space-y-6"
     >
-    <div className="  pt-6">
+    <div className="pt-6">
 
       <h2 className="text-[30px] bg-purple_primary text-white py-4    font-bold mb-6 text-center">Candidate Undergoing the Test</h2>
 <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-4">

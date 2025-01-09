@@ -9,16 +9,16 @@ const Footer = () => {
       <div className="container mx-auto pt-8 px-4 md:px-8 lg:px-20 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {/* Logo and Description */}
         <div className="flex flex-col items-center lg:items-start space-y-4">
-          <div className="h-20 w-20">
+          
             <Image
-              src="/logo.png"
-              width={200}
-              height={200}
+              src="/logo-color.png"
+              width={100}
+              height={100}
               alt="logo"
-              className="w-full"
+           
               priority={true}
             />
-          </div>
+          
           <div className="w-full lg:w-72 text-justify text-sm md:text-base">
           Construction cards services explicitly states that we are not part of, or associated with CSCS or CITB.
           </div>
