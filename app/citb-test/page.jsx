@@ -15,10 +15,10 @@ const page = () => {
 
   }]
   return (
-    <div className='max-w-[1440px] mx-auto'>
+    <div className='max-w-[1440px] mx-auto px-4 pt-8'>
 
-    <div className='px-4 py-8'>
-    <h1 className='text-[24px] font-bold'>Book a CITB Health, Safety and Environment test</h1>
+    <div>
+    <h1 className='text-[30px] font-bold'>Book a CITB Health, Safety and Environment test</h1>
     <h3>Required for CSCS Card</h3>
     <div className='h-[1px] w-full bg-slate-300 my-4'></div>
     <h2 className='font-semibold '>The HS&E test from CITB is a key requirement for obtaining a CSCS Card.</h2>
@@ -28,15 +28,18 @@ const page = () => {
     <Link href='/' className='text-purple_primary '>Not Sure which test to take?</Link>
 
 {/* Form */}
-    <div className='mt-10'>
+    <div className='mt-6 mb-4'>
     <CitbForm/>
     </div>
 
     <div>
-    <h1 className='text-center text-[40px] capitalize  mb-5'>frequently Asked <span className=' text-[70px] text-purple_primary  font-light font allison_regular'>Questions</span></h1>
-<QuestionAccordion/>
+    <h1 className='text-center text-[40px] capitalize  mb-4'>frequently Asked <span className=' text-[70px] text-purple_primary  font-light font allison_regular'>Questions</span></h1>
+      <QuestionAccordion/>
     </div>
-      
+      <div className='mt-10 px-4 py-4 bg-gray-100 border-l-4 border-r-4 border-purple_primary'>
+        <h1 className='font-bold text-purple_primary'>What does the CITB Health, Safety, and Environment Test involve?</h1>
+        <p className='text-justify'>The CITB Test (Touchscreen Test) is a requirement for obtaining a CSCS Card. Officially called the CITB Health, Safety, and Environment Test, it can be booked by completing the form above. Your test booking confirmation will be sent to you via email and phone. Construction Worker Support (CWS) specializes in supporting the construction industry, providing workers with the guidance needed to obtain their construction cards.</p>
+      </div>
     </div>
     </div>
 

@@ -1,14 +1,15 @@
 import React from 'react';
 import { FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
 
-const CardForm = ({titleOne,titleTwo,ringColor}) => {
+const CardForm = ({titleOne,titleTwo}) => {
   return (
-    <div className=" min-w-[700px] p-8 bg-gray-200 shadow-md rounded-lg">
-      <h2 className="text-xl font-bold text-center mb-4">{titleOne}</h2>
-      <h2 className="text-lg font-semibold  text-center mb-4">{titleTwo}</h2>
+    <div className=" min-w-[660px] p-6 bg-gray-200 shadow-md rounded-lg">
+      <h2 className="text-xl font-bold text-center mb-2">{titleOne}</h2>
+      <h2 className="text-lg font-semibold  text-center mb-6">{titleTwo}</h2>
 
-      <form className="space-y-4">
-        {/* First Name */}
+      <form >
+      <div>
+       <div className='grid grid-cols-2 gap-4 mb-4'>
         <div>
           <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">First Name</label>
           <input
@@ -20,7 +21,6 @@ const CardForm = ({titleOne,titleTwo,ringColor}) => {
           />
         </div>
 
-        {/* Last Name */}
         <div>
           <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">Last Name</label>
           <input
@@ -31,8 +31,10 @@ const CardForm = ({titleOne,titleTwo,ringColor}) => {
             className={`mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple_primary`}
           />
         </div>
+       </div>
 
-        {/* Phone Number */}
+<div className='grid grid-cols-2 gap-4 mb-8'>
+
         <div>
           <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Phone Number</label>
           <div className="relative">
@@ -49,7 +51,7 @@ const CardForm = ({titleOne,titleTwo,ringColor}) => {
           </div>
         </div>
 
-        {/* Email */}
+        
         <div>
           <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
           <div className="relative">
@@ -66,6 +68,11 @@ const CardForm = ({titleOne,titleTwo,ringColor}) => {
           </div>
         </div>
 
+</div>
+      </div>
+
+
+
         {/* Submit Button */}
         <div>
           <button
@@ -75,6 +82,7 @@ const CardForm = ({titleOne,titleTwo,ringColor}) => {
             Submit
           </button>
         </div>
+      
       </form>
     </div>
   );

@@ -8,11 +8,11 @@ import {
     AccordionIcon,
     Box
 } from '@chakra-ui/react'
-import items from '../accordionData';
+import items from '../healthAndSafetyData';
 
 
 
-const QuestionAccordion = () => {
+const QuestionAccordionHAndS = () => {
     return (
         <div>
             <Accordion allowToggle>
@@ -41,4 +41,4 @@ const QuestionAccordion = () => {
     )
 }
 
-export default QuestionAccordion
+export default QuestionAccordionHAndS

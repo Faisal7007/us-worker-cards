@@ -30,9 +30,9 @@ export default function Home() {
 </div>
     <div className="flex flex-col">
       <div>
-      <h1 className="text-[70px] leading-[85px] text-justify text-black font-bold mb-6">Complete All Requirements to Secure On-Site Access</h1>
+      <h1 className="text-[70px] leading-[85px] text-justify text-black font-bold">Complete All Requirements to Secure On-Site Access</h1>
       <br />
-      <h2 className="text-[40px] font-semibold text-justify mb-[75px]">Verify credentials and stay compliant with industry standards.</h2>
+      <h2 className="text-[40px] font-semibold text-justify mb-[85px]">Verify credentials and stay compliant with industry standards.</h2>
       </div>
       
       <div className="flex gap-5">
@@ -159,7 +159,7 @@ Booking your CITB Touchscreen Test, officially called the CITB Health, Safety & 
     <h2 className="text-[25px] font-bold inline-block  px-4 py-1 bg-purple_primary rounded-full text-white">Apply for CSCS Card</h2>
     </div>
 
-    <div className="  flex flex-col lg:flex-row-reverse lg:justify-between items-center lg:items-start rounded-lg ">
+    <div className="flex flex-col lg:flex-row-reverse lg:justify-between items-center lg:items-start rounded-lg ">
       {/* Left Side - Image */}
       
         <Image

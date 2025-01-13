@@ -218,6 +218,8 @@ background: linear-gradient(0deg, rgb(143, 8, 150) 0%, rgb(120, 2, 130) 100%);
 /* The scrollbar handle (thumb) */
 ::-webkit-scrollbar-thumb {
   background-color: #6A1E55; 
+  /* background-color: #f392d7;  */
+
   /* background-color:#b2258a; */
   border-radius: 6px; /* Rounded corners */
   border: 3px solid #ffffff; /* Add some space around the thumb */
@@ -228,3 +230,5 @@ background: linear-gradient(0deg, rgb(143, 8, 150) 0%, rgb(120, 2, 130) 100%);
   background-color: #fff; /* Change to your desired background color */
   border-radius: 6px; /* Optional: round the corners */
 }
+
+

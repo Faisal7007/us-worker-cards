@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import React from 'react'
-import { MdOutlineLaptopMac } from 'react-icons/md'
 
 const HomeCard = ({icon,title,description,button_text,link_to}) => {
   return (

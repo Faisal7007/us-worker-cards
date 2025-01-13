@@ -55,12 +55,11 @@ function Contact({no_banner}) {
   };
 
   return (
-    <div className="bg-gray-50 py-24">
+    <div className="bg-gray-50">
  {
         no_banner?"":<ContactUsBanner/>
       }
-    <div className="max-w-[1440px] mx-auto">
-     
+    <div className="max-w-[1440px] mx-auto px-4 pt-8">
      
       <div className="pb-10 bg-gray-50 flex flex-col lg:flex-row justify-between items-start px-6 sm:px-12 lg:px-4 pt-5 gap-10">
         {/* Address Section */}

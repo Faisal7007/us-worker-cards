@@ -42,7 +42,7 @@ const CitbForm = () => {
     >
     <div className="pt-6">
 
-      <h2 className="text-[30px] bg-purple_primary text-white py-4    font-bold mb-6 text-center">Candidate Undergoing the Test</h2>
+      <h2 className="text-[25px] bg-purple_primary text-white py-4    font-bold mb-6 text-center">Candidate Undergoing the Test</h2>
 <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-4">
 
     <div>
@@ -58,7 +58,7 @@ const CitbForm = () => {
         required
       >
         <option value="" disabled>
-          Please select an item in the list
+          Please select the title
         </option>
         <option value="Mr">Mr</option>
         <option value="Ms">Ms</option>
@@ -302,16 +302,14 @@ const CitbForm = () => {
       <button
         type="submit"
         disabled={!agreed}
-        className={`inline-flex items-center justify-center w-fit px-4 py-2 rounded  ${
+        className={`inline-flex items-center justify-center w-fit px-4 py-2 rounded ${
           agreed
-            ? "bg-green-600 text-white hover:bg-green-600"
-            : "bg-green-300 text-white cursor-not-allowed"
+            ? "bg-purple_primary  text-white hover:bg-[#84286a]"
+            : "bg-[#854c75] text-white cursor-not-allowed"
         }`}
       >
         <span className="ml-2">Move Forward</span>
         <MdArrowRight className="size-6"/>
-        
-
       </button>
     </form>
   );

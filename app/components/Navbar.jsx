@@ -40,13 +40,13 @@ const Navbar = () => {
           {/* Left Part */}
           <div className="flex justify-between items-center">
           <Link href="/">
-        <Image src={"/logo-white.png"} width={100} height={100} alt="Logo" className="mr-12" />
+        <Image src={"/new-logo-white.png"} width={100} height={100} alt="Logo" className="mr-12" />
           </Link>
             
             <div className="flex flex-col gap-4">
               <span className="text-sm inline-flex items-center">
                 <FaPhoneVolume className="size-5" />
-                <span className="ml-2 text-[25px] font-bold">+123 456 7890</span>
+                <span className="ml-2 text-[25px] font-bold">+91 5678901230</span>
               </span>
               <span className="text-xs mt-1 text-center">Mon-Sat (9 AM-7 PM)</span>
             </div>
@@ -116,7 +116,7 @@ const Navbar = () => {
                     Black Manager
                   </Link>
                   <Link
-                    href="/card-types"
+                    href="/cscs-card-types"
                     onClick={handleOptionClick}
                     className="block px-4 py-2 whitespace-nowrap hover:bg-gray-300"
                   >
@@ -209,14 +209,14 @@ const Navbar = () => {
               {dropdownOpen === "Construction" && (
                 <div className="absolute top-[60px] bg-white text-black rounded shadow-lg mt-2 py-2">
                   <Link
-                    href="#"
+                    href="/health-and-safety-awareness"
                     onClick={handleOptionClick}
                     className="block px-4 py-2 whitespace-nowrap hover:bg-gray-300"
                   >
                     Health & Safety Awareness
                   </Link>
                   <Link
-                    href="#"
+                    href="/nvq-level-2"
                     onClick={handleOptionClick}
                     className="block px-4 py-2 whitespace-nowrap hover:bg-gray-300"
                   >
@@ -226,9 +226,9 @@ const Navbar = () => {
               )}
             </div>
 
-            <a href="#" className="hover:text-gray-300">
+            <Link href="/group-booking" className="hover:text-gray-300">
               Group Booking
-            </a>
+            </Link>
 
             <Link href="/contact-us" className="hover:text-gray-300">
               Contact Us

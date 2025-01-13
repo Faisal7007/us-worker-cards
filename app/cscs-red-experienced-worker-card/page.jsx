@@ -13,7 +13,7 @@ import SmallCard from '../components/SmallCard';
 const Page = () => {
   return (
     <div className='max-w-[1440px] mx-auto px-4 pt-8'>
-    <h1 className='text-[30px] font-bold mb-2 capitalize'>CSCS Green Card</h1>
+    <h1 className='text-[30px] font-bold mb-2 capitalize'>Red Experienced Worker Card</h1>
     <Link href='#' className='inline-flex items-center text-purple_primary '><IoIosArrowForward/><span>Go to full card types list</span></Link>
     <div className='h-[1px] w-full bg-slate-300 my-4'></div>
     <h1 className='text-[25px] font-bold mb-2'>How to apply</h1>
@@ -26,11 +26,10 @@ const Page = () => {
     </p>
 
 {/* Form */}
-
 <div className='flex justify-between  items-center  mt-10'>
   <div>
   <Image 
-    src='/green-card-img.png'
+    src='/red-experienced-worker-card-img.png'
     alt='card-image'
     width={800}
     height={400}
@@ -38,7 +37,7 @@ const Page = () => {
   />
   </div>
   <div>
-    <CardForm titleOne='Green Labourer Card' titleTwo='Easy apply for CSCS Green Card - Labourers Card.' ringColor='green'/>
+    <CardForm titleOne='Red Experienced Worker Card' titleTwo='Easy apply for Experienced Worker Card'/>
   </div>
 </div>
   <div className='flex justify-center mt-24'>
@@ -60,24 +59,30 @@ const Page = () => {
 </div>
 
 <div>
-<h1 className='capitalize text-[25px] text-black my-8 font-bold'>Validity - 5 Years</h1>
+<h1 className='capitalize text-[25px] text-black my-8 font-bold'>Validity - 1 Years</h1>
 
-<h2 className='font-bold'>How can you replace your CSCS Green Card?</h2>
-<p className='mb-4'>Submit your details through the <Link href="/#" className='font-bold text-purple_primary'>online application service</Link> to request a replacement for your lost, stolen, or damaged CSCS Card.</p>
-<p className='mb-6'>A labourer card remains valid for five years, however, it cannot be renewed at this time. Once your card expires, you will need to apply for a new one. The cost of booking a CSCS Card is £54, which covers the £36 CSCS fee, booking charges, and VAT.</p>
+<h2 className='font-bold'>How can you replace your CSCS Red Experienced Worker Card?</h2>
+<p className='mb-4'>This card is non-renewable. Cardholders must complete their qualification before it expires and then apply for a Skilled CSCS Card.</p>
 
-<h2 className='font-bold'>Requirements for the Card</h2>
-<p className='mb-4 '>Applicants are required to pass the <Link href="/#" className='text-purple_primary font-bold'>CITB Health, Safety, and Environment test for operatives</Link> and possess one of the following :</p>
+<p className='text-justify'>This temporary card is available specifically for workers with at least one year of on-the-job experience within the last three years, who are registered to complete a Construction-Related NVQ or SVQ Level 2 or higher that is acceptable for a CSCS card.</p>
+<p className='mb-6'>For more information about registering(enrollment) for NVQ Level 2, please visit <Link href="/#" className='text-purple_primary font-bold'>NVQ Level 2.</Link></p>
+
+<p className='mb-6 text-justify'>Applicants must have passed the appropriate level of the CITB Health, Safety, and Environment test within the last two years. The test must be taken at the relevant level for the occupation being applied for. To determine the required test level, please use our <Link href="#" className='text-purple_primary font-bold'>Test Finder.</Link> The CSCS card booking costs £54, which includes the £36 CSCS fee, booking fee, and VAT.</p>
+
+<p className='text-justify'>Experienced Worker card applicants must be able to provide proof of registration onto their NVQ/SVQ qualification. As a minimum, you are required to provide evidence from your Training Organisation awarding body that must include:</p>
+
 <p className="flex items-center mb-2">
         <FaHardHat className="text-purple_primary mr-2" />
-        An Award in Health and Safety in a Construction Environment at RQF Level 1 or SCQF Level 4, or</p>
+        Applicant’s Full Name</p>
+        <p className="flex items-center mb-2">
+        <FaHardHat className="text-purple_primary mr-2" />Full qualification title of the NVQ/SVQ course you are registered to, including level</p>
         <p className="flex items-center mb-2">
         <FaHardHat className="text-purple_primary mr-2" />
-A REHIS Elementary Health and Safety Certificate at SCQF Level 5, or</p>
+        Date of registration proof required for Vocational Qualifications (i.e. NVQ or SVQ) must be in the last two years.</p>
         <p className="flex items-center mb-2">
         <FaHardHat className="text-purple_primary mr-2" />
-        The Construction Health and Safety (F/618/0738) unit from NOCN/CSkills Awards.</p>
-        <p className='my-6'>Please visit the <Link href="#" className='text-purple_primary font-bold'>Health and Safety Awareness Course</Link> to obtain one of the required qualifications listed above.</p>
+        Date of registration (must be in the last 2 years)</p>
+        <p className='my-6'></p>
         <p ><Link href="#" className='text-purple_primary font-bold'>Contact Support</Link> if you're still not sure which test to take.</p>
 </div>
 </div>

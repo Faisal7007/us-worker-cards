@@ -5,13 +5,13 @@ import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-50 text-color_dark_red1">
+    <footer className="bg-gray-50 text-color_dark_red1 mt-10">
       <div className="container mx-auto pt-8 px-4 md:px-8 lg:px-20 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {/* Logo and Description */}
         <div className="flex flex-col items-center lg:items-start space-y-4">
           
             <Image
-              src="/logo-color.png"
+              src="/new-logo-color.png"
               width={100}
               height={100}
               alt="logo"

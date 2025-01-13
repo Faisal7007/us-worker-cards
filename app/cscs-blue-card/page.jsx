@@ -12,36 +12,36 @@ import SmallCard from '../components/SmallCard';
 
 const Page = () => {
   return (
-    <div className='max-w-[1440px] mx-auto px-4 pt-6'>
-    <h1 className='text-[24px] font-bold mb-6 capitalize'>Blue Skilled Worker Card</h1>
+    <div className='max-w-[1440px] mx-auto px-4 pt-8'>
+    <h1 className='text-[30px] font-bold mb-2 capitalize'>Blue Skilled Worker Card</h1>
     <Link href='#' className='inline-flex items-center text-purple_primary '><IoIosArrowForward/><span>Go to full card types list</span></Link>
     <div className='h-[1px] w-full bg-slate-300 my-4'></div>
     <h1 className='text-[25px] font-bold mb-2'>How to apply</h1>
-    <h1 className='text-[20px] font-bold'>Apply by phone</h1>
+    {/* <h1 className='text-[20px] font-bold'>Apply by phone</h1> */}
+     <p>Call <Link href='/' className='text-purple_primary font-semibold hover:text-black '>0203 769 9047</Link> to book by phone. Our lines are open Monday to Saturday, from 9 AM to 7 PM.</p>
 
-     <p className='my-4'>Call <Link href='/' className='text-purple_primary font-semibold hover:text-black '>0203 769 9047</Link> to book by phone. Our lines are open Monday to Saturday, from 9 AM to 7 PM.</p>
-
-     <h1 className='text-[20px] font-semibold mb-2'>Apply online</h1>
+     <h1 className='text-[20px] font-bold mb-2 mt-8'>Apply online</h1>
    <p>Apply for a CSCS Card easily using our <Link href='/' className='text-purple_primary font-bold'> online application service.</Link>
     </p>
 
 {/* Form */}
 
-<div className='flex justify-between  items-center  mt-8'>
+<div className='flex justify-between items-center mt-10 '>
   <div>
   <Image src='/blue-card-img.png'
     alt='card-image'
-    width={600}
+    width={800}
     height={400}
-    className='rounded-lg  h-auto  '
+    className='rounded-lg h-[355px] w-[660px]'
   />
   </div>
   <div>
-    <CardForm titleOne='Blue Skilled Worker Card' titleTwo='Easy apply for Blue CSCS Card - Skilled Worker.'/>
+    <CardForm titleOne='Blue Skilled Worker Card' titleTwo='Easy apply for Blue CSCS Card - Skilled Worker.' ringColor='green'/>
   </div>
 </div>
-  <div className='flex justify-center'>
-    <h1 className='capitalize text-[25px] text-white inline-block px-4 py-1  bg-purple_primary rounded-full  font-semibold  text-center my-8'>Eligibility Requirements</h1>
+
+<div className='flex justify-center mt-24'>
+    <h1 className='capitalize text-[25px] text-white px-4 py-1 bg-purple_primary rounded-full  font-semibold '>Eligibility Requirements</h1>
   </div>
     
 <div className='flex justify-center mt-8'>
@@ -80,10 +80,8 @@ Achieved an <Link href="#" className='font-bold mx-1'>NVQ or SVQ</Link> Level 2 
 
 {/* <h2 className='font-bold'>Requirements for the Card</h2> */}
 
-    <p className='mb-4 '>Applicants must pass the <Link href="#" className='font-bold '>CITB Health, Safety, and Environment test</Link> at the appropriate level for their occupation within the last two years. To identify the required test level, refer to our <Link href="#" className='font-bold'>Card Finder.</Link> The cost for booking a CSCS Card is £54, which covers the £36 CSCS fee, booking fee, and VAT.</p>
+    <p className='mb-6'>Applicants must pass the <Link href="#" className='font-bold '>CITB Health, Safety, and Environment test</Link> at the appropriate level for their occupation within the last two years. To identify the required test level, refer to our <Link href="#" className='font-bold'>Card Finder.</Link> The cost for booking a CSCS Card is £54, which covers the £36 CSCS fee, booking fee, and VAT.</p>
  
-     
-      
         <p ><Link href="#" className='text-purple_primary font-bold'>Contact Support</Link> if you're still not sure which test to take.</p>
 </div>
 </div>
