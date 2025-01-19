@@ -301,6 +301,9 @@ const Navbar = () => {
     };
   }, []);
 
+
+  
+
   return (
     <div className="bg-purple_primary  sticky top-0 z-50 shadow-lg">
       <div className="max-w-[1440px] mx-auto px-4">
@@ -324,10 +327,11 @@ const Navbar = () => {
           </button>
 
           {/* Desktop & Mobile Menu */}
+          
           <div
-            className={`lg:flex lg:items-center lg:space-x-8 ${
+            className={` flex justify-center media-max-935px:pt-10  lg:flex lg:items-center lg:space-x-8 ${
               isMobileMenuOpen
-                ? "block absolute top-24 left-0 w-full bg-purple_primary  text-white"
+                ? "block absolute top-24 left-0 w-full media-max-935px:h-[100vh]  bg-purple_primary  text-white transition-all duration-500 "
                 : "hidden"
             } lg:static lg:bg-transparent lg:w-auto`}
           >
@@ -338,11 +342,11 @@ const Navbar = () => {
 
 <Link
   href="/citb-test"
-  className={`relative text-white after:content-[''] after:absolute 
+  className={`relative  text-white after:content-[''] after:absolute 
     after:left-0 after:bottom-[-2px] after:w-0 after:h-[2px] 
     after:bg-current after:transition-all after:duration-300 
-    hover:after:w-full ${
-      pathname === "/citb-test" ? "after:w-full underline-offset-2" : ""
+    hover:after:w-full media-max-935px:hover:after:w-[70px] media-max-935px:mb-2 ${
+      pathname === "/citb-test" ? "after:w-full media-max-935px:after:w-[70px] underline-offset-2" : ""
     }`}
   onClick={handleOptionClick}
 >
@@ -353,7 +357,7 @@ const Navbar = () => {
               <div className="relative">
                 <button
                   onClick={() => toggleDropdown("CSCS")}
-                  className="inline-flex items-center py-2 px-4 text-white hover:text-gray-300 focus:outline-none"
+                  className="inline-flex items-center py-2 px-4 text-white hover:text-gray-300 focus:outline-none media-max-935px:px-0 "
                 >
                   CSCS Cards
                   <FaAngleDown className="ml-2" />
@@ -376,7 +380,7 @@ const Navbar = () => {
                     <Link
                       key={item.path}
                       href={item.path}
-                      className="block font-semibold px-6 py-2 text-[14px] text-black hover:bg-purple_primary hover:text-white"
+                      className="block font-semibold px-6 py-2 text-[14px] text-black hover:bg-purple_primary hover:text-white media-max-935px:text-white"
                       onClick={handleOptionClick}
                     >
                       {item.label}
@@ -389,7 +393,7 @@ const Navbar = () => {
               <div className="relative">
                 <button
                   onClick={() => toggleDropdown("ESS")}
-                  className="inline-flex items-center py-2 px-4 text-white hover:text-gray-300 focus:outline-none"
+                  className="inline-flex items-center py-2 px-4 text-white hover:text-gray-300 focus:outline-none media-max-935px:px-0"
                 >
                   ESS Cards
                   <FaAngleDown className="ml-2" />
@@ -412,7 +416,7 @@ const Navbar = () => {
                     <Link
                       key={item.path}
                       href={item.path}
-                      className="block font-semibold px-6 py-2 text-[14px] text-black hover:bg-purple_primary hover:text-white"
+                      className="block font-semibold px-6 py-2 text-[14px] text-black hover:bg-purple_primary hover:text-white media-max-935px:text-white"
                       onClick={handleOptionClick}
                     >
                       {item.label}
@@ -424,10 +428,10 @@ const Navbar = () => {
               <div className="relative">
                 <button
                   onClick={() => toggleDropdown("CC")}
-                  className="inline-flex items-center py-2 px-4 text-white hover:text-gray-300 focus:outline-none"
+                  className="inline-flex items-center py-2 px-4 text-white hover:text-gray-300 focus:outline-none media-max-935px:px-0 media-max-935px:mb-2"
                 >
                  Construction Courses
-                  <FaAngleDown className="ml-2" />
+                  <FaAngleDown className="ml-2"/>
                 </button>
                 <div
                   className={`transition-all whitespace-nowrap duration-300 overflow-hidden ${
@@ -443,7 +447,7 @@ const Navbar = () => {
                     <Link
                       key={item.path}
                       href={item.path}
-                      className="block font-semibold px-6 py-2 text-[14px] text-black hover:bg-purple_primary hover:text-white"
+                      className="block font-semibold px-6 py-2 text-[14px] text-black hover:bg-purple_primary hover:text-white media-max-935px:text-white"
                       onClick={handleOptionClick}
                     >
                       {item.label}
@@ -455,11 +459,11 @@ const Navbar = () => {
               {/* Other Links */}
               <Link
                 href="/group-booking"
-                className={`relative text-white after:content-[''] after:absolute 
+                className={`relative media-max-935px:mb-4 text-white after:content-[''] after:absolute 
     after:left-0 after:bottom-[-2px] after:w-0 after:h-[2px] 
     after:bg-current after:transition-all after:duration-300 
-    hover:after:w-full ${
-      pathname === "/group-booking" ? "after:w-full underline-offset-2" : ""
+    hover:after:w-full media-max-935px:hover:after:w-[110px] ${
+      pathname === "/group-booking" ? "after:w-full media-max-935px:after:w-[110px] underline-offset-2" : ""
     }`}
                 onClick={handleOptionClick}
               >
@@ -467,11 +471,11 @@ const Navbar = () => {
               </Link>
               <Link
                 href="/contact-us"
-                className={`relative media-max-545px:px-4  text-white after:content-[''] after:absolute 
+                className={`relative  text-white after:content-[''] after:absolute 
     after:left-0 after:bottom-[-2px] after:w-0 after:h-[2px] 
     after:bg-current after:transition-all after:duration-300 
-    hover:after:w-full ${
-      pathname === "/contact-us" ? "after:w-full underline-offset-2" : ""
+    hover:after:w-full media-max-935px:hover:after:w-[10px] ${
+      pathname === "/contact-us" ? "after:w-full media-max-935px:after:w-[80px] underline-offset-2" : ""
     }`}
                 onClick={handleOptionClick}
               >
