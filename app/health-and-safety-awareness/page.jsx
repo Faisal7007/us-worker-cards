@@ -17,11 +17,11 @@ const Page = () => {
     alt='card-image'
     width={800}
     height={400}
-    className='rounded-lg h-[355px] w-[660px]'
+    className='rounded-lg h-[380px] w-[660px]'
   />
   </div>
   <div>
-    <CardForm titleOne='Health & Safety Awareness' titleTwo='Easy apply for Level 1 Health & Safety in Construction.'/>
+    <CardForm titleOne='Health & Safety Awareness' titleTwo='Easy apply for Level 1 Health & Safety in Construction.' cardType="health-and-safety-awareness"/>
   </div>
 </div>
 
@@ -30,21 +30,20 @@ const Page = () => {
 Level 1 Award in Health and Safety in a Construction Environment (Online)</h1>
 
 <div className='mb-4 '>
-    <p className="flex items-center font-bold text-green-500  mb-2">
-  <GiCheckMark className="text-green-500 size-4 mr-2" /> 
-Currently, up to a 99% pass rate.
-</p>
-   <p className="flex items-center font-bold text-green-500  mb-2">
+<p className="flex items-center font-bold text-green-500  mb-2">
   <GiCheckMark className="text-green-500  size-4 mr-2" />
   Accredited officially.
 </p>
-   <p className="flex items-center font-bold text-green-500  mb-2">
+ <p className="flex items-center font-bold text-green-500  mb-2">
   <GiCheckMark className="text-green-500 size-4 mr-2" />
-  A short exam taken from a laptop or computer instead of at a test center.
+Travel is not needed.
 </p>
    <p className="flex items-center font-bold text-green-500  mb-2">
-  <GiCheckMark className="text-green-500 size-4 mr-2" />
-  The course can be completed using a smartphone or computer.
+  <GiCheckMark className="text-green-500 size-4 mr-2" />Support from dedicated staff.
+</p>
+    <p className="flex items-center font-bold text-green-500  mb-2">
+  <GiCheckMark className="text-green-500 size-4 mr-2" /> 
+Currently, up to a 99% pass rate.
 </p>
    <p className="flex items-center font-bold text-green-500  mb-2">
   <GiCheckMark className="text-green-500 size-4 mr-2" />
@@ -53,13 +52,18 @@ Currently, up to a 99% pass rate.
    <p className="flex items-center font-bold text-green-500  mb-2">
   <GiCheckMark className="text-green-500 size-4 mr-2" />Training available immediately at times that suit you.
 </p>
-   <p className="flex items-center font-bold text-green-500  mb-2">
-  <GiCheckMark className="text-green-500 size-4 mr-2" />Support from dedicated staff.
+
+<p className="flex items-center font-bold text-green-500  mb-2">
+  <GiCheckMark className="text-green-500 size-4 mr-2" />
+  The course can be completed using a smartphone or computer.
 </p>
    <p className="flex items-center font-bold text-green-500  mb-2">
   <GiCheckMark className="text-green-500 size-4 mr-2" />
-Travel is not needed.
+  A short exam taken from a laptop or computer instead of at a test center.
 </p>
+  
+
+ 
 </div>
 <p className='mb-2'>You can use this qualification to obtain a <Link href="#" className='font-bold text-purple_primary'>CSCS Green Labourer Card.</Link></p>
 <p className='mb-2 text-justify'>To obtain a CSCS Green Card, you must complete the Health, Safety, and Awareness qualification. The online course enables you to complete the training from your computer in half the time, all from the comfort of your own home. Once completed, the qualification remains valid for 5 years, making you eligible to apply for a CSCS Green Card.</p>
@@ -80,9 +84,9 @@ Travel is not needed.
 <p className='text-justify'>This course is ideal for individuals who are either considering a career in, or are already working within, the construction and civil engineering industry. Its objective is to educate you about potential hazards that may arise while working on-site and to offer practical advice on ensuring the safety of yourself and others in the workplace. Upon completion, you will gain a solid understanding of the following:</p>
 <ul className='list-disc pl-4'>
   <li className='marker:text-purple_primary mb-2'>Laws related to Health & Safety.</li>
-  <li className='marker:text-purple_primary mb-2'>How to prevent accidents by reporting unsafe acts.</li>
   <li className='marker:text-purple_primary mb-2'>The importance of preventing accidents.</li>
   <li className='marker:text-purple_primary mb-2'>Both risk assessments and method statements.</li>
+  <li className='marker:text-purple_primary mb-2'>How to prevent accidents by reporting unsafe acts.</li>
   <li className='marker:text-purple_primary mb-2'>Safely performing your job role and asking for advice when necessary.</li>
   <li className='marker:text-purple_primary mb-2'>How your role contributes to the control and management of the construction site.</li>
 </ul>
@@ -103,10 +107,10 @@ Level 1 Award in Health and Safety in a Construction Environment (Offline)</h1>
 <p className='mt-4 text-justify'>To secure a construction job in the UK, most sites require a CSCS Card. The first step in obtaining your CSCS Green Card is completing the RQF Level 1 Award in Health and Safety in a Construction Environment course, which is valid for life.</p>
 <p className='mt-6'>This course is available in the following locations:</p>
 <ul className='list-disc pl-4'>
-  <li className='font-bold marker:text-purple_primary mb-2'>Birmingham.</li>
   <li className='font-bold marker:text-purple_primary mb-2'>Leeds.</li>
-  <li className='font-bold marker:text-purple_primary mb-2'>Liverpool.</li>
   <li className='font-bold marker:text-purple_primary mb-2'>London.</li>
+  <li className='font-bold marker:text-purple_primary mb-2'>Liverpool.</li>
+  <li className='font-bold marker:text-purple_primary mb-2'>Birmingham.</li>
   <li className='font-bold marker:text-purple_primary mb-2'>Manchester.</li>
   <li className='font-bold marker:text-purple_primary mb-2'>Nottingham.</li>
 </ul>

@@ -9,7 +9,7 @@ const Page = () => {
   return (
     <div className='max-w-[1440px] mx-auto px-4 pt-8'>
     <h1 className='text-[30px] font-bold mb-2 capitalize'>Gold Supervisor Card</h1>
-    <Link href='#' className='inline-flex items-center text-purple_primary '><IoIosArrowForward/><span>Go to full card types list</span></Link>
+    <Link href='cscs-card-types' className='inline-flex items-center text-purple_primary '><IoIosArrowForward/><span>Go to full card types list</span></Link>
     <div className='h-[1px] w-full bg-slate-300 my-4'></div>
     <h1 className='text-[25px] font-bold mb-2'>How to apply</h1>
     {/* <h1 className='text-[20px] font-bold'>Apply by phone</h1> */}
@@ -17,7 +17,7 @@ const Page = () => {
      <p>Call <Link href='/' className='text-purple_primary font-semibold hover:text-black '>0203 769 9047</Link> to book by phone. Our lines are open Monday to Saturday, from 9 AM to 7 PM.</p>
 
      <h1 className='text-[20px] font-bold mb-2 mt-8'>Apply online</h1>
-   <p>Apply for a CSCS Card easily using our <Link href='/' className='text-purple_primary font-bold '> online application service.</Link>
+   <p>Apply for a CSCS Card easily using our <Link href='/apply-cscs-card' className='text-purple_primary font-bold '> online application service.</Link>
     </p>
 
 {/* Form */}
@@ -28,11 +28,11 @@ const Page = () => {
     alt='card-image'
     width={800}
     height={400}
-    className='rounded-lg h-[355px] w-[660px]'
+    className='rounded-lg h-[380px] w-[660px]'
   />
   </div>
   <div>
-    <CardForm titleOne='Gold supervisor Card' titleTwo='Easy apply for CSCS Gold Card - Supervisor.' ringColor='yellow'/>
+    <CardForm titleOne='Gold supervisor Card' titleTwo='Easy apply for CSCS Gold Card - Supervisor.' cardType="gold-supervisor"/>
   </div>
 </div>
 

@@ -49,7 +49,7 @@ const page = () => {
                  required
                >
                  <option value="" disabled>
-                   Please select an item in the list
+                   Please select the title
                  </option>
                  <option value="Mr">Mr</option>
                  <option value="Ms">Ms</option>

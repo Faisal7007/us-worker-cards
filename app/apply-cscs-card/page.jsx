@@ -14,7 +14,7 @@ const page = () => {
     <div className='h-[1px] w-full bg-slate-300 my-4'></div>
     <p>To apply for a CSCS Card, the applicant must have completed the CITB HS&E Test within the past two years. If you have not taken the test, <Link href="#" className='text-purple_primary font-bold'>you can schedule an appointment.</Link></p>
     <div className='mt-6 mb-4'>
-    <CscsForm/>
+    <CscsForm form_for='ess'/>
     </div>
     <div className='h-[1px] w-full bg-slate-300 my-4'></div>
     <div className="text-center py-8">
@@ -33,9 +33,8 @@ const page = () => {
            className='rounded-lg h-[355px] w-[660px]'
             />
           
-    
           {/* Right Side - Content */}
-          <div className="w-[660px] ">
+          <div className="w-[660px]">
            
             <ul className="mb-4 text-gray-700">
           <li className="flex items-start mb-4">
@@ -60,7 +59,8 @@ const page = () => {
           <li className="flex items-start mb-4">
             <FaHardHat className="text-purple_primary mr-2 size-6 " />
             <span>To continue, click <span className="font-semibold ml-1">Submit Application</span> to add your CITB test ID, expired CSCS Card number (for Renew Card), and card delivery address.</span>
-          </li>  <li className="flex items-center mb-4">
+          </li>  
+          <li className="flex items-center mb-4">
             <FaHardHat className="text-purple_primary mr-2" />
             Make the payment and confirm your details.
           </li> 

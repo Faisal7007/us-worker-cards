@@ -5,7 +5,7 @@ const items=[
         description:"For General Labourers and Site Operatives",
         validity:"5 Years",
         know_more_link:"/cscs-green-card",
-        apply_now_link:"/apply-cscs-card"
+        apply_now_link:"/apply-card-for/cscs"
 
     },
     {   
@@ -15,7 +15,7 @@ const items=[
         description:"For the skilled workers who have Level 2 NVQ or SVQ.",
         validity:"5 Years",
         know_more_link:"/cscs-blue-card",
-        apply_now_link:"/apply-cscs-card"
+        apply_now_link:"/apply-card-for/cscs"
 
     },
     {   
@@ -25,7 +25,7 @@ const items=[
         description:"This card does not require any qualification.",
         validity:"6 Months",
         know_more_link:"/cscs-red-provisional-card",
-        apply_now_link:"/apply-cscs-card"
+        apply_now_link:"/apply-card-for/cscs"
 
     },
     {   
@@ -35,7 +35,7 @@ const items=[
         description:"For applicants registered for NVQ / SVQ or relevant Construction Award.",
         validity:"5 Years",
         know_more_link:"/cscs-red-trainee-card",
-        apply_now_link:"/apply-cscs-card"
+        apply_now_link:"/apply-card-for/cscs"
 
     },
     {   
@@ -45,7 +45,7 @@ const items=[
         description:"For applicants registered for a Construction NVQ or SVQ Level 2.",
         validity:"1 Years",
         know_more_link:"/cscs-red-experienced-worker-card",
-        apply_now_link:"/apply-cscs-card"
+        apply_now_link:"/apply-card-for/cscs"
 
     },
     {   
@@ -55,7 +55,7 @@ const items=[
         description:"For Supervisors with at least one year of experience in the last three years.",
         validity:"3 Years",
         know_more_link:"/cscs-red-technical-supervisor-card",
-        apply_now_link:"/apply-cscs-card"
+        apply_now_link:"/apply-card-for/cscs"
 
     },
     {   
@@ -65,7 +65,7 @@ const items=[
         description:"For people who have achieved a Construction Related NVQ or SVQ level 3.",
         validity:"5 Years",
         know_more_link:"/cscs-gold-advanced-craft-card",
-        apply_now_link:"/apply-cscs-card"
+        apply_now_link:"/apply-card-for/cscs"
 
     },
     {   
@@ -75,7 +75,7 @@ const items=[
         description:"For supervisors with a Construction-Related Supervisory SVQ or NVQ Level 3 or 4.",
         validity:"5 Years",
         know_more_link:"/cscs-gold-supervisor-card",
-        apply_now_link:"/apply-cscs-card"
+        apply_now_link:"/apply-card-for/cscs"
 
     },
     {
@@ -86,7 +86,7 @@ const items=[
         description:"For managerial and technical roles with NVQ/SVQ Level 5, 6, 7, or NVQ Level 4 in construction management.",
         validity:"5 Years",
         know_more_link:"/cscs-black-manager-card",
-        apply_now_link:"/apply-cscs-card"
+        apply_now_link:"/apply-card-for/cscs"
 
     },
     {   
@@ -96,7 +96,7 @@ const items=[
         description:"This card is available to members of CSCS approved Professional Bodies.",
         validity:"5 Years",
         know_more_link:"/cscs-pqp-card",
-        apply_now_link:"/apply-cscs-card"
+        apply_now_link:"/apply-card-for/cscs"
 
     },
     {   
@@ -106,7 +106,7 @@ const items=[
         description:"For anyone with a construction degree, HND, HNC, CIOB Certificate, or NEBOSH diploma.",
         validity:"5 Years",
         know_more_link:"/cscs-aqp-card",
-        apply_now_link:"/apply-cscs-card"
+        apply_now_link:"/apply-card-for/cscs"
 
     }
 ]

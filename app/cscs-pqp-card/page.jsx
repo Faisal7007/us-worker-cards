@@ -17,7 +17,7 @@ const Page = () => {
      <p>Call <Link href='/' className='text-purple_primary font-semibold hover:text-black '>0203 769 9047</Link> to book by phone. Our lines are open Monday to Saturday, from 9 AM to 7 PM.</p>
 
      <h1 className='text-[20px] font-bold mb-2 mt-8'>Apply online</h1>
-   <p>Apply for a CSCS Card easily using our <Link href='/' className='text-purple_primary font-bold '> online application service.</Link>
+   <p>Apply for a CSCS Card easily using our <Link href='/apply-cscs-card' className='text-purple_primary font-bold '> online application service.</Link>
     </p>
 
 {/* Form */}
@@ -28,11 +28,11 @@ const Page = () => {
     alt='card-image'
     width={800}
     height={400}
-    className='rounded-lg h-[355px] w-[660px]'
+    className='rounded-lg h-[380px] w-[660px]'
   />
   </div>
   <div>
-    <CardForm titleOne='White Professionally Qualified Person' titleTwo='Easy apply for CSCS White Card - Professionally Qualified Person.'/>
+    <CardForm titleOne='White Professionally Qualified Person' titleTwo='Easy apply for CSCS White Card - Professionally Qualified Person.' cardType="white-pqp"/>
   </div>
 </div>
 

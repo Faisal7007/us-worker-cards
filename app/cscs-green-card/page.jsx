@@ -8,9 +8,12 @@ import { FaAward, FaHardHat, FaIdCard, FaUsers } from "react-icons/fa";
 import { FaExclamationTriangle } from 'react-icons/fa';
 import HomeCard from '../components/HomeCard';
 import SmallCard from '../components/SmallCard';
+import { useFirebase } from '../context/Firebase';
 
 
 const Page = () => {
+  // const firebase=useFirebase()
+
   return (
     <div className='max-w-[1440px] mx-auto px-4 pt-8'>
     <h1 className='text-[30px] font-bold mb-2 capitalize'>CSCS Green Card</h1>
@@ -22,7 +25,7 @@ const Page = () => {
      <p >Call <Link href='/' className='text-purple_primary font-semibold hover:text-black '>0203 769 9047</Link> to book by phone. Our lines are open Monday to Saturday, from 9 AM to 7 PM.</p>
 
      <h1 className='text-[20px] font-bold mb-2 mt-8'>Apply online</h1>
-   <p>Apply for a CSCS Card easily using our <Link href='/' className='text-purple_primary font-bold'> online application service.</Link>
+   <p>Apply for a CSCS Card easily using our <Link href='/apply-cscs-card' className='text-purple_primary font-bold'> online application service.</Link>
     </p>
 
 {/* Form */}
@@ -34,11 +37,11 @@ const Page = () => {
     alt='card-image'
     width={800}
     height={400}
-    className='rounded-lg h-[355px] w-[660px]'
+    className='rounded-lg h-[380px] w-[660px]'
   />
   </div>
   <div>
-    <CardForm titleOne='Green Labourer Card' titleTwo='Easy apply for CSCS Green Card - Labourers Card.' ringColor='green'/>
+    <CardForm titleOne='Green Labourer Card' titleTwo='Easy apply for CSCS Green Card - Labourers Card.' cardType='green-labourer'/>
   </div>
 </div>
   <div className='flex justify-center mt-24'>

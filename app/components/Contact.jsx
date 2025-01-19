@@ -59,9 +59,9 @@ function Contact({no_banner}) {
  {
         no_banner?"":<ContactUsBanner/>
       }
-    <div className="max-w-[1440px] mx-auto px-4 pt-8">
+    <div className="max-w-[1440px] mx-auto px-4 py-10">
      
-      <div className="pb-10 bg-gray-50 flex flex-col lg:flex-row justify-between items-start px-6 sm:px-12 lg:px-4 pt-5 gap-10">
+      <div className="pb-10 bg-gray-50 flex flex-col lg:flex-row justify-between items-start gap-10">
         {/* Address Section */}
         <div className="w-full lg:w-1/2 space-y-6">
           <div className="text-2xl text-purple_primary sm:text-3xl font-semibold">Come, meet us!</div>

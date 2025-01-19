@@ -4,6 +4,8 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import { ChakraProvider } from "@chakra-ui/react";
 import Footer from "./components/Footer";
+import { MyProvider } from "./context-api/MyProvider";
+import { FirebaseProvider } from "./context/Firebase";
 
 
 
@@ -33,14 +35,17 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${allison_init.variable}  antialiased`}
       >
-          <ChakraProvider>
+        <ChakraProvider>
 
+          <Navbar />
 
-      <Navbar/>
-      
-        {children}
+          <FirebaseProvider>
+            <MyProvider>
+              {children}
+            </MyProvider>
+          </FirebaseProvider>
 
-        <Footer/>
+          <Footer />
         </ChakraProvider>
 
       </body>

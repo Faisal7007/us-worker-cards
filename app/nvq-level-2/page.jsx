@@ -40,14 +40,17 @@ const page = () => {
                         alt='card-image'
                         width={800}
                         height={400}
-                        className='rounded-lg h-[355px] w-[660px]'
+                        className='rounded-lg h-[380px] w-[660px]'
                     />
                 </div>
                 <div>
                     <CardForm titleOne='NVQ Level 2' titleTwo='Easy apply for NVQ Level 2 in Construction.' />
                 </div>
             </div>
-            <p className='my-6'>To obtain a <span className='font-bold'>Blue CSCS Skilled Worker Card</span> valid for <span className='font-bold'>five years,</span> the candidate must complete NVQ Level 2 and pass a valid CITB Health, Safety, and Environment Test.</p>
+            {/* <p className='my-6'>To obtain a <span className='font-bold'>Blue CSCS Skilled Worker Card</span> valid for <span className='font-bold'>five years,</span> the candidate must complete NVQ Level 2 and pass a valid CITB Health, Safety, and Environment Test.</p> */}
+            <p className='my-6'>All applicants must have passed the <Link href="/citb-test" className='text-purple_primary font-bold'>CITB Health, Safety and Environment test</Link> within the last two years, at the relevant level for the occupation being applied for. To find out which level of test is required please use our Card Finder.</p>
+            <p className='my-6'>The Blue Skilled Worker card is valid for <span className='font-bold'>five years,</span> and for those who have achieved a construction related NVQ/SVQ level 2 or SVQ at SCQF level 5 or completed an apprenticeship, such as an Employer sponsored apprenticeship, a City and Guilds Craft Certificate (CGLI) or a CSCS-recognised Apprenticeship.</p>
+            <p className='mb-6'>If you do not have these qualifications, but you are experienced in your job and have registered for a qualification applicable to your occupation, you may apply for an Experienced Worker Card.</p>
             <h1 className='text-[30px] font-bold mb-2 capitalize'>Trades</h1>
             <ul className='list-disc pl-4'>
                 {
@@ -85,8 +88,8 @@ const page = () => {
             <h1 className='text-[30px] font-bold mb-2 mt-6 capitalize'>NVQ Level 2 In Construction</h1>
             <p>
             Enrolling in an NVQ can be a quick option for candidates pursuing vocational training who wish to work on-site, as completing NVQ training is required to qualify for a Blue Skilled Card.</p>
-            <p>Enrolling in an NVQ Level 2 can lead to obtaining a <Link href="#" className='text-purple_primary font-bold'>CSCS Red Trainee Card,</Link> valid for <span className='font-bold'>five years,</span> or a <Link href="#" className='text-purple_primary font-bold'>CSCS Red Experienced Worker Card,</Link> valid for <span className='font-bold'>one year.</span></p>
-            <p className='mb-6'>After completing the NVQ training, you will receive certification and become eligible for a <Link href="#" className='text-purple_primary font-bold'>CSCS Blue Skilled Worker Card.</Link></p>
+            <p>Enrolling in an NVQ Level 2 can lead to obtaining a <Link href="/cscs-red-trainee-card" className='text-purple_primary font-bold'>CSCS Red Trainee Card,</Link> valid for <span className='font-bold'>five years,</span> or a <Link href="/cscs-red-experienced-worker-card" className='text-purple_primary font-bold'>CSCS Red Experienced Worker Card,</Link> valid for <span className='font-bold'>one year.</span></p>
+            <p className='mb-6'>After completing the NVQ training, you will receive certification and become eligible for a <Link href="/cscs-blue-card" className='text-purple_primary font-bold'>CSCS Blue Skilled Worker Card.</Link></p>
             <div className='flex justify-between items-center mt-10'>
                 <div>
                     <Image src='/red-trainee-img.png'

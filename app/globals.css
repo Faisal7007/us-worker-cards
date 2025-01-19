@@ -232,3 +232,7 @@ background: linear-gradient(0deg, rgb(143, 8, 150) 0%, rgb(120, 2, 130) 100%);
 }
 
 
+
+    ol.list-decimal > li::marker {
+      color: #6A1E55; 
+    }

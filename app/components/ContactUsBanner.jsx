@@ -4,9 +4,10 @@ import React from 'react'
 const ContactUsBanner = () => {
   return (
     <div className=" relative">
+    
             <Image
-              src="/contact-us-banner.jpg"
-              className="max-h-[380px] w-full"
+              src="/banner-2.jpg"
+              className="max-h-[410px] w-full"
               alt="banner"
               width={1400}
               height={700}

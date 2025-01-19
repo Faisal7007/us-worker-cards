@@ -11,7 +11,7 @@ const page = () => {
     <div className='h-[1px] w-full bg-slate-300 my-4'></div>
     <p>Here are the CSCS Cards you can apply for. You must hold the relevant or equivalent qualification, with requirements listed under <span className='font-bold'>Know More.</span></p>
     {/* Card mapping */}
-    <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-14 items-center">
+    <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-14 items-center media-max-545px:gap-8">
   {items && items.map((item) => <CSCSCard key={item.id} item={item}/>)}
 </div>
 
