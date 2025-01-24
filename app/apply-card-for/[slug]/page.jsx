@@ -27,52 +27,64 @@ const page = () => {
     <h2 className="text-[25px] font-bold inline-block  px-4 py-1 bg-purple_primary rounded-full text-white">Apply for <span className='uppercase'>{form_type}</span> Card</h2>
     </div>
 
-      <div className="flex flex-col lg:flex-row lg:justify-between items-center lg:items-start rounded-lg ">
+      <div className="flex flex-col lg:flex-row lg:justify-between items-center lg:items-start gap-6  rounded-lg">
           {/* Left Side - Image */}
+          <div>
+
             <Image
             src={`${form_type==='cscs'?'/green-card-img.png':'/ess-green-labourer-img.png'}`}
             alt='card-image'
             width={800}
             height={400}
-            className='rounded-lg h-[380px] w-[660px]'
+            className='rounded-lg h-[380px] w-[660px] media-max-1298px:w-[560px] media-max-600px:w-[100vw] media-max-545px:h-[220px]'
             />
+          </div>
+
           
           {/* Right Side - Content */}
-          <div className="w-[660px]">
-            <ul className="mb-4 text-gray-700">
-          <li className="flex items-start mb-4">
-            <FaHardHat className="text-purple_primary mt-1 mr-2" />
-            Fill the Application here and choose the <h1 className='uppercase px-1'>{form_type}</h1> Card based on your qualification.
-          </li>
-          <li className="flex items-center mb-2">
-            <FaHardHat className="text-purple_primary mr-2" />
-            
-          Select the type of card booking you want to proceed with.
-          </li>
-          <li className="flex items-center mb-2 ml-6">
-          <GoDotFill className="text-purple_primary" />
-    
-          If you are applying for the first time, select <span className="font-semibold ml-1">New Card</span>.
-          </li>
-          <li className="flex items-center mb-4 ml-6">
-          <GoDotFill className="text-purple_primary" />
-    
-          If you want a replacement for your existing <span className='uppercase mx-1'>{form_type}</span> card, select <span className="font-semibold ml-1">Lost Card</span>.
-          </li> 
-          <li className="flex items-start mb-4">
-            <FaHardHat className="text-purple_primary mr-2 size-6 " />
-            <span>To continue, click <span className="font-semibold ml-1">Submit Application</span> to add your CITB test ID, expired <span className='uppercase mx-1'>{form_type}</span> Card number (for Renew Card), and card delivery address.</span>
-          </li>  
-          <li className="flex items-center mb-4">
-            <FaHardHat className="text-purple_primary mr-2" />
-            Make the payment and confirm your details.
-          </li> 
-          <li className="flex items-start mb-4">
-      <FaHardHat className="text-purple_primary mr-2 size-4 mt-1" />
-      Once approved, you will receive your &nbsp;<span className='uppercase'> {form_type} </span> &nbsp;Card in approximately 7 working days. That’s it!
+          <div className="w-[660px] text-justify media-max-1298px:w-[560px] media-max-600px:w-[100vw] media-max-410px:w-[100vw] media-max-600px:px-4 media-max-410px:px-4 media-max-545px:text-[14px]">
+  <ul className="mb-4 text-gray-700">
+    <li className="flex items-start mb-4">
+      <FaHardHat className="text-purple_primary mt-1 mr-2 flex-shrink-0" />
+      <span>
+        Fill the Application here and choose the <span className="uppercase px-1 align-baseline">{form_type}</span> Card based on your qualification.
+      </span>
     </li>
-        </ul>   
-          </div>
+    <li className="flex items-start mb-2">
+      <FaHardHat className="text-purple_primary mt-1 mr-2 flex-shrink-0" />
+      <span>Select the type of card booking you want to proceed with.</span>
+    </li>
+    <li className="flex items-center mb-2 ml-6">
+      <GoDotFill className="text-purple_primary flex-shrink-0" />
+      <span className="ml-2">
+        If you are applying for the first time, select <span className="font-semibold ml-1">New Card</span>.
+      </span>
+    </li>
+    <li className="flex items-center mb-4 ml-6">
+      <GoDotFill className="text-purple_primary flex-shrink-0" />
+      <span className="ml-2">
+        If you want a replacement for your existing <span className="uppercase mx-1 align-baseline">{form_type}</span> card, select <span className="font-semibold ml-1">Lost Card</span>.
+      </span>
+    </li>
+    <li className="flex items-start mb-4">
+      <FaHardHat className="text-purple_primary mt-1 mr-2 flex-shrink-0" />
+      <span>
+        To continue, click <span className="font-semibold ml-1">Submit Application</span> to add your CITB test ID, expired <span className="uppercase mx-1 align-baseline">{form_type}</span> Card number (for Renew Card), and card delivery address.
+      </span>
+    </li>
+    <li className="flex items-start mb-4">
+      <FaHardHat className="text-purple_primary mt-1 mr-2 flex-shrink-0" />
+      <span>Make the payment and confirm your details.</span>
+    </li>
+    <li className="flex items-start mb-4">
+      <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />
+      <span>
+        Once approved, you will receive your <span className="uppercase align-baseline">{form_type}</span> Card in approximately 7 working days. That’s it!
+      </span>
+    </li>
+  </ul>
+</div>
+
         </div>
     </div>
   )
