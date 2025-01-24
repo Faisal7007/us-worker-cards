@@ -7,7 +7,7 @@ import { useFirebase } from '../context/Firebase';
 import EssCardForm from './EssCardForm';
 
 
-const EssPageComponent = ({id,title_page,image_path,title_form_one,title_form_two}) => {
+const EssPageComponent = ({id,title_page,image_path,title_form_one,title_form_two,card_type}) => {
   // const firebase=useFirebase()
 
   console.log(id,'Id in ESS page Component')
@@ -20,39 +20,41 @@ const EssPageComponent = ({id,title_page,image_path,title_form_one,title_form_tw
     <h1 className='text-[25px] font-bold mb-2'>How to apply</h1>
     {/* <h1 className='text-[20px] font-bold'>Apply by phone</h1> */}
 
-     <p >Call <Link href='/' className='text-purple_primary font-semibold hover:text-black '>0203 769 9047</Link> to book by phone. Our lines are open Monday to Saturday, from 9 AM to 7 PM.</p>
+     <p className=' text-justify media-max-470px:text-[14px]' >Call <Link href='/' className='text-purple_primary font-semibold hover:text-black '>0203 769 9047</Link> to book by phone. Our lines are open Monday to Saturday, from 9 AM to 7 PM.</p>
 
      <h1 className='text-[20px] font-bold mb-2 mt-8'>Apply online</h1>
-   <p>Apply for a CSCS Card easily using our <Link href={`/ess-card-types` }className='text-purple_primary font-bold'> online application service.</Link>
+   <p className='text-justify media-max-470px:text-[14px]'>Apply for a CSCS Card easily using our <Link href={`/ess-card-types` }className='text-purple_primary font-bold'> online application service.</Link>
     </p>
 
 {/* Form */}
 
-<div className='flex justify-between  items-center  mt-10'>
-  <div>
+<div className='flex justify-between  items-center  mt-10 media-max-1360px:flex-col media-max-1360px:gap-8'>
+  <div className='max-h-[380px] max-w-[660px]'>
   <Image 
     src={`${image_path}`}
     alt='card-image'
     width={800}
     height={400}
-    className='rounded-lg h-[380px] w-[660px]'
+    className='rounded-lg h-full w-full'
   />
   </div>
   <div>
-    <EssCardForm titleOne={`${title_form_one}`} titleTwo={`${title_form_two}`} cardType='green-labourer'/>
+    <EssCardForm titleOne={`${title_form_one}`} titleTwo={`${title_form_two}`} cardType={card_type}/>
   </div>
 </div>
-  <div className='flex justify-center mt-16'>
-    <h1 className='capitalize text-[25px] text-white inline-block px-4 py-1 bg-purple_primary rounded-full  font-semibold text-center '>Eligibility Requirements</h1>
+  <div className='flex justify-center mt-12'>
+    <h1 className='capitalize text-[25px] text-white inline-block px-4 py-1 bg-purple_primary rounded-full  font-semibold text-center media-max-600px:text-[22px] '>Eligibility Requirements</h1>
   </div>
 
   <h1 className='capitalize text-[25px] text-black my-6 font-bold'>Validity - 5 Years</h1>
 
+<div className='media-max-545px:text-[14px] text-justify'>
+
   <p className='mb-2 font-bold'> Cost of ESS card :</p>
-  <p className="flex items-center mb-2">
-      <FaHardHat className="text-purple_primary mr-2" /><span className='font-semibold mr-1'>Physical card :</span>  108 £  including 72 pound ESS fee+ VAT fee + booking fee</p>
-      <p className="flex items-center mb-2">
-      <FaHardHat className="text-purple_primary mr-2" /><span className='font-semibold mr-1'>Digital card :</span> 66 £ including 48 pound ESS fee+ VAT fee + booking fee</p>
+  <p className="flex items-start mb-2">
+      <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" /><span className='font-semibold mr-1'>Physical card :</span>  108 £  including 72 pound ESS fee+ VAT fee + booking fee</p>
+      <p className="flex items-start mb-2">
+      <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" /><span className='font-semibold mr-1'>Digital card :</span> 66 £ including 48 pound ESS fee+ VAT fee + booking fee</p>
 
 
 
@@ -77,14 +79,14 @@ const EssPageComponent = ({id,title_page,image_path,title_form_one,title_form_tw
     <>
 
 <p className='mb-2'>This card is issued if you fall into one of the following categories :</p>
-<p className="flex items-center mb-2">
-      <FaHardHat className="text-purple_primary mr-2" />
+<p className="flex items-start mb-2">
+      <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />
       A Modern Apprentice holding a relevant NVQ/SVQ Level 2 or Apprenticeship Standard, or</p>
-      <p className="flex items-center mb-2">
-      <FaHardHat className="text-purple_primary mr-2" />
+      <p className="flex items-start mb-2">
+      <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />
       A skilled worker possessing a relevant Apprenticeship Standard, NVQ, or SVQ Level 2, or</p>
-      <p className="flex items-center mb-2">
-      <FaHardHat className="text-purple_primary mr-2" />
+      <p className="flex items-start mb-2">
+      <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />
       A skilled worker with a City and Guilds craft certificate relevant to your trade and an informal apprenticeship.</p>
 
 </>
@@ -109,20 +111,20 @@ const EssPageComponent = ({id,title_page,image_path,title_form_one,title_form_tw
   <li className="mb-4">
     <p className="mb-2 text-justify">Possess a minimum of five years’ experience in one of the following qualifications:</p>
     <ul>
-      <li className="flex items-center mb-2">
-        <FaHardHat className="text-purple_primary mr-2" />
+      <li className="flex items-start mb-2">
+        <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />
         Service & Maintenance Technician/Engineer specializing in Building Services Engineering
       </li>
-      <li className="flex items-center mb-2">
-        <FaHardHat className="text-purple_primary mr-2" />
+      <li className="flex items-start mb-2">
+        <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />
         H&V Fitter/Welder/Installer/Pipefitter
       </li>
-      <li className="flex items-center mb-2">
-        <FaHardHat className="text-purple_primary mr-2" />
+      <li className="flex items-start mb-2">
+        <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />
         Plumber Domestic or Industrial & Commercial
       </li>
-      <li className="flex items-center mb-2">
-        <FaHardHat className="text-purple_primary mr-2" />
+      <li className="flex items-start mb-2">
+        <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />
         Refrigeration/Air Conditioning Technician/Engineer
       </li>
     </ul>
@@ -145,24 +147,24 @@ const EssPageComponent = ({id,title_page,image_path,title_form_one,title_form_tw
 
 <p className='mb-2 text-justify'>This card is for new entrant trainees who:</p>
 <ul>
-      <li className="flex items-center mb-2">
-        <FaHardHat className="text-purple_primary mr-2" />
+      <li className="flex items-start mb-2">
+        <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0 " />
         Are registered for a relevant Apprenticeship Standard, NVQ, or SVQ; or pursuing an NC, HNC, or Degree but have not yet achieved the qualification, and have no prior experience.
       </li>
-      <li className="flex items-center mb-2">
-        <FaHardHat className="text-purple_primary mr-2" />
+      <li className="flex items-start mb-2">
+        <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0 " />
         Adult Trainees.
       </li>
-      <li className="flex items-center mb-2">
-        <FaHardHat className="text-purple_primary mr-2" />
+      <li className="flex items-start mb-2">
+        <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0 " />
         Student Engineers training to be Project Engineers/Project Managers who have not yet achieved the relevant NC or higher level qualification.
       </li>
-      <li className="flex items-center mb-2">
-        <FaHardHat className="text-purple_primary mr-2" />
+      <li className="flex items-start mb-2">
+        <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0 " />
         Technician Trainees/Assistants in Building Services Engineering (formerly referred to as Commissioning).
       </li>
-      <li className="flex items-center mb-2">
-        <FaHardHat className="text-purple_primary mr-2" />
+      <li className="flex items-start mb-2">
+        <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0 " />
         Undergraduates pursuing an HNC or Degree, or those enrolled as Higher or Degree Apprentices.
       </li>
     </ul>
@@ -200,15 +202,15 @@ const EssPageComponent = ({id,title_page,image_path,title_form_one,title_form_tw
 
 <p className='mb-2 text-justify'>A Gold Advanced Craft is available if you are a:</p>
 <ul>
-      <li className="flex items-center mb-2">
-        <FaHardHat className="text-purple_primary mr-2" />A skilled worker holding an Apprenticeship Standard, NVQ, or SVQ Level 3.
+      <li className="flex items-start mb-2">
+        <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />A skilled worker holding an Apprenticeship Standard, NVQ, or SVQ Level 3.
       </li>
-      <li className="flex items-center mb-2">
-        <FaHardHat className="text-purple_primary mr-2" />
+      <li className="flex items-start mb-2">
+        <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />
         Skilled worker with an indentured apprenticeship
       </li>
-      <li className="flex items-center mb-2">
-        <FaHardHat className="text-purple_primary mr-2" />
+      <li className="flex items-start mb-2">
+        <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />
         A skilled worker who has completed an informal apprenticeship and holds a City and Guilds or SCOTVEC (SQA) advanced craft certificate relevant to their trade.</li>
     </ul>
 </>
@@ -224,39 +226,39 @@ const EssPageComponent = ({id,title_page,image_path,title_form_one,title_form_tw
     <>
 <p className='mb-2 text-justify'>This card is available for the following supervisory occupations: </p>
 <ul>
-      <li className="flex items-center mb-2">
-        <FaHardHat className="text-purple_primary mr-2" />Team Leader </li>
-      <li className="flex items-center mb-2">
-        <FaHardHat className="text-purple_primary mr-2" />
+      <li className="flex items-start mb-2">
+        <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />Team Leader </li>
+      <li className="flex items-start mb-2">
+        <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />
         Building Services Engineer Supervisor
 
       </li>
-      <li className="flex items-center mb-2">
-        <FaHardHat className="text-purple_primary mr-2" />Building Services Technician</li>
+      <li className="flex items-start mb-2">
+        <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />Building Services Technician</li>
     </ul>
 
     <p className='my-5 text-justify'>Gold cards for supervisors are issued to applicants who can provide evidence of having completed a relevant Level 3 qualification or higher in a building service engineering occupation.</p>
     
     <p className='mb-2 text-justify'>Plus one of the following health and safety requirements:</p>
     <ul>
-      <li className="flex items-center mb-2">
-        <FaHardHat className="text-purple_primary mr-2" />CITB Supervisory HSE test</li>
-      <li className="flex items-center mb-2">
-        <FaHardHat className="text-purple_primary mr-2" />
+      <li className="flex items-start mb-2">
+        <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />CITB Supervisory HSE test</li>
+      <li className="flex items-start mb-2">
+        <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />
         CITB Managers and Professionals test</li>
-      <li className="flex items-center mb-2">
-        <FaHardHat className="text-purple_primary mr-2" />CITB SSSTS or SMSTS course</li>
+      <li className="flex items-start mb-2">
+        <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />CITB SSSTS or SMSTS course</li>
         <li className="flex items-center mb-2">
-        <FaHardHat className="text-purple_primary mr-2" />IOSH ‘Managing Safely’ course</li>
-        <li className="flex items-center mb-2">
-        <FaHardHat className="text-purple_primary mr-2" />NEBOSH Construction Certificate </li>
+        <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />IOSH ‘Managing Safely’ course</li>
+        <li className="flex items-start mb-2">
+        <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />NEBOSH Construction Certificate </li>
     </ul>
     <p className='mb-2 mt-5'>For applicants who have completed a 'generic' Level 3 supervisory qualification, such as:</p>
     <ul>
-      <li className="flex items-center mb-2">
-        <FaHardHat className="text-purple_primary mr-2" />L3 N/SVQ Diploma in Occupational Work Supervision </li>
-      <li className="flex items-center mb-2">
-        <FaHardHat className="text-purple_primary mr-2" />
+      <li className="flex items-start mb-2">
+        <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />L3 N/SVQ Diploma in Occupational Work Supervision </li>
+      <li className="flex items-start mb-2">
+        <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />
         L3 N/SVQ in Construction Site Supervision </li>
     </ul>
     <p className='my-5'>This must be accompanied by a recognized Level 3 qualification in a relevant building service engineering occupation, along with one of the health and safety requirements mentioned above.</p>
@@ -273,35 +275,35 @@ const EssPageComponent = ({id,title_page,image_path,title_form_one,title_form_tw
         <>
     <p className='mb-2 text-justify'>The following managerial occupations are eligible for this card:</p>
     <ul>
-      <li className="flex items-center mb-2">
-        <FaHardHat className="text-purple_primary mr-2" />Project Engineer</li>
-      <li className="flex items-center mb-2">
-        <FaHardHat className="text-purple_primary mr-2" />Project Manager</li>
-      <li className="flex items-center mb-2">
-        <FaHardHat className="text-purple_primary mr-2" />Quantity Surveyor</li>
-        <li className="flex items-center mb-2">
-        <FaHardHat className="text-purple_primary mr-2" />Contracts Manager</li>
-        <li className="flex items-center mb-2"><FaHardHat className="text-purple_primary mr-2" />Commissioning Manager</li>
-        <li className="flex items-center mb-2"><FaHardHat className="text-purple_primary mr-2" />Building Services Design Engineer</li>
-        <li className="flex items-center mb-2"><FaHardHat className="text-purple_primary mr-2" />Service and Maintenance Manager</li>
-        <li className="flex items-center mb-2"><FaHardHat className="text-purple_primary mr-2" />Building Services Engineering Site Manager</li>
-        <li className="flex items-center mb-2"><FaHardHat className="text-purple_primary mr-2" />
+      <li className="flex items-start mb-2">
+        <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />Project Engineer</li>
+      <li className="flex items-start mb-2">
+        <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />Project Manager</li>
+      <li className="flex items-start mb-2">
+        <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />Quantity Surveyor</li>
+        <li className="flex items-start mb-2">
+        <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />Contracts Manager</li>
+        <li className="flex items-start mb-2"><FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />Commissioning Manager</li>
+        <li className="flex items-start mb-2"><FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />Building Services Design Engineer</li>
+        <li className="flex items-start mb-2"><FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />Service and Maintenance Manager</li>
+        <li className="flex items-start mb-2"><FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />Building Services Engineering Site Manager</li>
+        <li className="flex items-start mb-2"><FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />
         Design/Project Engineer for Fire Sprinklers (Domestic and Residential).</li>
     </ul>
     <p className='my-5'>Manager cards are issued to applicants who can demonstrate completion of a relevant Level 4 NVQ, SVQ, Apprenticeship Standard, Degree, or higher qualification in building services engineering and/or construction management.</p>
 
 <p className='mb-2 text-justify'>Plus one of the following H&S requirements:</p>
     <ul>
-      <li className="flex items-center mb-2">
-        <FaHardHat className="text-purple_primary mr-2" />'Managing Safely' course by IOSH</li>
-      <li className="flex items-center mb-2">
-        <FaHardHat className="text-purple_primary mr-2" />
+      <li className="flex items-start mb-2">
+        <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />'Managing Safely' course by IOSH</li>
+      <li className="flex items-start mb-2">
+        <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />
         CITB Managers and Professionals test</li>
-        <li className="flex items-center mb-2">
-        <FaHardHat className="text-purple_primary mr-2" />
+        <li className="flex items-start mb-2">
+        <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />
         CCNSG ‘Safety Passport Scheme’ course</li>
-        <li className="flex items-center mb-2">
-        <FaHardHat className="text-purple_primary mr-2" />
+        <li className="flex items-start mb-2">
+        <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />
         CITB Site Management Safety Training Scheme (SMSTS) </li>
     </ul>
     <p className='mt-5 text-justify'>All applications must be accompanied by an employer endorsement which confirms that the applicant is working in a building service engineering managerial role in accordance with the managerial criteria as specified in the online application form.</p>
@@ -320,12 +322,12 @@ const EssPageComponent = ({id,title_page,image_path,title_form_one,title_form_tw
 <p className='mb-4 text-justify'>To apply for this card the following must be provided:</p>
 <p>To be eligible, applicants must provide proof of current membership in a professional body at a level recognized by SKILLcard, using one of the following:</p>
 <ul>
-  <li className="flex items-center mb-2">
-    <FaHardHat className="text-purple_primary mr-2" />A membership certificate</li>
-  <li className="flex items-center mb-2">
-    <FaHardHat className="text-purple_primary mr-2" />A membership card (if issued)</li>
-    <li className="flex items-center mb-2">
-    <FaHardHat className="text-purple_primary mr-2" />A current year letter or email from the professional body</li>
+  <li className="flex items-start mb-2">
+    <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />A membership certificate</li>
+  <li className="flex items-start mb-2">
+    <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />A membership card (if issued)</li>
+    <li className="flex items-start mb-2">
+    <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />A current year letter or email from the professional body</li>
 </ul>
 <p className='mb-4 text-justify'>For renewals, applicants must supply a letter or email from the professional body confirming that they are still a member of the organisation.</p>
 </>
@@ -350,30 +352,13 @@ Applicants must provide proof of an academic qualification approved by SKILLcard
 }
 
 
+
 </div>
 
-{/* <div>
+<p><Link href="#" className='text-purple_primary font-bold mt-6'>Contact Support</Link> if you're still not sure which test to take.</p>
+</div>
 
-<h1 className='capitalize text-[25px] text-black my-8 font-bold'>Validity - 5 Years</h1>
 
-<h2 className='font-bold'>How can you replace your CSCS Green Card?</h2>
-<p className='mb-4'>Submit your details through the <Link href="/#" className='font-bold text-purple_primary'>online application service</Link> to request a replacement for your lost, stolen, or damaged CSCS Card.</p>
-<p className='mb-6'>A labourer card remains valid for five years, however, it cannot be renewed at this time. Once your card expires, you will need to apply for a new one. The cost of booking a CSCS Card is £54, which covers the £36 CSCS fee, booking charges, and VAT.</p>
-
-<h2 className='font-bold'>Requirements for the Card</h2>
-<p className='mb-4 '>Applicants are required to pass the <Link href="/#" className='text-purple_primary font-bold'>CITB Health, Safety, and Environment test for operatives</Link> and possess one of the following :</p>
-<p className="flex items-center mb-2">
-        <FaHardHat className="text-purple_primary mr-2" />
-        An Award in Health and Safety in a Construction Environment at RQF Level 1 or SCQF Level 4, or</p>
-        <p className="flex items-center mb-2">
-        <FaHardHat className="text-purple_primary mr-2" />
-A REHIS Elementary Health and Safety Certificate at SCQF Level 5, or</p>
-        <p className="flex items-center mb-2">
-        <FaHardHat className="text-purple_primary mr-2" />
-        The Construction Health and Safety (F/618/0738) unit from NOCN/CSkills Awards.</p>
-        <p className='my-6'>Please visit the <Link href="#" className='text-purple_primary font-bold'>Health and Safety Awareness Course</Link> to obtain one of the required qualifications listed above.</p>
-        <p ><Link href="#" className='text-purple_primary font-bold'>Contact Support</Link> if you're still not sure which test to take.</p>
-</div> */}
 </div>
   )
 }

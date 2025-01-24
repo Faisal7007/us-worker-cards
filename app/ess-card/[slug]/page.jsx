@@ -18,6 +18,7 @@ const page = () => {
             image_path="/ess-green-labourer-img.png"
             title_form_one="Green Labourer Card"
             title_form_two="Easy apply for ESS Green Card - Labourers Card."
+            card_type="green-labourer"
           />
         );
 
@@ -29,6 +30,8 @@ const page = () => {
             image_path="/ess-blue-skilled-img.png"
             title_form_one="Blue Skilled Worker Card"
             title_form_two="Easy apply for ESS Blue Card - Skilled Worker Card."
+            card_type="blue-skilled"
+
           />
         );
 
@@ -39,7 +42,9 @@ const page = () => {
               title_page="ESS Blue Experienced Worker Card"
               image_path="/ess-blue-experienced-img.png"
               title_form_one="Blue Experienced Worker Card"
-              title_form_two="Easy apply for ESS Blue Card - Experienced Worker Card."  
+              title_form_two="Easy apply for ESS Blue Card - Experienced Worker Card." 
+              card_type="blue-experienced"
+
             />
           );
 
@@ -51,6 +56,8 @@ const page = () => {
             image_path="/ess-red-trainee-img.png"
             title_form_one="Red Trainee Card"
             title_form_two="Easy apply for ESS Red Card - Trainee Card."
+            card_type="red-trainee"
+
           />
         );
 
@@ -62,6 +69,8 @@ const page = () => {
             image_path="/ess-red-industry-img.png"
             title_form_one="Red Industry Experienced Card"
             title_form_two="Easy apply for ESS Red Card - Industry Experienced Card."
+            card_type="red-industry"
+
           />
         );
 
@@ -73,6 +82,8 @@ const page = () => {
             image_path="/ess-gold-advanced-craft-img.png"
             title_form_one="Gold Advanced Craft Card"
             title_form_two="Easy apply for ESS Gold Advanced Craft Card - Experienced Card."
+            card_type="gold-advanced"
+
           />
         );
 
@@ -84,6 +95,8 @@ const page = () => {
             image_path="/ess-gold-supervisor-img.png"
             title_form_one="Gold Supervisor Card"
             title_form_two="Easy apply for ESS Gold Supervisor Card - Supervisor Card."
+            card_type="gold-supervisor"
+
           />
         );
 
@@ -95,6 +108,8 @@ const page = () => {
             image_path="/ess-black-img.png"
             title_form_one="Black Manager Card"
             title_form_two="Easy apply for ESS Black Card - Manager Card."
+            card_type="black-manager"
+
           />
         );
 
@@ -106,6 +121,8 @@ const page = () => {
             image_path="/ess-white-aqp-img.png"
             title_form_one="White Academic Qualified Person Card"
             title_form_two="Easy apply for ESS White Card - Academic Qualified Person Card."
+            card_type="white-aqp"
+
           />
         );
 
@@ -117,6 +134,8 @@ const page = () => {
             image_path="/ess-white-pqp-img.png"
             title_form_one="White Professionally Qualified Person Card"
             title_form_two="Easy apply for ESS White Card - Professionally Qualified Person Card."
+            card_type="white-pqp"
+
           />
         );
 

@@ -8,13 +8,13 @@ import {
     AccordionIcon,
     Box
 } from '@chakra-ui/react'
-import items from '../healthAndSafetyData';
+import items from '../constants/healthAndSafetyData';
 
 
 
 const QuestionAccordionHAndS = () => {
     return (
-        <div>
+        <div className='text-justify media-max-545px:text-[14px]'>
             <Accordion allowToggle>
     {
         items.map((item,id)=>{

@@ -6,11 +6,11 @@ import { IoIosArrowForward } from 'react-icons/io'
 import Image from 'next/image'
 import { FaHardHat } from 'react-icons/fa'
 import { GoDotFill } from 'react-icons/go'
-import CscsForm from '@/app/components/CscsForm'
+import ApplyEssCscsForm from '@/app/components/ApplyEssCscsForm'
 import { useParams } from 'next/navigation'
 
 const page = () => {
-     const params = useParams();
+      const params = useParams();
       const form_type = params.slug;
       console.log(form_type,"form_type in slug page")
   return (
@@ -20,7 +20,7 @@ const page = () => {
     <div className='h-[1px] w-full bg-slate-300 my-4'></div>
     <p>To apply for a <span className='uppercase'>{form_type}</span> Card, the applicant must have completed the CITB HS&E Test within the past two years. If you have not taken the test, <Link href="/citb-test" className='text-purple_primary font-bold'>you can schedule an appointment.</Link></p>
     <div className='mt-6 mb-4'>
-    <CscsForm form_type={form_type}/>
+    <ApplyEssCscsForm form_type={form_type}/>
     </div>
     <div className='h-[1px] w-full bg-slate-300 my-4'></div>
     <div className="text-center py-8">
@@ -71,9 +71,7 @@ const page = () => {
       <FaHardHat className="text-purple_primary mr-2 size-4 mt-1" />
       Once approved, you will receive your &nbsp;<span className='uppercase'> {form_type} </span> &nbsp;Card in approximately 7 working days. That’s it!
     </li>
-    
-        </ul>
-            
+        </ul>   
           </div>
         </div>
     </div>

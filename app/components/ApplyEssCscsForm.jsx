@@ -5,7 +5,7 @@ import CardForList from "./CardForList";
 import { UserContext } from "../context-api/UserContext";
 import { useFirebase } from "../context/Firebase";
 
-const CscsForm = ({id,form_type}) => {
+const CscsForm = ({form_type}) => {
   const [formData, setFormData] = useState({
     title: "",
     firstName: "",
@@ -156,8 +156,17 @@ const firebase=useFirebase()
 // console.log(firebase)
   const handleSubmit = (e) => {
     e.preventDefault();
-    firebase.applyForCSCSCard(formData)   
-    // console.log(formData,'Form Data')
+    if(form_type==='cscs'){
+
+      firebase.applyForCSCSCard(formData.title,formData.firstName,formData.middleName,formData.lastName,formData.dob,formData.nationalInsuranceNumber,formData.phoneNumber,formData.email,formData.cardtype,formData.applicationType,form_type) 
+      resetForm()
+     
+    }
+    if(form_type==='ess'){
+      firebase.applyForESSCard(formData.title,formData.firstName,formData.middleName,formData.lastName,formData.dob,formData.nationalInsuranceNumber,formData.phoneNumber,formData.email,formData.cardtype,formData.applicationType,form_type) 
+      resetForm()  
+    }
+    
   };
 
   return (
@@ -180,7 +189,7 @@ const firebase=useFirebase()
               value={formData.title}
               onChange={handleChange}
               className="w-full border border-gray-500 py-4 px-3 mb-4"
-              // required
+              required
             >
               <option value="" disabled>
                 Please select the title
@@ -205,7 +214,7 @@ const firebase=useFirebase()
               value={formData.firstName}
               onChange={handleChange}
               className="w-full border border-gray-500 py-4 px-3"
-              // required
+              required
             />
           </div>
           <div>
@@ -234,7 +243,7 @@ const firebase=useFirebase()
               value={formData.lastName}
               onChange={handleChange}
               className="w-full border border-gray-500 py-4 px-3"
-              // required
+              required
             />
           </div>
           <div>
@@ -248,7 +257,7 @@ const firebase=useFirebase()
               value={formData.dob}
               onChange={handleChange}
               className="w-full border border-gray-500 py-4 px-3 mb-4"
-              // required
+              required
             />
           </div>
 
@@ -285,7 +294,7 @@ const firebase=useFirebase()
               value={formData.phoneNumber}
               onChange={handleChange}
               className="w-full border border-gray-500 py-4 px-3 mb-4"
-              // required
+              required
             />
           </div>
 
@@ -301,7 +310,7 @@ const firebase=useFirebase()
               value={formData.email}
               onChange={handleChange}
               className="w-full border border-gray-500 py-4 px-3 mb-4"
-              // required
+              required
             />
           </div>
         </div>
@@ -379,6 +388,7 @@ const firebase=useFirebase()
                   onChange={handleChange}
                   className="w-5 h-5 accent-purple_primary"
                   required
+                 
                 />
                 <span className="ml-2">New Card</span>
               </label>

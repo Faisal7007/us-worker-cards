@@ -1,4 +1,4 @@
-import { Allison, Geist, Geist_Mono } from "next/font/google";
+import { Allison, Geist, Geist_Mono, Smooch_Sans } from "next/font/google";
 import "./globals.css";
 // import 'react-accessible-accordion/dist/fancy-example.css';
 import Navbar from "./components/Navbar";
@@ -6,10 +6,18 @@ import { ChakraProvider } from "@chakra-ui/react";
 import Footer from "./components/Footer";
 import { MyProvider } from "./context-api/MyProvider";
 import { FirebaseProvider } from "./context/Firebase";
+import FooterConRender from "./components/FooterConRender"
 
-
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
+import NavConRender from "./components/NavConRender";
 
 const allison_init = Allison({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-allison",
+});
+const smooch_sans_init = Smooch_Sans({
   subsets: ["latin"],
   weight: ["400"],
   variable: "--font-allison",
@@ -30,22 +38,25 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+
   return (
     <html lang="en">
+      <link rel="icon" href="./favicon.ico" />
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${allison_init.variable}  antialiased`}
+        className={`  ${geistSans.variable} ${geistMono.variable} ${allison_init.variable}  antialiased`}
       >
         <ChakraProvider>
-
-          <Navbar />
-
+          {/* <Navbar/> */}
+          <NavConRender/>
+          <ToastContainer />
           <FirebaseProvider>
             <MyProvider>
               {children}
             </MyProvider>
           </FirebaseProvider>
 
-          <Footer />
+          {/* <Footer /> */}
+          <FooterConRender/>
         </ChakraProvider>
 
       </body>

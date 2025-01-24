@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { MdArrowRight } from "react-icons/md";
+import { useFirebase } from "../context/Firebase";
 
 const CitbForm = () => {
   const [formData, setFormData] = useState({
@@ -16,10 +17,30 @@ const CitbForm = () => {
     locality: "",
     townCity: "",
     county: "",
-    postcode: "",
+    postcode: ""
   });
 
+
+  const reset=()=>{
+    setFormData({
+    title: "",
+    firstName: "",
+    middleName: "",
+    lastName: "",
+    dob: "",
+    nationalInsuranceNumber: "",
+    phoneNumber: "",
+    email: "",
+    houseNumber: "",
+    locality: "",
+    townCity: "",
+    county: "",
+    postcode: ""
+    })
+  }
+
   const [agreed, setAgreed] = useState(false);
+  const firebase=useFirebase()
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -31,7 +52,10 @@ const CitbForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form Data:", formData);
+    firebase.applyForCITBTest(formData.title,formData.firstName,formData.middleName,formData.lastName,formData.dob,formData.nationalInsuranceNumber,formData.phoneNumber,formData.email,formData.houseNumber,formData.locality,formData.townCity,formData.county,formData.postcode)
+
+    // console.log("Form Data:", formData);
+    reset()
   };
 
 

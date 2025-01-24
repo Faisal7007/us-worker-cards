@@ -113,7 +113,7 @@ const firebase=useFirebase()
 // console.log(firebase)
   const handleSubmit = (e) => {
     e.preventDefault();
-    firebase.applyForCSCSCard(formData)   
+    // firebase.applyForCSCSCard(formData)   
     // console.log(formData,'Form Data')
     
   };

@@ -1,6 +1,6 @@
 import React from 'react'
 import CSCSCard from '../components/CSCSCard'
-import items from '../cscsCardData'
+import items from '../constants/cscsCardData'
 
 const page = () => {
    

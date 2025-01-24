@@ -10,20 +10,55 @@ const EssCardForm = ({ titleOne, titleTwo, cardType }) => {
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
+  const [submitted, setSubmitted] = useState(false); 
+  const [isSubmitBtnClicked, setisSubmitBtnClicked] = useState(false)
+  
+  const firestore=useFirebase()
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // addDataToFirestore(firstName, lastName, email, phone, cardType);
+     firestore.addEssData(firstName, lastName, email, phone, cardType);
+     setisSubmitBtnClicked(true)
   };
 
+
+  
+    const handleAutoSubmit=()=>{
+      // addCscsData(firstName, lastName, email, phone, cardType);
+      // alert('jI ha')
+      if (submitted || phone.trim() === ""||email.trim()==="") {
+        return; 
+      }
+      setSubmitted(true);
+      try {
+  
+        firestore.AutoaddEssData(firstName, lastName, email, phone, cardType);  
+        console.log("Auto Phone number submitted successfully:");
+      } catch (error) {
+        console.error("Error submitting phone number:");
+      } finally {
+        setSubmitted(false); // Reset submitted state for future interactions
+      }
+    }
+  
+    if (isSubmitBtnClicked==='false') {
+      handleAutoSubmit();
+    }
+
+  
+
+
+
   return (
-    <div className="min-w-[660px] px-6 py-[26px]  bg-gray-200 shadow-md rounded-lg">
+    <div className='w-[660px] media-max-700px:w-full'>
+
+    <div className="px-6 py-[26px]  bg-gray-200 shadow-md rounded-lg">
       <h2 className="text-xl font-bold text-center mb-2">{titleOne}</h2>
-      <h2 className="text-lg font-semibold text-center mb-6">{titleTwo}</h2>
+      <h2 className="text-lg font-semibold text-center mb-6 media-max-480px:text-[16px] media-max-480px:text-justify">{titleTwo}</h2>
       
       <form onSubmit={handleSubmit}>
         <div>
-          <div className="grid grid-cols-2 gap-4 mb-5">
+          <div className="grid grid-cols-2 gap-4 mb-5 media-max-480px:grid-cols-1 ">
             <div>
               <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">First Name</label>
               <input
@@ -51,7 +86,7 @@ const EssCardForm = ({ titleOne, titleTwo, cardType }) => {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4 mb-8">
+          <div className="grid grid-cols-2 gap-4 mb-8 media-max-480px:grid-cols-1">
             <div>
               <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Phone Number</label>
               <div className="relative">
@@ -64,7 +99,8 @@ const EssCardForm = ({ titleOne, titleTwo, cardType }) => {
                   name="phone"
                   placeholder="Enter your phone number"
                   value={phone} // Bind value to state
-                  onChange={(e) => setPhone(e.target.value)} // Update state on change
+                  onChange={(e) => setPhone(e.target.value)} 
+                  onBlur={()=>handleAutoSubmit()}
                   className="mt-1 block w-full pl-10 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple_primary"
                 />
               </div>
@@ -81,8 +117,9 @@ const EssCardForm = ({ titleOne, titleTwo, cardType }) => {
                   id="email"
                   name="email"
                   placeholder="Enter your email"
-                  value={email} // Bind value to state
-                  onChange={(e) => setEmail(e.target.value)} // Update state on change
+                  value={email} 
+                  onChange={(e) => setEmail(e.target.value)}
+                  onBlur={()=>handleAutoSubmit()}
                   className="mt-1 block w-full pl-10 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple_primary"
                 />
               </div>
@@ -100,6 +137,8 @@ const EssCardForm = ({ titleOne, titleTwo, cardType }) => {
         </div>
       </form>
     </div>
+    </div>
+
   );
 };
 

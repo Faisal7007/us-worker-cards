@@ -1,6 +1,6 @@
 import React from 'react'
 import ESSCard from '../components/ESSCard'
-import items from '../essCardData'
+import items from '../constants/essCardData'
 
 const page = () => {
    

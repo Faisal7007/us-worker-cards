@@ -277,7 +277,17 @@ const Navbar = () => {
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen((prev) => !prev);
+   
   };
+
+  // useEffect(()=>{
+  //   if (isMobileMenuOpen) {
+  //     document.body.classList.add("no-scroll");
+  //   } else {
+  //     document.body.classList.remove("no-scroll");
+  //   }
+
+  // },[isMobileMenuOpen])
 
   const handleOptionClick = () => {
     setDropdownOpen(null);
@@ -329,9 +339,9 @@ const Navbar = () => {
           {/* Desktop & Mobile Menu */}
           
           <div
-            className={` flex justify-center media-max-935px:pt-10  lg:flex lg:items-center lg:space-x-8 ${
+            className={` flex justify-center media-max-935px:pt-10 media-max-1022px:pt-10  lg:flex lg:items-center lg:space-x-8 ${
               isMobileMenuOpen
-                ? "block absolute top-24 left-0 w-full media-max-935px:h-[100vh]  bg-purple_primary  text-white transition-all duration-500 "
+                ? "block absolute top-24 left-0 w-full media-max-935px:h-[100vh] media-max-1022px:h-[100vh]  bg-purple_primary  text-white transition-all duration-500 "
                 : "hidden"
             } lg:static lg:bg-transparent lg:w-auto`}
           >
@@ -345,8 +355,8 @@ const Navbar = () => {
   className={`relative  text-white after:content-[''] after:absolute 
     after:left-0 after:bottom-[-2px] after:w-0 after:h-[2px] 
     after:bg-current after:transition-all after:duration-300 
-    hover:after:w-full media-max-935px:hover:after:w-[70px] media-max-935px:mb-2 ${
-      pathname === "/citb-test" ? "after:w-full media-max-935px:after:w-[70px] underline-offset-2" : ""
+    hover:after:w-full media-max-935px:hover:after:w-[70px] media-max-1022px:hover:after:w-[70px] media-max-935px:mb-2 media-max-1022px:mb-2 ${
+      pathname === "/citb-test" ? "after:w-full media-max-935px:after:w-[70px] media-max-1022px:after:w-[70px] underline-offset-2" : ""
     }`}
   onClick={handleOptionClick}
 >
@@ -357,7 +367,7 @@ const Navbar = () => {
               <div className="relative">
                 <button
                   onClick={() => toggleDropdown("CSCS")}
-                  className="inline-flex items-center py-2 px-4 text-white hover:text-gray-300 focus:outline-none media-max-935px:px-0 "
+                  className="inline-flex items-center py-2 px-4 text-white hover:text-gray-300 focus:outline-none media-max-935px:px-0 media-max-1022px:px-0 "
                 >
                   CSCS Cards
                   <FaAngleDown className="ml-2" />
@@ -380,7 +390,7 @@ const Navbar = () => {
                     <Link
                       key={item.path}
                       href={item.path}
-                      className="block font-semibold px-6 py-2 text-[14px] text-black hover:bg-purple_primary hover:text-white media-max-935px:text-white"
+                      className="block font-semibold px-6 py-2 text-[14px] text-black hover:bg-purple_primary hover:text-white media-max-935px:text-white media-max-1022px:text-white"
                       onClick={handleOptionClick}
                     >
                       {item.label}
@@ -393,7 +403,7 @@ const Navbar = () => {
               <div className="relative">
                 <button
                   onClick={() => toggleDropdown("ESS")}
-                  className="inline-flex items-center py-2 px-4 text-white hover:text-gray-300 focus:outline-none media-max-935px:px-0"
+                  className="inline-flex items-center py-2 px-4 text-white hover:text-gray-300 focus:outline-none media-max-935px:px-0 media-max-1022px:px-0"
                 >
                   ESS Cards
                   <FaAngleDown className="ml-2" />
@@ -416,7 +426,7 @@ const Navbar = () => {
                     <Link
                       key={item.path}
                       href={item.path}
-                      className="block font-semibold px-6 py-2 text-[14px] text-black hover:bg-purple_primary hover:text-white media-max-935px:text-white"
+                      className="block font-semibold px-6 py-2 text-[14px] text-black hover:bg-purple_primary hover:text-white media-max-935px:text-white media-max-1022px:text-white"
                       onClick={handleOptionClick}
                     >
                       {item.label}
@@ -428,7 +438,7 @@ const Navbar = () => {
               <div className="relative">
                 <button
                   onClick={() => toggleDropdown("CC")}
-                  className="inline-flex items-center py-2 px-4 text-white hover:text-gray-300 focus:outline-none media-max-935px:px-0 media-max-935px:mb-2"
+                  className="inline-flex items-center py-2 px-4 text-white hover:text-gray-300 focus:outline-none media-max-935px:px-0 media-max-1022px:px-0"
                 >
                  Construction Courses
                   <FaAngleDown className="ml-2"/>
@@ -447,7 +457,7 @@ const Navbar = () => {
                     <Link
                       key={item.path}
                       href={item.path}
-                      className="block font-semibold px-6 py-2 text-[14px] text-black hover:bg-purple_primary hover:text-white media-max-935px:text-white"
+                      className="block font-semibold px-6 py-2 text-[14px] text-black hover:bg-purple_primary hover:text-white media-max-935px:text-white media-max-1022px:text-white"
                       onClick={handleOptionClick}
                     >
                       {item.label}
@@ -459,11 +469,11 @@ const Navbar = () => {
               {/* Other Links */}
               <Link
                 href="/group-booking"
-                className={`relative media-max-935px:mb-4 text-white after:content-[''] after:absolute 
+                className={`relative media-max-935px:mb-4 media-max-1022px:mb-4 text-white after:content-[''] after:absolute 
     after:left-0 after:bottom-[-2px] after:w-0 after:h-[2px] 
     after:bg-current after:transition-all after:duration-300 
-    hover:after:w-full media-max-935px:hover:after:w-[110px] ${
-      pathname === "/group-booking" ? "after:w-full media-max-935px:after:w-[110px] underline-offset-2" : ""
+    hover:after:w-full media-max-935px:hover:after:w-[110px] media-max-1022px:hover:after:w-[110px] ${
+      pathname === "/group-booking" ? "after:w-full media-max-935px:after:w-[110px] media-max-1022px:after:w-[110px] underline-offset-2" : ""
     }`}
                 onClick={handleOptionClick}
               >
@@ -475,7 +485,7 @@ const Navbar = () => {
     after:left-0 after:bottom-[-2px] after:w-0 after:h-[2px] 
     after:bg-current after:transition-all after:duration-300 
     hover:after:w-full media-max-935px:hover:after:w-[10px] ${
-      pathname === "/contact-us" ? "after:w-full media-max-935px:after:w-[80px] underline-offset-2" : ""
+      pathname === "/contact-us" ? "after:w-full media-max-935px:after:w-[80px]  media-max-1022px:after:w-[80px] underline-offset-2" : ""
     }`}
                 onClick={handleOptionClick}
               >

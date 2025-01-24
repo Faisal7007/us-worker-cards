@@ -2,6 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { MdArrowRight } from "react-icons/md";
 import CardForList from "./CardForList";
+import { useFirebase } from "../context/Firebase";
 
 const CscsForm = () => {
   const [formData, setFormData] = useState({
@@ -9,18 +10,19 @@ const CscsForm = () => {
     firstName: "",
     middleName: "",
     lastName: "",
-    dob: "",
+    assessmentDate: "",
     nationalInsuranceNumber: "",
     phoneNumber: "",
     email: "",
-    cardtype: "",
-    applicationType: "", // for radio input
+    applicationMode: "",
+    location: ""
   });
 
   const [agreed, setAgreed] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
-  
+  const firestore = useFirebase()
+
 
 
   const handleChange = (e) => {
@@ -33,14 +35,10 @@ const CscsForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form Data:", formData);
+    firestore.applyForHealthAndSafetyCourse(formData.title, formData.firstName, formData.middleName, formData.lastName, formData.nationalInsuranceNumber, formData.phoneNumber, formData.email, formData.applicationMode, formData.assessmentDate, formData.location)
+    // console.log("Form Data:", formData);
   };
 
-
-  const handleSelect = (value) => {
-    setFormData({ ...formData, cardtype: value });
-    setIsOpen(false);
-  };
 
   const handleClickOutside = (event) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -49,13 +47,12 @@ const CscsForm = () => {
   };
 
 
-   useEffect(() => {
-      document.addEventListener("click", handleClickOutside);
-      return () => {
-        document.removeEventListener("click", handleClickOutside);
-      };
-      
-    }, []);
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
   return (
     <form
@@ -134,20 +131,6 @@ const CscsForm = () => {
               required
             />
           </div>
-          {/* <div>
-            <label htmlFor="dob" className="block text-md font-medium">
-              Date of Birth
-            </label>
-            <input
-              type="date"
-              id="dob"
-              name="dob"
-              value={formData.dob}
-              onChange={handleChange}
-              className="w-full border border-gray-500 py-4 px-3 mb-4"
-              required
-            />
-          </div> */}
 
           <div className="col-span-1 md:col-span-2">
             <label
@@ -205,60 +188,18 @@ const CscsForm = () => {
 
         <h2 className="text-2xl font-bold mb-6">Card Details</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-4">
-         
-          {/* <div>
-            <label htmlFor="cardtype" className="block text-md font-medium">
-              Card Type
-            </label>
-            <input
-              type="text"
-              id="cardtype"
-              name="cardtype"
-              placeholder="Card Type"
-              value={formData.county}
-              onChange={handleChange}
-              className="w-full border border-gray-500 py-4 px-3 mb-4"
-            />
-          </div> */}
-          
-
-  {/* <div className="relative">
-  <label htmlFor="course-details" className="block text-md font-medium">
-              Course Details
-            </label>
-      <div
-        onClick={() => setIsOpen(!isOpen)}
-        className="border border-gray-500 py-4 px-3 cursor-pointer"
-      >
-        {formData.cardtype || 'Please select the card from the list'}
-      </div>
-      {isOpen && (
-        <div  className="absolute top-full left-0 w-full bg-white border border-gray-500 max-h-48 overflow-y-auto">
-          {cardTypes.map((card) => (
-            <div
-              key={card.value}
-              onClick={() => handleSelect(card.value)}
-              className="py-2 px-3 hover:bg-gray-200 cursor-pointer"
-            >
-              {card.component}
-            </div>
-          ))}
-        </div>
-      )}
-    </div> */}
-
 
           <div>
             <label className="block text-md font-medium mb-4">
-            How would you like to take the course
+              How would you like to take the course
             </label>
             <div className="flex items-center space-x-6">
               <label className="flex items-center">
                 <input
                   type="radio"
-                  name="applicationType"
+                  name="applicationMode"
                   value="Online"
-                  checked={formData.applicationType === "Online"}
+                  checked={formData.applicationMode === "Online"}
                   onChange={handleChange}
                   className="w-5 h-5 accent-purple_primary"
                   required
@@ -268,9 +209,9 @@ const CscsForm = () => {
               <label className="flex items-center">
                 <input
                   type="radio"
-                  name="applicationType"
+                  name="applicationMode"
                   value="Offline"
-                  checked={formData.applicationType === "Offline"}
+                  checked={formData.applicationMode === "Offline"}
                   onChange={handleChange}
                   className="w-5 h-5 accent-purple_primary"
                 />
@@ -278,7 +219,49 @@ const CscsForm = () => {
               </label>
             </div>
           </div>
+
+
+          <div>
+            <label htmlFor="assessmentDate" className="block text-md font-medium">
+              Preferred Assessment Date
+            </label>
+            <input
+              type="date"
+              id="assessmentDate"
+              name="assessmentDate"
+              value={formData.assessmentDate}
+              onChange={handleChange}
+              className="w-full border border-gray-500 py-4 px-3 mb-4"
+              required
+            />
+          </div>
+
         </div>
+        {
+          formData?.applicationMode === "Offline" ? <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-4">
+            <div>
+              <label htmlFor="location" className="block text-md font-medium">
+                Course Location
+              </label>
+              <select
+                id="location"
+                name="location"
+                value={formData.location}
+                onChange={handleChange}
+                className="w-full border border-gray-500 py-4 px-3 mb-4"
+                required
+              >
+                <option value="" disabled>
+                  Please select the test location
+                </option>
+                <option value="Mr">Location 1</option>
+                <option value="Ms">Location 2</option>
+                <option value="Mrs">Location 3</option>
+              </select>
+            </div>
+          </div> : ''
+        }
+
       </div>
 
       <div className="flex items-center mb-4">
@@ -298,11 +281,10 @@ const CscsForm = () => {
       <button
         type="submit"
         disabled={!agreed}
-        className={`inline-flex items-center justify-center w-fit px-4 py-2 rounded ${
-          agreed
+        className={`inline-flex items-center justify-center w-fit px-4 py-2 rounded ${agreed
             ? "bg-purple_primary text-white hover:bg-[#84286a]"
             : "bg-[#854c75] text-white cursor-not-allowed"
-        }`}
+          }`}
       >
         <span className="ml-2">Move Forward</span>
         <MdArrowRight className="size-6" />
