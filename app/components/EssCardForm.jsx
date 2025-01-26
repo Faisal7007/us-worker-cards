@@ -11,42 +11,137 @@ const EssCardForm = ({ titleOne, titleTwo, cardType }) => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [submitted, setSubmitted] = useState(false); 
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  
   const [isSubmitBtnClicked, setisSubmitBtnClicked] = useState(false)
+
+  const [saved, setSaved] = useState(false);
+
+  // Regex for email validation
   
   const firestore=useFirebase()
 
+  const reset=()=>{
+    setFirstName('')
+    setLastName('')
+    setEmail('')
+    setPhone('')
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
-     firestore.addEssData(firstName, lastName, email, phone, cardType);
+     firestore.addEssData(firstName, lastName, email, phone, cardType,setIsSubmitting);
      setisSubmitBtnClicked(true)
+     reset()
   };
 
 
   
-    const handleAutoSubmit=()=>{
-      // addCscsData(firstName, lastName, email, phone, cardType);
-      // alert('jI ha')
-      if (submitted || phone.trim() === ""||email.trim()==="") {
-        return; 
-      }
-      setSubmitted(true);
+    // const handleAutoSubmit=()=>{
+    //   // addCscsData(firstName, lastName, email, phone, cardType);
+    //   // alert('jI ha')
+    //   if (submitted || phone.trim() === ""||email.trim()==="") {
+    //     return; 
+    //   }
+    //   setSubmitted(true);
+    //   try {
+  
+    //     firestore.AutoaddEssData(firstName, lastName, email, phone, cardType);  
+    //     console.log("Auto Phone number submitted successfully:");
+    //   } catch (error) {
+    //     console.error("Error submitting phone number:");
+    //   } finally {
+    //     setSubmitted(false);
+    //   }
+    // }
+
+    // const handleAutoSubmit = () => {
+    //   // Regular expression to validate email format
+    //   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    
+    //   // Check if the form has already been submitted, or if phone or email is invalid
+    //   if (
+    //     submitted || 
+    //     phone.trim().length <= 7 || // Check if phone has more than 7 digits
+    //     !emailRegex.test(email.trim()) // Validate email format
+    //   ) {
+    //     return;
+    //   }
+    
+    //   setSubmitted(true);
+    //   try {
+        
+    //     firestore.AutoaddEssData(firstName, lastName, email, phone, cardType);
+    //     console.log("Auto Phone number submitted successfully:");
+    //   } catch (error) {
+    //     console.error("Error submitting phone number:", error);
+    //   } finally {
+    //     setSubmitted(false);
+    //   }
+    // };
+
+    // const handleAutoEmailSubmit = () => {
+    //   // Regular expression to validate email format
+    //   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    
+    //   // Check if the form has already been submitted, or if phone or email is invalid
+    //   if (
+    //     submitted || 
+    //     phone.trim().length <= 7 || // Check if phone has more than 7 digits
+    //     !emailRegex.test(email.trim()) // Validate email format
+    //   ) {
+    //     return;
+    //   }
+    
+    //   setSubmitted(true);
+    //   try {
+        
+    //     firestore.AutoaddEssData(firstName, lastName, email, phone, cardType);
+    //     console.log("Auto Phone number submitted successfully:");
+    //   } catch (error) {
+    //     console.error("Error submitting phone number:", error);
+    //   } finally {
+    //     setSubmitted(false);
+    //   }
+    // };
+    
+  
+    // if (isSubmitBtnClicked==='false') {
+    //   handleAutoSubmit();
+    //   handleAutoEmailSubmit()
+    // }
+
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const autoSave = () => {
+      if (saved) return; // Avoid repeated saves for the same data
+      setSaved(true);
       try {
-  
-        firestore.AutoaddEssData(firstName, lastName, email, phone, cardType);  
-        console.log("Auto Phone number submitted successfully:");
+        // Save user data (replace this with your save function)
+        firestore.AutoaddEssData(firstName, lastName, email, phone, cardType);
+        console.log("User details saved successfully!");
       } catch (error) {
-        console.error("Error submitting phone number:");
+        console.error("Error saving user details:", error);
       } finally {
-        setSubmitted(false); // Reset submitted state for future interactions
+        setSaved(false); // Reset saved state for subsequent changes
       }
-    }
+    };
+ 
+    const handleEmailBlur = () => {
+      if (emailRegex.test(email.trim())) {
+        autoSave(); 
+      } else {
+        // console.log("Invalid email, not saved.");
+      }
+    };
   
-    if (isSubmitBtnClicked==='false') {
-      handleAutoSubmit();
-    }
-
-  
-
+    const handlePhoneBlur = () => {
+      if (phone.trim().length > 7) {
+        autoSave(); 
+      } else {
+        // console.log("Invalid phone number, not saved.");
+      }
+    };
 
 
   return (
@@ -66,8 +161,8 @@ const EssCardForm = ({ titleOne, titleTwo, cardType }) => {
                 id="firstName"
                 name="firstName"
                 placeholder="Enter your first name"
-                value={firstName} // Bind value to state
-                onChange={(e) => setFirstName(e.target.value)} // Update state on change
+                value={firstName} 
+                onChange={(e) => setFirstName(e.target.value)} 
                 className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple_primary"
               />
             </div>
@@ -79,8 +174,8 @@ const EssCardForm = ({ titleOne, titleTwo, cardType }) => {
                 id="lastName"
                 name="lastName"
                 placeholder="Enter your last name"
-                value={lastName} // Bind value to state
-                onChange={(e) => setLastName(e.target.value)} // Update state on change
+                value={lastName} 
+                onChange={(e) => setLastName(e.target.value)} 
                 className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple_primary"
               />
             </div>
@@ -98,9 +193,9 @@ const EssCardForm = ({ titleOne, titleTwo, cardType }) => {
                   id="phone"
                   name="phone"
                   placeholder="Enter your phone number"
-                  value={phone} // Bind value to state
+                  value={phone} 
                   onChange={(e) => setPhone(e.target.value)} 
-                  onBlur={()=>handleAutoSubmit()}
+                  onBlur={handlePhoneBlur}
                   className="mt-1 block w-full pl-10 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple_primary"
                 />
               </div>
@@ -119,7 +214,7 @@ const EssCardForm = ({ titleOne, titleTwo, cardType }) => {
                   placeholder="Enter your email"
                   value={email} 
                   onChange={(e) => setEmail(e.target.value)}
-                  onBlur={()=>handleAutoSubmit()}
+                  onBlur={handleEmailBlur}
                   className="mt-1 block w-full pl-10 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple_primary"
                 />
               </div>
@@ -130,9 +225,10 @@ const EssCardForm = ({ titleOne, titleTwo, cardType }) => {
         <div>
           <button
             type="submit"
+            disabled={isSubmitting}
             className="w-full bg-purple_primary text-white py-2 px-4 mt-4 rounded-md hover:bg-[#84286a] focus:outline-none focus:ring-2 focus:ring-purple_primary focus:ring-offset-2"
           >
-            Submit
+            {isSubmitting?"Submitting...":"Submit"}
           </button>
         </div>
       </form>

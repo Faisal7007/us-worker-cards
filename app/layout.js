@@ -45,19 +45,20 @@ export default function RootLayout({ children }) {
       <body
         className={`  ${geistSans.variable} ${geistMono.variable} ${allison_init.variable}  antialiased`}
       >
+            <MyProvider>
+
         <ChakraProvider>
           {/* <Navbar/> */}
           <NavConRender/>
           <ToastContainer />
           <FirebaseProvider>
-            <MyProvider>
               {children}
-            </MyProvider>
           </FirebaseProvider>
 
           {/* <Footer /> */}
           <FooterConRender/>
         </ChakraProvider>
+        </MyProvider>
 
       </body>
     </html>

@@ -4,14 +4,14 @@ import Image from "next/image";
 import { IoIosMail } from "react-icons/io";
 import { IoLocation } from "react-icons/io5";
 import ContactUsBanner from "./ContactUsBanner";
+import { useFirebase } from "../context/Firebase";
 // import emailjs from "emailjs-com";
 // import { ToastContainer, toast } from "react-toastify";
 // import "react-toastify/dist/ReactToastify.css";
 
 // serviceID-service_s955usf
 function Contact({no_banner}) {
-//   const successSend = () => toast("Message Send Successfully");
-
+  const firebase=useFirebase()
 
   const [formValues, setFormValues] = useState({
     name: "",
@@ -20,38 +20,26 @@ function Contact({no_banner}) {
     description: "",
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
   };
 
+  const reset=()=>{
+    setFormValues({   name: "",
+      email: "",
+      mobile: "",
+      description: "",
+    })
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    const serviceId = "service_ktk4u1i";
-    const templateId = "template_ajdu8zf";
-    const publicKey = "KKlmL7C9A_GL1kHL_";
-
-   
-    emailjs.send(serviceId, templateId, formValues, publicKey)
-      .then(
-        (response) => {
-          console.log("Email sent successfully!", response.status, response.text);
-          // alert("Message sent successfully!");
-          successSend()
-          
-          setFormValues({
-            name: "",
-            email: "",
-            mobile: "",
-            description: "",
-          });
-        },
-        (error) => {
-          // console.error("Failed to send email.", error);
-          alert("Failed to send message. Please try again.");
-        }
-      );
+    firebase.addContactUs(formValues,setIsSubmitting)
+    reset()
   };
 
   return (
@@ -167,9 +155,10 @@ function Contact({no_banner}) {
               {/* Submit Button */}
               <button
                 type="submit"
+                disabled={isSubmitting}
                 className="w-full bg-purple_primary text-white p-2 rounded-md hover:bg-[#84286a]  transition duration-200"
               >
-                Submit
+                {isSubmitting?'Submitting...':'Submit'}
               </button>
             </form>
           </div>

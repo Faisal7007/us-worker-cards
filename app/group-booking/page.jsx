@@ -1,6 +1,7 @@
 "use client"
 import React, { useState } from 'react'
 import { MdArrowRight } from 'react-icons/md';
+import { useFirebase } from '../context/Firebase';
 
 const page = () => {
       const [formData, setFormData] = useState({
@@ -13,13 +14,30 @@ const page = () => {
         description: "",
       });
 
+      const firebase=useFirebase()
+
+      const [isSubmitting, setIsSubmitting] = useState(false)
+
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
       };
+
+      const reset=()=>{
+        setFormData({
+          title: "",
+          firstName: "",
+          middleName: "",
+          lastName: "",
+          phoneNumber: "",
+          email: "",
+          description: "",
+        })
+      }
     
       const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("Form Data:", formData);
+       firebase.addGroupBooking(formData,setIsSubmitting)
+       reset()
       };
   return (
     <div className='max-w-[1440px] mx-auto px-4 pt-8'>
@@ -145,8 +163,6 @@ const page = () => {
          </div>
          
          </div>
-                {/* <h2 className="text-2xl font-bold mb-6">Address</h2> */}
-        
          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
          <div className="col-span-1 md:col-span-2">
                <label htmlFor="description" className="block text-md font-medium">
@@ -168,9 +184,10 @@ const page = () => {
                </div>
                <button
                  type="submit"
+                 disabled={isSubmitting}
                  className={`inline-flex items-center justify-center rounded w-fit px-4 py-2 bg-purple_primary text-white hover:bg-[#84286a]`}
                >
-                 <span className="ml-2">Send Message</span>
+                 <span className="ml-2">{isSubmitting?"Submitting...":"Submit"}</span>
                  <MdArrowRight className="size-6"/>
                </button>
              </form>

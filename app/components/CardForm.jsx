@@ -1,7 +1,8 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
 import { useFirebase } from '../context/Firebase';
+// import { useRouter } from 'next/router';
 // import { useRouter } from 'next/navigation';
 
 const CardForm = ({ titleOne, titleTwo, cardType }) => {
@@ -13,6 +14,11 @@ const CardForm = ({ titleOne, titleTwo, cardType }) => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [submitted, setSubmitted] = useState(false); 
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [saved, setSaved] = useState(false);
+  // const router = useRouter();
+  
+  
 
   const reset=()=>{
     setFirstName('')
@@ -23,31 +29,77 @@ const CardForm = ({ titleOne, titleTwo, cardType }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    firestore.addCscsData(firstName, lastName, email, phone, cardType);
+    firestore.addCscsData(firstName, lastName, email, phone, cardType,setIsSubmitting);
     reset()
   };
 
 
-  const handleAutoSubmit=()=>{
-    // addCscsData(firstName, lastName, email, phone, cardType);
-    // alert('jI ha')
-    if (submitted || phone.trim() === ""||email.trim()==="") {
-      return; 
-    }
-    setSubmitted(true);
+  // const handleAutoSubmit=()=>{
+  //   // addCscsData(firstName, lastName, email, phone, cardType);
+  //   // alert('jI ha')
+  //   if (submitted || phone.trim() === ""||email.trim()==="") {
+  //     return; 
+  //   }
+  //   setSubmitted(true);
 
-    try {
+  //   try {
 
-      firestore.AutoaddCscsData(firstName, lastName, email, phone, cardType);  
-      console.log("Auto Phone number submitted successfully:");
-    } catch (error) {
-      console.error("Error submitting phone number:");
-    } finally {
-      setSubmitted(false); // Reset submitted state for future interactions
-    }
+  //     firestore.AutoaddCscsData(firstName, lastName, email, phone, cardType);  
+  //     console.log("Auto Phone number submitted successfully:");
+  //   } catch (error) {
+  //     console.error("Error submitting phone number:");
+  //   } finally {
+  //     setSubmitted(false); 
+  //   }
   
-  }
+  // }
 
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const autoSave = () => {
+      if (saved) return; // Avoid repeated saves for the same data
+      setSaved(true);
+      try {
+        // Save user data (replace this with your save function)
+        firestore.AutoaddEssData(firstName, lastName, email, phone, cardType);
+        console.log("User details saved successfully!");
+      } catch (error) {
+        console.error("Error saving user details:", error);
+      } finally {
+        setSaved(false); // Reset saved state for subsequent changes
+      }
+    };
+ 
+    const handleEmailBlur = () => {
+      if (emailRegex.test(email.trim())) {
+        autoSave(); 
+      } else {
+        // console.log("Invalid email, not saved.");
+      }
+    };
+  
+    const handlePhoneBlur = () => {
+      if (phone.trim().length > 7) {
+        autoSave(); 
+      } else {
+        // console.log("Invalid phone number, not saved.");
+      }
+    };
+
+
+
+    // useEffect(() => {
+    //   const handleRouteChange = () => {
+    //     autoSubmit(); 
+    //   };
+  
+    //   router.events.on("routeChangeStart", handleRouteChange);
+  
+    
+    //   return () => {
+    //     router.events.off("routeChangeStart", handleRouteChange);
+    //   };
+    // }, [email, phone, firstName, lastName, submitted, router.events]);
 
 
   return (
@@ -67,9 +119,9 @@ const CardForm = ({ titleOne, titleTwo, cardType }) => {
                 id="firstName"
                 name="firstName"
                 placeholder="Enter your first name"
-                value={firstName} // Bind value to state
+                value={firstName} 
                 required
-                onChange={(e) => setFirstName(e.target.value)} // Update state on change
+                onChange={(e) => setFirstName(e.target.value)} 
                 className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple_primary "
               />
             </div>
@@ -81,9 +133,9 @@ const CardForm = ({ titleOne, titleTwo, cardType }) => {
                 id="lastName"
                 name="lastName"
                 placeholder="Enter your last name"
-                value={lastName} // Bind value to state
+                value={lastName} 
                 required
-                onChange={(e) => setLastName(e.target.value)} // Update state on change
+                onChange={(e) => setLastName(e.target.value)} 
                 className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple_primary"
               />
             </div>
@@ -101,10 +153,10 @@ const CardForm = ({ titleOne, titleTwo, cardType }) => {
                   id="phone"
                   name="phone"
                   placeholder="Enter your phone number"
-                  value={phone} // Bind value to state
+                  value={phone}
                   required
-                  onChange={(e) => setPhone(e.target.value)} // Update state on change
-                  onBlur={()=>handleAutoSubmit()}
+                  onChange={(e) => setPhone(e.target.value)}
+                  onBlur={handlePhoneBlur}
                   className="mt-1 block w-full pl-10 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple_primary"
                 />
               </div>
@@ -121,24 +173,23 @@ const CardForm = ({ titleOne, titleTwo, cardType }) => {
                   id="email"
                   name="email"
                   placeholder="Enter your email"
-                  value={email} // Bind value to state
+                  value={email} 
                   required
-                  onChange={(e) => setEmail(e.target.value)} // Update state on change
-                  onBlur={()=>handleAutoSubmit()}
+                  onChange={(e) => setEmail(e.target.value)}
+                  onBlur={handleEmailBlur}
                   className="mt-1 block w-full pl-10 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple_primary"
                 />
               </div>
             </div>
           </div>
         </div>
-
-        {/* Submit Button */}
         <div>
           <button
             type="submit"
+            disabled={isSubmitting}
             className="w-full bg-purple_primary text-white py-2 px-4 mt-4 rounded-md hover:bg-[#84286a] focus:outline-none focus:ring-2 focus:ring-purple_primary focus:ring-offset-2"
           >
-            Submit
+            {isSubmitting?"Submitting...":"Submit"}
           </button>
         </div>
       </form>

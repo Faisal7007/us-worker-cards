@@ -72,16 +72,37 @@ const Sidebar = ({isSidebarOpen,setIsSidebarOpen}) => {
 
           
           <div onClick={()=>{setIsSidebarOpen(!isSidebarOpen)}}>
-            <Link href="/admin/cscs-applicants-list" className="hover:bg-gray-700 p-2 rounded flex items-center gap-2">
+            <Link href="/admin/applicants-list-for/cscs" className="hover:bg-gray-700 p-2 rounded flex items-center gap-2">
               <MdOutlineFormatListBulleted className="text-xl" />
               <span className='text-[18px]'>Cscs Applicants List</span>
             </Link>
           </div>
 
           <div onClick={()=>{setIsSidebarOpen(!isSidebarOpen)}}>
-            <Link href="/admin/ess-applicants-list" className="hover:bg-gray-700 p-2 rounded flex items-center gap-2">
+            <Link href="/admin/applicants-list-for/ess" className="hover:bg-gray-700 p-2 rounded flex items-center gap-2">
               <MdOutlineFormatListBulleted className="text-xl" />
               <span className='text-[18px]'>Ess Applicants List</span>
+            </Link>
+          </div>
+
+          <div onClick={()=>{setIsSidebarOpen(!isSidebarOpen)}}>
+            <Link href="/admin/citb-applicants-list" className="hover:bg-gray-700 p-2 rounded flex items-center gap-2">
+              <MdOutlineFormatListBulleted className="text-xl" />
+              <span className='text-[18px]'>CITB Applicants List</span>
+            </Link>
+          </div>
+
+          <div onClick={()=>{setIsSidebarOpen(!isSidebarOpen)}}>
+            <Link href="/admin/health-and-safety-course-applicants" className="hover:bg-gray-700 p-2 rounded flex items-center gap-2">
+              <MdOutlineFormatListBulleted className="text-xl" />
+              <span className='text-[18px]'>Course Booking List</span>
+            </Link>
+          </div>
+
+          <div onClick={()=>{setIsSidebarOpen(!isSidebarOpen)}}>
+            <Link href="/admin/contact-us-list" className="hover:bg-gray-700 p-2 rounded flex items-center gap-2">
+              <MdOutlineFormatListBulleted className="text-xl" />
+              <span className='text-[18px]'>Contact-Us Messages</span>
             </Link>
           </div>
 

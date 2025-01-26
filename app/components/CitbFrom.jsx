@@ -40,6 +40,8 @@ const CitbForm = () => {
   }
 
   const [agreed, setAgreed] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  
   const firebase=useFirebase()
 
   const handleChange = (e) => {
@@ -52,7 +54,7 @@ const CitbForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    firebase.applyForCITBTest(formData.title,formData.firstName,formData.middleName,formData.lastName,formData.dob,formData.nationalInsuranceNumber,formData.phoneNumber,formData.email,formData.houseNumber,formData.locality,formData.townCity,formData.county,formData.postcode)
+    firebase.applyForCITBTest(formData.title,formData.firstName,formData.middleName,formData.lastName,formData.dob,formData.nationalInsuranceNumber,formData.phoneNumber,formData.email,formData.houseNumber,formData.locality,formData.townCity,formData.county,formData.postcode,setIsSubmitting)
 
     // console.log("Form Data:", formData);
     reset()
@@ -325,14 +327,15 @@ const CitbForm = () => {
       </div>
       <button
         type="submit"
-        disabled={!agreed}
+        disabled={!agreed||isSubmitting}
+       
         className={`inline-flex items-center justify-center w-fit px-4 py-2 rounded ${
           agreed
             ? "bg-purple_primary  text-white hover:bg-[#84286a]"
             : "bg-[#854c75] text-white cursor-not-allowed"
         }`}
       >
-        <span className="ml-2">Move Forward</span>
+        <span className="ml-2">{isSubmitting?"Submitting...":"Move Forward"}</span>
         <MdArrowRight className="size-6"/>
       </button>
     </form>

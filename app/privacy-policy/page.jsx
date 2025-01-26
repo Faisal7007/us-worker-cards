@@ -1,94 +1,113 @@
+import Link from 'next/link'
 import React from 'react'
 
 const page = () => {
     return (
-        <div className='max-w-[1440px] mx-auto px-4 pt-8'>
+        <div className='max-w-[1440px] mx-auto px-4 pt-8 text-justify media-max-545px:text-[14px]'>
             <h1 className='text-[30px] font-bold mb-2 capitalize'>Privacy Policy</h1>
             <div className='h-[1px] w-full bg-slate-300 my-4'></div>
- <h2 className='font-bold text-justify'>Support for Construction Workers Ltd.</h2>
-<p className='mb-4 text-justify'>The website www.constructioncardsservices.com is owned and operated by Construction Worker Support Ltd.</p>
+ <h2 className='font-bold text-justify'>Construction Workers Support Privacy Policy</h2>
+<p className='mb-4 text-justify'>This privacy policy is designed to help individuals who are concerned about the online use of their ‘Personally Identifiable Information’ (PII). As defined by US privacy law and information security, PII refers to information that can identify, contact, or locate an individual, either on its own or combined with other data. To understand how we collect, use, protect, or handle your PII in connection with our website, please read this privacy policy carefully.</p>
 
-<h2 className='font-bold text-justify'>Construction Cards Services Terminology</h2>
-<p className='mb-4 text-justify'>Within these terms and conditions, the terms "we," "our," "us," and "ours" refer to Construction Cards Services.</p>
+<h2 className='font-bold text-justify'>What personal information do we gather from individuals who visit our website, blog, or app?</h2>
+<p className='mb-4 text-justify'>When ordering or registering on our site, as appropriate, you may be asked to enter your name, email address, mailing address, phone number or other details to help you with your experience.</p>
 
-<h2 className='font-bold text-justify'>Customer Terminology</h2>
-<p className='mb-4 text-justify'>The terms “you”, “your” and also ““yours” “candidate” “customer” refer to users of the www.constructionworkersupport.com website and people that have accessed any of of our services.</p>
+<h2 className='font-bold text-justify'>When do we collect information?</h2>
+<p className='mb-4 text-justify'>We gather information from you when you place an order, complete a form, or input details on our site.</p>
 
-<h2 className='font-bold text-justify'>Business Booking</h2>
-<p className='mb-4'>
-By using our service on behalf of a business you work for, you confirm, through payment for our services, that you have the authority of the business owner and have been authorized to make the payment for the services provided by Construction Cards Services through our website.</p>
+<h2 className='font-bold text-justify'>How do we utilize the information you provide?</h2>
+<p className='mb-1'>We may use the information collected from you when you register, make a purchase, sign up for our newsletter, respond to surveys or marketing communications, browse the website, or use specific site features in the following ways:</p>
+<p className='mb-1'>To process your transactions quickly.</p>
+<p className='mb-4'>To follow up with them after communication (live chat, email, or phone inquiries).</p>
 
-<h2 className='font-bold text-justify'>Terms and Conditions of Our Service</h2>
+
+<h2 className='font-bold text-justify'>How do we safeguard your information?</h2>
+<p className='mb-1 text-justify'>We regularly scan our website for security gaps and known vulnerabilities to ensure your visit is as safe as possible.</p>
+<p className='mb-1'>Your personal information is stored behind secure networks and can only be accessed by a limited number of individuals with special access rights to these systems, who are obligated to maintain confidentiality. Additionally, all sensitive or credit information you provide is encrypted using Secure Socket Layer (SSL) technology.</p>
+<p className='mb-1'>We implement various security measures when a user places an order, enters, submits, or accesses their information to ensure the safety of your personal details.</p>
+<p className='mb-4'>All transactions are handled through a gateway provider and are neither stored nor processed on our servers.</p>
+
+
+<h2 className='font-bold text-justify'>Do we utilize 'cookies'?</h2>
+<p className='mb-4'>Yes. Cookies are small files that a site or its service provider transfers to your computer’s hard drive through your web browser (if you allow) to enable the site’s or service provider’s systems to recognize your browser and capture and remember specific information. For example, we use cookies to help us remember and process the items in your shopping cart. They are also used to understand your preferences based on previous or current site activity, allowing us to offer improved services. Additionally, we use cookies to gather aggregate data about site traffic and interactions to enhance future site experiences and tools.</p>
+
+<h2 className='font-bold text-justify'>We use cookies to:</h2>
+<p className='mb-1 text-justify'>We use cookies to compile aggregate data about site traffic and interactions to provide better site experiences and tools in the future. Additionally, we may use trusted third-party services to track this information on our behalf.</p>
+<p className='mb-1 text-justify'>You can choose to have your computer alert you each time a cookie is being sent, or you can disable all cookies. This can be done through your browser settings. Since each browser is slightly different, refer to your browser’s Help Menu to learn the proper way to modify your cookie settings.</p>
+<p className='mb-4 text-justify'>If you disable cookies, some features that enhance your site experience may not work properly. However, it won’t affect other aspects of your experience that don’t rely on cookies.</p>
+
+
+<h2 className='font-bold text-justify'>Third-party disclosure</h2>
+<p className='mb-4 text-justify'>We do not sell, trade, or transfer your Personally Identifiable Information to outside parties in any way.</p>
+
+<h2 className='font-bold text-justify'>Third-party links</h2>
+<p className='mb-4 text-justify'>Occasionally, we may include or offer third-party products or services on our website at our discretion. These third-party sites have their own independent privacy policies. As such, we are not responsible for the content or activities of these linked sites. However, we aim to protect the integrity of our site and welcome any feedback regarding these sites.</p>
+
+<h2 className='font-bold text-justify'>Google</h2>
+<p className='mb-1 text-justify'>Google's advertising requirements are outlined in Google's Advertising Principles, which are designed to ensure a positive experience for users.</p>
+<Link className='text-purple_primary' href="/https://support.google.com/adspolicy/answer/6008942">https://support.google.com/adspolicy/answer/6008942
+</Link>
+<p className='mb-1 text-justify'>We use Google Ads for advertising on our website.</p>
+<p className='mb-1 text-justify'>Google, as a third-party vendor, uses cookies to display ads on our site. Google's use of the DART cookie allows it to serve ads to users based on their previous visits to our site and other websites. Users can opt out of using the DART cookie by visiting the Google Ad and Content Network privacy policy.</p>
+
+
+
+<h2 className='font-bold text-justify'>We have implemented the following:</h2>
+<p className='mb-1 text-justify'>We, along with third-party vendors like Google, use first-party cookies (such as Google Analytics cookies) and third-party cookies (such as the DoubleClick cookie) or other third-party identifiers to collect data about user interactions with ad impressions and other ad service functions related to our website.</p>
+
 <p className='mb-4 text-justify'>
-Our terms and conditions apply to any company or individual making single or multiple bookings with Construction Cards Services. By accessing our services and using www.constructioncardsservices.com, you agree to our Terms and Conditions. Construction Worker Support reserves the right to edit or amend any of our Terms and Conditions as deemed appropriate, without notifying the customer. Any new or edited terms will apply only to bookings made after the updated terms are added to the website and bookings policy. The terms on the Construction Worker Support website at the time of your booking will be the applicable terms. It is the responsibility of customers to ensure they agree with and comply with our terms and conditions before making a booking.</p>
-
-<h2 className='font-bold text-justify'>Age Restrictions for Service Use</h2>
-<p className='mb-4'>We are unable to book tests for individuals under the age of 16.</p>
-
-<h2 className='font-bold text-justify'>Accepted Payment Currencies</h2>
-<p className='mb-4 text-justify'>All payments are processed in GBP (British Pounds).</p>
+Opting out: Users can adjust their preferences for how Google advertises to them via the Google Ad Settings page. Alternatively, they can opt out by visiting the Network Advertising Initiative Opt Out page or by using the Google Analytics Opt Out Browser add-on.</p>
 
 
-<h2 className='font-bold text-justify'>Terms and Conditions for Bookings</h2>
-<p className='mb-4 text-justify'>All bookings are made on a 'subject to availability' basis. While our team will make every effort to secure the requested time and date, this cannot always be guaranteed. In the rare event that we are unable to secure the requested date and time, our team will aim to book the nearest available option.</p>
+<h2 className='font-bold text-justify'>California Online Privacy Protection Act (CalOPPA)</h2>
+<p className='mb-4 text-justify'>CalOPPA is the first state law in the U.S. requiring commercial websites and online services to post a privacy policy. The law’s scope extends beyond California, mandating that any individual or company in the U.S. (and potentially worldwide) operating websites that collect Personally Identifiable Information from California residents must display a clear privacy policy. This policy must specify the information being collected and the individuals or companies with whom it is shared. – For more information, visit: CalOPPA</p>
 
-<h2 className='font-bold text-justify'>Booking Communication Guidelines</h2>
-<p className='mb-4 text-justify'>Construction Cards Services will send a confirmation email and text to your mobile within 48 working hours of the booking being made. If requested, the customer can also receive confirmation via text for their date and time. If the customer has not received any communication from Construction Cards Services within 48 hours, they are advised to contact our support team at support@constructioncardsservices.com.</p>
-
-<h2 className='font-bold mb-4 text-justify'>
-Cancellation requests are subject to a £20.00 administration and cancellation fee. This fee covers, but is not limited to, communication with the candidate, cancellation of requested tests with CITB, and the refund process. In the case of a test and retake cancellation, an additional £10.00 will be deducted along with the standard £20.00 cancellation fee.</h2>
-
-<h2 className='font-bold mb-4 text-justify'>The cancellation fees for various cards are as follows: the CSCS card cancellation fee is £14, while for the ESS card, the cancellation fee for the digital card is £16 and for the physical card, it is £27. Additionally, the CITB cancellation fee is set at £15.</h2>
-
+<h2 className='font-bold text-justify'>According to CalOPPA, we agree to the following:</h2>
+<p className='mb-1 text-justify'>Users can visit our site anonymously.</p>
+<p className='mb-1 text-justify'>Once this privacy policy is created, we will add a link to it on our homepage or, at a minimum, on the first significant page after entering our website.</p>
+<p className='mb-1 text-justify'>Our Privacy Policy link includes the word 'Privacy' and can be easily found on the page mentioned above.</p>
+<p className='mb-1 text-justify'>Any changes to our Privacy Policy will be notified to you on our Privacy Policy page.</p>
+<p className='mb-1 text-justify'>You can change your personal information by emailing us.</p>
 
 
-<h2 className='font-bold text-justify'>Proof of Booking</h2>
+<h2 className='font-bold text-justify'>How does our site respond to Do Not Track signals?</h2>
+<p className='mb-4 text-justify'>We honor Do Not Track signals and do not track, plant cookies, or use advertising when a Do Not Track (DNT) browser mechanism is enabled.</p>
+
+
+<h2 className='font-bold text-justify'>Does our site permit third-party behavioral tracking?</h2>
+
+<p className='mb-4 text-justify'>It’s important to note that we do not permit third-party behavioral tracking.</p>
+
+<h2 className='font-bold text-justify'>COPPA (Children's Online Privacy Protection Act)</h2>
+<p className='mb-1 text-justify'>The Children’s Online Privacy Protection Act (COPPA) puts parents in control when it comes to collecting personal information from children under 13 years old. The Federal Trade Commission (FTC), the United States' consumer protection agency, enforces the COPPA Rule, which outlines what website operators and online service providers must do to protect children's privacy and safety online.</p>
+<p className='mb-1 text-justify'>We do not specifically market to children under the age of 13.</p>
+<p className='mb-1 text-justify'>As for whether we allow third parties, including ad networks or plugins, to collect Personally Identifiable Information (PII) from children under 13 years old, the answer is no. We do not permit this.</p>
+
+<h2 className='font-bold text-justify'>Fair Information Practices</h2>
+<p className='mb-4 text-justify'>The Fair Information Practices Principles (FIPPs) form the foundation of privacy law in the United States, and the concepts they encompass have significantly influenced the development of data protection laws worldwide. Understanding these principles and how to implement them is essential for complying with various privacy laws that safeguard personal information.</p>
+
+<h2 className='font-bold text-justify'>In line with Fair Information Practices, we will take the following responsive actions should a data breach occur:</h2>
+
+<p className='mb-1 text-justify'>We will notify you via email within 7 business days.</p>
+<p className='mb-1 text-justify'>We will notify the users via in-site notification within 7 business days.</p>
+<p className='mb-1 text-justify'>We also agree to the Individual Redress Principle, which ensures that individuals have the right to legally pursue enforceable rights against data collectors and processors who fail to comply with the law.</p>
+<p className='mb-1 text-justify'>This principle requires that individuals not only have enforceable rights against data users but also have recourse to courts or government agencies to investigate and/or prosecute non-compliance by data processors.</p>
+
+
+<h2 className='font-bold text-justify'>CAN SPAM Act</h2>
+
 <p className='mb-4 text-justify'>
-After placing your booking, you will receive a confirmation email from us, which serves as both a receipt of payment and proof of the booking. This email also confirms your full acceptance of all the terms and conditions detailed here.</p>
+The CAN-SPAM Act is a law that sets rules for commercial emails, establishes requirements for commercial messages, gives recipients the right to stop unsolicited emails, and outlines strict penalties for violations.</p>
 
-<h2 className='font-bold mb-4'>We do not accept liability if the payment is refused or declined by the credit/debit card supplier.</h2>
+<h2 className='font-bold text-justify'>To be in accordance with CAN-SPAM, we agree to the following:</h2>
 
-<h2 className='font-bold text-justify'>Booking Your Test with Construction Cards Services</h2>
-<p className='mb-4 text-justify'>By booking your test with us, you fully acknowledge that your booking is for arranging the test and not for the selected date, as all bookings are sold 'subject to availability.' The fee you pay includes the £22 test fee and our booking and support fee. The details you provide when filling out the form will be used to process your booking. We are not responsible for any incorrect details you provide. If an error occurs on our part, such as submitting incorrect details, we will correct it at no extra charge. The Construction Worker Support team reviews every booking for inaccuracies. If additional information is needed or we believe you've booked the wrong test or test center, we will contact you via email to confirm your details before proceeding with your test booking.</p>
+<p className='mb-4 text-justify'>If at any time you would like to unsubscribe from receiving future emails, you can email us at support@constructioncardsservices.com, and we will promptly remove you from all correspondence.</p>
 
-<p className='mb-4 text-justify'>Please contact us at Support@constructioncardsservices.com if you find any errors in your order. It is your responsibility to attend the test center on the correct date and time. We cannot accept liability for your absence under any circumstances. It is also your responsibility to bring the correct ID/documentation to the test center. Once we have confirmed the booking and sent the confirmation to you, we are not responsible for any actions taken afterward. Your payment fully covers the test fee and an administration fee. As a third-party booking agent, we charge a fee for the management services we provide, including:</p>
+<h2 className='font-bold text-justify'>Contacting Us</h2>
 
-<p className='mb-2 text-justify'>Reviewing each booking to ensure the details are correct and that the correct test is booked</p>
-<p className='mb-2 text-justify'>Securing the requested date, time, and venue (or the nearest available option)</p>
-<p className='mb-2 text-justify'>Notifying the customer of confirmed test dates via email and/or text message</p>
-<p className='mb-2 text-justify'>Handling any rescheduling or cancellation requests</p>
-
-<p className='mb-4 text-justify'>The price for our booking service is the amount displayed during the booking process on the website. Full payment is required before we can book your test. Your statutory rights as a consumer are not affected by these terms and conditions. You also retain other rights when placing a booking through Construction Cards Services.</p>
-
-
-<h2 className='font-bold text-justify'>The Right to Cancel Your Test</h2>
-<p className='mb-4 text-justify'>You have a right to cancel a booked test and receive a partial refund. If you wish to cancel your test, you need to contact us via the email below:</p>
-
-<h2 className='font-bold text-justify'>Support@constructioncardsservices.com</h2>
-<h2 className='font-bold text-justify'>https://www.constructioncardsservices.com/contact-us</h2>
-
-
-<h2 className='font-bold text-justify'>The right to reschedule your test</h2>
-<p className='mb-4 text-justify'>If you need to reschedule a test, the request must be made at least 96 hours before the scheduled test date. Please forward your request to Support@constructionworkersupport.com.</p>
-
-<h2 className='font-bold text-justify'>Please provide the following details for rescheduling your test:</h2>
-<p className='mb-4 text-justify'>Your full name and booking reference number</p>
-<p className='mb-4 text-justify'>At least 3 alternative test dates when you are available</p>
-<p className='mb-4 text-justify'>To ensure we can reschedule your test in time, we require these details at least 3 working days prior to your test date. If you fail to provide the required information, we will be unable to reschedule your test until 48 hours after the original test date has passed.</p>
-
-<h2 className='font-bold mb-4 text-justify'>By agreeing to these Terms stipulated here, you thus agree to the terms of our Privacy Policy. Please see https://www.constructioncardsservices.com/privacy-policy for more details.</h2>
-<h2 className='font-bold mb-4 text-justify'>By agreeing to these Terms stipulated here, you thus agree to the terms of our Privacy Policy. Please see https://www.constructioncardsservices.com/privacy-policy for more details.</h2>
-
-<h2 className='font-bold text-justify'>One Day Courses Booking and Cancellation Policy</h2>
-<p className='mb-4 text-justify'>
-The One Day Awareness Course, once booked, cannot be cancelled and is non-refundable. Construction Worker Support Ltd reserves the right to cancel or alter the course dates, the provision of services, the location, or the individual/organisation providing the service, and make reasonable variations to the courses without prior notice. In the event of a cancellation, the booking will typically be transferred to the next available course, unless the customer specifically requests otherwise.</p>
-
-<h2 className='font-bold text-justify'>Cancellation, Reschedules, and Non-Attendance Policy:</h2>
-<p className='mb-4 text-justify'>Construction Cards Services will not be held responsible for any reasons that prevent a candidate from attending the course. This includes, but is not limited to, circumstances such as bad weather, vehicle breakdown, or any other factors that may prevent attendance on the day of the course.</p>
-
-<h2 className='font-bold text-justify'>Card Booking and Cancellation Policy</h2>
-<p className='mb-4 text-justify'>On applying your CSCS Card with us, you give permission to Construction Cards Services Ltd to contact CSCS on your behalf to resolve any issues with your application. Cancellation requests are subject to a £14.00 administration and cancellation fee; this fee covers and includes, but is not limited to, communication with the candidate and communication with CSCS and the refund process.
-Once you have completed the booking for your Card, you will receive an email listing the documents required for applying your Card within 48 hours. It is adviced that you send a clear photograph all relevant documents requested by card processing team promptly via email. Not doing so can delay the Card processing. Please note that if you are unable to send the relevant requested documents within 75 days of booking, Construction Cards Services Ltd reserves the right to cancel your Card booking and refund your payment after charging the administration and cancellation fee of £14.</p>
+<p className='mb-1 text-justify'>If you have any questions regarding this privacy policy, you may contact us using the information below.</p>
+<p className='mb-1 text-justify'>constructionworkersupport.com</p>
+<p className='mb-1 text-justify'>support@constructionworkersupport.com</p>
 
         </div>
     )

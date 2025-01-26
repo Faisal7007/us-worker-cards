@@ -41,7 +41,7 @@ const Page = () => {
 </div>
 
 <div className='flex justify-center mt-12'>
-    <h1 className='capitalize text-[25px] text-white px-4 py-1 bg-purple_primary rounded-full  font-semibold media-max-600px:text-[22px] '>Eligibility Requirements</h1>
+    <h1 className='capitalize text-[25px] text-white px-4 py-1 bg-purple_primary rounded-full  font-semibold media-max-600px:text-[22px]'>Eligibility Requirements</h1>
   </div>
     
 <div className='flex justify-center mt-8'>
@@ -61,7 +61,7 @@ const Page = () => {
 </div>
 
 
-<div>
+<div className='text-justify media-max-545px:text-[14px]'>
 <h1 className='capitalize text-[25px] text-black my-8  font-bold font smooch_sans_regular'>Validity - 5 Years</h1>
 
 <h2 className='text-justify mb-2'>You can apply for this card if you have either:</h2>

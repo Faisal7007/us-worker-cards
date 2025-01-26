@@ -38,6 +38,7 @@ const Page = () => {
           <CardForm 
             titleOne='NVQ Level 2' 
             titleTwo='Easy apply for NVQ Level 2 in Construction.' 
+            cardType="nvq-level-2"
           />
         </div>
       </div>
@@ -112,6 +113,7 @@ const Page = () => {
           <CardForm 
             titleOne='NVQ Level 2(Enrollment)' 
             titleTwo='Easy apply for Enrollment of NVQ Level 2.' 
+            cardType="nvq-level-2-enrollment"
           />
         </div>
       </div>

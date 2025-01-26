@@ -8,6 +8,7 @@ import Sidebar from "./components/Sidebar";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { RxCross2 } from "react-icons/rx";
 import Login from "./components/Login";
+import { MyProvider } from "../context-api/MyProvider";
 
 const AdminLayout = ({ children }) => {
   const [user2, setUser2] = useState(null);
@@ -49,7 +50,7 @@ const AdminLayout = ({ children }) => {
         </aside>
 
         {/* Main Content */}
-        <main className="flex-1 bg-gray-100 p-6 lg:w-4/5">
+        <main className="flex-1 vertical-scrollbar bg-gray-100 p-6 lg:w-4/5">
           {/* Toggle Button */}
           <button
             className="  lg:hidden fixed top-4 left-4 z-50 bg-gray-800 text-white p-2 rounded"
@@ -69,6 +70,8 @@ const AdminLayout = ({ children }) => {
         )}
       </div>
     </FirebaseProvider>
+
+
     </div>
 
   );
