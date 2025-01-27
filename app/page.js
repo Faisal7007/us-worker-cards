@@ -38,7 +38,7 @@ export default function Home() {
         <div className="flex  justify-between items-start gap-10  media-max-982px:flex-col">
           <div className="flex items-center h-[450px] media-max-982px:w-full media-max-510px:h-[400px] media-max-470px:h-[380px] media-max-410px:h-[350px]">
             <Image
-              src="/home-img.jpg"
+              src="/home2.png"
               alt="home-image"
               className=" h-full rounded-lg media-max-982px:w-full"
               width={800}

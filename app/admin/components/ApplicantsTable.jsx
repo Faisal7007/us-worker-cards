@@ -40,7 +40,7 @@ const ApplicantsTable = ({userData,isLoading,form_type}) => {
 
   }
 
-  console.log(viewDetailsId,'View detail ID')
+  // console.log(viewDetailsId,'View detail ID')
 
   return (
     <div className="overflow-x-auto">

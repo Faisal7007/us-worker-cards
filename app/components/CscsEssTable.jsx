@@ -1,10 +1,25 @@
 import React from "react";
 import Loader from "./Loader";
 
-const CscsEssTable = ({userData,isLoading}) => {
- 
+const CscsEssTable = ({ userData, isLoading }) => {
+  // Remove duplicate entries based on email or another unique field
+  const removeDuplicates = (data) => {
+    const uniqueData = [];
+    const seenEmails = new Set();
 
-  console.log(userData,"UserData Cscs OR Ess")
+    data.forEach((user) => {
+      if (!seenEmails.has(user.email)) {
+        seenEmails.add(user.email); // Add email to the Set
+        uniqueData.push(user); // Add user to the uniqueData array
+      }
+    });
+
+    return uniqueData;
+  };
+
+  const filteredUserData = removeDuplicates(userData);
+
+  console.log(filteredUserData, "Filtered UserData");
 
   return (
     <div className="overflow-x-auto">
@@ -18,9 +33,6 @@ const CscsEssTable = ({userData,isLoading}) => {
             <th className="border border-gray-300 px-4 py-2 text-left">Mobile No.</th>
           </tr>
         </thead>
-
-        
-        
         <tbody>
           {isLoading ? (
             <tr>
@@ -28,8 +40,8 @@ const CscsEssTable = ({userData,isLoading}) => {
                 <Loader />
               </td>
             </tr>
-          ) : userData?.length > 0 ? (
-            userData.map((user, index) => (
+          ) : filteredUserData?.length > 0 ? (
+            filteredUserData.map((user, index) => (
               <tr key={user.id} className="hover:bg-gray-100">
                 <td className="border border-gray-300 px-4 py-2">{index + 1}</td>
                 <td className="border border-gray-300 px-4 py-2">{user.firstName}</td>
@@ -46,7 +58,6 @@ const CscsEssTable = ({userData,isLoading}) => {
             </tr>
           )}
         </tbody>
-
       </table>
     </div>
   );

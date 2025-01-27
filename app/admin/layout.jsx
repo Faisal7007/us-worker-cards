@@ -50,7 +50,7 @@ const AdminLayout = ({ children }) => {
         </aside>
 
         {/* Main Content */}
-        <main className="flex-1 vertical-scrollbar bg-gray-100 p-6 lg:w-4/5">
+        <main className="flex-1 vertical-scrollbar bg-gray-100 lg:w-4/5">
           {/* Toggle Button */}
           <button
             className="  lg:hidden fixed top-4 left-4 z-50 bg-gray-800 text-white p-2 rounded"

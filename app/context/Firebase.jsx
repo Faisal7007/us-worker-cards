@@ -32,7 +32,7 @@ export const useFirebase = () => useContext(FirebaseContext);
 
 export const FirebaseProvider = ({ children }) => {
 
-  
+
     const addCscsData = async (firstName, lastName, email, phone, cardType,setIsSubmitting) => {
         try {
           setIsSubmitting(true)
@@ -547,15 +547,11 @@ const fetchContactUsData = async (setContactUsData, setIsLoading) => {
   }
 };
 
-const fetchContactUsDataById = async (userId,setApplicant,setIsLoading) => {
+const fetchContactUsDataById = async (userId,setApplicant) => {
   try {
-    setIsLoading(true)
     const docRef = doc(firestore, "contact-us", userId);
     const docSnapshot = await getDoc(docRef);
-
     setApplicant(docSnapshot.data())
-    setIsLoading(false)
-
   } catch (error) {
     console.error("Error fetching applicant by ID:", error);
     toast.error("Error fetching applicant!");
