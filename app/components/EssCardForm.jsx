@@ -1,7 +1,8 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
 import { useFirebase } from '../context/Firebase';
+import { toast } from "react-toastify";
 
 const EssCardForm = ({ titleOne, titleTwo, cardType }) => {
 //   const { addDataToFirestore } = useFirebase();
@@ -16,10 +17,21 @@ const EssCardForm = ({ titleOne, titleTwo, cardType }) => {
   const [isSubmitBtnClicked, setisSubmitBtnClicked] = useState(false)
 
   const [saved, setSaved] = useState(false);
+  const [essUsers, setEssUsers] = useState([]);
+  const [isLoading, setIsLoading] = useState(false)
+  const firebase=useFirebase()
+  
+  
+  
 
   // Regex for email validation
   
   const firestore=useFirebase()
+  const essCardTypes = ["green-labourer", "blue-skilled","blue-experienced","red-trainee","red-industry","gold-advanced","gold-supervisor","black-manager","white-aqp","white-pqp"];
+
+    useEffect(()=>{
+      firebase.fetchAllCscsEssData('ess',essCardTypes,setEssUsers,setIsLoading)
+      },[cardType])
 
   const reset=()=>{
     setFirstName('')
@@ -30,86 +42,36 @@ const EssCardForm = ({ titleOne, titleTwo, cardType }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+     // Check if email or phone already exists in the database
+  const emailExists = essUsers.some((user) => user.email === email.trim());
+  const phoneExists = essUsers.some((user) => user.phone === phone.trim());
+
+  if (emailExists || phoneExists) {
+    if(emailExists){
+      toast.error("Email already exists!", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: true,
+        className: "bg-red-100 text-red-800 font-medium",
+      });
+    }
+    if(phoneExists){
+      toast.error("Mobile number already exists!", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: true,
+        className: "bg-red-100 text-red-800 font-medium",
+      });
+
+    }
+    return;
+  }
      firestore.addEssData(firstName, lastName, email, phone, cardType,setIsSubmitting);
      setisSubmitBtnClicked(true)
      reset()
   };
 
 
-  
-    // const handleAutoSubmit=()=>{
-    //   // addCscsData(firstName, lastName, email, phone, cardType);
-    //   // alert('jI ha')
-    //   if (submitted || phone.trim() === ""||email.trim()==="") {
-    //     return; 
-    //   }
-    //   setSubmitted(true);
-    //   try {
-  
-    //     firestore.AutoaddEssData(firstName, lastName, email, phone, cardType);  
-    //     console.log("Auto Phone number submitted successfully:");
-    //   } catch (error) {
-    //     console.error("Error submitting phone number:");
-    //   } finally {
-    //     setSubmitted(false);
-    //   }
-    // }
-
-    // const handleAutoSubmit = () => {
-    //   // Regular expression to validate email format
-    //   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    
-    //   // Check if the form has already been submitted, or if phone or email is invalid
-    //   if (
-    //     submitted || 
-    //     phone.trim().length <= 7 || // Check if phone has more than 7 digits
-    //     !emailRegex.test(email.trim()) // Validate email format
-    //   ) {
-    //     return;
-    //   }
-    
-    //   setSubmitted(true);
-    //   try {
-        
-    //     firestore.AutoaddEssData(firstName, lastName, email, phone, cardType);
-    //     console.log("Auto Phone number submitted successfully:");
-    //   } catch (error) {
-    //     console.error("Error submitting phone number:", error);
-    //   } finally {
-    //     setSubmitted(false);
-    //   }
-    // };
-
-    // const handleAutoEmailSubmit = () => {
-    //   // Regular expression to validate email format
-    //   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    
-    //   // Check if the form has already been submitted, or if phone or email is invalid
-    //   if (
-    //     submitted || 
-    //     phone.trim().length <= 7 || // Check if phone has more than 7 digits
-    //     !emailRegex.test(email.trim()) // Validate email format
-    //   ) {
-    //     return;
-    //   }
-    
-    //   setSubmitted(true);
-    //   try {
-        
-    //     firestore.AutoaddEssData(firstName, lastName, email, phone, cardType);
-    //     console.log("Auto Phone number submitted successfully:");
-    //   } catch (error) {
-    //     console.error("Error submitting phone number:", error);
-    //   } finally {
-    //     setSubmitted(false);
-    //   }
-    // };
-    
-  
-    // if (isSubmitBtnClicked==='false') {
-    //   handleAutoSubmit();
-    //   handleAutoEmailSubmit()
-    // }
 
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -117,6 +79,13 @@ const EssCardForm = ({ titleOne, titleTwo, cardType }) => {
       if (saved) return; // Avoid repeated saves for the same data
       setSaved(true);
       try {
+        const emailExists = essUsers.some((user) => user.email === email.trim());
+        const phoneExists = essUsers.some((user) => user.phone === phone.trim());
+      
+        if (emailExists || phoneExists) {
+          // alert("Email or phone number already exists in the database.");
+          return;
+        }
         // Save user data (replace this with your save function)
         firestore.AutoaddEssData(firstName, lastName, email, phone, cardType);
         console.log("User details saved successfully!");
@@ -143,6 +112,42 @@ const EssCardForm = ({ titleOne, titleTwo, cardType }) => {
       }
     };
 
+
+     const saveUserDetails = () => {
+        const emailExists = essUsers.some((user) => user.email === email.trim());
+          const phoneExists = essUsers.some((user) => user.phone === phone.trim());
+        
+          if (emailExists || phoneExists) {
+          //alert("Email or phone number already exists in the database. On URL change");
+            return;
+          }
+          else{
+            if (email || phone) {
+              try {
+                firestore.AutoaddEssData(firstName, lastName, email, phone, cardType);
+                console.log("User ESS details saved successfully!");
+              } catch (error) {
+                console.error("Error saving user details:", error);
+              }
+            }
+          }
+      };
+    
+      useEffect(() => {
+        
+        const handleUrlChange = () => {
+          saveUserDetails();
+        };
+    
+        // window.addEventListener("popstate", handleUrlChange); // For history navigation
+        window.addEventListener("beforeunload", handleUrlChange); // For page refresh or close
+    
+       
+        return () => {
+          // window.removeEventListener("popstate", handleUrlChange);
+          window.removeEventListener("beforeunload", handleUrlChange);
+        };
+      }, [email, phone, cardType]);
 
   return (
     <div className='w-[660px] media-max-700px:w-full'>
@@ -192,6 +197,7 @@ const EssCardForm = ({ titleOne, titleTwo, cardType }) => {
                   type="tel"
                   id="phone"
                   name="phone"
+                  pattern="[0-9]{7,15}"
                   placeholder="Enter your phone number"
                   value={phone} 
                   onChange={(e) => setPhone(e.target.value)} 

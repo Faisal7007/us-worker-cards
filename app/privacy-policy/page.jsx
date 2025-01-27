@@ -106,9 +106,8 @@ The CAN-SPAM Act is a law that sets rules for commercial emails, establishes req
 <h2 className='font-bold text-justify'>Contacting Us</h2>
 
 <p className='mb-1 text-justify'>If you have any questions regarding this privacy policy, you may contact us using the information below.</p>
-<p className='mb-1 text-justify'>constructionworkersupport.com</p>
-<p className='mb-1 text-justify'>support@constructionworkersupport.com</p>
-
+<p className='mb-1 text-justify'>constructioncardsservices.com</p>
+<p className='mb-1 text-justify'>support@constructioncardsservices.com</p>
         </div>
     )
 }

@@ -5,11 +5,8 @@ import { IoIosMail } from "react-icons/io";
 import { IoLocation } from "react-icons/io5";
 import ContactUsBanner from "./ContactUsBanner";
 import { useFirebase } from "../context/Firebase";
-// import emailjs from "emailjs-com";
-// import { ToastContainer, toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
-// serviceID-service_s955usf
 function Contact({no_banner}) {
   const firebase=useFirebase()
 
@@ -21,15 +18,22 @@ function Contact({no_banner}) {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [contactUsData, setContactUsData] = useState([])
+  const [isLoading, setisLoading] = useState(false)
 
+ 
+  useEffect(()=>{
+    firebase.fetchContactUsData(setContactUsData,setisLoading)
 
+  },[])
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
   };
 
   const reset=()=>{
-    setFormValues({   name: "",
+    setFormValues({   
+      name: "",
       email: "",
       mobile: "",
       description: "",
@@ -38,8 +42,36 @@ function Contact({no_banner}) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    firebase.addContactUs(formValues,setIsSubmitting)
-    reset()
+   
+     const emailExists = contactUsData.some((user) => user.email === formValues.email.trim());
+      const phoneExists = contactUsData.some((user) => user.mobile === formValues.mobile.trim());
+    
+      if (emailExists || phoneExists) {
+        if(emailExists){
+          toast.error("Email already exists!", {
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: true,
+            className: "bg-red-100 text-red-800 font-medium",
+          });
+        }
+        if(phoneExists){
+          toast.error("Mobile number already exists!", {
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: true,
+            className: "bg-red-100 text-red-800 font-medium",
+          });
+    
+        }
+        return;
+      }
+         firebase.addContactUs(formValues,setIsSubmitting);
+         reset()
+
+
+    // firebase.addContactUs(formValues,setIsSubmitting)
+
   };
 
   return (
@@ -98,7 +130,7 @@ function Contact({no_banner}) {
                   name="name"
                   placeholder="Your Name"
                   required
-                  className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple_primary "
+                  className="w-full p-2  rounded-md     outline-purple_primary   focus:outline-none focus:ring-2 focus:ring-purple_primary "
                 />
               </div>
 
@@ -130,6 +162,7 @@ function Contact({no_banner}) {
                   type="tel"
                   id="mobile"
                   name="mobile"
+                  pattern="[0-9]{7,15}"
                   placeholder="Your Mobile Number"
                   required
                   className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple_primary"

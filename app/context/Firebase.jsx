@@ -32,7 +32,7 @@ export const useFirebase = () => useContext(FirebaseContext);
 
 export const FirebaseProvider = ({ children }) => {
 
-
+  
     const addCscsData = async (firstName, lastName, email, phone, cardType,setIsSubmitting) => {
         try {
           setIsSubmitting(true)
@@ -73,8 +73,6 @@ export const FirebaseProvider = ({ children }) => {
         }
       };
 
-
-     
 const fetchAllCscsEssData = async (isCard,cardTypes, setAllUsers,setIsLoading) => {
   try {
     setIsLoading(true)
@@ -121,24 +119,6 @@ const fetchAllCscsEssData = async (isCard,cardTypes, setAllUsers,setIsLoading) =
         }
       };
 
-      const AutoaddEssData = async (firstName, lastName, email, phone, cardType) => {
-        try {
-          const data = {
-            firstName,
-            lastName,
-            email,
-            phone,
-            createdAt: new Date().toISOString(),
-          };
-    
-          const docRef = doc(firestore, "ess-cards-users", cardType);
-          await addDoc(collection(docRef, "users"), data); 
-
-        } catch (error) {
-          toast.error("Error adding data!");
-        }
-      };
-
       const addEssData = async (firstName, lastName, email, phone, cardType,setIsSubmitting) => {
         try {
           setIsSubmitting(true)
@@ -162,8 +142,25 @@ const fetchAllCscsEssData = async (isCard,cardTypes, setAllUsers,setIsLoading) =
         }
       };
 
+      const AutoaddEssData = async (firstName, lastName, email, phone, cardType) => {
+        try {
+          const data = {
+            firstName,
+            lastName,
+            email,
+            phone,
+            createdAt: new Date().toISOString(),
+          };
+    
+          const docRef = doc(firestore, "ess-cards-users", cardType);
+          await addDoc(collection(docRef, "users"), data); 
 
-      
+        } catch (error) {
+          toast.error("Error adding data!");
+        }
+      };
+
+    
       const fetchEssData = async (cardType, setEssUsers) => {
         try {
           const docRef = collection(firestore, "ess-cards-users", cardType, "users");
@@ -210,8 +207,6 @@ const fetchAllCscsEssData = async (isCard,cardTypes, setAllUsers,setIsLoading) =
         }
       };
 
-
-
 const fetchCscsEssApplicants = async (formType, setApplicants,setIsLoading) => {
   try {
     setIsLoading(true)
@@ -237,8 +232,6 @@ const fetchCscsEssApplicants = async (formType, setApplicants,setIsLoading) => {
   }
 };
 
-
-
 const fetchCscsEssApplicantById = async (form_type, userId, setApplicant) => {
   try {
     // Reference to the document using the user's id
@@ -260,7 +253,6 @@ const fetchCscsEssApplicantById = async (form_type, userId, setApplicant) => {
     toast.error("Error fetching applicant!");
   }
 };
-
 
       const applyForESSCard = async (title,firstName,middleName,lastName,dob,nationalInsuranceNumber,phoneNumber,email,cardType,applicationType,formType) => {
         try {
@@ -286,7 +278,6 @@ const fetchCscsEssApplicantById = async (form_type, userId, setApplicant) => {
           toast("Error adding data!");
         }
       };
-
 
       const applyForCITBTest = async (title,firstName,middleName,lastName,dob,nationalInsuranceNumber,phoneNumber,email,fullAddress,locality,city,country,postcode,setIsSubmitting) => {
         try {
@@ -321,7 +312,6 @@ const fetchCscsEssApplicantById = async (form_type, userId, setApplicant) => {
         }
       };
 
-
       const fetchCITBTestApplicants = async (setApplicants,setIsLoading) => {
         try {
           setIsLoading(true)
@@ -347,9 +337,7 @@ const fetchCscsEssApplicantById = async (form_type, userId, setApplicant) => {
           toast.error("Error fetching applicants!");
         }
       };
-
-
-      
+     
 const fetchCitbApplicantById = async (userId, setApplicant) => {
   try {
     // Reference to the document using the user's id
@@ -363,8 +351,6 @@ const fetchCitbApplicantById = async (userId, setApplicant) => {
     toast.error("Error fetching applicant!");
   }
 };
-
-
 
       const applyForHealthAndSafetyCourse = async (title,firstName,middleName,lastName,nationalInsuranceNumber,phoneNumber,email,courseMode,assessmentDate,location) => {
 
@@ -391,7 +377,6 @@ const fetchCitbApplicantById = async (userId, setApplicant) => {
           toast("Error adding data!");
         }
       };
-
 
 const fetchHealthAndSafetyApplicants = async (setApplicants,setIsLoading) => {
   try {
@@ -430,7 +415,6 @@ const fetchHealthAndSafetyApplicantById = async (userId,setApplicant,setIsLoadin
   }
 };
        
-
       const fetchApplicantsData = async (setApplicants) => {
         try {
           const docRef = collection(firestore, "citb-test-applicants", "all-applicants", "users");
@@ -471,7 +455,6 @@ const fetchHealthAndSafetyApplicantById = async (userId,setApplicant,setIsLoadin
         }
       };
 
-
 const fetchGroupBooking = async (setFormDataList, setIsLoading) => {
   try {
     setIsLoading && setIsLoading(true); 
@@ -495,7 +478,6 @@ const fetchGroupBooking = async (setFormDataList, setIsLoading) => {
   }
 };
 
-
 const fetchGroupBookingById = async (userId, setApplicant) => {
   try {
    
@@ -509,8 +491,6 @@ const fetchGroupBookingById = async (userId, setApplicant) => {
     toast.error("Error fetching applicant!");
   }
 };
-
-
 
 const addContactUs = async (formValues, setIsLoading) => {
   try {
@@ -535,7 +515,6 @@ const addContactUs = async (formValues, setIsLoading) => {
     setIsLoading && setIsLoading(false); // Reset loading state
   }
 };
-
 
 const fetchContactUsData = async (setContactUsData, setIsLoading) => {
   try {
@@ -568,7 +547,6 @@ const fetchContactUsData = async (setContactUsData, setIsLoading) => {
   }
 };
 
-
 const fetchContactUsDataById = async (userId,setApplicant,setIsLoading) => {
   try {
     setIsLoading(true)
@@ -584,7 +562,6 @@ const fetchContactUsDataById = async (userId,setApplicant,setIsLoading) => {
   }
 };
 
-
       const LoginUser = async (email, password) => {
         try {
           await signInWithEmailAndPassword(auth, email, password);
@@ -593,7 +570,6 @@ const fetchContactUsDataById = async (userId,setApplicant,setIsLoading) => {
         } catch (error) {
         }
       };
-
 
       const onAuthChange = (user2, setUser2) => {
         onAuthStateChanged(auth, (user) => {
