@@ -32,6 +32,8 @@ const page = () => {
   
 
   return (
+    <div className='px-3 py-6'>
+
     <div className="bg-gray-100 flex items-center justify-center">
     <div className="max-w-2xl w-full shadow-lg rounded-2xl bg-white">
       <div className="bg-gray-800 relative text-white rounded-t-2xl p-4 text-center">
@@ -112,6 +114,7 @@ const page = () => {
         </div>
       </div>
     </div>
+  </div>
   </div>
 
   )
