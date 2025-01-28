@@ -11,17 +11,18 @@ import Login from "./components/Login";
 import { MyProvider } from "../context-api/MyProvider";
 
 const AdminLayout = ({ children }) => {
-  const [user2, setUser2] = useState(null);
+  const [user, setUser] = useState(null);
+
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const firebase = useFirebase();
 
   useEffect(() => {
-    firebase.LoginUser();
-    firebase.onAuthChange(user2, setUser2);
+    // firebase.LoginUser();
+    firebase.onAuthChange(setUser);
   }, []);
-  console.log(user2, "User 2");
+  // console.log(user2, "User 2");
   
-  if (user2 === "hello") {
+  if (user===null) {
     return (
       <>
         <FirebaseProvider>
@@ -50,7 +51,7 @@ const AdminLayout = ({ children }) => {
         </aside>
 
         {/* Main Content */}
-        <main className="flex-1 vertical-scrollbar bg-gray-100 lg:w-4/5">
+        <main className="flex-1 vertical-scrollbar bg-gray-100 py-6 lg:w-4/5 media-max-1022px:py-8 px-2">
           {/* Toggle Button */}
           <button
             className="  lg:hidden fixed top-4 left-4 z-50 bg-gray-800 text-white p-2 rounded"

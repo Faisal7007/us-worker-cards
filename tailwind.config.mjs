@@ -65,6 +65,10 @@ export default {
 
 
         "between360-545": { min: "360px", max: "545px" },
+        "between640-750": { min: "640px", max: "750px" },
+        "between1024-1200": { min: "1024px", max: "1200px" },
+
+
 
       },
     },

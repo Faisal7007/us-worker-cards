@@ -4,9 +4,9 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 // import { getAnalytics } from "firebase/analytics";
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState } from "react";
 import { getFirestore, collection, addDoc, doc, setDoc, getDocs, getDoc } from "firebase/firestore"; 
-import{onAuthStateChanged, getAuth, signInWithEmailAndPassword} from 'firebase/auth'
+import{onAuthStateChanged, getAuth, signInWithEmailAndPassword, signOut} from 'firebase/auth'
 import { toast } from "react-toastify"; 
 
 
@@ -31,6 +31,9 @@ const FirebaseContext = createContext(null);
 export const useFirebase = () => useContext(FirebaseContext);
 
 export const FirebaseProvider = ({ children }) => {
+
+  // const [userData, setUserData] = useState(null);
+
 
 
     const addCscsData = async (firstName, lastName, email, phone, cardType,setIsSubmitting) => {
@@ -558,31 +561,41 @@ const fetchContactUsDataById = async (userId,setApplicant) => {
   }
 };
 
-      const LoginUser = async (email, password) => {
+      const LoginUser = async (email, password,setIsSubmitting) => {
         try {
+          setIsSubmitting(true)
           await signInWithEmailAndPassword(auth, email, password);
-          // successLogin();
+          
           toast.success('Login success')
+          setIsSubmitting(false)
         } catch (error) {
+          toast.error('Envalid email or password')
+        }
+        finally{
+          setIsSubmitting(false)
         }
       };
 
-      const onAuthChange = (user2, setUser2) => {
+      const onAuthChange = (setUser) => {
         onAuthStateChanged(auth, (user) => {
           if (user) {
-            setUser2(user);
-            setUserData(user);
+            setUser(user);
+          // setUserData(user);
             // console.log("Welcome! You are logged in", user2);
           } else {
             // console.log("Not logged in");
-            setUser2(null);
+            setUser(null);
           }
         });
       };
 
+      const logOut = () => {
+        signOut(auth);
+      };
+
 
   return (
-    <FirebaseContext.Provider value={{ addCscsData,AutoaddCscsData,addEssData,AutoaddEssData,applyForESSCard,applyForCSCSCard,applyForCITBTest,fetchApplicantsData,applyForHealthAndSafetyCourse,fetchHealthAndSafetyApplicants,fetchAllCscsEssData,fetchCscsData,fetchEssData,fetchCscsEssApplicants,fetchCscsEssApplicantById,fetchCITBTestApplicants,fetchCitbApplicantById,fetchHealthAndSafetyApplicantById,addGroupBooking,fetchGroupBooking,fetchGroupBookingById,addContactUs,fetchContactUsData,fetchContactUsDataById,LoginUser,onAuthChange}}>
+    <FirebaseContext.Provider value={{ addCscsData,AutoaddCscsData,addEssData,AutoaddEssData,applyForESSCard,applyForCSCSCard,applyForCITBTest,fetchApplicantsData,applyForHealthAndSafetyCourse,fetchHealthAndSafetyApplicants,fetchAllCscsEssData,fetchCscsData,fetchEssData,fetchCscsEssApplicants,fetchCscsEssApplicantById,fetchCITBTestApplicants,fetchCitbApplicantById,fetchHealthAndSafetyApplicantById,addGroupBooking,fetchGroupBooking,fetchGroupBookingById,addContactUs,fetchContactUsData,fetchContactUsDataById,LoginUser,onAuthChange,logOut}}>
       {children}
     </FirebaseContext.Provider>
   );

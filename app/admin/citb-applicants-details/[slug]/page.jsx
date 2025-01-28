@@ -2,7 +2,7 @@
 import { UserContext } from '@/app/context-api/UserContext';
 import { useFirebase } from '@/app/context/Firebase';
 import { useParams } from 'next/navigation';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import React, { useContext, useEffect, useState } from 'react'
 
 const page = () => {
@@ -12,6 +12,7 @@ const page = () => {
      
     //  console.log(id)
      const firebase=useFirebase()
+
      const [user, setUser] = useState([])
      const {formType,setFormType}=useContext(UserContext)
 
@@ -31,9 +32,10 @@ const page = () => {
   
 
   return (
-    <div className=" bg-gray-100 flex items-center justify-center">
+    <div className="bg-gray-100 flex items-center justify-center">
     <div className="max-w-2xl w-full shadow-lg rounded-2xl bg-white">
-      <div className="bg-gray-800 text-white rounded-t-2xl p-4 text-center">
+      <div className="bg-gray-800 relative text-white rounded-t-2xl p-4 text-center">
+      <button onClick={()=>(router.back())} className='bg-white rounded-2xl text-gray-800 px-4 py-2  absolute top-0 left-0'>Go Back</button>
         <h2 className="text-xl font-bold">User Information</h2>
         <p className="text-sm">Details of the user's application</p>
       </div>

@@ -23,7 +23,7 @@ const EssPageComponent = ({id,title_page,image_path,title_form_one,title_form_tw
      <p className=' text-justify media-max-470px:text-[14px]' >Call <Link href='/' className='text-purple_primary font-semibold hover:text-black '>0203 769 9047</Link> to book by phone. Our lines are open Monday to Saturday, from 9 AM to 7 PM.</p>
 
      <h1 className='text-[20px] font-bold mb-2 mt-8'>Apply online</h1>
-   <p className='text-justify media-max-470px:text-[14px]'>Apply for a CSCS Card easily using our <Link href={`/ess-card-types` }className='text-purple_primary font-bold'> online application service.</Link>
+   <p className='text-justify media-max-470px:text-[14px]'>Apply for a ESS Card easily using our <Link href={`/ess-card-types`} className='text-purple_primary font-bold'> online application service.</Link>
     </p>
 
 {/* Form */}

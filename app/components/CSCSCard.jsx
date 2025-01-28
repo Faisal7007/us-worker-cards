@@ -26,9 +26,9 @@ const CSCSCard = ({item}) => {
     />
     <div className='px-4 py-8 bg-gray-100 h-[200px] media-max-470px:py-4 media-max-470px:h-[160px]'>
     <div className="">
-        <h1 className='font-bold text-[20px] mb-2 text-center media-max-470px:text-[15px]'>{item.title}</h1>
-        <p className='mb-2 text-center media-max-470px:text-[14px]'>{item.description}</p>
-        <h2 className='font-semibold text-center media-max-470px:text-[14px]'>Validity - {item.validity}</h2>
+        <h1 className='font-bold text-[20px] mb-2 text-center between640-750:text-[18px] media-max-470px:text-[15px] between1024-1200:text-[18px]'>{item.title}</h1>
+        <p className='mb-2 text-center media-max-470px:text-[14px] between640-750:text-[14px] between1024-1200:text-[14px]'>{item.description}</p>
+        <h2 className='font-semibold text-center media-max-470px:text-[14px] between640-750:text-[14px]'>Validity - {item.validity}</h2>
     </div>
     </div>
 
