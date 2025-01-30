@@ -46,7 +46,12 @@ const page = () => {
   };
 
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto px-4 pt-8">
+     <ul className="flex gap-6 items-center mb-4">
+  <li className="before:content-['•'] before:text-orange-500 before:text-2xl before:mr-1">Auto Saved</li>
+  <li className="before:content-['•'] before:text-green-500 before:text-2xl before:mr-1">Manually Saved</li>
+</ul>
+
       <table className="min-w-full table-auto border-collapse border border-gray-300">
         <thead>
           <tr className="bg-gray-100">
@@ -69,7 +74,7 @@ const page = () => {
           ) : contactedData?.length > 0 ? (
             contactedData.map((user, index) => (
               <tr key={user.id} className="hover:bg-gray-100">
-                <td className="border border-gray-300 px-4 py-2">{index + 1}</td>
+                <td className="border border-gray-300 px-4 py-2 flex gap-2 items-center">{index + 1}  <p className={`before:content-['•'] before:${user.submitType==='auto'?"text-orange-500":"text-green-500"} before:text-2xl before:mr-2`}></p></td>
                 <td className="border border-gray-300 px-4 py-2">{user.name}</td>
                 <td className="border border-gray-300 px-4 py-2">{user.email}</td>
                 <td className="border border-gray-300 px-4 py-2">{user.mobile}</td>

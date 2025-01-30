@@ -36,9 +36,9 @@ export default function Home() {
       <div className="max-w-[1440px] mx-auto px-4 pt-8 media-max-545px:pt-2">
 
         <div className="flex  justify-between items-start gap-10  media-max-982px:flex-col">
-          <div className="flex items-center h-[450px] media-max-982px:w-full media-max-510px:h-[400px] media-max-470px:h-[380px] media-max-410px:h-[350px]">
+          <div className="flex items-center h-[450px] media-max-982px:hidden   media-max-510px:h-[400px] media-max-470px:h-[380px] media-max-410px:h-[350px]">
             <Image
-              src="/home2.png"
+              src="/home-img3.png"
               alt="home-image"
               className=" h-full rounded-lg media-max-982px:w-full"
               width={800}
@@ -50,7 +50,7 @@ export default function Home() {
               {/*
               text-black font-bold media-max-1298px:text-[50px] media-max-935px:text-[35px] media-max-935px:leading-[50px] media-max-600px:text-[26px] media-max-600px:leading-[40px] media-max-522px:text-[22px] media-max-510px:text-[22px] media-max-510px:leading-[35px] media-max-470px:text-[18px] media-max-470px:leading-[28px]
               */}
-              <h1 className="text-[70px] leading-[85px] font-bold text-justify media-max-1336px:text-[60px] media-max-1336px:leading-[80px] media-max-545px:text-[50px] media-max-545px:leading-[75px] media-max-510px:text-[45px] media-max-510px:leading-[60px]">Complete All Requirements to Secure On-Site Access</h1>
+              <h1 className="text-[70px] leading-[85px] font-bold text-justify media-max-1336px:text-[60px] media-max-1336px:leading-[80px] media-max-545px:text-[40px] media-max-545px:leading-[70px] media-max-545px:text-start media-max-510px:text-[45px] media-max-510px:leading-[60px]">Complete All Requirements to Secure On-Site Access</h1>
               <br />
               <h2 className="text-[40px] font-semibold text-justify media-max-1212px:text-[30px] media-max-510px:text-[25px] ">Verify credentials and stay compliant with industry standards.</h2>
             </div>

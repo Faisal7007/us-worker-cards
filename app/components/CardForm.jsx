@@ -15,7 +15,7 @@ const CardForm = ({ titleOne, titleTwo, cardType }) => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [submitted, setSubmitted] = useState(false);
+  // const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [saved, setSaved] = useState(false);
   const [cscsUsers, setCscsUsers] = useState([]);
@@ -23,7 +23,6 @@ const CardForm = ({ titleOne, titleTwo, cardType }) => {
   const firebase=useFirebase()
   
   
-
   const cscsCardTypes = ["green-labourer", "blue-skilled","red-provisional","red-trainee","red-experienced","red-technical-supervisor","gold-craft","gold-supervisor","black-manager","white-aqp","white-pqp","health-and-safety-awareness"];
   
     useEffect(()=>{
@@ -71,7 +70,6 @@ const CardForm = ({ titleOne, titleTwo, cardType }) => {
   firestore.addCscsData(firstName, lastName, email, phone, cardType, setIsSubmitting);
   reset();
   };
-
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const autoSave = () => {

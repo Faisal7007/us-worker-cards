@@ -3,12 +3,12 @@ import { IoHomeOutline } from "react-icons/io5";
 import { IoSettingsOutline } from "react-icons/io5";
 import { AiOutlineProduct } from "react-icons/ai";
 import { MdOutlineFormatListBulleted } from "react-icons/md";
-import { RiLogoutCircleLine } from "react-icons/ri";
+import { RiContactsBook3Line} from "react-icons/ri";
 import { useFirebase } from '@/app/context/Firebase';
 import { useRouter } from 'next/navigation';
 import { Tooltip } from 'react-tooltip'
 import { CiLogout } from "react-icons/ci";
-import { MdAddToQueue } from "react-icons/md";
+import { LuNotebookTabs } from "react-icons/lu";
 
 import { useState } from 'react';
 import LogoutModal from './LogoutModal';
@@ -33,7 +33,7 @@ const Sidebar = ({isSidebarOpen,setIsSidebarOpen}) => {
 
 
   const closeModal = () => {
-    setIsModalOpen(false);
+    setIsModalOpen(false)
   };
   return (
     <div className=" vertical-scrollbar w-full  bg-gray-800 text-white flex flex-col py-5 px-2 space-y-4">
@@ -94,14 +94,14 @@ const Sidebar = ({isSidebarOpen,setIsSidebarOpen}) => {
 
           <div onClick={()=>{setIsSidebarOpen(!isSidebarOpen)}}>
             <Link href="/admin/health-and-safety-course-applicants" className="hover:bg-gray-700 p-2 rounded flex items-center gap-2">
-              <MdOutlineFormatListBulleted className="text-xl" />
+              <LuNotebookTabs className="text-xl" />
               <span className='text-[18px]'>Course Booking List</span>
             </Link>
           </div>
 
           <div onClick={()=>{setIsSidebarOpen(!isSidebarOpen)}}>
             <Link href="/admin/contact-us-list" className="hover:bg-gray-700 p-2 rounded flex items-center gap-2">
-              <MdOutlineFormatListBulleted className="text-xl" />
+              <RiContactsBook3Line className="text-xl" />
               <span className='text-[18px]'>Contact-Us Messages</span>
             </Link>
           </div>

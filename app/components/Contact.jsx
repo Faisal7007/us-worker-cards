@@ -8,7 +8,6 @@ import { useFirebase } from "../context/Firebase";
 import { toast } from "react-toastify";
 
 function Contact({no_banner}) {
-  const firebase=useFirebase()
 
   const [formValues, setFormValues] = useState({
     name: "",
@@ -20,6 +19,11 @@ function Contact({no_banner}) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [contactUsData, setContactUsData] = useState([])
   const [isLoading, setisLoading] = useState(false)
+  const [saved, setSaved] = useState(false);
+  const firebase=useFirebase()
+  
+  
+  
 
  
   useEffect(()=>{
@@ -73,6 +77,80 @@ function Contact({no_banner}) {
     // firebase.addContactUs(formValues,setIsSubmitting)
 
   };
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const autoSave = () => {
+    if (saved) return; 
+    setSaved(true);
+    try {
+      const emailExists = contactUsData.some((user) => user.email === formValues.email.trim());
+      const phoneExists = contactUsData.some((user) => user.phone === formValues.mobile.trim());
+    
+      if (emailExists || phoneExists) {
+        // alert("Email or phone number already exists in the database.");
+        return;
+      }
+      firebase.autoAddContactUs(formValues,'auto');
+      console.log("on blur data saved successfully!");
+    } catch (error) {
+      console.error("Error saving on blur data", error);
+    } finally {
+      setSaved(false);
+    }
+  };
+
+
+  const handleEmailBlur = () => {
+    if (emailRegex.test(formValues.email.trim())) {
+      autoSave();
+    }
+  };
+
+  const handleMobileBlur = () => {
+    if (formValues.mobile.trim().length > 7) {
+      autoSave();
+    }
+  };
+
+
+
+  const saveUserDetails = () => {
+    const emailExists = contactUsData.some((user) => user.email === formValues.email.trim());
+      const phoneExists = contactUsData.some((user) => user.phone === formValues.mobile.trim());
+    
+      if (emailExists || phoneExists) {
+      //alert("Email or phone number already exists in the database. On URL change");
+        return;
+      }
+      else{
+        if (formValues.email || formValues.mobile) {
+          try {
+            firebase.autoAddContactUs(formValues,"auto");
+            console.log("Data added on url change");
+          } catch (error) {
+            console.error("Error saving data on url change", error);
+          }
+        }
+      }
+    
+  };
+
+
+    useEffect(() => {
+      
+      const handleUrlChange = () => {
+        saveUserDetails();
+      };
+  
+      // window.addEventListener("popstate", handleUrlChange); // For history navigation
+      window.addEventListener("beforeunload", handleUrlChange); // For page refresh or close
+  
+     
+      return () => {
+        // window.removeEventListener("popstate", handleUrlChange);
+        window.removeEventListener("beforeunload", handleUrlChange);
+      };
+    }, [formValues.email,formValues.mobile]);
 
   return (
     <div className="bg-gray-50">
@@ -142,6 +220,7 @@ function Contact({no_banner}) {
                 <input
                   value={formValues.email}
                   onChange={handleChange}
+                  onBlur={handleEmailBlur}
                   type="email"
                   id="email"
                   name="email"
@@ -159,6 +238,7 @@ function Contact({no_banner}) {
                 <input
                   value={formValues.mobile}
                   onChange={handleChange}
+                  onBlur={handleMobileBlur}
                   type="tel"
                   id="mobile"
                   name="mobile"
@@ -181,7 +261,6 @@ function Contact({no_banner}) {
                   name="description"
                   placeholder="Write a description..."
                   rows="6"
-                  required
                   className="resize-none w-full h-44 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple_primary"
                 ></textarea>
               </div>

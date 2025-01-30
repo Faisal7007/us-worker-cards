@@ -70,9 +70,9 @@ export const FirebaseProvider = ({ children }) => {
           users.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
     
           setCscsUsers(users);
-          console.log("CSCS users fetched successfully:", users);
+         
         } catch (error) {
-          console.error("Error fetching CSCS users:", error);
+          
         }
       };
 
@@ -100,7 +100,7 @@ const fetchAllCscsEssData = async (isCard,cardTypes, setAllUsers,setIsLoading) =
     setAllUsers(allUsers);
     setIsLoading(false)
   } catch (error) {
-    console.error("Error fetching all CSCS users:", error);
+   
   }
 };
 
@@ -178,9 +178,9 @@ const fetchAllCscsEssData = async (isCard,cardTypes, setAllUsers,setIsLoading) =
       
           // Update state with the sorted users
           setEssUsers(users);
-          console.log("ESS users fetched successfully:", users);
+          // console.log("ESS users fetched successfully:", users);
         } catch (error) {
-          console.error("Error fetching CSCS users:", error);
+          // console.error("Error fetching CSCS users:", error);
         }
       };
 
@@ -228,9 +228,9 @@ const fetchCscsEssApplicants = async (formType, setApplicants,setIsLoading) => {
     // Update state with the sorted applicants
     setApplicants(applicants);
     setIsLoading(false)
-    console.log("CSCS Applicants fetched successfully:", applicants);
+    // console.log("CSCS Applicants fetched successfully:", applicants);
   } catch (error) {
-    console.error("Error fetching CSCS applicants:", error);
+    // console.error("Error fetching CSCS applicants:", error);
     toast.error("Error fetching applicants!");
   }
 };
@@ -252,7 +252,7 @@ const fetchCscsEssApplicantById = async (form_type, userId, setApplicant) => {
     //   toast.error("No applicant found with this ID!");
     // }
   } catch (error) {
-    console.error("Error fetching applicant by ID:", error);
+    // console.error("Error fetching applicant by ID:", error);
     toast.error("Error fetching applicant!");
   }
 };
@@ -334,9 +334,9 @@ const fetchCscsEssApplicantById = async (form_type, userId, setApplicant) => {
           setApplicants(applicants);
           setIsLoading(false)
 
-          console.log("CITB Test Applicants fetched successfully:", applicants);
+          // console.log("CITB Test Applicants fetched successfully:", applicants);
         } catch (error) {
-          console.error("Error fetching CITB Test applicants:", error);
+          // console.error("Error fetching CITB Test applicants:", error);
           toast.error("Error fetching applicants!");
         }
       };
@@ -350,7 +350,7 @@ const fetchCitbApplicantById = async (userId, setApplicant) => {
     setApplicant(docSnapshot.data())
 
   } catch (error) {
-    console.error("Error fetching applicant by ID:", error);
+    // console.error("Error fetching applicant by ID:", error);
     toast.error("Error fetching applicant!");
   }
 };
@@ -397,9 +397,9 @@ const fetchHealthAndSafetyApplicants = async (setApplicants,setIsLoading) => {
 
     setApplicants(applicants);
     setIsLoading(false)
-    console.log("Applicants fetched successfully:", applicants);
+    // console.log("Applicants fetched successfully:", applicants);
   } catch (error) {
-    console.error("Error fetching applicants:", error);
+    // console.error("Error fetching applicants:", error);
   }
 };
 
@@ -413,7 +413,7 @@ const fetchHealthAndSafetyApplicantById = async (userId,setApplicant,setIsLoadin
     setIsLoading(false)
 
   } catch (error) {
-    console.error("Error fetching applicant by ID:", error);
+    // console.error("Error fetching applicant by ID:", error);
     toast.error("Error fetching applicant!");
   }
 };
@@ -429,9 +429,9 @@ const fetchHealthAndSafetyApplicantById = async (userId,setApplicant,setIsLoadin
           }));
       
           setApplicants(applicants);
-          console.log("Data fetched successfully:", applicants);
+          // console.log("Data fetched successfully:", applicants);
         } catch (error) {
-          console.error("Error fetching data:", error);
+          // console.error("Error fetching data:", error);
         }
       };
 
@@ -449,7 +449,7 @@ const fetchHealthAndSafetyApplicantById = async (userId,setApplicant,setIsLoadin
           await addDoc(docRef, data);
   
           toast.success("Form data submitted successfully!");
-          console.log("Data added to Firestore:", data);
+          // console.log("Data added to Firestore:", data);
         } catch (error) {
           // console.error("Error adding form data to Firestore:", error);
           toast.error("Error submitting form data!");
@@ -473,9 +473,8 @@ const fetchGroupBooking = async (setFormDataList, setIsLoading) => {
 
     formDataList.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
     setFormDataList && setFormDataList(formDataList);
-    console.log("Fetched form data successfully:", formDataList);
   } catch (error) {
-    console.error("Error fetching form data from Firestore:", error);
+
   } finally {
     setIsLoading && setIsLoading(false);
   }
@@ -483,70 +482,72 @@ const fetchGroupBooking = async (setFormDataList, setIsLoading) => {
 
 const fetchGroupBookingById = async (userId, setApplicant) => {
   try {
-   
     const docRef = doc(firestore,  "group-booking", userId);
     const docSnapshot = await getDoc(docRef);
-
     setApplicant(docSnapshot.data())
-
   } catch (error) {
-    console.error("Error fetching applicant by ID:", error);
     toast.error("Error fetching applicant!");
   }
 };
 
 const addContactUs = async (formValues, setIsLoading) => {
   try {
-    setIsLoading && setIsLoading(true); // Optional loading state
-
-    // Prepare the data to save, adding a timestamp
+    setIsLoading && setIsLoading(true); 
     const data = {
       ...formValues,
       createdAt: new Date().toISOString(),
     };
 
-    // Reference to the Firestore collection
+ 
     const docRef = collection(firestore, "contact-us"); 
     await addDoc(docRef, data);
 
-    // Success notification
-    toast.success("Form submitted successfully!");
+   
+    toast.success("Message send successfully!");
   } catch (error) {
-    console.error("Error saving form values to database:", error);
     toast.error("Error submitting form!");
   } finally {
-    setIsLoading && setIsLoading(false); // Reset loading state
+    setIsLoading && setIsLoading(false);
   }
+};
+
+const autoAddContactUs = async (formValues,submit_type) => {
+  try {
+    
+    const data = {
+      ...formValues,
+      createdAt: new Date().toISOString(),
+      submitType:submit_type
+    };
+    const docRef = collection(firestore, "contact-us"); 
+    await addDoc(docRef, data);
+  } catch (error) {
+    // toast.error("Error submitting form!");
+  } 
 };
 
 const fetchContactUsData = async (setContactUsData, setIsLoading) => {
   try {
-    setIsLoading && setIsLoading(true); // Optional loading state
+    setIsLoading && setIsLoading(true); 
 
-    // Reference to the Firestore collection
+
     const docRef = collection(firestore, "contact-us");
 
-    // Fetch the documents from the collection
     const querySnapshot = await getDocs(docRef);
 
-    // Map through the documents and format the data
     const contactUsData = querySnapshot.docs.map((doc) => ({
-      id: doc.id, // Include the document ID
+      id: doc.id,
       ...doc.data(),
     }));
 
-    // Sort the data by `createdAt` in descending order (latest first)
     contactUsData.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
-    // Update the state with fetched data
     setContactUsData(contactUsData);
-
-    console.log("Contact Us data fetched successfully:", contactUsData);
   } catch (error) {
-    console.error("Error fetching Contact Us data:", error);
+
     toast.error("Error fetching data!");
   } finally {
-    setIsLoading && setIsLoading(false); // Reset loading state
+    setIsLoading && setIsLoading(false); 
   }
 };
 
@@ -556,7 +557,6 @@ const fetchContactUsDataById = async (userId,setApplicant) => {
     const docSnapshot = await getDoc(docRef);
     setApplicant(docSnapshot.data())
   } catch (error) {
-    console.error("Error fetching applicant by ID:", error);
     toast.error("Error fetching applicant!");
   }
 };
@@ -580,10 +580,7 @@ const fetchContactUsDataById = async (userId,setApplicant) => {
         onAuthStateChanged(auth, (user) => {
           if (user) {
             setUser(user);
-          // setUserData(user);
-            // console.log("Welcome! You are logged in", user2);
           } else {
-            // console.log("Not logged in");
             setUser(null);
           }
         });
@@ -595,7 +592,7 @@ const fetchContactUsDataById = async (userId,setApplicant) => {
 
 
   return (
-    <FirebaseContext.Provider value={{ addCscsData,AutoaddCscsData,addEssData,AutoaddEssData,applyForESSCard,applyForCSCSCard,applyForCITBTest,fetchApplicantsData,applyForHealthAndSafetyCourse,fetchHealthAndSafetyApplicants,fetchAllCscsEssData,fetchCscsData,fetchEssData,fetchCscsEssApplicants,fetchCscsEssApplicantById,fetchCITBTestApplicants,fetchCitbApplicantById,fetchHealthAndSafetyApplicantById,addGroupBooking,fetchGroupBooking,fetchGroupBookingById,addContactUs,fetchContactUsData,fetchContactUsDataById,LoginUser,onAuthChange,logOut}}>
+    <FirebaseContext.Provider value={{ addCscsData,AutoaddCscsData,addEssData,AutoaddEssData,applyForESSCard,applyForCSCSCard,applyForCITBTest,fetchApplicantsData,applyForHealthAndSafetyCourse,fetchHealthAndSafetyApplicants,fetchAllCscsEssData,fetchCscsData,fetchEssData,fetchCscsEssApplicants,fetchCscsEssApplicantById,fetchCITBTestApplicants,fetchCitbApplicantById,fetchHealthAndSafetyApplicantById,addGroupBooking,fetchGroupBooking,fetchGroupBookingById,addContactUs,autoAddContactUs,fetchContactUsData,fetchContactUsDataById,LoginUser,onAuthChange,logOut}}>
       {children}
     </FirebaseContext.Provider>
   );
