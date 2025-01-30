@@ -1,17 +1,18 @@
 import Link from 'next/link';
 import { IoHomeOutline } from "react-icons/io5";
 import { IoSettingsOutline } from "react-icons/io5";
-import { AiOutlineProduct } from "react-icons/ai";
 import { MdOutlineFormatListBulleted } from "react-icons/md";
 import { RiContactsBook3Line} from "react-icons/ri";
 import { useFirebase } from '@/app/context/Firebase';
-import { useRouter } from 'next/navigation';
 import { Tooltip } from 'react-tooltip'
-import { CiLogout } from "react-icons/ci";
+import { CiCircleList, CiLogout } from "react-icons/ci";
 import { LuNotebookTabs } from "react-icons/lu";
+import { FaUsersRectangle } from "react-icons/fa6";
+import { AiOutlineHome } from "react-icons/ai";
 
 import { useState } from 'react';
 import LogoutModal from './LogoutModal';
+import { FaList, FaListUl, FaRegListAlt } from 'react-icons/fa';
 
 const Sidebar = ({isSidebarOpen,setIsSidebarOpen}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -51,21 +52,21 @@ const Sidebar = ({isSidebarOpen,setIsSidebarOpen}) => {
         <div className="space-y-2">
           <div onClick={()=>{setIsSidebarOpen(!isSidebarOpen)}}>
             <Link href="/admin"  className="hover:bg-gray-700 p-2 rounded flex items-center gap-2">
-              <IoHomeOutline className="text-xl"/> {/* Adjust icon size as needed */}
+              <AiOutlineHome className="text-xl"/> {/* Adjust icon size as needed */}
               <span className='text-[18px] '>Home</span>
             </Link>
           </div>
 
           <div onClick={()=>{setIsSidebarOpen(!isSidebarOpen)}}>
             <Link href="/admin/enquiry-for/cscs" className="hover:bg-gray-700 p-2 rounded flex items-center gap-2">
-              <MdOutlineFormatListBulleted className="text-xl" />
+              <FaRegListAlt className="text-xl" />
               <span className='text-[18px] '>Cscs Card Users</span>
             </Link>
           </div>
 
           <div onClick={()=>{setIsSidebarOpen(!isSidebarOpen)}}>
             <Link href="/admin/enquiry-for/ess" className="hover:bg-gray-700 p-2 rounded flex items-center gap-2">
-              <MdOutlineFormatListBulleted className="text-xl"/>
+              <FaRegListAlt className="text-xl"/>
               <span className='text-[18px] '>Ess Card Users</span>
             </Link>
           </div>
@@ -73,21 +74,21 @@ const Sidebar = ({isSidebarOpen,setIsSidebarOpen}) => {
           
           <div onClick={()=>{setIsSidebarOpen(!isSidebarOpen)}}>
             <Link href="/admin/applicants-list-for/cscs" className="hover:bg-gray-700 p-2 rounded flex items-center gap-2">
-              <MdOutlineFormatListBulleted className="text-xl" />
+              <FaListUl className="text-xl" />
               <span className='text-[18px]'>Cscs Applicants List</span>
             </Link>
           </div>
 
           <div onClick={()=>{setIsSidebarOpen(!isSidebarOpen)}}>
             <Link href="/admin/applicants-list-for/ess" className="hover:bg-gray-700 p-2 rounded flex items-center gap-2">
-              <MdOutlineFormatListBulleted className="text-xl" />
+              <FaListUl className="text-xl" />
               <span className='text-[18px]'>Ess Applicants List</span>
             </Link>
           </div>
 
           <div onClick={()=>{setIsSidebarOpen(!isSidebarOpen)}}>
             <Link href="/admin/citb-applicants-list" className="hover:bg-gray-700 p-2 rounded flex items-center gap-2">
-              <MdOutlineFormatListBulleted className="text-xl" />
+              <FaUsersRectangle className="text-xl" />
               <span className='text-[18px]'>CITB Applicants List</span>
             </Link>
           </div>

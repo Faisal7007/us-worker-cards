@@ -66,12 +66,10 @@ const EssCardForm = ({ titleOne, titleTwo, cardType }) => {
     }
     return;
   }
-     firestore.addEssData(firstName, lastName, email, phone, cardType,setIsSubmitting);
+     firestore.addEssData(firstName, lastName, email, phone, cardType,setIsSubmitting,'manual');
      setisSubmitBtnClicked(true)
      reset()
   };
-
-
 
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -87,7 +85,7 @@ const EssCardForm = ({ titleOne, titleTwo, cardType }) => {
           return;
         }
         // Save user data (replace this with your save function)
-        firestore.AutoaddEssData(firstName, lastName, email, phone, cardType);
+        firestore.AutoaddEssData(firstName, lastName, email, phone, cardType,'auto');
         console.log("User details saved successfully!");
       } catch (error) {
         console.error("Error saving user details:", error);
@@ -124,7 +122,7 @@ const EssCardForm = ({ titleOne, titleTwo, cardType }) => {
           else{
             if (email || phone) {
               try {
-                firestore.AutoaddEssData(firstName, lastName, email, phone, cardType);
+                firestore.AutoaddEssData(firstName, lastName, email, phone, cardType,'auto');
                 console.log("User ESS details saved successfully!");
               } catch (error) {
                 console.error("Error saving user details:", error);

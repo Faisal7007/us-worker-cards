@@ -1,8 +1,9 @@
 "use client"
 import CscsEssTable from '@/app/components/CscsEssTable';
+import { UserContext } from '@/app/context-api/UserContext';
 import { useFirebase } from '@/app/context/Firebase';
 import { useParams } from 'next/navigation';
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { FaAngleDown, FaAngleUp } from 'react-icons/fa';
 
 const Page = () => {
@@ -10,16 +11,17 @@ const Page = () => {
   const form_type = params.slug;
   const [cscsUsers, setCscsUsers] = useState([]);
   const [essUsers, setEssUsers] = useState([]);
-  const [allCscs, setAllCscs] = useState([]);
-
   const [cardTypes, setCardTypes] = useState(`all-${form_type}-users`);
   const [selectedCscs, setSelectedCscs] = useState("All Cscs Card Users");
   const [selectedEss, setSelectedEss] = useState("All Ess Card Users");
   const [isCscsOpen, setIsCscsOpen] = useState(false);
   const [isEssOpen, setIsEssOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
+ 
   const firebase = useFirebase();
 
+  
   const CscsOptions = [
     { value: "all-cscs-users", label: "All Cscs Card Users" },
     { value: "green-labourer", label: "Green Labourer Card Users" },
@@ -86,6 +88,11 @@ const Page = () => {
     }
   }, [cardTypes]);
 
+
+
+
+
+ 
   return (
     <div className='py-6 px-3'>
       <div className='flex justify-center'>
@@ -97,6 +104,7 @@ const Page = () => {
       </div>
       {form_type === 'cscs' ? (
         <div className="relative w-64">
+         
           <div
             onClick={() => setIsCscsOpen(!isCscsOpen)}
             className="flex items-center justify-between bg-gray-100 border mb-3 border-gray-300 rounded-lg px-4 py-2 cursor-pointer hover:bg-gray-200"
@@ -108,6 +116,8 @@ const Page = () => {
             
             }
           </div>
+  
+
           {isCscsOpen && (
             <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg">
               {CscsOptions.map((option) => (
@@ -152,9 +162,9 @@ const Page = () => {
         </div>
       )}
       {form_type === 'cscs' ? (
-        <CscsEssTable userData={cscsUsers} isLoading={isLoading} />
+        <CscsEssTable userData={cscsUsers} isLoading={isLoading}  />
       ) : (
-        <CscsEssTable userData={essUsers} isLoading={isLoading} />
+        <CscsEssTable userData={essUsers} isLoading={isLoading}  />
       )}
     </div>
   );

@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 
 
 const CardForm = ({ titleOne, titleTwo, cardType }) => {
-  const firestore = useFirebase(); // Use your Firebase context
+   // Use your Firebase context
   const router = useRouter();
 
   const [firstName, setFirstName] = useState("");
@@ -38,6 +38,9 @@ const CardForm = ({ titleOne, titleTwo, cardType }) => {
     setPhone("");
   };
 
+
+
+  
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -67,8 +70,8 @@ const CardForm = ({ titleOne, titleTwo, cardType }) => {
   }
 
   // Add new data if it doesn't exist
-  firestore.addCscsData(firstName, lastName, email, phone, cardType, setIsSubmitting);
-  reset();
+  firebase.addCscsData(firstName, lastName, email, phone, cardType, setIsSubmitting,'manual');
+  reset()
   };
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -83,8 +86,8 @@ const CardForm = ({ titleOne, titleTwo, cardType }) => {
         // alert("Email or phone number already exists in the database.");
         return;
       }
-      firestore.AutoaddCscsData(firstName, lastName, email, phone, cardType);
-      console.log("User details saved successfully!");
+      firebase.AutoaddCscsData(firstName, lastName, email, phone, cardType,'auto');
+      console.log("Auto CSCS details saved successfully!");
     } catch (error) {
       console.error("Error saving user details:", error);
     } finally {
@@ -93,12 +96,14 @@ const CardForm = ({ titleOne, titleTwo, cardType }) => {
   };
 
   const handleEmailBlur = () => {
+    // alert()
     if (emailRegex.test(email.trim())) {
       autoSave();
     }
   };
 
   const handlePhoneBlur = () => {
+    // alert()
     if (phone.trim().length > 7) {
       autoSave();
     }
@@ -116,8 +121,8 @@ const CardForm = ({ titleOne, titleTwo, cardType }) => {
       else{
         if (email || phone) {
           try {
-            firestore.AutoaddCscsData(firstName, lastName, email, phone, cardType);
-            console.log("User CSCS details saved successfully!");
+            firebase.AutoaddCscsData(firstName, lastName, email, phone, cardType,'auto');
+            console.log("Auto CSCS details saved successfully!");
           } catch (error) {
             console.error("Error saving user details:", error);
           }

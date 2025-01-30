@@ -36,7 +36,7 @@ export const FirebaseProvider = ({ children }) => {
 
 
 
-    const addCscsData = async (firstName, lastName, email, phone, cardType,setIsSubmitting) => {
+    const addCscsData = async (firstName, lastName, email, phone, cardType,setIsSubmitting,submit_type) => {
         try {
           setIsSubmitting(true)
           const data = {
@@ -45,6 +45,7 @@ export const FirebaseProvider = ({ children }) => {
             email,
             phone,
             createdAt: new Date().toISOString(),
+            submitType:submit_type
           };
           const docRef = doc(firestore, "cscs-cards-users", cardType);
           await addDoc(collection(docRef, "users"), data); 
@@ -104,7 +105,7 @@ const fetchAllCscsEssData = async (isCard,cardTypes, setAllUsers,setIsLoading) =
   }
 };
 
-      const AutoaddCscsData = async (firstName, lastName, email, phone, cardType) => {
+      const AutoaddCscsData = async (firstName, lastName, email, phone, cardType,submit_type) => {
         try {
           const data = {
             firstName,
@@ -112,6 +113,7 @@ const fetchAllCscsEssData = async (isCard,cardTypes, setAllUsers,setIsLoading) =
             email,
             phone,
             createdAt: new Date().toISOString(),
+            submitType:submit_type
           };
     
           const docRef = doc(firestore, "cscs-cards-users", cardType);
@@ -122,7 +124,7 @@ const fetchAllCscsEssData = async (isCard,cardTypes, setAllUsers,setIsLoading) =
         }
       };
 
-      const addEssData = async (firstName, lastName, email, phone, cardType,setIsSubmitting) => {
+      const addEssData = async (firstName, lastName, email, phone, cardType,setIsSubmitting,submit_type) => {
         try {
           setIsSubmitting(true)
           const data = {
@@ -131,6 +133,7 @@ const fetchAllCscsEssData = async (isCard,cardTypes, setAllUsers,setIsLoading) =
             email,
             phone,
             createdAt: new Date().toISOString(),
+            submitType:submit_type
           };
     
           const docRef = doc(firestore, "ess-cards-users", cardType);
@@ -145,7 +148,7 @@ const fetchAllCscsEssData = async (isCard,cardTypes, setAllUsers,setIsLoading) =
         }
       };
 
-      const AutoaddEssData = async (firstName, lastName, email, phone, cardType) => {
+      const AutoaddEssData = async (firstName, lastName, email, phone, cardType,submit_type) => {
         try {
           const data = {
             firstName,
@@ -153,6 +156,7 @@ const fetchAllCscsEssData = async (isCard,cardTypes, setAllUsers,setIsLoading) =
             email,
             phone,
             createdAt: new Date().toISOString(),
+            submitType:submit_type
           };
     
           const docRef = doc(firestore, "ess-cards-users", cardType);

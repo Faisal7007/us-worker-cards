@@ -9,27 +9,27 @@ import Link from "next/link";
 import Contact from "./components/Contact";
 import Banner from "./components/Banner";
 import { useFirebase } from "./context/Firebase";
-import Navbar from "./components/Navbar";
-export default function Home() {
-  const [isOpen, setIsOpen] = useState(true)
 
-  const handleToggle = () => {
-    setIsOpen(true)
-  }
-  const firebase=useFirebase()
+export default function Home() {
+  // const [isOpen, setIsOpen] = useState(true)
+
+  // const handleToggle = () => {
+  //   setIsOpen(true)
+  // }
+  // const firebase=useFirebase()
 
   // const handleGetData=()=>{
   //  firebase.fetchCscsData('blue-skilled', setCscsUsers)
   // }
 
 
-  const [cscsUsers, setCscsUsers] = useState([]);
+  // const [cscsUsers, setCscsUsers] = useState([]);
 
-  useEffect(() => {
+  // useEffect(() => {
     
-      firebase.fetchCscsData('blue-skilled', setCscsUsers);
+  //     firebase.fetchCscsData('blue-skilled', setCscsUsers);
     
-  }, []);
+  // }, []);
   return (
     <>
       <Banner />
@@ -43,18 +43,17 @@ export default function Home() {
               className=" h-full rounded-lg media-max-982px:w-full"
               width={800}
               height={1000}
+              priority
             />
           </div>
           <div className="flex flex-col justify-between ">
             <div>
-              {/*
-              text-black font-bold media-max-1298px:text-[50px] media-max-935px:text-[35px] media-max-935px:leading-[50px] media-max-600px:text-[26px] media-max-600px:leading-[40px] media-max-522px:text-[22px] media-max-510px:text-[22px] media-max-510px:leading-[35px] media-max-470px:text-[18px] media-max-470px:leading-[28px]
-              */}
+              
               <h1 className="text-[70px] leading-[85px] font-bold text-justify media-max-1336px:text-[60px] media-max-1336px:leading-[80px] media-max-545px:text-[40px] media-max-545px:leading-[70px] media-max-545px:text-start media-max-510px:text-[45px] media-max-510px:leading-[60px]">Complete All Requirements to Secure On-Site Access</h1>
               <br />
               <h2 className="text-[40px] font-semibold text-justify media-max-1212px:text-[30px] media-max-510px:text-[25px] ">Verify credentials and stay compliant with industry standards.</h2>
             </div>
-            {/* media-max-760px:text-[12px] media-max-655px:text-[10px] media-max-655px:px-3 media-max-655px:py-2 media-max-545px:text-[8px]  between360-545:text-[8px] media-max-510px:text-[6px] media-max-510px:px-2 */}
+          
             <div className="flex gap-5 mt-[84px] media-max-1212px:mt-28 media-max-1206px:mt-8 media-max-982px:mt-10 media-max-492px:justify-between">
               <Link href="/cscs-card-types" className="bg-purple_primary text-white font-semibold py-3 px-6 rounded-md  border-2 border-transparent hover:border-purple_primary hover:text-purple_primary hover:bg-white transition-all duration-300 media-max-492px:text-[14px] media-max-490px:px-4 media-max-460px:text-[14px] media-max-460px:px-2 media-max-460px:py-2"><span>CSCS Card</span></Link>
 

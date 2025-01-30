@@ -1,6 +1,6 @@
 "use client";
 import { useFirebase } from "@/app/context/Firebase";
-import React, { useContext, useEffect, useState } from "react";
+import React, { use, useContext, useEffect, useState } from "react";
 import Loader from "../../components/Loader";
 import { UserContext } from "@/app/context-api/UserContext";
 import { useRouter } from "next/navigation";
@@ -35,21 +35,50 @@ const page = () => {
     return uniqueData;
   };
 
-  console.log(contactedData, "Filtered ContactedData");
+  // console.log(contactedData, "Filtered ContactedData");
 
   const handleViewDetails = (id) => {
-    console.log(`View details for ID: ${id}`);
+    // console.log(`View details for ID: ${id}`);
     setViewDetailsId(id)
     router.push(`/admin/contact-us-details/${id}`)
 
     
   };
 
+
+ 
+
+  let auto=0
+  let autoFilterdData=  contactedData && contactedData.filter((user)=>{
+    return(
+      user.submitType==='auto'
+    )
+  })   
+
+ let total = contactedData.length
+  auto =  autoFilterdData.length
+  let manually =total-auto
+
+
+
   return (
     <div className="overflow-x-auto px-4 pt-8">
-     <ul className="flex gap-6 items-center mb-4">
-  <li className="before:content-['•'] before:text-orange-500 before:text-2xl before:mr-1">Auto Saved</li>
-  <li className="before:content-['•'] before:text-green-500 before:text-2xl before:mr-1">Manually Saved</li>
+     <div className='flex justify-center'>
+          <span className='text-[24px] text-gray-800 text-center font-bold mb-6'>Contact Us Messages</span>
+       
+      </div>
+     {/* <ul className="flex gap-6 items-center mb-4">
+  <li className="before:content-['•'] before:text-orange-500 before:text-2xl before:mr-0"> Auto Saved ( {auto} )</li>
+  <li className="before:content-['•'] before:text-green-500 before:text-2xl before:mr-0"> Manually Saved ( {manually} )</li>
+</ul> */}
+
+<ul className="flex items-center gap-6 mb-4">
+  <li className="flex items-center gap-2 text-gray-800 font-medium">
+    <span className="text-orange-500 text-xl">•</span> Auto Saved ({auto ?? 0})
+  </li>
+  <li className="flex items-center gap-2 text-gray-800 font-medium">
+    <span className="text-green-500 text-xl">•</span> Manually Saved ({ manually ?? 0})
+  </li>
 </ul>
 
       <table className="min-w-full table-auto border-collapse border border-gray-300">
