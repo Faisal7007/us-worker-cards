@@ -91,9 +91,9 @@ function Contact({no_banner}) {
         return;
       }
       firebase.autoAddContactUs(formValues,'auto');
-      console.log("on blur data saved successfully!");
+      // console.log("on blur data saved successfully!");
     } catch (error) {
-      console.error("Error saving on blur data", error);
+      // console.error("Error saving on blur data", error);
     } finally {
       setSaved(false);
     }

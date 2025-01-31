@@ -142,17 +142,6 @@ import { useFirebase } from '../context/Firebase';
 
 const Page = () => {
 
-  const [applicants, setApplicants] = useState([]);
-  const firebase=useFirebase()
-  // useEffect(() => {
-  //   fetchHealthAndSafetyApplicants(setApplicants);
-  // }, []);
-
-
-  const handleGetData=()=>{
-    firebase.fetchHealthAndSafetyApplicants(setApplicants)
-
-  }
   return (
     <div className='max-w-[1440px] mx-auto px-4 pt-8'>
       <h1 className='text-[30px] font-bold mb-2 capitalize'>Health & Safety Awareness Course</h1>
@@ -183,7 +172,6 @@ const Page = () => {
         Level 1 Award in Health and Safety in a Construction Environment (Online)
       </h1>
 
-
 <div className='media-max-545px:text-[14px]'>
 
       <div className='mb-4'>
@@ -199,7 +187,7 @@ const Page = () => {
       <p className='mb-2 text-justify'>
         To obtain a CSCS Green Card, you must complete the Health, Safety, and Awareness qualification. The online course enables you to complete the training from your computer in half the time, all from the comfort of your own home. Once completed, the qualification remains valid for 5 years, making you eligible to apply for a CSCS Green Card.
       </p>
-      <p onClick={handleGetData} className='text-green-500 font-bold cursor-pointer'>Get Firebase Data</p>
+  
       <p className='mb-2 text-justify'>
         To book your Health & Safety Awareness Course, please visit the <Link href="#" className='font-bold text-purple_primary'>Course Page.</Link>
       </p>

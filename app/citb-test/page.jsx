@@ -9,15 +9,6 @@ import QuestionAccordion from '../components/QuestionAccordion';
 import { useFirebase } from '../context/Firebase';
 
 const page = () => {
-  const [applicants, setApplicants] = useState([]);
-  const firebase=useFirebase()
-  const handleGetData=()=>{
-    firebase.fetchApplicantsData(setApplicants);
-  }
-
-    // const result= applicants.sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt))
-    // console.log(result,"result")
-
 
   return (
     <div className='max-w-[1440px] mx-auto px-4 pt-8 '>
@@ -25,7 +16,7 @@ const page = () => {
     <div>
     <h1 className='text-[30px] font-bold '>Book a CITB Health, Safety and Environment test</h1>
     <h3>Required for CSCS Card</h3>
-    <p onClick={handleGetData} className='text-purple_primary cursor-pointer'>Get Data</p>
+    
     <div className='h-[1px] w-full bg-slate-300 my-4'></div>
     <h2 className='font-semibold text-justify  media-max-545px:text-[14px]'>The HS&E test from CITB is a key requirement for obtaining a CSCS Card.</h2>
     <Link href='/' className='text-purple_primary font-semibold hover:text-black media-max-545px:text-[14px] '>More Information here</Link>

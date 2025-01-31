@@ -11,25 +11,7 @@ import Banner from "./components/Banner";
 import { useFirebase } from "./context/Firebase";
 
 export default function Home() {
-  // const [isOpen, setIsOpen] = useState(true)
 
-  // const handleToggle = () => {
-  //   setIsOpen(true)
-  // }
-  // const firebase=useFirebase()
-
-  // const handleGetData=()=>{
-  //  firebase.fetchCscsData('blue-skilled', setCscsUsers)
-  // }
-
-
-  // const [cscsUsers, setCscsUsers] = useState([]);
-
-  // useEffect(() => {
-    
-  //     firebase.fetchCscsData('blue-skilled', setCscsUsers);
-    
-  // }, []);
   return (
     <>
       <Banner />
@@ -72,7 +54,7 @@ export default function Home() {
 
 
 
-          <div className="flex justify-between items-center flex-wrap mt-4 media-max-1015px:gap-6 media-max-690px:justify-center media-max-545px:gap-6 media-max-545px:justify-center">
+          <div className="flex gap-6 justify-between items-center flex-wrap mt-4 media-max-1015px:gap-6 media-max-690px:justify-center media-max-545px:gap-6 media-max-545px:justify-center">
             <div>
               <HomeCard
                 icon={<FaIdCard className="size-8 text-white" />}

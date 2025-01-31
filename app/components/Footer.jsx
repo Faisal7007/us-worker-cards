@@ -31,13 +31,13 @@ const Footer = () => {
               Important Links
             </h3>
             <div className="space-y-2 text-center sm:text-left media-max-545px:text-justify ">
-              {['CSCS Card Types', 'Know Your Card', 'Trade Wise Test', 'Test Center'].map((link) => (
-                <div key={link} className='media-max-545px:text-[14px] media-max-545px:mr-2'>
+              {[{title:'CSCS Card Types',link:'cscs-card-types'}, {title:'Know Your Card',link:'know-your-card'}, {title:'Trade Wise Test',link:'trade-wise-test'}, {title:'Test Center',link:'test-center'}].map((elem) => (
+                <div key={elem.link} className='media-max-545px:text-[14px] media-max-545px:mr-2'>
                   <Link
-                    href={`/${link.toLowerCase()}`}
+                    href={`/${elem.link}`}
                     className="text-purple_primary hover:text-black transition-all duration-300"
                   >
-                    {link}
+                    {elem.title}
                   </Link>
                 </div>
               ))}
@@ -63,7 +63,7 @@ const Footer = () => {
           </div>
 
           {/* Social Media Links */}
-          <div className="flex flex-col items-center sm:items-start">
+          <div className="relative flex flex-col items-center sm:items-start">
             <h3 className="text-lg font-semibold mb-4 text-center sm:text-left">
               Follow Us
             </h3>
@@ -84,22 +84,21 @@ const Footer = () => {
                 </div>
               ))}
             </div>
-            <div className='mt-2'>
+            <div className='mt-4 '>
               <Image
                 height={200}
                 width={200}
                 alt='payment-image'
-                src="/payment-methods-img.png"
-                className='h-24  media-max-545px:h-18 '
+                src="/payment-img.png"
+                className='h-24 media-max-545px:h-18 mr-16'
               />
             </div>
 
-            <div className=" flex  mt-2">
+            <div className="mt-2 ">
               <Link href="/admin" className="flex items-center justify-center gap-2 text-gray-600 hover:text-gray-800">
-                <FaUserShield className="size-5" />
+                <FaUserShield className="size-5 absolute right-16 -bottom-4 "/>
               </Link>
             </div>
-
           </div>
         </div>
 
@@ -113,7 +112,6 @@ const Footer = () => {
         </div>
       </footer>
     </div>
-
   );
 };
 

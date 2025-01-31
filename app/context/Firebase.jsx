@@ -506,7 +506,6 @@ const addContactUs = async (formValues, setIsLoading) => {
     const docRef = collection(firestore, "contact-us"); 
     await addDoc(docRef, data);
 
-   
     toast.success("Message send successfully!");
   } catch (error) {
     toast.error("Error submitting form!");
