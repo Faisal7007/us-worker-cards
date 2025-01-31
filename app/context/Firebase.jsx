@@ -396,7 +396,7 @@ const fetchHealthAndSafetyApplicants = async (setApplicants,setIsLoading) => {
       ...doc.data(),
     }));
 
-    // Sort the data by `createdAt` from latest to oldest
+    
     applicants.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
     setApplicants(applicants);
