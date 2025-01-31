@@ -6,7 +6,7 @@ const page = () => {
         <div className='max-w-[1440px] mx-auto px-4 pt-8 text-justify media-max-545px:text-[14px]'>
             <h1 className='text-[30px] font-bold mb-2 capitalize'>Privacy Policy</h1>
             <div className='h-[1px] w-full bg-slate-300 my-4'></div>
- <h2 className='font-bold text-justify'>Construction Workers Support Privacy Policy</h2>
+ <h2 className='font-bold text-justify'>Construction Cards Services Privacy Policy</h2>
 <p className='mb-4 text-justify'>This privacy policy is designed to help individuals who are concerned about the online use of their ‘Personally Identifiable Information’ (PII). As defined by US privacy law and information security, PII refers to information that can identify, contact, or locate an individual, either on its own or combined with other data. To understand how we collect, use, protect, or handle your PII in connection with our website, please read this privacy policy carefully.</p>
 
 <h2 className='font-bold text-justify'>What personal information do we gather from individuals who visit our website, blog, or app?</h2>
