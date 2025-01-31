@@ -60,14 +60,14 @@ const Sidebar = ({isSidebarOpen,setIsSidebarOpen}) => {
           <div onClick={()=>{setIsSidebarOpen(!isSidebarOpen)}}>
             <Link href="/admin/enquiry-for/cscs" className="hover:bg-gray-700 p-2 rounded flex items-center gap-2">
               <FaRegListAlt className="text-xl" />
-              <span className='text-[18px] '>Cscs Card Users</span>
+              <span className='text-[18px] '>Enquiry For Cscs Card</span>
             </Link>
           </div>
 
           <div onClick={()=>{setIsSidebarOpen(!isSidebarOpen)}}>
             <Link href="/admin/enquiry-for/ess" className="hover:bg-gray-700 p-2 rounded flex items-center gap-2">
               <FaRegListAlt className="text-xl"/>
-              <span className='text-[18px] '>Ess Card Users</span>
+              <span className='text-[18px] '>Enquiry For Ess Card</span>
             </Link>
           </div>
 
