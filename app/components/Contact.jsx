@@ -158,7 +158,7 @@ function Contact({no_banner}) {
  {
         no_banner?"":<ContactUsBanner/>
       }
-    <div className="max-w-[1440px] mx-auto px-4 py-10">
+    <div className="max-w-[1440px] mx-auto px-4 pt-8">
      
       <div className="pb-10 bg-gray-50 flex flex-col lg:flex-row justify-between items-start gap-10">
         {/* Address Section */}

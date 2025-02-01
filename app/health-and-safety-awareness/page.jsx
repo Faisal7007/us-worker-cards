@@ -229,9 +229,7 @@ const Page = () => {
       </ul>
 
       <div>
-        <h1 className='text-center text-[40px] capitalize mb-5'>
-          Frequently Asked <span className='text-[70px] text-purple_primary font-light font allison_regular'>Questions</span>
-        </h1>
+      <h1 className='text-center text-[40px] capitalize  mb-4'>frequently Asked <span className=' text-[60px] text-purple_primary  font-light font allison_regular'>Questions</span></h1>
         <QuestionAccordionHAndS />
       </div>
 
