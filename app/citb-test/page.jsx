@@ -7,11 +7,14 @@ import CitbForm from '../components/CitbFrom'
 // Demo styles, see 'Styles' section below for some notes on use.
 import QuestionAccordion from '../components/QuestionAccordion';
 import { useFirebase } from '../context/Firebase';
+import { ToastContainer } from 'react-toastify';
 
 const page = () => {
 
   return (
     <div className='max-w-[1440px] mx-auto px-4 pt-8 '>
+    <ToastContainer/>
+
 
     <div>
     <h1 className='text-[30px] font-bold '>Book a CITB Health, Safety and Environment test</h1>

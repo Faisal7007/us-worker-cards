@@ -48,14 +48,11 @@ export default function RootLayout({ children }) {
             <MyProvider>
 
         <ChakraProvider>
-          {/* <Navbar/> */}
-          <NavConRender/>
           <ToastContainer />
+          <NavConRender/>
           <FirebaseProvider>
               {children}
           </FirebaseProvider>
-
-          {/* <Footer /> */}
           <FooterConRender/>
         </ChakraProvider>
         </MyProvider>

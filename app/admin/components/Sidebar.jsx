@@ -113,7 +113,6 @@ const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
             </Link>
           </div>
         </div>
-
         <LogoutModal isOpen={isModalOpen} onClose={closeModal} onConfirm={confirmDelete} />
       </nav>
     </div>

@@ -3,7 +3,6 @@ import React from 'react'
 import { IoIosArrowForward } from "react-icons/io";
 import Image from 'next/image';
 import { FaHardHat  } from "react-icons/fa";
-import { useFirebase } from '../context/Firebase';
 import EssCardForm from './EssCardForm';
 
 

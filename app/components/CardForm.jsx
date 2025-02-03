@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { FaPhoneAlt, FaEnvelope } from "react-icons/fa";
 import { useFirebase } from "../context/Firebase";
 import { useRouter } from "next/navigation";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
 
 const CardForm = ({ titleOne, titleTwo, cardType }) => {
@@ -149,6 +149,8 @@ const CardForm = ({ titleOne, titleTwo, cardType }) => {
 
   return (
     <div className="w-[660px] media-max-700px:w-full">
+    <ToastContainer/>
+
       <div className="w-full px-6 py-[30px] bg-gray-200 shadow-md rounded-lg">
         <h2 className="text-xl font-bold text-center mb-2">{titleOne}</h2>
         <h2 className="text-lg font-semibold text-center mb-6 media-max-480px:text-[16px] media-max-480px:text-justify">

@@ -9,6 +9,7 @@ import { FaExclamationTriangle } from 'react-icons/fa';
 import HomeCard from '../components/HomeCard';
 import SmallCard from '../components/SmallCard';
 import { useFirebase } from '../context/Firebase';
+import { ToastContainer } from 'react-toastify';
 
 
 const Page = () => {
@@ -16,6 +17,8 @@ const Page = () => {
 
   return (
     <div className='max-w-[1440px] mx-auto px-4 pt-8'>
+    <ToastContainer/>
+
     <h1 className='text-[30px] font-bold mb-2 capitalize'>CSCS Green Card</h1>
     <Link href='cscs-card-types' className='inline-flex items-center text-purple_primary media-max-545px:text-[14px]'><IoIosArrowForward/><span>Go to full card types list</span></Link>
     <div className='h-[1px] w-full bg-slate-300 my-4'></div>

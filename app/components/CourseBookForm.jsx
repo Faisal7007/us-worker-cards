@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { MdArrowRight } from "react-icons/md";
 import CardForList from "./CardForList";
 import { useFirebase } from "../context/Firebase";
+import { ToastContainer } from "react-toastify";
 
 const CscsForm = () => {
   const [formData, setFormData] = useState({
@@ -59,6 +60,8 @@ const CscsForm = () => {
       onSubmit={handleSubmit}
       className="max-w-full mx-auto rounded space-y-6"
     >
+    <ToastContainer/>
+
       <div className="pt-6">
         <h2 className="text-[25px] bg-purple_primary text-white py-4 font-bold mb-6 text-center">
           Candidate Undergoing the Test

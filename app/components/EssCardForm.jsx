@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
 import { useFirebase } from '../context/Firebase';
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
 const EssCardForm = ({ titleOne, titleTwo, cardType }) => {
 //   const { addDataToFirestore } = useFirebase();
@@ -149,6 +149,8 @@ const EssCardForm = ({ titleOne, titleTwo, cardType }) => {
 
   return (
     <div className='w-[660px] media-max-700px:w-full'>
+    <ToastContainer/>
+
 
     <div className="px-6 py-[26px]  bg-gray-200 shadow-md rounded-lg">
       <h2 className="text-xl font-bold text-center mb-2">{titleOne}</h2>

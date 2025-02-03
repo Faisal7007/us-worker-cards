@@ -4,11 +4,13 @@ import React from "react";
 import EssPageComponent from "@/app/components/EssPageComponent";
 import { useParams } from "next/navigation";
 
+
 const page = () => {
   const params = useParams();
   const id = params.slug;
 
   const renderPageContent = () => {
+
     switch (id) {
       case "green":
         return (

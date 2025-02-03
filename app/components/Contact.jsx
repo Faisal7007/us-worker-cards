@@ -5,7 +5,7 @@ import { IoIosMail } from "react-icons/io";
 import { IoLocation } from "react-icons/io5";
 import ContactUsBanner from "./ContactUsBanner";
 import { useFirebase } from "../context/Firebase";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
 function Contact({no_banner}) {
 
@@ -47,7 +47,7 @@ function Contact({no_banner}) {
   const handleSubmit = (e) => {
     e.preventDefault();
    
-     const emailExists = contactUsData.some((user) => user.email === formValues.email.trim());
+      const emailExists = contactUsData.some((user) => user.email === formValues.email.trim());
       const phoneExists = contactUsData.some((user) => user.mobile === formValues.mobile.trim());
     
       if (emailExists || phoneExists) {
@@ -159,6 +159,7 @@ function Contact({no_banner}) {
         no_banner?"":<ContactUsBanner/>
       }
     <div className="max-w-[1440px] mx-auto px-4 pt-8">
+    <ToastContainer/>
      
       <div className="pb-10 bg-gray-50 flex flex-col lg:flex-row justify-between items-start gap-10">
         {/* Address Section */}
@@ -187,16 +188,11 @@ function Contact({no_banner}) {
 
         {/* Contact Form Section */}
         <div className="w-full lg:w-1/2 space-y-4">
-          {/* <div className="font-semibold text-gray-600 text-base sm:text-lg">
-            Want to connect with us for something else?
-          </div> */}
+         
           <div className="text-2xl text-purple_primary sm:text-3xl font-semibold"> Message us here, we’ll get back to you soon!</div>
-          {/* <div className="font-semibold text-purple_primary  text-base sm:text-lg">
-            Message us here and we’ll get back to you soon!
-          </div> */}
+         
           <div className="mt-4">
             <form onSubmit={handleSubmit}>
-              {/* Name Input */}
               <div className="mb-4">
                 <label htmlFor="name" className="block text-gray-700 font-medium">
                   Enter Full Name
@@ -213,7 +209,6 @@ function Contact({no_banner}) {
                 />
               </div>
 
-              {/* Email Input */}
               <div className="mb-4">
                 <label htmlFor="email" className="block text-gray-700 font-medium">
                   Enter Email
@@ -231,7 +226,6 @@ function Contact({no_banner}) {
                 />
               </div>
 
-              {/* Mobile Number Input */}
               <div className="mb-4">
                 <label htmlFor="mobile" className="block text-gray-700 font-medium">
                   Enter Mobile Number
@@ -250,7 +244,6 @@ function Contact({no_banner}) {
                 />
               </div>
 
-              {/* Description Input */}
               <div className="mb-4">
                 <label htmlFor="description" className="block text-gray-700 font-medium">
                   Description
@@ -265,7 +258,7 @@ function Contact({no_banner}) {
                   className="resize-none w-full h-44 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple_primary"
                 ></textarea>
               </div>
-              {/* Submit Button */}
+
               <button
                 type="submit"
                 disabled={isSubmitting}
