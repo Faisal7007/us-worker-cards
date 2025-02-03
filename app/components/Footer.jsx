@@ -90,7 +90,7 @@ const Footer = () => {
                 width={200}
                 alt='payment-image'
                 src="/payment-img.png"
-                className='h-24 media-max-545px:h-18 mr-16'
+                className='h-20 media-max-545px:h-16 mr-16'
               />
             </div>
 

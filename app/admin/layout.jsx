@@ -9,6 +9,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { RxCross2 } from "react-icons/rx";
 import Login from "./components/Login";
 import { MyProvider } from "../context-api/MyProvider";
+import { ToastContainer } from "react-toastify";
 
 const AdminLayout = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -26,6 +27,7 @@ const AdminLayout = ({ children }) => {
     return (
       <>
         <FirebaseProvider>
+        <ToastContainer />
           <Login/>
         </FirebaseProvider>
       </>
@@ -40,6 +42,8 @@ const AdminLayout = ({ children }) => {
     <div className="bg-gray-100">
 
     <FirebaseProvider>
+    <ToastContainer/>
+
       <div className="flex h-screen max-w-[1540px] mx-auto">
         {/* Sidebar */}
         <aside

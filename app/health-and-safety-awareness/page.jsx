@@ -146,7 +146,7 @@ const Page = () => {
     <div className='max-w-[1440px] mx-auto px-4 pt-8'>
       <h1 className='text-[30px] font-bold mb-2 capitalize'>Health & Safety Awareness Course</h1>
       <p className='text-justify media-max-545px:text-[14px] '>
-        To obtain a <Link href="#" className='font-bold text-purple_primary'>CSCS Green Labourer</Link> Card you must complete the Level 1 Health and Safety in a Construction Environment course, commonly referred to as the One Day course.
+        To obtain a <Link href="cscs-green-card" className='font-bold text-purple_primary'>CSCS Green Labourer</Link> Card you must complete the Level 1 Health and Safety in a Construction Environment course, commonly referred to as the One Day course.
       </p>
       <div className='flex justify-between items-center mt-10 media-max-1360px:flex-col media-max-1360px:gap-8'>
         <div className='max-h-[380px] max-w-[660px]'>
@@ -183,13 +183,13 @@ const Page = () => {
         ))}
       </div>
 
-      <p className='mb-2 text-justify'>You can use this qualification to obtain a <Link href="#" className='font-bold text-purple_primary'>CSCS Green Labourer Card.</Link></p>
+      <p className='mb-2 text-justify'>You can use this qualification to obtain a <Link href="/cscs-green-card" className='font-bold text-purple_primary'>CSCS Green Labourer Card.</Link></p>
       <p className='mb-2 text-justify'>
         To obtain a CSCS Green Card, you must complete the Health, Safety, and Awareness qualification. The online course enables you to complete the training from your computer in half the time, all from the comfort of your own home. Once completed, the qualification remains valid for 5 years, making you eligible to apply for a CSCS Green Card.
       </p>
   
       <p className='mb-2 text-justify'>
-        To book your Health & Safety Awareness Course, please visit the <Link href="#" className='font-bold text-purple_primary'>Course Page.</Link>
+        To book your Health & Safety Awareness Course, please visit the <Link href="/course-book" className='font-bold text-purple_primary'>Course Page.</Link>
       </p>
       <Link href="#" className='font-bold text-purple_primary'>Download details about the qualification.</Link>
 
@@ -197,7 +197,7 @@ const Page = () => {
 
       <ol className='list-decimal pl-5 mb-4 text-justify'>
         <li className="marker:text-purple_primary mb-2">
-          Safely make payment for your <Link href="#" className='text-purple_primary font-bold'>Health, Safety & Awareness (HS&A) Course</Link> online and receive your login details via email within 24 hours.
+          Safely make payment for your <Link href="/course-book" className='text-purple_primary font-bold'>Health, Safety & Awareness (HS&A) Course</Link> online and receive your login details via email within 24 hours.
         </li>
         <li className="marker:text-purple_primary mb-2">
           Finish the straightforward course on your computer in under 6 hours and get instant confirmation.

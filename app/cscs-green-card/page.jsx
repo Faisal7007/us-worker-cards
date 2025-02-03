@@ -17,7 +17,7 @@ const Page = () => {
   return (
     <div className='max-w-[1440px] mx-auto px-4 pt-8'>
     <h1 className='text-[30px] font-bold mb-2 capitalize'>CSCS Green Card</h1>
-    <Link href='#' className='inline-flex items-center text-purple_primary media-max-545px:text-[14px]'><IoIosArrowForward/><span>Go to full card types list</span></Link>
+    <Link href='cscs-card-types' className='inline-flex items-center text-purple_primary media-max-545px:text-[14px]'><IoIosArrowForward/><span>Go to full card types list</span></Link>
     <div className='h-[1px] w-full bg-slate-300 my-4'></div>
     <h1 className='text-[25px] font-bold mb-2'>How to apply</h1>
     {/* <h1 className='text-[20px] font-bold'>Apply by phone</h1> */}
@@ -70,7 +70,7 @@ const Page = () => {
 <p className='mb-6 text-justify media-max-545px:text-[14px]'>A labourer card remains valid for five years, however, it cannot be renewed at this time. Once your card expires, you will need to apply for a new one. The cost of booking a CSCS Card is £54, which covers the £36 CSCS fee, booking charges, and VAT.</p>
 
 <h2 className='font-bold text-justify'>Requirements for the Card</h2>
-<p className='mb-2  text-justify media-max-545px:text-[14px]'>Applicants are required to pass the <Link href="/#" className='text-purple_primary font-bold'>CITB Health, Safety, and Environment test for operatives</Link> and possess one of the following :</p>
+<p className='mb-2  text-justify media-max-545px:text-[14px]'>Applicants are required to pass the <Link href="/citb-test" className='text-purple_primary font-bold'>CITB Health, Safety, and Environment test for operatives</Link> and possess one of the following :</p>
 
 <p className="flex items-start mb-2 text-justify leading-relaxed text-sm media-max-545px:text-[14px] ">
   <FaHardHat className="text-purple_primary mr-2 mt-1 text-base flex-shrink-0 leading-none" />
@@ -85,7 +85,7 @@ const Page = () => {
   The Construction Health and Safety (F/618/0738) unit from NOCN/CSkills Awards.
 </p>
 <p className="my-6 text-justify text-sm leading-relaxed media-max-545px:text-[14px]">
-  Please visit the <Link href="#" className="text-purple_primary font-bold">Health and Safety Awareness Course</Link> to obtain one of the required qualifications listed above.
+  Please visit the <Link href="/health-and-safety-awareness" className="text-purple_primary font-bold">Health and Safety Awareness Course</Link> to obtain one of the required qualifications listed above.
 </p>
 <p className="text-justify text-sm leading-relaxed media-max-545px:text-[14px]">
   <Link href="#" className="text-purple_primary font-bold">Contact Support</Link> if you're still not sure which test to take.

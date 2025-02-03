@@ -6,7 +6,7 @@ import { initializeApp } from "firebase/app";
 // import { getAnalytics } from "firebase/analytics";
 import { createContext, useContext, useState } from "react";
 import { getFirestore, collection, addDoc, doc, setDoc, getDocs, getDoc } from "firebase/firestore"; 
-import{onAuthStateChanged, getAuth, signInWithEmailAndPassword, signOut} from 'firebase/auth'
+import{onAuthStateChanged, getAuth, signInWithEmailAndPassword, signOut, sendPasswordResetEmail} from 'firebase/auth'
 import { toast } from "react-toastify"; 
 
 
@@ -594,8 +594,20 @@ const fetchContactUsDataById = async (userId,setApplicant) => {
       };
 
 
+      const ForgotPassword = async (email, setIsSubmitting) => {
+        try {
+          setIsSubmitting(true);
+          await sendPasswordResetEmail(auth, email);
+          toast.success("Check your inbox.");
+        } catch (error) {
+          toast.error("Failed to send. Please check your email address.");
+        } finally {
+          setIsSubmitting(false);
+        }
+      };
+
   return (
-    <FirebaseContext.Provider value={{ addCscsData,AutoaddCscsData,addEssData,AutoaddEssData,applyForESSCard,applyForCSCSCard,applyForCITBTest,fetchApplicantsData,applyForHealthAndSafetyCourse,fetchHealthAndSafetyApplicants,fetchAllCscsEssData,fetchCscsData,fetchEssData,fetchCscsEssApplicants,fetchCscsEssApplicantById,fetchCITBTestApplicants,fetchCitbApplicantById,fetchHealthAndSafetyApplicantById,addGroupBooking,fetchGroupBooking,fetchGroupBookingById,addContactUs,autoAddContactUs,fetchContactUsData,fetchContactUsDataById,LoginUser,onAuthChange,logOut}}>
+    <FirebaseContext.Provider value={{ addCscsData,AutoaddCscsData,addEssData,AutoaddEssData,applyForESSCard,applyForCSCSCard,applyForCITBTest,fetchApplicantsData,applyForHealthAndSafetyCourse,fetchHealthAndSafetyApplicants,fetchAllCscsEssData,fetchCscsData,fetchEssData,fetchCscsEssApplicants,fetchCscsEssApplicantById,fetchCITBTestApplicants,fetchCitbApplicantById,fetchHealthAndSafetyApplicantById,addGroupBooking,fetchGroupBooking,fetchGroupBookingById,addContactUs,autoAddContactUs,fetchContactUsData,fetchContactUsDataById,LoginUser,onAuthChange,logOut,ForgotPassword}}>
       {children}
     </FirebaseContext.Provider>
   );
