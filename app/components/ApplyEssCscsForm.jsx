@@ -5,7 +5,7 @@ import CardForList from "./CardForList";
 import { UserContext } from "../context-api/UserContext";
 import { useFirebase } from "../context/Firebase";
 
-const CscsForm = ({form_type}) => {
+const ApplyEssCscsForm = ({form_type}) => {
   const [formData, setFormData] = useState({
     title: "",
     firstName: "",
@@ -67,19 +67,15 @@ const CscsForm = ({form_type}) => {
       {id:10, value: 'White Academically Qualified Person', component: <CardForList image_path="/ess-white-aqp-img.png" title="White Academically Qualified Person" description="For anyone with a construction degree, HND, HNC, CIOB Certificate, or NEBOSH diploma."/> },
     ];
   
-  
 
-
-
-  
 
   const [agreed, setAgreed] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isPreSelected, setIsPreSelected] = useState(false)
   const dropdownRef = useRef(null);
   const { idx,essId ,setIdx, setEssId } = useContext(UserContext);
-  console.log(essId,"ess id Context Api")
-  console.log(idx,"cscs id Context Api")
+  // console.log(essId,"ess id Context Api")
+  // console.log(idx,"cscs id Context Api")
 
 
   useEffect(() => {
@@ -176,7 +172,7 @@ const firebase=useFirebase()
     >
       <div className="pt-6">
         <h2 className="text-[25px] bg-purple_primary text-white py-4 font-bold mb-6 text-center">
-          Candidate Undergoing the Test
+        Easy Apply For <span className="uppercase">{form_type}</span> Card
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-4">
           <div>
@@ -438,4 +434,4 @@ const firebase=useFirebase()
   );
 };
 
-export default CscsForm;
+export default ApplyEssCscsForm;
