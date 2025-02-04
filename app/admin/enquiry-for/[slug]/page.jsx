@@ -162,9 +162,9 @@ const Page = () => {
         </div>
       )}
       {form_type === 'cscs' ? (
-        <CscsEssTable userData={cscsUsers} isLoading={isLoading}  />
+        <CscsEssTable userData={cscsUsers} isLoading={isLoading} cardTypes={cardTypes} form_type={form_type} setUserData={setCscsUsers}  />
       ) : (
-        <CscsEssTable userData={essUsers} isLoading={isLoading}  />
+        <CscsEssTable userData={essUsers} isLoading={isLoading} cardTypes={cardTypes} form_type={form_type} setUserData={setEssUsers}     />
       )}
     </div>
   );

@@ -5,7 +5,7 @@
 import { initializeApp } from "firebase/app";
 // import { getAnalytics } from "firebase/analytics";
 import { createContext, useContext, useState } from "react";
-import { getFirestore, collection, addDoc, doc, setDoc, getDocs, getDoc } from "firebase/firestore"; 
+import { getFirestore, collection, addDoc, doc, setDoc, getDocs, getDoc, deleteDoc, where, query, updateDoc, writeBatch } from "firebase/firestore"; 
 import{onAuthStateChanged, getAuth, signInWithEmailAndPassword, signOut, sendPasswordResetEmail} from 'firebase/auth'
 import { toast } from "react-toastify"; 
 
@@ -36,27 +36,80 @@ export const FirebaseProvider = ({ children }) => {
 
 
 
-    const addCscsData = async (firstName, lastName, email, phone, cardType,setIsSubmitting,submit_type) => {
-        try {
-          setIsSubmitting(true)
-          const data = {
-            firstName,
-            lastName,
-            email,
-            phone,
-            createdAt: new Date().toISOString(),
-            submitType:submit_type
-          };
-          const docRef = doc(firestore, "cscs-cards-users", cardType);
-          await addDoc(collection(docRef, "users"), data); 
-          toast.success("Form Submitted Successfully");
-        } catch (error) {
-          toast.error("Error adding data!");
+    // const addCscsData = async (firstName, lastName, email, phone, cardType,setIsSubmitting,submit_type) => {
+    //     try {
+    //       setIsSubmitting(true)
+    //       const data = {
+    //         firstName,
+    //         lastName,
+    //         email,
+    //         phone,
+    //         createdAt: new Date().toISOString(),
+    //         cardType:cardType,
+    //         submitType:submit_type
+    //       };
+    //       const docRef = doc(firestore, "cscs-cards-users", cardType);
+    //       await addDoc(collection(docRef, "users"), data); 
+    //       toast.success("Form Submitted Successfully");
+    //     } catch (error) {
+    //       toast.error("Error adding data!");
+    //     }
+    //     finally{
+    //       setIsSubmitting(false)
+    //     }
+    //   };
+
+
+
+    const addCscsData = async (firstName, lastName, email, phone, cardType, setIsSubmitting, submit_type) => {
+      try {
+        setIsSubmitting(true);
+    
+        const docRef = doc(firestore, "cscs-cards-users", cardType);
+        const usersCollection = collection(docRef, "users");
+    
+        // 🔍 Check if a user with the same email OR mobile number already exists
+        const q = query(usersCollection, where("email", "==", email));
+        const phoneQuery = query(usersCollection, where("phone", "==", phone));
+    
+        const [emailSnapshot, phoneSnapshot] = await Promise.all([getDocs(q), getDocs(phoneQuery)]);
+    
+        let existingDoc = null;
+    
+        if (!emailSnapshot.empty) {
+          existingDoc = emailSnapshot.docs[0]; // User exists with same email
+        } else if (!phoneSnapshot.empty) {
+          existingDoc = phoneSnapshot.docs[0]; // User exists with same phone number
         }
-        finally{
-          setIsSubmitting(false)
+    
+        const data = {
+          firstName,
+          lastName,
+          email,
+          phone,
+          createdAt: new Date().toISOString(),
+          cardType,
+          submitType: submit_type,
+        };
+    
+        if (existingDoc) {
+          // ✅ If user exists, update the existing document
+          const userRef = doc(usersCollection, existingDoc.id);
+          await updateDoc(userRef, data);
+          toast.success("Form Submitted successfully");
+        } else {
+          // ➕ If user doesn't exist, create a new document
+          await addDoc(usersCollection, data);
+          // toast.success("Form Submitted Successfully");
         }
-      };
+      } catch (error) {
+        toast.error("Error adding data!");
+      } finally {
+        setIsSubmitting(false);
+      }
+    };
+    
+
 
       const fetchCscsData = async (cardType, setCscsUsers) => {
         try {
@@ -113,7 +166,8 @@ const fetchAllCscsEssData = async (isCard,cardTypes, setAllUsers,setIsLoading) =
             email,
             phone,
             createdAt: new Date().toISOString(),
-            submitType:submit_type
+            cardType:cardType,
+            submitType:submit_type,
           };
     
           const docRef = doc(firestore, "cscs-cards-users", cardType);
@@ -124,29 +178,120 @@ const fetchAllCscsEssData = async (isCard,cardTypes, setAllUsers,setIsLoading) =
         }
       };
 
-      const addEssData = async (firstName, lastName, email, phone, cardType,setIsSubmitting,submit_type) => {
-        try {
-          setIsSubmitting(true)
-          const data = {
-            firstName,
-            lastName,
-            email,
-            phone,
-            createdAt: new Date().toISOString(),
-            submitType:submit_type
-          };
+ 
+      
+  
+const deleteCscsData = async (cardTypes, userIds, setIsDeleting) => {
+  console.log("Card Types:", cardTypes); // Example: ['green-labourer', 'blue-skilled']
+  console.log("User IDs:", userIds);     // Example: ['KnDpqYxlmJlXMAxgBbNU', '4ka0jJb7erYKDyk5txSN']
+
+  try {
+    setIsDeleting(true);
+
+    const deletePromises = [];
+
+    // Iterate over each cardType
+    cardTypes.forEach((cardType) => {
+      // Iterate over each user ID for the current cardType
+      userIds.forEach((id) => {
+        const userDocRef = doc(firestore, "cscs-cards-users", cardType, "users", id);
+        deletePromises.push(deleteDoc(userDocRef)); // Add delete operation to the array
+      });
+    });
+
+    await Promise.all(deletePromises); // Execute all delete operations in parallel
+
+    toast.success("Selected users deleted successfully");
+  } catch (error) {
+    console.error("Error deleting users:", error);
+    toast.error("Error deleting users!");
+  } finally {
+    setIsDeleting(false);
+  }
+};
+      
+
+
+
+
+
+      // const addEssData = async (firstName, lastName, email, phone, cardType,setIsSubmitting,submit_type) => {
+      //   try {
+      //     setIsSubmitting(true)
+      //     const data = {
+      //       firstName,
+      //       lastName,
+      //       email,
+      //       phone,
+      //       createdAt: new Date().toISOString(),
+      //       cardType:cardType,
+
+      //       submitType:submit_type
+      //     };
     
-          const docRef = doc(firestore, "ess-cards-users", cardType);
-          await addDoc(collection(docRef, "users"), data); 
-          toast.success("Form Submitted Successfully");
-        } catch (error) {
+      //     const docRef = doc(firestore, "ess-cards-users", cardType);
+      //     await addDoc(collection(docRef, "users"), data); 
+      //     toast.success("Form Submitted Successfully");
+      //   } catch (error) {
         
-          toast("Error adding data!");
-        }
-        finally{
-          setIsSubmitting(false)
-        }
-      };
+      //     toast("Error adding data!");
+      //   }
+      //   finally{
+      //     setIsSubmitting(false)
+      //   }
+      // };
+
+  
+
+const addEssData = async (firstName, lastName, email, phone, cardType, setIsSubmitting, submit_type) => {
+  try {
+    setIsSubmitting(true);
+
+    const docRef = doc(firestore, "ess-cards-users", cardType);
+    const usersCollection = collection(docRef, "users");
+
+    // 🔍 Check if a user with the same email OR phone already exists
+    const emailQuery = query(usersCollection, where("email", "==", email));
+    const phoneQuery = query(usersCollection, where("phone", "==", phone));
+
+    const [emailSnapshot, phoneSnapshot] = await Promise.all([getDocs(emailQuery), getDocs(phoneQuery)]);
+
+    let existingDoc = null;
+
+    if (!emailSnapshot.empty) {
+      existingDoc = emailSnapshot.docs[0]; // User exists with same email
+    } else if (!phoneSnapshot.empty) {
+      existingDoc = phoneSnapshot.docs[0]; // User exists with same phone number
+    }
+
+    const data = {
+      firstName,
+      lastName,
+      email,
+      phone,
+      createdAt: new Date().toISOString(),
+      cardType,
+      submitType: submit_type,
+    };
+
+    if (existingDoc) {
+      // ✅ If user exists, update the existing document
+      const userRef = doc(usersCollection, existingDoc.id);
+      await updateDoc(userRef, data);
+      toast.success("Form Submitted successfully");
+    } else {
+      // ➕ If user doesn't exist, create a new document
+      await addDoc(usersCollection, data);
+      toast.success("Form Submitted Successfully");
+    }
+  } catch (error) {
+    toast.error("Error adding data!");
+  } finally {
+    setIsSubmitting(false);
+  }
+};
+
+
 
       const AutoaddEssData = async (firstName, lastName, email, phone, cardType,submit_type) => {
         try {
@@ -156,6 +301,7 @@ const fetchAllCscsEssData = async (isCard,cardTypes, setAllUsers,setIsLoading) =
             email,
             phone,
             createdAt: new Date().toISOString(),
+            cardType:cardType,
             submitType:submit_type
           };
     
@@ -187,6 +333,43 @@ const fetchAllCscsEssData = async (isCard,cardTypes, setAllUsers,setIsLoading) =
           // console.error("Error fetching CSCS users:", error);
         }
       };
+
+
+        
+const deleteEssData = async (cardTypes, userIds, setIsDeleting) => {
+  console.log("Card Types:", cardTypes); // Example: ['green-labourer', 'blue-skilled']
+  console.log("User IDs:", userIds);     // Example: ['KnDpqYxlmJlXMAxgBbNU', '4ka0jJb7erYKDyk5txSN']
+
+  try {
+    setIsDeleting(true);
+
+    const deletePromises = [];
+
+    // Iterate over each cardType
+    cardTypes.forEach((cardType) => {
+      // Iterate over each user ID for the current cardType
+      userIds.forEach((id) => {
+        const userDocRef = doc(firestore, "ess-cards-users", cardType, "users", id);
+        deletePromises.push(deleteDoc(userDocRef)); // Add delete operation to the array
+      });
+    });
+
+    await Promise.all(deletePromises); // Execute all delete operations in parallel
+
+    toast.success("Selected users deleted successfully");
+  } catch (error) {
+    console.error("Error deleting users:", error);
+    toast.error("Error deleting users!");
+  } finally {
+    setIsDeleting(false);
+  }
+};
+      
+
+
+
+
+
 
 
       const applyForCSCSCard = async (title,firstName,middleName,lastName,dob,nationalInsuranceNumber,phoneNumber,email,cardType,applicationType,formType) => {
@@ -564,6 +747,36 @@ const fetchContactUsDataById = async (userId,setApplicant) => {
   }
 };
 
+
+
+
+const deleteContactUsMessages = async (ids, setIsDeleting) => {
+  if (!ids || ids.length === 0) {
+    toast.error("No messages selected for deletion!");
+    return;
+  }
+
+  try {
+    setIsDeleting && setIsDeleting(true);
+    
+    const batch = writeBatch(firestore); 
+    const docRef = collection(firestore, "contact-us");
+
+    ids.forEach((id) => {
+      const docToDelete = doc(docRef, id);
+      batch.delete(docToDelete);
+    });
+
+    await batch.commit();
+
+    toast.success("Selected messages deleted successfully!");
+  } catch (error) {
+    toast.error("Error deleting messages!");
+  } finally {
+    setIsDeleting && setIsDeleting(false);
+  }
+};
+
       const LoginUser = async (email, password,setIsSubmitting) => {
         try {
           setIsSubmitting(true)
@@ -607,7 +820,7 @@ const fetchContactUsDataById = async (userId,setApplicant) => {
       };
 
   return (
-    <FirebaseContext.Provider value={{ addCscsData,AutoaddCscsData,addEssData,AutoaddEssData,applyForESSCard,applyForCSCSCard,applyForCITBTest,fetchApplicantsData,applyForHealthAndSafetyCourse,fetchHealthAndSafetyApplicants,fetchAllCscsEssData,fetchCscsData,fetchEssData,fetchCscsEssApplicants,fetchCscsEssApplicantById,fetchCITBTestApplicants,fetchCitbApplicantById,fetchHealthAndSafetyApplicantById,addGroupBooking,fetchGroupBooking,fetchGroupBookingById,addContactUs,autoAddContactUs,fetchContactUsData,fetchContactUsDataById,LoginUser,onAuthChange,logOut,ForgotPassword}}>
+    <FirebaseContext.Provider value={{ addCscsData,AutoaddCscsData,addEssData,AutoaddEssData,deleteCscsData,applyForESSCard,applyForCSCSCard,applyForCITBTest,fetchApplicantsData,applyForHealthAndSafetyCourse,fetchHealthAndSafetyApplicants,fetchAllCscsEssData,fetchCscsData,fetchEssData,deleteEssData,fetchCscsEssApplicants,fetchCscsEssApplicantById,fetchCITBTestApplicants,fetchCitbApplicantById,fetchHealthAndSafetyApplicantById,addGroupBooking,fetchGroupBooking,fetchGroupBookingById,addContactUs,autoAddContactUs,fetchContactUsData,fetchContactUsDataById,deleteContactUsMessages,LoginUser,onAuthChange,logOut,ForgotPassword}}>
       {children}
     </FirebaseContext.Provider>
   );

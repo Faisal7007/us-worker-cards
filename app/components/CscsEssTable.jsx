@@ -1,13 +1,15 @@
-import React, { useContext, useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import Loader from "./Loader";
-import { UserContext } from "../context-api/UserContext";
+import { useFirebase } from "../context/Firebase";
 
-const CscsEssTable = ({ userData, isLoading }) => {
+const CscsEssTable = ({ userData, isLoading,form_type,setUserData}) => {
   const [total, setTotal] = useState(0);
   const [auto, setAuto] = useState(0);
   const [manual, setManual] = useState(0);
-
-
+  const [selectedUsers, setSelectedUsers] = useState([]);
+  const [selectedCardTypes, setSelectedCardTypes] = useState([])
+  const [isDeleting, setIsDeleting] = useState(false)
+  const firebase=useFirebase()
   // Remove duplicate entries based on email
   const removeDuplicates = (data) => {
     const uniqueData = [];
@@ -22,7 +24,6 @@ const CscsEssTable = ({ userData, isLoading }) => {
 
     return uniqueData;
   };
-  
 
   const filteredUserData = useMemo(() => removeDuplicates(userData), [userData]);
 
@@ -35,22 +36,116 @@ const CscsEssTable = ({ userData, isLoading }) => {
     setTotal(totalUsers);
     setAuto(autoCount);
     setManual(manualCount);
+  }, [filteredUserData]);
+
+  // Handle checkbox selection
+  const handleCheckboxChange = (userId,cardType) => {
+    setSelectedUsers((prevSelected) =>
+      prevSelected.includes(userId)
+        ? prevSelected.filter((id) => id !== userId)
+        : [...prevSelected, userId]
+    );
+
+
+    setSelectedCardTypes((prevSelected) =>
+      prevSelected.includes(cardType)
+        ? prevSelected.filter((id) => id !== cardType)
+        : [...prevSelected, cardType]
+    );
+  };
+
+  console.log(selectedCardTypes)
+
+  // Handle select all checkboxes
+  const handleSelectAll = () => {
+    if (selectedUsers.length === filteredUserData.length || selectedCardTypes.length===filteredUserData.length) {
+      setSelectedUsers([]);
+      setSelectedCardTypes([])
+    } else {
+      setSelectedUsers(filteredUserData.map((user) => user.id));
+      setSelectedCardTypes(filteredUserData.map((user) => user.cardType))
+
+    }
+  };
+
+
+  // Handle delete selected users
+  // const handleDeleteSelected =  () => {
+  //   if (selectedUsers.length > 0 ) {
+  //     if(form_type==='cscs'){
+  // console.log(selectedCardTypes,"selectedCardTypes")
+    
+  //       firebase.deleteCscsData(selectedCardTypes,selectedUsers,setIsDeleting)
+  //     }
+  //     if(form_type==='ess'){
+  //       console.log(selectedCardTypes,"selectedCardTypes")
+          
+  //             firebase.deleteEssData(selectedCardTypes,selectedUsers,setIsDeleting)
+  //           }
+  //     setSelectedUsers([]);
+  //   }
+  // };
+
+
+  const handleDeleteSelected = async () => {
+    if (selectedUsers.length === 0) {
+      toast.error("No messages selected for deletion!");
+      return;
+    }
   
-  }, [filteredUserData,auto,manual]); 
+    try {
+      setIsDeleting(true);
+  
+      if (form_type === "cscs") {
+        console.log(selectedCardTypes, "selectedCardTypes");
+        await firebase.deleteCscsData(selectedCardTypes, selectedUsers,setIsDeleting);
+      } else if (form_type === "ess") {
+        console.log(selectedCardTypes, "selectedCardTypes");
+        await firebase.deleteEssData(selectedCardTypes, selectedUsers,setIsDeleting);
+      }
+  
+      // Remove deleted users from the contactedData state
+      setUserData((prevData) =>
+        prevData.filter((user) => !selectedUsers.includes(user.id))
+      );
+  
+      // toast.success("Selected messages deleted successfully!");
+    } catch (error) {
+      // toast.error("Error deleting messages!");
+    } finally {
+      setSelectedUsers([]);
+      setIsDeleting(false);
+    }
+  };
+  
 
   return (
     <div className="overflow-x-auto">
-            <ul className="flex items-center gap-6 mb-4">
-  <li className="flex items-center gap-2 text-gray-800 font-medium">
-    <span className="text-orange-500 text-xl">•</span> Auto Saved ({auto ?? 0})
-  </li>
-  <li className="flex items-center gap-2 text-gray-800 font-medium">
-    <span className="text-green-500 text-xl">•</span> Manually Saved ({ manual ?? 0})
-  </li>
-</ul>
+      <ul className="flex items-center gap-6 mb-4">
+        <li className="flex items-center gap-2 text-gray-800 font-medium">
+          <span className="text-orange-500 text-xl">•</span> Auto Saved ({auto ?? 0})
+        </li>
+        <li className="flex items-center gap-2 text-gray-800 font-medium">
+          <span className="text-green-500 text-xl">•</span> Manually Saved ({manual ?? 0})
+        </li>
+      </ul>
+
+      {/* Delete Button */}
+      {selectedUsers.length > 0 && (
+        <button
+          className="mb-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+          onClick={handleDeleteSelected}
+        >
+          {isDeleting?"Deleting...":"Delete Selected"} ({selectedUsers.length})
+        </button>
+      )}
+
       <table className="min-w-full table-auto border-collapse border border-gray-300">
         <thead>
           <tr className="bg-gray-100">
+            <th className="border border-gray-300 px-4 py-2">
+              <input type="checkbox" onChange={handleSelectAll} checked={selectedUsers.length === filteredUserData.length} />
+            </th>
             <th className="border border-gray-300 px-4 py-2 text-left">Sr. No.</th>
             <th className="border border-gray-300 px-4 py-2 text-left">First Name</th>
             <th className="border border-gray-300 px-4 py-2 text-left">Last Name</th>
@@ -61,15 +156,21 @@ const CscsEssTable = ({ userData, isLoading }) => {
         <tbody>
           {isLoading ? (
             <tr>
-              <td colSpan="5" className="text-center py-4">
+              <td colSpan="6" className="text-center py-4">
                 <Loader />
               </td>
             </tr>
           ) : filteredUserData.length > 0 ? (
             filteredUserData.map((user, index) => (
               <tr key={user.id} className="hover:bg-gray-100">
-                <td className="border border-gray-300 px-4 py-2 flex gap-2 items-center">{index + 1}
-                <p className={`before:content-['•'] before:${user.submitType==='auto'?"text-orange-500":"text-green-500"} before:text-2xl before:mr-2`}></p>
+                <td className="border border-gray-300 px-4 py-2 text-center">
+                  <input type="checkbox" checked={selectedUsers.includes(user.id)} onChange={() => handleCheckboxChange(user.id,user.cardType)} />
+                </td>
+                <td className="border border-gray-300 px-4 py-2 flex gap-2 items-center">
+                  {index + 1}
+                  <p
+                    className={`before:content-['•'] before:${user.submitType === "auto" ? "text-orange-500" : "text-green-500"} before:text-2xl before:mr-2`}
+                  ></p>
                 </td>
                 <td className="border border-gray-300 px-4 py-2">{user.firstName}</td>
                 <td className="border border-gray-300 px-4 py-2">{user.lastName}</td>
@@ -79,7 +180,7 @@ const CscsEssTable = ({ userData, isLoading }) => {
             ))
           ) : (
             <tr>
-              <td colSpan="5" className="border border-gray-300 px-4 py-2 text-center">
+              <td colSpan="6" className="border border-gray-300 px-4 py-2 text-center">
                 No data available
               </td>
             </tr>

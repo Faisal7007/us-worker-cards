@@ -49,15 +49,7 @@ const EssPageComponent = ({id,title_page,image_path,title_form_one,title_form_tw
 
 <div className='media-max-545px:text-[14px] text-justify'>
 
-  <p className='mb-2 font-bold'> Cost of ESS card :</p>
-  <p className="flex items-start mb-2">
-      <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" /><span className='font-semibold mr-1'>Physical card :</span>  108 £  including 72 pound ESS fee+ VAT fee + booking fee</p>
-      <p className="flex items-start mb-2">
-      <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" /><span className='font-semibold mr-1'>Digital card :</span> 66 £ including 48 pound ESS fee+ VAT fee + booking fee</p>
-
-
-
-
+  
 {/* Green */}
 <div className='my-5'>
 
@@ -354,7 +346,20 @@ Applicants must provide proof of an academic qualification approved by SKILLcard
 
 </div>
 
+
+<p className='mb-2 font-bold'> Cost of ESS card :</p>
+  <p className="flex items-start mb-2">
+      <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" /><span className='font-semibold mr-1'>Physical card :</span>  108 £  including 72 pound ESS fee+ VAT fee + booking fee</p>
+      <p className="flex items-start mb-2">
+      <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" /><span className='font-semibold mr-1'>Digital card :</span> 66 £ including 48 pound ESS fee+ VAT fee + booking fee</p>
+
 <p><Link href="#" className='text-purple_primary font-bold mt-6'>Contact Support</Link> if you're still not sure which test to take.</p>
+
+
+
+
+
+
 </div>
 
 

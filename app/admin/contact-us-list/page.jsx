@@ -4,6 +4,7 @@ import React, { use, useContext, useEffect, useState } from "react";
 import Loader from "../../components/Loader";
 import { UserContext } from "@/app/context-api/UserContext";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 const page = () => {
   const firebase = useFirebase();
@@ -11,16 +12,19 @@ const page = () => {
   const [isLoading, setIsLoading] = useState(false);
   const {viewDetailsId,setViewDetailsId}=useContext(UserContext)
   const router=useRouter()
+  const [selectedUsers, setSelectedUsers] = useState([]);
+  const [isDeleting, setIsDeleting] = useState(false)
+  
   
 
   useEffect(() => {
     firebase.fetchContactUsData((data) => {
-      const filteredData = removeDuplicates(data); // Remove duplicates before setting data
+      const filteredData = removeDuplicates(data); 
       setContactedData(filteredData);
     }, setIsLoading);
   }, []);
 
-  // Function to remove duplicate entries
+
   const removeDuplicates = (data) => {
     const uniqueData = [];
     const seenEmails = new Set();
@@ -61,16 +65,59 @@ const page = () => {
 
 
 
+
+  // Handle checkbox selection
+  const handleCheckboxChange = (userId) => {
+    setSelectedUsers((prevSelected) =>
+      prevSelected.includes(userId)
+        ? prevSelected.filter((id) => id !== userId)
+        : [...prevSelected, userId]
+    );
+  };
+
+  // Handle select all checkboxes
+  const handleSelectAll = () => {
+    if (selectedUsers.length === contactedData.length) {
+      setSelectedUsers([]);
+    } else {
+      setSelectedUsers(contactedData.map((user) => user.id));
+    }
+  };
+
+  const handleDeleteSelected = async () => {
+    if (selectedUsers.length === 0) {
+      toast.error("No messages selected for deletion!");
+      return;
+    }
+  
+    try {
+      setIsDeleting(true);
+      
+    
+      await firebase.deleteContactUsMessages(selectedUsers, setIsDeleting);
+  
+      setContactedData((prevData) =>
+        prevData.filter((user) => !selectedUsers.includes(user.id))
+      );
+  
+      // toast.success("Selected messages deleted successfully!");
+    } catch (error) {
+      // toast.error("Error deleting messages!");
+    } finally {
+      setSelectedUsers([]);
+      setIsDeleting(false);
+    }
+  };
+  
+
+
+
   return (
     <div className="overflow-x-auto px-4 pt-8">
      <div className='flex justify-center'>
           <span className='text-[24px] text-gray-800 text-center font-bold mb-6'>Contact Us Messages</span>
-       
       </div>
-     {/* <ul className="flex gap-6 items-center mb-4">
-  <li className="before:content-['•'] before:text-orange-500 before:text-2xl before:mr-0"> Auto Saved ( {auto} )</li>
-  <li className="before:content-['•'] before:text-green-500 before:text-2xl before:mr-0"> Manually Saved ( {manually} )</li>
-</ul> */}
+  
 
 <ul className="flex items-center gap-6 mb-4">
   <li className="flex items-center gap-2 text-gray-800 font-medium">
@@ -81,9 +128,26 @@ const page = () => {
   </li>
 </ul>
 
+<div className="overflow-x-auto">
+      {selectedUsers.length > 0 && (
+        <button
+          className="mb-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+          onClick={handleDeleteSelected}
+        >
+        {isDeleting?"Deleting...":"Delete Selected"}
+           ({selectedUsers.length})
+        </button>
+      )}
       <table className="min-w-full table-auto border-collapse border border-gray-300">
         <thead>
           <tr className="bg-gray-100">
+            <th className="border border-gray-300 px-4 py-2">
+              <input
+                type="checkbox"
+                onChange={handleSelectAll}
+                checked={selectedUsers.length === contactedData.length}
+              />
+            </th>
             <th className="border border-gray-300 px-4 py-2 text-left">Sr. No.</th>
             <th className="border border-gray-300 px-4 py-2 text-left">Full Name</th>
             <th className="border border-gray-300 px-4 py-2 text-left">Email</th>
@@ -96,18 +160,32 @@ const page = () => {
         <tbody>
           {isLoading ? (
             <tr>
-              <td colSpan="6" className="text-center py-4">
+              <td colSpan="7" className="text-center py-4">
                 <Loader />
               </td>
             </tr>
           ) : contactedData?.length > 0 ? (
             contactedData.map((user, index) => (
               <tr key={user.id} className="hover:bg-gray-100">
-                <td className="border border-gray-300 px-4 py-2 flex gap-2 items-center">{index + 1}  <p className={`before:content-['•'] before:${user.submitType==='auto'?"text-orange-500":"text-green-500"} before:text-2xl before:mr-2`}></p></td>
+                <td className="border border-gray-300 px-4 py-2 text-center">
+                  <input
+                    type="checkbox"
+                    checked={selectedUsers.includes(user.id)}
+                    onChange={() => handleCheckboxChange(user.id)}
+                  />
+                </td>
+                <td className="border border-gray-300 px-4 py-2 flex gap-2 items-center">
+                  {index + 1}
+                  <p
+                    className={`before:content-['•'] before:${user.submitType === "auto" ? "text-orange-500" : "text-green-500"} before:text-2xl before:mr-2`}
+                  ></p>
+                </td>
                 <td className="border border-gray-300 px-4 py-2">{user.name}</td>
                 <td className="border border-gray-300 px-4 py-2">{user.email}</td>
                 <td className="border border-gray-300 px-4 py-2">{user.mobile}</td>
-                <td className="border border-gray-300 px-4 py-2">{user.description.length> 20  ? `${user.description.slice(0, 20)}...` : user.description}</td>
+                <td className="border border-gray-300 px-4 py-2">
+                  {user.description.length > 20 ? `${user.description.slice(0, 20)}...` : user.description}
+                </td>
                 <td
                   onClick={() => handleViewDetails(user.id)}
                   className="border border-gray-300 px-4 py-2 text-green-500 font-semibold cursor-pointer"
@@ -118,13 +196,14 @@ const page = () => {
             ))
           ) : (
             <tr>
-              <td colSpan="6" className="border border-gray-300 px-4 py-2 text-center">
+              <td colSpan="7" className="border border-gray-300 px-4 py-2 text-center">
                 No data available
               </td>
             </tr>
           )}
         </tbody>
       </table>
+    </div>
     </div>
   );
 };
