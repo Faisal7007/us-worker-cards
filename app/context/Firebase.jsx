@@ -430,19 +430,57 @@ const fetchCscsEssApplicantById = async (form_type, userId, setApplicant) => {
 
     setApplicant(docSnapshot.data())
 
-    // if (docSnapshot.exists()) {
-    //   const applicant = { id: docSnapshot.id, ...docSnapshot.data()};
-    //   setApplicant(applicant); // Update state with the applicant data
-    //   console.log("Applicant data fetched successfully:", applicant);
-    // } else {
-    //   // console.log("No applicant found with this ID.");
-    //   toast.error("No applicant found with this ID!");
-    // }
   } catch (error) {
     // console.error("Error fetching applicant by ID:", error);
     toast.error("Error fetching applicant!");
   }
 };
+
+
+
+const deleteCscsApplications = async (formType, selectedIds) => {
+  if (selectedIds.length === 0) {
+    toast.error("No applications selected for deletion!");
+    return;
+  }
+
+  const batch = writeBatch(firestore);
+  try {
+    selectedIds.forEach((id) => {
+      const docRef = doc(firestore, `cscs-cards-applicants/${formType}/users`, id);
+      batch.delete(docRef);
+    });
+
+    await batch.commit();
+    toast.success("Selected applications deleted successfully!");
+  } catch (error) {
+    console.error("Error deleting CSCS applications:", error);
+    toast.error("Error deleting applications!");
+  }
+};
+
+
+const deleteEssApplications = async (formType, selectedIds) => {
+  if (selectedIds.length === 0) {
+    toast.error("No applications selected for deletion!");
+    return;
+  }
+
+  const batch = writeBatch(firestore);
+  try {
+    selectedIds.forEach((id) => {
+      const docRef = doc(firestore, `ess-cards-applicants/${formType}/users`, id);
+      batch.delete(docRef);
+    });
+
+    await batch.commit();
+    toast.success("Selected applications deleted successfully!");
+  } catch (error) {
+    console.error("Error deleting CSCS applications:", error);
+    toast.error("Error deleting applications!");
+  }
+};
+
 
       const applyForESSCard = async (title,firstName,middleName,lastName,dob,nationalInsuranceNumber,phoneNumber,email,cardType,applicationType,formType) => {
         try {
@@ -501,6 +539,35 @@ const fetchCscsEssApplicantById = async (form_type, userId, setApplicant) => {
           setIsSubmitting && setIsSubmitting(false); 
         }
       };
+
+
+  
+
+const deleteCitbApplications = async (selectedIds, setIsDeleting) => {
+  if (selectedIds.length === 0) {
+    toast.error("No applications selected for deletion!");
+    return;
+  }
+
+  setIsDeleting(true);
+  const batch = writeBatch(firestore);
+
+  try {
+    selectedIds.forEach((id) => {
+      const docRef = doc(firestore, "citb-test-applicants/all-applicants/users", id);
+      batch.delete(docRef);
+    });
+
+    await batch.commit();
+    toast.success("Selected applications deleted successfully!");
+  } catch (error) {
+    console.error("Error deleting CITB applications:", error);
+    toast.error("Error deleting applications!");
+  } finally {
+    setIsDeleting(false);
+  }
+};
+
 
       const fetchCITBTestApplicants = async (setApplicants,setIsLoading) => {
         try {
@@ -820,7 +887,7 @@ const deleteContactUsMessages = async (ids, setIsDeleting) => {
       };
 
   return (
-    <FirebaseContext.Provider value={{ addCscsData,AutoaddCscsData,addEssData,AutoaddEssData,deleteCscsData,applyForESSCard,applyForCSCSCard,applyForCITBTest,fetchApplicantsData,applyForHealthAndSafetyCourse,fetchHealthAndSafetyApplicants,fetchAllCscsEssData,fetchCscsData,fetchEssData,deleteEssData,fetchCscsEssApplicants,fetchCscsEssApplicantById,fetchCITBTestApplicants,fetchCitbApplicantById,fetchHealthAndSafetyApplicantById,addGroupBooking,fetchGroupBooking,fetchGroupBookingById,addContactUs,autoAddContactUs,fetchContactUsData,fetchContactUsDataById,deleteContactUsMessages,LoginUser,onAuthChange,logOut,ForgotPassword}}>
+    <FirebaseContext.Provider value={{ addCscsData,AutoaddCscsData,addEssData,AutoaddEssData,deleteCscsData,applyForESSCard,applyForCSCSCard,deleteCscsApplications,deleteEssApplications,applyForCITBTest,deleteCitbApplications,fetchApplicantsData,applyForHealthAndSafetyCourse,fetchHealthAndSafetyApplicants,fetchAllCscsEssData,fetchCscsData,fetchEssData,deleteEssData,fetchCscsEssApplicants,fetchCscsEssApplicantById,fetchCITBTestApplicants,fetchCitbApplicantById,fetchHealthAndSafetyApplicantById,addGroupBooking,fetchGroupBooking,fetchGroupBookingById,addContactUs,autoAddContactUs,fetchContactUsData,fetchContactUsDataById,deleteContactUsMessages,LoginUser,onAuthChange,logOut,ForgotPassword}}>
       {children}
     </FirebaseContext.Provider>
   );

@@ -17,7 +17,7 @@ const page = () => {
   return (
     <div className='py-6 px-3'>
      <div className='text-[24px] text-gray-800 text-center font-bold mb-6'>CITB Test Applicants</div>
-      <ApplicantsTable userData={CitbApplicants} isLoading={isLoading}/>
+      <ApplicantsTable userData={CitbApplicants} form_type="citb"  isLoading={isLoading} setUserData={setCitbApplicants}/>
     </div>
   )
 }

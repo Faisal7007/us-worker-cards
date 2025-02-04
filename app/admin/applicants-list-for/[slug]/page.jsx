@@ -31,7 +31,7 @@ const page = () => {
     <div className='py-6 px-3 media-max-545px:text-[14px] media-max-545px:px-0'>
     <div className='text-[24px] text-gray-800 text-center font-bold mb-6'><span className='uppercase '>{form_type}</span> Cards Applicants</div>
     {
-        form_type==='cscs'?<ApplicantsTable userData={cscsApplicants} form_type={form_type} isLoading={isLoading} />:<ApplicantsTable userData={essApplicants} form_type={form_type} isLoading={isLoading} />
+        form_type==='cscs'?<ApplicantsTable userData={cscsApplicants} form_type={form_type} isLoading={isLoading} setUserData={setCscsApplicants} />:<ApplicantsTable userData={essApplicants} form_type={form_type} isLoading={isLoading} setUserData={setEssApplicants} />
 
     }
      
