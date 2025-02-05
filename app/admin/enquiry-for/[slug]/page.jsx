@@ -50,6 +50,8 @@ const Page = () => {
     { value: "black-manager", label: "Black Manager Card Users" },
     { value: "white-aqp", label: "White AQP Card Users" },
     { value: "white-pqp", label: "White PQP Card Users" },
+    { value: "white-acrib", label: "White ACRIB Card Users" },
+
   ];
 
   const handleCscsOptionClick = (option) => {

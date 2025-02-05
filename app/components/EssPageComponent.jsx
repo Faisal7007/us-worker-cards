@@ -6,7 +6,7 @@ import { FaHardHat  } from "react-icons/fa";
 import EssCardForm from './EssCardForm';
 
 
-const EssPageComponent = ({id,title_page,image_path,title_form_one,title_form_two,card_type}) => {
+const EssPageComponent = ({id,title_page,image_path,title_form_one,title_form_two,card_type,validity}) => {
   // const firebase=useFirebase()
 
   console.log(id,'Id in ESS page Component')
@@ -45,7 +45,7 @@ const EssPageComponent = ({id,title_page,image_path,title_form_one,title_form_tw
     <h1 className='capitalize text-[25px] text-white inline-block px-4 py-1 bg-purple_primary rounded-full  font-semibold text-center media-max-600px:text-[22px] '>Eligibility Requirements</h1>
   </div>
 
-  <h1 className='capitalize text-[25px] text-black my-6 font-bold'>Validity - 5 Years</h1>
+  <h1 className='capitalize text-[25px] text-black my-6 font-bold'>Validity - {validity} Years</h1>
 
 <div className='media-max-545px:text-[14px] text-justify'>
 
@@ -306,7 +306,7 @@ const EssPageComponent = ({id,title_page,image_path,title_form_one,title_form_tw
     {/* White Professionally Qualified */}
 
     {
-      id==='aqp'&&(
+      id==='pqp'&&(
         <>
 
 <p className='mb-4 text-justify'>Building Services Engineers who meet the corporate membership standards of SKILLcard-approved Professional Bodies are eligible for this card.</p>
@@ -332,7 +332,7 @@ const EssPageComponent = ({id,title_page,image_path,title_form_one,title_form_tw
 
 
 {
-  id==='pqp'&&(
+  id==='aqp'&&(
     <>
 <p className='mb-4 text-justify'>This card is available to Building Services Engineers who hold an identified SKILLcard approved academic qualification.</p>
 <p className='mb-4 text-justify'>
@@ -340,6 +340,31 @@ Applicants must provide proof of an academic qualification approved by SKILLcard
 <p>All applicants must meet the SKILLcard health and safety requirements.</p>
 </>
   )
+}
+
+
+{
+  id==='acrib'&&(
+    <>
+    <p>Applicants must hold appropriate qualifications, for example:</p>
+<ul>
+  <li className="flex items-start mb-2">
+    <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />City and Guilds 2079 (Cat1)</li>
+  <li className="flex items-start mb-2">
+    <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />BESA FG Cat1</li>
+    <li className="flex items-start mb-2">
+    <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />Appropriate unit of NVQ or 7189 as recognised by DEFRA</li>
+    <li className="flex items-start mb-2">
+    <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />Logic 603/1917/3 (Cat1)</li>
+</ul>
+<p className='mb-4 text-justify'>Cards can also feature additional refrigeration related qualifications such as those covering brazing, electrical and REAL Zero.</p>
+<p>The Engineering Services SKILLcard and the Air Conditioning and Refrigeration Industry Board (ACRIB) jointly offer the ACRIB/SKILLcard, a construction-related occupation card for registered operatives competent in handling refrigerants.</p>
+</>
+  )
+
+
+
+
 }
 
 

@@ -65,6 +65,7 @@ const ApplyEssCscsForm = ({form_type}) => {
       {id:9, value: 'White Professionally Qualified Person', component: <CardForList image_path="/ess-white-pqp-img.png" title="White Professionally Qualified Person" description="This card is available to members of ESS approved Professional Bodies."/> },
   
       {id:10, value: 'White Academically Qualified Person', component: <CardForList image_path="/ess-white-aqp-img.png" title="White Academically Qualified Person" description="For anyone with a construction degree, HND, HNC, CIOB Certificate, or NEBOSH diploma."/> },
+      {id:11, value: 'White ACRIB Refrigerant Handler', component: <CardForList image_path="/ess-white-acrib-img.png" title="White ACRIB Refrigerant Handler" description="For anyone with City & Guilds 2079 (Cat1), BESA FG Cat1, an NVQ unit recognized by DEFRA, or Logic 603/1917/3 (Cat1)."/> },
     ];
   
 

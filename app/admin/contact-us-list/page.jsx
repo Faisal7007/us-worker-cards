@@ -58,12 +58,12 @@ const page = () => {
 
      user.submitType==='auto'
    
-    
-      
     )
   })   
 
- let total = contactedData.length
+
+
+  let total = contactedData.length
   auto =  autoFilterdData.length
   let manually =total-auto
 

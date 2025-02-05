@@ -99,7 +99,18 @@ const items=[
         know_more_link:"/ess-card/aqp",
         apply_now_link:"/apply-card-for/ess"
 
+    },
+    {   
+        id:11,
+        image_path:"/ess-white-acrib-img.png",
+        title:"ESS White Card - ACRIB Refrigerant Handler",
+        description:"For anyone with City & Guilds 2079 (Cat1), BESA FG Cat1, an NVQ unit recognized by DEFRA, or Logic 603/1917/3 (Cat1).",
+        validity:"3 Years",
+        know_more_link:"/ess-card/acrib",
+        apply_now_link:"/apply-card-for/ess"
+
     }
+
 ]
 
 export default items
