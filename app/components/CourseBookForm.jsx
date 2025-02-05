@@ -21,11 +21,25 @@ const CscsForm = () => {
 
   const [agreed, setAgreed] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const dropdownRef = useRef(null);
   const firestore = useFirebase()
 
 
-
+const reset=()=>{
+  setFormData({
+    title: "",
+    firstName: "",
+    middleName: "",
+    lastName: "",
+    assessmentDate: "",
+    nationalInsuranceNumber: "",
+    phoneNumber: "",
+    email: "",
+    applicationMode: "",
+    location: ""
+  })
+}
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -36,8 +50,8 @@ const CscsForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    firestore.applyForHealthAndSafetyCourse(formData.title, formData.firstName, formData.middleName, formData.lastName, formData.nationalInsuranceNumber, formData.phoneNumber, formData.email, formData.applicationMode, formData.assessmentDate, formData.location)
-    // console.log("Form Data:", formData);
+    firestore.applyForHealthAndSafetyCourse(formData.title, formData.firstName, formData.middleName, formData.lastName, formData.nationalInsuranceNumber, formData.phoneNumber, formData.email, formData.applicationMode, formData.assessmentDate, formData.location,setIsSubmitting)
+    reset()
   };
 
 
@@ -257,9 +271,9 @@ const CscsForm = () => {
                 <option value="" disabled>
                   Please select the test location
                 </option>
-                <option value="Mr">Location 1</option>
-                <option value="Ms">Location 2</option>
-                <option value="Mrs">Location 3</option>
+                <option value="Location 1">Location 1</option>
+                <option value="Location 2">Location 2</option>
+                <option value="Location 3">Location 3</option>
               </select>
             </div>
           </div> : ''
@@ -289,7 +303,7 @@ const CscsForm = () => {
             : "bg-[#854c75] text-white cursor-not-allowed"
           }`}
       >
-        <span className="ml-2">Move Forward</span>
+        <span className="ml-2">{isSubmitting?"Submitting...":"Move Forward"}</span>
         <MdArrowRight className="size-6" />
       </button>
     </form>

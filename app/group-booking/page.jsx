@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import { MdArrowRight } from 'react-icons/md';
 import { useFirebase } from '../context/Firebase';
+import { ToastContainer } from 'react-toastify';
 
 const page = () => {
       const [formData, setFormData] = useState({
@@ -41,6 +42,7 @@ const page = () => {
       };
   return (
     <div className='max-w-[1440px] mx-auto px-4 pt-8'>
+    <ToastContainer/>
          <h1 className='text-[30px] font-bold mb-4 capitalize'>Details for Group Booking</h1>
          <p className='text-justify mb-6'>Please provide the details below so we can contact you to arrange bookings for multiple delegates for the <span className='font-bold'>Health and Safety Test, course, or CSCS Card.</span> Discounts are available for group bookings.</p>
          {/* Form */}

@@ -100,6 +100,13 @@ const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
           </div>
 
           <div onClick={() => { setIsSidebarOpen(!isSidebarOpen) }}>
+            <Link href="/admin/group-booking-list" className={`p-2 rounded flex items-center gap-2 ${isActive('/admin/group-booking-list') ? 'bg-gray-700' : 'hover:bg-gray-700'}`}>
+              <LuNotebookTabs className="text-xl" />
+              <span className='text-[18px]'>Group Booking List</span>
+            </Link>
+          </div>
+
+          <div onClick={() => { setIsSidebarOpen(!isSidebarOpen) }}>
             <Link href="/admin/contact-us-list" className={`p-2 rounded flex items-center gap-2 ${isActive('/admin/contact-us-list') ? 'bg-gray-700' : 'hover:bg-gray-700'}`}>
               <RiContactsBook3Line className="text-xl" />
               <span className='text-[18px]'>Contact-Us Messages</span>

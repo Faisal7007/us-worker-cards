@@ -30,7 +30,11 @@ const ApplicantsTable = ({ userData, isLoading, form_type,setUserData}) => {
             router.push(`/admin/cscs-ess-applicants-details/${id}`);
         } else if (form_type === 'health-and-safety-course') {
             router.push(`/admin/health-and-safety-course-applicants-details/${id}`);
-        } else {
+        } else if (form_type==='group-booking'){
+            router.push(`/admin/group-booking-applicants-details/${id}`);
+            
+        }
+        else {
             router.push(`/admin/citb-applicants-details/${id}`);
         }
         setIsViewing(false);
@@ -44,7 +48,7 @@ const ApplicantsTable = ({ userData, isLoading, form_type,setUserData}) => {
 
     const handleDeleteSelected = async() => {
       
-        // 
+     
 
         if (selectedUsers.length === 0) {
           toast.error("No messages selected for deletion!");
@@ -66,7 +70,17 @@ const ApplicantsTable = ({ userData, isLoading, form_type,setUserData}) => {
             await firebase.deleteCitbApplications(selectedUsers,setIsDeleting)
             setSelectedUsers([]);
           }
-      
+
+          else if (form_type === "health-and-safety-course") {
+            await firebase.deleteHealthAndSafetyApplications(selectedUsers,setIsDeleting)
+            setSelectedUsers([]);
+          }
+
+          else if (form_type === "group-booking") {
+            await firebase.deleteGroupBookings(selectedUsers,setIsDeleting)
+            setSelectedUsers([]);
+          }
+
           setUserData((prevData) =>
             prevData.filter((user) => !selectedUsers.includes(user.id))
           );
@@ -82,13 +96,15 @@ const ApplicantsTable = ({ userData, isLoading, form_type,setUserData}) => {
 
     return (
         <div className="overflow-x-auto">
-            <button 
-                onClick={handleDeleteSelected} 
-                className="mb-2 px-4 py-2 bg-red-500 text-white rounded disabled:opacity-50" 
-                disabled={selectedUsers.length === 0}
-            >
-                Delete Selected
-            </button>
+            {selectedUsers.length > 0 && (
+        <button
+          className="mb-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+          onClick={handleDeleteSelected}
+        >
+          {isDeleting?"Deleting...":"Delete Selected"} ({selectedUsers.length})
+        </button>
+      )}
+           
             <table className="min-w-full table-auto border-collapse border border-gray-300">
                 <thead>
                     <tr className="bg-gray-100">

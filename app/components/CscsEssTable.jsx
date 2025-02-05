@@ -169,8 +169,11 @@ const CscsEssTable = ({ userData, isLoading,form_type,setUserData}) => {
                 <td className="border border-gray-300 px-4 py-2 flex gap-2 items-center">
                   {index + 1}
                   <p
-                    className={`before:content-['•'] before:${user.submitType === "auto" ? "text-orange-500" : "text-green-500"} before:text-2xl before:mr-2`}
-                  ></p>
+  className={`before:content-['•'] before:text-2xl before:mr-2 ${
+    user.submitType === "auto" ? "before:text-orange-500" : "before:text-green-500"
+  }`}
+></p>
+
                 </td>
                 <td className="border border-gray-300 px-4 py-2">{user.firstName}</td>
                 <td className="border border-gray-300 px-4 py-2">{user.lastName}</td>

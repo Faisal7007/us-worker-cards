@@ -609,8 +609,8 @@ const fetchCitbApplicantById = async (userId, setApplicant) => {
   }
 };
 
-      const applyForHealthAndSafetyCourse = async (title,firstName,middleName,lastName,nationalInsuranceNumber,phoneNumber,email,courseMode,assessmentDate,location) => {
-
+      const applyForHealthAndSafetyCourse = async (title,firstName,middleName,lastName,nationalInsuranceNumber,phoneNumber,email,courseMode,assessmentDate,location,setIsSubmitting) => {
+        setIsSubmitting(true)
         try {
           const data = {
             title,
@@ -633,7 +633,12 @@ const fetchCitbApplicantById = async (userId, setApplicant) => {
         } catch (error) {
           toast("Error adding data!");
         }
+        finally{
+          setIsSubmitting(false)
+        }
       };
+
+
 
 const fetchHealthAndSafetyApplicants = async (setApplicants,setIsLoading) => {
   try {
@@ -671,6 +676,34 @@ const fetchHealthAndSafetyApplicantById = async (userId,setApplicant,setIsLoadin
     toast.error("Error fetching applicant!");
   }
 };
+
+
+
+const deleteHealthAndSafetyApplications = async (selectedIds, setIsDeleting) => {
+  if (selectedIds.length === 0) {
+    toast.error("No applications selected for deletion!");
+    return;
+  }
+
+  setIsDeleting(true);
+  const batch = writeBatch(firestore);
+
+  try {
+    selectedIds.forEach((id) => {
+      const docRef = doc(firestore, "health-and-safety-course-applicants/all-applicants/users", id);
+      batch.delete(docRef);
+    });
+
+    await batch.commit();
+    toast.success("Selected applications deleted successfully!");
+  } catch (error) {
+    console.error("Error deleting Health and Safety applications:", error);
+    toast.error("Error deleting applications!");
+  } finally {
+    setIsDeleting(false);
+  }
+};
+
        
       const fetchApplicantsData = async (setApplicants) => {
         try {
@@ -702,11 +735,11 @@ const fetchHealthAndSafetyApplicantById = async (userId,setApplicant,setIsLoadin
     
           await addDoc(docRef, data);
   
-          toast.success("Form data submitted successfully!");
+          toast.success("Form submitted successfully!");
           // console.log("Data added to Firestore:", data);
         } catch (error) {
           // console.error("Error adding form data to Firestore:", error);
-          toast.error("Error submitting form data!");
+          toast.error("Error submitting form !");
         } finally {
           setIsSubmitting && setIsSubmitting(false); 
         }
@@ -743,6 +776,36 @@ const fetchGroupBookingById = async (userId, setApplicant) => {
     toast.error("Error fetching applicant!");
   }
 };
+
+
+
+const deleteGroupBookings = async (selectedIds, setIsDeleting) => {
+  if (selectedIds.length === 0) {
+    toast.error("No bookings selected for deletion!");
+    return;
+  }
+
+  setIsDeleting && setIsDeleting(true);
+  const batch = writeBatch(firestore);
+
+  try {
+    selectedIds.forEach((id) => {
+      const docRef = doc(firestore, "group-booking", id);
+      batch.delete(docRef);
+    });
+
+    await batch.commit();
+    toast.success("Selected group bookings deleted successfully!");
+  } catch (error) {
+    console.error("Error deleting group bookings:", error);
+    toast.error("Error deleting bookings!");
+  } finally {
+    setIsDeleting && setIsDeleting(false);
+  }
+};
+
+
+
 
 const addContactUs = async (formValues, setIsLoading) => {
   try {
@@ -887,7 +950,7 @@ const deleteContactUsMessages = async (ids, setIsDeleting) => {
       };
 
   return (
-    <FirebaseContext.Provider value={{ addCscsData,AutoaddCscsData,addEssData,AutoaddEssData,deleteCscsData,applyForESSCard,applyForCSCSCard,deleteCscsApplications,deleteEssApplications,applyForCITBTest,deleteCitbApplications,fetchApplicantsData,applyForHealthAndSafetyCourse,fetchHealthAndSafetyApplicants,fetchAllCscsEssData,fetchCscsData,fetchEssData,deleteEssData,fetchCscsEssApplicants,fetchCscsEssApplicantById,fetchCITBTestApplicants,fetchCitbApplicantById,fetchHealthAndSafetyApplicantById,addGroupBooking,fetchGroupBooking,fetchGroupBookingById,addContactUs,autoAddContactUs,fetchContactUsData,fetchContactUsDataById,deleteContactUsMessages,LoginUser,onAuthChange,logOut,ForgotPassword}}>
+    <FirebaseContext.Provider value={{ addCscsData,AutoaddCscsData,addEssData,AutoaddEssData,deleteCscsData,applyForESSCard,applyForCSCSCard,deleteCscsApplications,deleteEssApplications,applyForCITBTest,deleteCitbApplications,fetchApplicantsData,applyForHealthAndSafetyCourse,fetchHealthAndSafetyApplicants,fetchAllCscsEssData,fetchCscsData,fetchEssData,deleteEssData,fetchCscsEssApplicants,fetchCscsEssApplicantById,fetchCITBTestApplicants,fetchCitbApplicantById,fetchHealthAndSafetyApplicantById,deleteHealthAndSafetyApplications,addGroupBooking,fetchGroupBooking,fetchGroupBookingById,deleteGroupBookings,addContactUs,autoAddContactUs,fetchContactUsData,fetchContactUsDataById,deleteContactUsMessages,LoginUser,onAuthChange,logOut,ForgotPassword}}>
       {children}
     </FirebaseContext.Provider>
   );

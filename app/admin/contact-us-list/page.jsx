@@ -31,18 +31,18 @@ const page = () => {
 
     data.forEach((item) => {
       if (!seenEmails.has(item.email)) {
-        seenEmails.add(item.email); // Use email as a unique identifier
-        uniqueData.push(item); // Add unique items to the array
+        seenEmails.add(item.email); 
+        uniqueData.push(item); 
       }
     });
 
     return uniqueData;
   };
 
-  // console.log(contactedData, "Filtered ContactedData");
+
 
   const handleViewDetails = (id) => {
-    // console.log(`View details for ID: ${id}`);
+  
     setViewDetailsId(id)
     router.push(`/admin/contact-us-details/${id}`)
 
@@ -53,9 +53,13 @@ const page = () => {
  
 
   let auto=0
-  let autoFilterdData=  contactedData && contactedData.filter((user)=>{
+  let autoFilterdData=contactedData && contactedData.filter((user)=>{
     return(
-      user.submitType==='auto'
+
+     user.submitType==='auto'
+   
+    
+      
     )
   })   
 
@@ -66,7 +70,6 @@ const page = () => {
 
 
 
-  // Handle checkbox selection
   const handleCheckboxChange = (userId) => {
     setSelectedUsers((prevSelected) =>
       prevSelected.includes(userId)
@@ -75,7 +78,7 @@ const page = () => {
     );
   };
 
-  // Handle select all checkboxes
+
   const handleSelectAll = () => {
     if (selectedUsers.length === contactedData.length) {
       setSelectedUsers([]);
@@ -109,8 +112,6 @@ const page = () => {
     }
   };
   
-
-
 
   return (
     <div className="overflow-x-auto px-4 pt-8">
@@ -177,7 +178,7 @@ const page = () => {
                 <td className="border border-gray-300 px-4 py-2 flex gap-2 items-center">
                   {index + 1}
                   <p
-                    className={`before:content-['•'] before:${user.submitType === "auto" ? "text-orange-500" : "text-green-500"} before:text-2xl before:mr-2`}
+                    className={`before:content-['•'] before:${user.submitType==="auto" ? "text-orange-500" : "text-green-500"} before:text-2xl before:mr-2`}
                   ></p>
                 </td>
                 <td className="border border-gray-300 px-4 py-2">{user.name}</td>
