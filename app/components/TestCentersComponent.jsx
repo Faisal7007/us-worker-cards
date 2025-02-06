@@ -20,7 +20,7 @@ const TradeTestComponent = ({item}) => {
         </p>
         
       </div>
-      <button onClick={()=>handleClick(item.link)} className="mt-4 w-full bg-purple_primary  text-white font-medium py-2 rounded-lg hover:bg-[#84286a] transition duration-300">
+      <button onClick={()=>handleClick(item.link)} className="mt-4 w-full bg-purple_primary  text-white font-medium py-2 rounded-lg hover:bg-[#84286a] transition duration-300 media-max-545px:text-[14px]">
         Book Test in {item.button_text}
       </button>
     </div>
