@@ -507,7 +507,7 @@ const deleteEssApplications = async (formType, selectedIds) => {
         }
       };
 
-      const applyForCITBTest = async (title,firstName,middleName,lastName,dob,nationalInsuranceNumber,phoneNumber,email,fullAddress,locality,city,country,postcode,setIsSubmitting) => {
+      const applyForCITBTest = async (title,firstName,middleName,lastName,dob,nationalInsuranceNumber,phoneNumber,email,fullAddress,locality,city,country,postcode,test_center,setIsSubmitting) => {
         try {
           setIsSubmitting(true)
           const data = {
@@ -524,6 +524,7 @@ const deleteEssApplications = async (formType, selectedIds) => {
             city,
             country,
             postcode,
+            testCenter:test_center,
             createdAt: new Date().toISOString(),
           };
     

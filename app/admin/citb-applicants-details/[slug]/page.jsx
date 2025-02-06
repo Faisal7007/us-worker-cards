@@ -66,14 +66,7 @@ const page = () => {
                 <p className="text-gray-500 font-semibold">National Insurance Number</p>
                 <p>{user.nationalInsuranceNumber}</p>
               </div>
-              {/* <div>
-                <p className="text-gray-500 font-semibold">Application Type</p>
-                <p>{user.applicationType}</p>
-              </div> */}
-              {/* <div>
-                <p className="text-gray-500 font-semibold">Card Type</p>
-                <p>{user.cardType}</p>
-              </div> */}
+             
               <div>
                 <p className="text-gray-500 font-semibold">Created At</p>
                 <p>{new Date(user.createdAt).toLocaleString()}</p>
@@ -93,6 +86,11 @@ const page = () => {
               <div>
                 <p className="text-gray-500 font-semibold">Postcode</p>
                 <p>{user.postcode}</p>
+              </div>
+
+              <div>
+                <p className="text-gray-500 font-semibold">Test Center</p>
+                <p>{user.testCenter}</p>
               </div>
               <div>
                 <p className="text-gray-500 font-semibold">Country</p>

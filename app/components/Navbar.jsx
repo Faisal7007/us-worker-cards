@@ -351,7 +351,7 @@ const Navbar = () => {
             >
 
 <Link
-  href="/citb-test"
+  href="/book-citb-test/default"
   className={`relative  text-white after:content-[''] after:absolute 
     after:left-0 after:bottom-[-2px] after:w-0 after:h-[2px] 
     after:bg-current after:transition-all after:duration-300 

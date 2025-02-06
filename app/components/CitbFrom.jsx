@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { MdArrowRight } from "react-icons/md";
 import { useFirebase } from "../context/Firebase";
 
-const CitbForm = () => {
+const CitbForm = ({test_center}) => {
   const [formData, setFormData] = useState({
     title: "",
     firstName: "",
@@ -54,7 +54,7 @@ const CitbForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    firebase.applyForCITBTest(formData.title,formData.firstName,formData.middleName,formData.lastName,formData.dob,formData.nationalInsuranceNumber,formData.phoneNumber,formData.email,formData.houseNumber,formData.locality,formData.townCity,formData.county,formData.postcode,setIsSubmitting)
+    firebase.applyForCITBTest(formData.title,formData.firstName,formData.middleName,formData.lastName,formData.dob,formData.nationalInsuranceNumber,formData.phoneNumber,formData.email,formData.houseNumber,formData.locality,formData.townCity,formData.county,formData.postcode,test_center,setIsSubmitting)
 
     // console.log("Form Data:", formData);
     reset()

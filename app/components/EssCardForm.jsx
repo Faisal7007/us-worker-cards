@@ -5,7 +5,6 @@ import { useFirebase } from '../context/Firebase';
 import { toast, ToastContainer } from "react-toastify";
 
 const EssCardForm = ({ titleOne, titleTwo, cardType }) => {
-//   const { addDataToFirestore } = useFirebase();
   
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');

@@ -31,7 +31,7 @@ const Footer = () => {
               Important Links
             </h3>
             <div className="space-y-2 text-center sm:text-left media-max-545px:text-justify ">
-              {[{title:'CSCS Card Types',link:'cscs-card-types'}, {title:'Know Your Card',link:'know-your-card'}, {title:'Trade Wise Test',link:'trade-wise-test'}, {title:'Test Center',link:'test-center'}].map((elem) => (
+              {[{title:'CSCS Card Types',link:'cscs-card-types'}, {title:'Know Your Card',link:'know-your-card'}, {title:'Trade Wise Test',link:'trade-wise-test'}, {title:'Test Center',link:'test-centers'}].map((elem) => (
                 <div key={elem.link} className='media-max-545px:text-[14px] media-max-545px:mr-2'>
                   <Link
                     href={`/${elem.link}`}
