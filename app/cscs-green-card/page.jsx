@@ -56,7 +56,7 @@ const Page = () => {
 <SmallCard icon={<FaHardHat className="size-6 text-white" />}
     title="CITB Test(Operatives)"
     button_text="Apply Now"
-    link_to="/citb-test"/>
+    link_to="/book-citb-test/default"/>
 
 <SmallCard icon={<FaAward className="size-6 text-white" />}
     title="Helth & Safety Awareness Course"
@@ -73,7 +73,7 @@ const Page = () => {
 <p className='mb-6 text-justify media-max-545px:text-[14px]'>A labourer card remains valid for five years, however, it cannot be renewed at this time. Once your card expires, you will need to apply for a new one. The cost of booking a CSCS Card is £54, which covers the £36 CSCS fee, booking charges, and VAT.</p>
 
 <h2 className='font-bold text-justify'>Requirements for the Card</h2>
-<p className='mb-2  text-justify media-max-545px:text-[14px]'>Applicants are required to pass the <Link href="/citb-test" className='text-purple_primary font-bold'>CITB Health, Safety, and Environment test for operatives</Link> and possess one of the following :</p>
+<p className='mb-2  text-justify media-max-545px:text-[14px]'>Applicants are required to pass the <Link href="/book-citb-test/default" className='text-purple_primary font-bold'>CITB Health, Safety, and Environment test for operatives</Link> and possess one of the following :</p>
 
 <p className="flex items-start mb-2 text-justify leading-relaxed text-sm media-max-545px:text-[14px] ">
   <FaHardHat className="text-purple_primary mr-2 mt-1 text-base flex-shrink-0 leading-none" />

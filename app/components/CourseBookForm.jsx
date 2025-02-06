@@ -78,7 +78,7 @@ const reset=()=>{
 
       <div className="pt-6">
         <h2 className="text-[25px] bg-purple_primary text-white py-4 font-bold mb-6 text-center">
-          Candidate Undergoing the Test
+          Book Your Course
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-4">
           <div>
