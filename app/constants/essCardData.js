@@ -1,7 +1,7 @@
 const items=[
     {   id:1,
         image_path:"/ess-green-labourer-img.png",
-        title:"ESS Green Card - Labourers",
+        title:"ESS Green Card - Mate",
         description:"For General Labourers and Site Operatives",
         validity:"5 Years",
         know_more_link:"/ess-card/green",

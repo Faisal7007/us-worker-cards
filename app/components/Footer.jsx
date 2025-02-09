@@ -21,7 +21,7 @@ const Footer = () => {
             </Link>
 
             <div className="w-full lg:w-72 sm:w-72 text-justify text-sm md:text-base media-max-545px:text-[14px]">
-              Construction cards services explicitly states that we are not part of, or associated with CSCS or CITB.
+            Construction Cards Services simplifies ordering CSCS and ESS cards for all construction professionals. We provide clear guidance on eligibility, validity, and application steps for a smooth experience.
             </div>
           </div>
 
