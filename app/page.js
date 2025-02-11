@@ -9,6 +9,8 @@ import Link from "next/link";
 import Contact from "./components/Contact";
 import Banner from "./components/Banner";
 import { useFirebase } from "./context/Firebase";
+import { motion } from "framer-motion";
+
 
 export default function Home() {
 
@@ -18,7 +20,10 @@ export default function Home() {
       <div className="max-w-[1440px] mx-auto px-4 pt-8 media-max-545px:pt-2">
 
         <div className="flex  justify-between items-start gap-10  media-max-982px:flex-col">
-          <div className="flex items-center h-[450px] media-max-982px:hidden   media-max-510px:h-[400px] media-max-470px:h-[380px] media-max-410px:h-[350px]">
+          <motion.div  initial={{ x: -60, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: false,amount:0.4}} className="flex items-center h-[450px] media-max-982px:hidden   media-max-510px:h-[400px] media-max-470px:h-[380px] media-max-410px:h-[350px]">
             <Image
               src="/home-img2.jpg"
               alt="home-image"
@@ -27,8 +32,11 @@ export default function Home() {
               height={1000}
               priority
             />
-          </div>
-          <div className="flex flex-col justify-between ">
+          </motion.div>
+          <motion.div initial={{ x: 50, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: false,amount:0.4}} className="flex flex-col justify-between ">
             <div>
               
               <h1 className="text-[70px] leading-[85px] font-bold text-justify media-max-1336px:text-[60px] media-max-1336px:leading-[80px] media-max-545px:text-[40px] media-max-545px:leading-[70px] media-max-545px:text-start media-max-510px:text-[45px] media-max-510px:leading-[60px]">Complete All Requirements to Secure On-Site Access</h1>
@@ -42,7 +50,7 @@ export default function Home() {
               <Link href="/health-and-safety-awareness" className="bg-purple_primary text-white font-semibold py-2 px-4 rounded-md  border-2 border-transparent hover:border-purple_primary hover:text-purple_primary hover:bg-white transition-all duration-300 media-max-492px:text-[14px] media-max-490px:px-4 media-max-460px:text-[14px] media-max-460px:px-2 media-max-460px:py-2"><span>Health & Safety</span></Link>
               <Link href="/book-citb-test/default" className="bg-purple_primary text-white font-semibold py-2 px-4 rounded-md  border-2 border-transparent hover:border-purple_primary hover:text-purple_primary hover:bg-white transition-all duration-300 media-max-492px:text-[14px] media-max-490px:px-4 media-max-460px:text-[14px] media-max-460px:px-2 media-max-460px:py-2"><span>CITB HS&E </span></Link>
             </div>
-          </div>
+          </motion.div>
         </div>
 
         <div className="mt-16 media-max-545px:mt-12">

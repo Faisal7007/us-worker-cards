@@ -365,13 +365,8 @@ const firebase=useFirebase()
       </div>
             }
 
-
-   
-
-
-
     </div>
-          <div className="h-[100px] ">
+          <div className="h-[100px]">
             <label className="block text-md font-medium mb-4">
               Application Type
             </label>
