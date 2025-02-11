@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaUserShield } from 'react-icons/fa';
-
+import { motion } from 'framer-motion';
 const Footer = () => {
   return (
     <div className='bg-gray-50'>
@@ -11,7 +11,10 @@ const Footer = () => {
       <footer className="bg-gray-50 max-w-[1440px] mx-auto pt-8  text-color_dark_red1">
         <div className=" flex justify-between items-center gap-8 flex-wrap media-max-545px:justify-between">
           {/* Logo and Description */}
-          <div className="flex flex-col items-center lg:items-start space-y-4">
+          <motion.div initial={{ x: -60, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: false,amount:0.4}} className="flex flex-col items-center lg:items-start space-y-4">
             <Link href="/">
               <Image
                 src="/new-logo-color.png"
@@ -25,10 +28,13 @@ const Footer = () => {
             <div className="w-full lg:w-72 sm:w-72 text-justify text-sm md:text-base media-max-545px:text-[14px]">
             Construction Cards Services simplifies ordering CSCS and ESS cards for all construction professionals. We provide clear guidance on eligibility, validity, and application steps for a smooth experience.
             </div>
-          </div>
+          </motion.div>
 
           {/* Important Links */}
-          <div className="flex flex-col items-center sm:items-start">
+          <motion.div  initial={{ x: -60, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: false,amount:0.4}} className="flex flex-col items-center sm:items-start">
             <h3 className="text-lg font-semibold mb-4 text-center sm:text-right media-max-545px:text-[16px]">
               Important Links
             </h3>
@@ -44,9 +50,12 @@ const Footer = () => {
                 </div>
               ))}
             </div>
-          </div>
+          </motion.div>
 
-          <div className="flex flex-col items-center sm:items-start">
+          <motion.div initial={{ x: 50, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: false,amount:0.3}} className="flex flex-col items-center sm:items-start">
             <h3 className="text-lg font-semibold mb-4 text-center  sm:text-left media-max-545px:mr-12 media-max-545px:text-[16px]">
               CSCS Cards
             </h3>
@@ -62,10 +71,13 @@ const Footer = () => {
                 </div>
               ))}
             </div>
-          </div>
+          </motion.div>
 
           {/* Social Media Links */}
-          <div className="relative flex flex-col items-center sm:items-start">
+          <motion.div initial={{ x: 50, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: false,amount:0.3}} className="relative flex flex-col items-center sm:items-start">
             <h3 className="text-lg font-semibold mb-4 text-center sm:text-left">
               Follow Us
             </h3>
@@ -86,7 +98,7 @@ const Footer = () => {
                 </div>
               ))}
             </div>
-            <div className='mt-4 '>
+            <div className='mt-4'>
               <Image
                 height={200}
                 width={200}
@@ -101,7 +113,7 @@ const Footer = () => {
                 <FaUserShield className="size-5 absolute right-16 -bottom-4 "/>
               </Link>
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* Copyright */}
