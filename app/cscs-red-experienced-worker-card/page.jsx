@@ -22,7 +22,7 @@ const Page = () => {
      <p className='text-justify media-max-545px:text-[14px]' >Call <Link href='/' className='text-purple_primary font-semibold hover:text-black '>0203 769 9047</Link> to book by phone. Our lines are open Monday to Saturday, from 9 AM to 7 PM.</p>
 
      <h1 className='text-[20px] font-bold mb-2 mt-8'>Apply online</h1>
-   <p className='text-justify media-max-545px:text-[14px]'>Apply for a CSCS Card easily using our <Link href='/cscs-card-types' className='text-purple_primary font-bold'> online application service.</Link>
+   <p className='text-justify media-max-545px:text-[14px]'>Apply for a CSCS Card easily using our <Link href='/apply-card-for/cscs' className='text-purple_primary font-bold'> online application service.</Link>
     </p>
 
 {/* Form */}
@@ -47,14 +47,14 @@ const Page = () => {
 <div className='flex justify-center mt-8'>
     <div className=" flex gap-10">
 <SmallCard icon={<FaHardHat className="size-6 text-white" />}
-    title="CITB Test(Operatives)"
+    title="CITB Test"
     button_text="Apply Now"
-    link_to="/citb-test"/>
+    link_to="/book-citb-test/default"/>
 
 <SmallCard icon={<FaAward className="size-6 text-white" />}
-    title="Helth & Safety Awareness Course"
+    title="NVQ Level 2(Enrollment)"
     button_text="Apply Now"
-    link_to="/health-and-safety-awareness"/>
+    link_to="/nvq-level-2"/>
 </div>
 </div>
 
@@ -65,9 +65,9 @@ const Page = () => {
 <p className='mb-4'>This card is non-renewable. Cardholders must complete their qualification before it expires and then apply for a Skilled CSCS Card.</p>
 
 <p className='text-justify mb-6'>This temporary card is available specifically for workers with at least one year of on-the-job experience within the last three years, who are registered to complete a Construction-Related NVQ or SVQ Level 2 or higher that is acceptable for a CSCS card.</p>
-<p className='mb-6'>For more information about registering(enrollment) for NVQ Level 2, please visit <Link href="/#" className='text-purple_primary font-bold'>NVQ Level 2.</Link></p>
+<p className='mb-6'>For more information about registering(enrollment) for NVQ Level 2, please visit <Link href="/nvq-level-2" className='text-purple_primary font-bold'>NVQ Level 2.</Link></p>
 
-<p className='mb-6 text-justify'>Applicants must have passed the appropriate level of the CITB Health, Safety, and Environment test within the last two years. The test must be taken at the relevant level for the occupation being applied for. To determine the required test level, please use our <Link href="#" className='text-purple_primary font-bold'>Test Finder.</Link> The CSCS card booking costs £54, which includes the £36 CSCS fee, booking fee, and VAT.</p>
+<p className='mb-6 text-justify'>Applicants must have passed the appropriate level of the CITB Health, Safety, and Environment test within the last two years. The test must be taken at the relevant level for the occupation being applied for. To determine the required test level, please use our <Link href="/trade-wise-test" className='text-purple_primary font-bold'>Test Finder.</Link> The CSCS card booking costs £54, which includes the £36 CSCS fee, booking fee, and VAT.</p>
 
 <p className='text-justify mb-2'>Experienced Worker card applicants must be able to provide proof of registration onto their NVQ/SVQ qualification. As a minimum, you are required to provide evidence from your Training Organisation awarding body that must include:</p>
 

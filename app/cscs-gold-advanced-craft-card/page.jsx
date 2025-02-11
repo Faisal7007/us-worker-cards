@@ -17,7 +17,7 @@ const Page = () => {
      <p className=' text-justify media-max-545px:text-[14px]'>Call <Link href='/' className='text-purple_primary font-semibold hover:text-black '>0203 769 9047</Link> to book by phone. Our lines are open Monday to Saturday, from 9 AM to 7 PM.</p>
 
      <h1 className='text-[20px] font-bold mb-2 mt-8'>Apply online</h1>
-   <p className='media-max-545px:text-[14px] text-justify'>Apply for a CSCS Card easily using our <Link href='/cscs-card-types' className='text-purple_primary font-bold '> online application service.</Link>
+   <p className='media-max-545px:text-[14px] text-justify'>Apply for a CSCS Card easily using our <Link href='/apply-card-for/cscs' className='text-purple_primary font-bold '> online application service.</Link>
     </p>
 
 {/* Form */}
@@ -39,7 +39,7 @@ const Page = () => {
 <div className='mt-8'>
 <h1 className='capitalize text-[25px] text-black mb-6 font-bold'>Validity - 5 Years</h1>
 
-<p className='mb-6 text-justify media-max-545px:text-[14px]'>Applicants must have passed the appropriate level of the <Link href="#" className='text-purple_primary font-bold'>CITB Health, Safety, and Environment test</Link> within the last two years. The test must be taken at the relevant level for the occupation being applied for. To determine the required test level, please use our <Link href="#" className='text-purple_primary font-bold'>Test Finder.</Link> The CSCS card booking fee is £54, which includes the £36 CSCS fee, as well as the booking fee and VAT.</p>
+<p className='mb-6 text-justify media-max-545px:text-[14px]'>Applicants must have passed the appropriate level of the <Link href="/book-citb-test/default" className='text-purple_primary font-bold'>CITB Health, Safety, and Environment test</Link> within the last two years. The test must be taken at the relevant level for the occupation being applied for. To determine the required test level, please use our <Link href="/trade-wise-test" className='text-purple_primary font-bold'>Test Finder.</Link> The CSCS card booking fee is £54, which includes the £36 CSCS fee, as well as the booking fee and VAT.</p>
 
 <p className='text-justify media-max-545px:text-[14px] mb-2'>This card is available if you have either:</p>
 

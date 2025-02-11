@@ -356,7 +356,7 @@ const Navbar = () => {
     after:left-0 after:bottom-[-2px] after:w-0 after:h-[2px] 
     after:bg-current after:transition-all after:duration-300 
     hover:after:w-full media-max-935px:hover:after:w-[70px] media-max-1022px:hover:after:w-[70px] media-max-935px:mb-2 media-max-1022px:mb-2 ${
-      pathname === "/citb-test" ? "after:w-full media-max-935px:after:w-[70px] media-max-1022px:after:w-[70px] underline-offset-2" : ""
+      pathname === "/book-citb-test/default" ? "after:w-full media-max-935px:after:w-[70px] media-max-1022px:after:w-[70px] underline-offset-2" : ""
     }`}
   onClick={handleOptionClick}
 >

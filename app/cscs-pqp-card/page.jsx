@@ -17,7 +17,7 @@ const Page = () => {
      <p className='text-justify media-max-545px:text-[14px]'>Call <Link href='/' className='text-purple_primary font-semibold hover:text-black '>0203 769 9047</Link> to book by phone. Our lines are open Monday to Saturday, from 9 AM to 7 PM.</p>
 
      <h1 className='text-[20px] font-bold mb-2 mt-8'>Apply online</h1>
-   <p className='text-justify media-max-545px:text-[14px]'>Apply for a CSCS Card easily using our <Link href='/cscs-card-types' className='text-purple_primary font-bold '> online application service.</Link>
+   <p className='text-justify media-max-545px:text-[14px]'>Apply for a CSCS Card easily using our <Link href='/apply-card-for/cscs' className='text-purple_primary font-bold '> online application service.</Link>
     </p>
 
 {/* Form */}
@@ -41,7 +41,7 @@ const Page = () => {
 
 <p className='mb-6 text-justify'>This card is available to competence-assessed members of CSCS-approved Professional Bodies and is valid for five years. The CSCS card booking fee is £65, which includes the £36 CSCS fee, booking fee, and VAT.
 
-All applicants are required to pass the <Link href="#" className='text-purple_primary font-bold'>CITB Managers and Professionals Health, Safety, and Environment Test</Link>.
+All applicants are required to pass the <Link href="/citb-test" className='text-purple_primary font-bold'>CITB Managers and Professionals Health, Safety, and Environment Test</Link>.
 </p>
 
 <p className='text-justify mb-2'>

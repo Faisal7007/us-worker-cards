@@ -18,7 +18,7 @@ const page = () => {
       <h1 className='text-[30px] font-bold mb-2 capitalize'>Apply For <span className='uppercase'>{form_type}</span> Card</h1>
     {/* <Link href='#' className='inline-flex items-center text-purple_primary '><IoIosArrowForward/><span>Go to full card types list</span></Link> */}
     <div className='h-[1px] w-full bg-slate-300 my-4'></div>
-    <p>To apply for a <span className='uppercase'>{form_type}</span> Card, the applicant must have completed the CITB HS&E Test within the past two years. If you have not taken the test, <Link href="/citb-test" className='text-purple_primary font-bold'>you can schedule an appointment.</Link></p>
+    <p>To apply for a <span className='uppercase'>{form_type}</span> Card, the applicant must have completed the CITB HS&E Test within the past two years. If you have not taken the test, <Link href="/book-citb-test/default" className='text-purple_primary font-bold'>you can schedule an appointment.</Link></p>
     <div className='mt-6 mb-4'>
     <ApplyEssCscsForm form_type={form_type}/>
     </div>

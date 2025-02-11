@@ -36,11 +36,11 @@ export default function Home() {
               <h2 className="text-[40px] font-semibold text-justify media-max-1212px:text-[30px] media-max-510px:text-[25px] ">Verify credentials and stay compliant with industry standards.</h2>
             </div>
           
-            <div className="flex gap-5 mt-[84px] media-max-1212px:mt-28 media-max-1206px:mt-8 media-max-982px:mt-10 media-max-492px:justify-between">
-              <Link href="/cscs-card-types" className="bg-purple_primary text-white font-semibold py-3 px-6 rounded-md  border-2 border-transparent hover:border-purple_primary hover:text-purple_primary hover:bg-white transition-all duration-300 media-max-492px:text-[14px] media-max-490px:px-4 media-max-460px:text-[14px] media-max-460px:px-2 media-max-460px:py-2"><span>CSCS Card</span></Link>
+            <div className="flex gap-5 mt-[94px] media-max-1212px:mt-28 media-max-1206px:mt-8 media-max-982px:mt-10 media-max-492px:justify-between">
+              <Link href="/cscs-card-types" className="bg-purple_primary text-white font-semibold py-2 px-4 rounded-md  border-2 border-transparent hover:border-purple_primary hover:text-purple_primary hover:bg-white transition-all duration-300 media-max-492px:text-[14px] media-max-490px:px-4 media-max-460px:text-[14px] media-max-460px:px-2 media-max-460px:py-2"><span>CSCS Card</span></Link>
 
-              <Link href="/health-and-safety-awareness" className="bg-purple_primary text-white font-semibold py-3 px-6 rounded-md  border-2 border-transparent hover:border-purple_primary hover:text-purple_primary hover:bg-white transition-all duration-300 media-max-492px:text-[14px] media-max-490px:px-4 media-max-460px:text-[14px] media-max-460px:px-2 media-max-460px:py-2"><span>Health & Safety</span></Link>
-              <Link href="/book-citb-test/default" className="bg-purple_primary text-white font-semibold py-3 px-6 rounded-md  border-2 border-transparent hover:border-purple_primary hover:text-purple_primary hover:bg-white transition-all duration-300 media-max-492px:text-[14px] media-max-490px:px-4 media-max-460px:text-[14px] media-max-460px:px-2 media-max-460px:py-2"><span>CITB HS&E </span></Link>
+              <Link href="/health-and-safety-awareness" className="bg-purple_primary text-white font-semibold py-2 px-4 rounded-md  border-2 border-transparent hover:border-purple_primary hover:text-purple_primary hover:bg-white transition-all duration-300 media-max-492px:text-[14px] media-max-490px:px-4 media-max-460px:text-[14px] media-max-460px:px-2 media-max-460px:py-2"><span>Health & Safety</span></Link>
+              <Link href="/book-citb-test/default" className="bg-purple_primary text-white font-semibold py-2 px-4 rounded-md  border-2 border-transparent hover:border-purple_primary hover:text-purple_primary hover:bg-white transition-all duration-300 media-max-492px:text-[14px] media-max-490px:px-4 media-max-460px:text-[14px] media-max-460px:px-2 media-max-460px:py-2"><span>CITB HS&E </span></Link>
             </div>
           </div>
         </div>
@@ -130,7 +130,7 @@ export default function Home() {
                 <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />
                 <span>
                   Fill out the CITB Test Booking application
-                  <Link href="/citb-test" className="text-purple_primary ml-1 underline">here.</Link>
+                  <Link href="/book-citb-test/default" className="text-purple_primary ml-1 underline">here.</Link>
                 </span>
               </li>
               <li className="flex items-start mb-2 text-justify">

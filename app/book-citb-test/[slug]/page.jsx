@@ -31,7 +31,7 @@ const page = () => {
     
     <div className='h-[1px] w-full bg-slate-300 my-4'></div>
     <h2 className='font-semibold text-justify  media-max-545px:text-[14px]'>The HS&E test from CITB is a key requirement for obtaining a CSCS Card.</h2>
-    <Link href='/' className='text-purple_primary font-semibold hover:text-black media-max-545px:text-[14px] '>More Information here</Link>
+    <Link href='/citb-test' className='text-purple_primary font-semibold hover:text-black media-max-545px:text-[14px] '>More Information here</Link>
 
     <p className='mt-6 text-justify media-max-545px:text-[14px]'>The CITB Health, Safety & Environment Test, also called the CITB Touch Screen Test, is necessary for obtaining or renewing a CSCS Card. The cost of the CITB HS&E Test is £22.50.</p>
     <Link href='/' className='text-purple_primary media-max-545px:text-[14px]'>Not Sure which test to take?</Link>

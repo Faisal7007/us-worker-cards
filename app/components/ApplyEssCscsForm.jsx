@@ -371,7 +371,7 @@ const firebase=useFirebase()
 
 
     </div>
-          <div>
+          <div className="h-[100px] ">
             <label className="block text-md font-medium mb-4">
               Application Type
             </label>
@@ -400,7 +400,25 @@ const firebase=useFirebase()
                 />
                 <span className="ml-2">Stolen</span>
               </label>
+              <label className="flex items-center">
+                <input
+                  type="radio"
+                  name="applicationType"
+                  value="Renew"
+                  checked={formData.applicationType === "Renew"}
+                  onChange={handleChange}
+                  className="w-5 h-5 accent-purple_primary"
+                />
+                <span className="ml-2">Renew</span>
+              </label>
+              
+              
             </div>
+            {
+                formData.applicationType==="Renew"?<div className="text-orange-700 text-sm">
+                Only gold advanced, gold supervisor, blue skilled and black manager, cards are renewable
+              </div>:''
+              }
           </div>
         </div>
       </div>

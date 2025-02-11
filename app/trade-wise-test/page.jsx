@@ -13,7 +13,7 @@ const Page = () => {
 
     <p className='mb-2'>If you fall into any of the categories below, you may need to take a different test:</p>
 
-        <ul className="pl-6 mb-4 text-gray-700 media-max-545px:text-[14px]">
+        <ul className="pl-4 mb-4 text-gray-700 media-max-545px:text-[14px]">
               <li className="flex items-start mb-2 text-justify">
                 <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />
                 <span>Managers or professionals need to take the Managers & Professionals Test for Black or White CSCS Cards.

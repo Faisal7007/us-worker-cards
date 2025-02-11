@@ -20,7 +20,7 @@ const Page = () => {
     <ToastContainer/>
 
     <h1 className='text-[30px] font-bold mb-2 capitalize'>CSCS Green Card</h1>
-    <Link href='cscs-card-types' className='inline-flex items-center text-purple_primary media-max-545px:text-[14px]'><IoIosArrowForward/><span>Go to full card types list</span></Link>
+    <Link href='/cscs-card-types' className='inline-flex items-center text-purple_primary media-max-545px:text-[14px]'><IoIosArrowForward/><span>Go to full card types list</span></Link>
     <div className='h-[1px] w-full bg-slate-300 my-4'></div>
     <h1 className='text-[25px] font-bold mb-2'>How to apply</h1>
     {/* <h1 className='text-[20px] font-bold'>Apply by phone</h1> */}
@@ -28,7 +28,7 @@ const Page = () => {
      <p className='media-max-545px:text-[14px]'>Call <Link href='/' className='text-purple_primary font-semibold hover:text-black '>0203 769 9047</Link> to book by phone. Our lines are open Monday to Saturday, from 9 AM to 7 PM.</p>
 
    <h1 className='text-[20px] font-bold mb-2 mt-8'>Apply online</h1>
-   <p className='media-max-545px:text-[14px]'>Apply for a CSCS Card easily using our <Link href='/cscs-card-types' className='text-purple_primary font-bold'> online application service.</Link>
+   <p className='media-max-545px:text-[14px]'>Apply for a CSCS Card easily using our <Link href='/apply-card-for/cscs' className='text-purple_primary font-bold'> online application service.</Link>
     </p>
 
 {/* Form */}

@@ -5,7 +5,9 @@ import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaUserShield } from 're
 
 const Footer = () => {
   return (
-    <div className='bg-gray-50 pt-8 px-4'>
+    <div className='bg-gray-50'>
+
+    <div className=' max-w-[1440px] mx-auto bg-gray-50 pt-8 px-4'>
       <footer className="bg-gray-50 max-w-[1440px] mx-auto pt-8  text-color_dark_red1">
         <div className=" flex justify-between items-center gap-8 flex-wrap media-max-545px:justify-between">
           {/* Logo and Description */}
@@ -112,6 +114,8 @@ const Footer = () => {
         </div>
       </footer>
     </div>
+    </div>
+
   );
 };
 
