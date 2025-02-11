@@ -54,13 +54,10 @@ export default function Home() {
         </div>
 
         <div className="mt-16 media-max-545px:mt-12">
-
           <div className="text-center ">
             <h2 className="text-[25px] font-bold inline-block  px-4 py-1 bg-purple_primary rounded-full text-white media-max-600px:text-[22px] ">Our Services</h2>
             <p className="text-lg text-gray-600 mt-4 media-max-545px:text-[14px]">Explore the various services we offer to help with your construction and safety needs.</p>
           </div>
-
-
 
           <div className="flex gap-6 justify-between items-center flex-wrap mt-4 media-max-1015px:gap-6 media-max-690px:justify-center media-max-545px:gap-6 media-max-545px:justify-center">
             <motion.div initial={{ x: -60, opacity: 0 }}
