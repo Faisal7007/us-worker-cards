@@ -36,7 +36,7 @@ export default function Home() {
           <motion.div initial={{ x: 50, opacity: 0 }}
         whileInView={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        viewport={{ once: false,amount:0.4}} className="flex flex-col justify-between ">
+        viewport={{ once: false,amount:0.3}} className="flex flex-col justify-between ">
             <div>
               
               <h1 className="text-[70px] leading-[85px] font-bold text-justify media-max-1336px:text-[60px] media-max-1336px:leading-[80px] media-max-545px:text-[40px] media-max-545px:leading-[70px] media-max-545px:text-start media-max-510px:text-[45px] media-max-510px:leading-[60px]">Complete All Requirements to Secure On-Site Access</h1>
