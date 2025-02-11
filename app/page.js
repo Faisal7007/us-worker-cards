@@ -63,7 +63,10 @@ export default function Home() {
 
 
           <div className="flex gap-6 justify-between items-center flex-wrap mt-4 media-max-1015px:gap-6 media-max-690px:justify-center media-max-545px:gap-6 media-max-545px:justify-center">
-            <div>
+            <motion.div initial={{ x: -60, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: false,amount:0.4}}>
               <HomeCard
                 icon={<FaIdCard className="size-8 text-white" />}
                 title="Get a CSCS Card"
@@ -71,9 +74,12 @@ export default function Home() {
                 button_text="Apply Now"
                 link_to="/apply-card-for/cscs"
               />
-            </div>
+            </motion.div>
 
-            <div>
+            <motion.div initial={{ x: -60, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: false,amount:0.4}}>
 
               <HomeCard
                 icon={<MdOutlineLaptopMac className="size-8 text-white" />}
@@ -82,8 +88,11 @@ export default function Home() {
                 button_text="Apply Now"
                 link_to="/citb-test"
               />
-            </div>
-            <div>
+            </motion.div>
+            <motion.div initial={{ x: 50, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: false,amount:0.3}}>
 
 
               <HomeCard
@@ -93,9 +102,12 @@ export default function Home() {
                 button_text="Apply Now"
                 link_to="/course-book"
               />
-            </div>
+            </motion.div>
 
-            <div>
+            <motion.div initial={{ x: 50, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: false,amount:0.3}}>
 
               <HomeCard
                 icon={<FaUsers className="size-8 text-white" />}
@@ -104,7 +116,7 @@ export default function Home() {
                 button_text="Apply Now"
                 link_to="/group-booking"
               />
-            </div>
+            </motion.div>
           </div>
 
 
@@ -115,7 +127,10 @@ export default function Home() {
         </div>
         <div className="flex flex-col lg:flex-row lg:justify-between items-center lg:items-start gap-6 rounded-lg">
 
-          <div className="bg-purple_primary rounded-lg ">
+          <motion.div initial={{ x: -60, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: false,amount:0.4}} className="bg-purple_primary rounded-lg ">
 
             <Image
               src="/citb-img3.png"
@@ -124,9 +139,12 @@ export default function Home() {
               height={400}
               className='rounded-lg h-[380px] w-[660px] media-max-1298px:w-[560px] media-max-600px:w-[100vw] media-max-545px:h-[220px]'
             />
-          </div>
+          </motion.div>
 
-          <div className="w-[660px] media-max-1298px:w-[560px] media-max-600px:w-[100vw] media-max-410px:w-[100vw] media-max-600px:px-4 media-max-410px:px-4 media-max-545px:text-[14px]">
+          <motion.div initial={{ x: 50, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: false,amount:0.3}} className="w-[660px] media-max-1298px:w-[560px] media-max-600px:w-[100vw] media-max-410px:w-[100vw] media-max-600px:px-4 media-max-410px:px-4 media-max-545px:text-[14px]">
             <h2 className="text-[25px] font-bold text-purple_primary text-justify mb-4 media-max-545px:text-[20px]">
               Scheduling Your CITB Health, Safety & Environment Test
             </h2>
@@ -166,25 +184,35 @@ export default function Home() {
               </a>
               .
             </p>
-          </div>
+          </motion.div>
         </div>
 
         <div className="text-center mt-16 mb-8 media-max-545px:mt-12">
           <h2 className="text-[25px] font-bold inline-block  px-4 py-1 bg-purple_primary rounded-full text-white media-max-600px:text-[22px]">Apply for CSCS Card</h2>
         </div>
 
-        <div className="flex flex-col lg:flex-row lg:justify-between items-center lg:items-start gap-6  rounded-lg">
+        <div  className="flex flex-col lg:flex-row lg:justify-between items-center lg:items-start gap-6  rounded-lg">
+           
+           <motion.div initial={{ x: -60, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: false,amount:0.4}}>
 
-          <Image
+          <Image 
             src={`/green-card-img.png`}
             alt='card-image'
             width={800}
             height={400}
             className='rounded-lg h-[380px] w-[660px] media-max-1298px:w-[560px] media-max-600px:w-[100vw] media-max-545px:h-[220px]'
           />
+           </motion.div>
 
 
-          <div className="w-[660px] media-max-1298px:w-[560px] media-max-600px:w-[100vw] media-max-410px:w-[100vw] media-max-600px:px-4 media-max-410px:px-4 media-max-545px:text-[14px]">
+
+          <motion.div initial={{ x: 50, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: false,amount:0.3}} className="w-[660px] media-max-1298px:w-[560px] media-max-600px:w-[100vw] media-max-410px:w-[100vw] media-max-600px:px-4 media-max-410px:px-4 media-max-545px:text-[14px]">
 
 
             <ul className="mb-4 text-gray-700">
@@ -239,7 +267,7 @@ export default function Home() {
 
 
 
-          </div>
+          </motion.div>
         </div>
 
 

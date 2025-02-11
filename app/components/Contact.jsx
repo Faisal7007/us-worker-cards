@@ -6,6 +6,7 @@ import { IoLocation } from "react-icons/io5";
 import ContactUsBanner from "./ContactUsBanner";
 import { useFirebase } from "../context/Firebase";
 import { toast, ToastContainer } from "react-toastify";
+import { motion } from "framer-motion";
 
 function Contact({no_banner}) {
 
@@ -163,7 +164,10 @@ function Contact({no_banner}) {
      
       <div className="pb-10 bg-gray-50 flex flex-col lg:flex-row justify-between items-start gap-10">
         {/* Address Section */}
-        <div className="w-full lg:w-1/2 space-y-6">
+        <motion.div initial={{ x: -60, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: false,amount:0.4}} className="w-full lg:w-1/2 space-y-6">
           <div className="text-2xl text-purple_primary sm:text-3xl font-semibold">Come, meet us!</div>
           <div className="text-lg inline-flex items-center text-gray-600"><IoIosMail className="size-8 mr-4 text-purple_primary"/>support@constructioncardservices.com</div>
           <br />
@@ -184,10 +188,13 @@ function Contact({no_banner}) {
               </iframe>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Contact Form Section */}
-        <div className="w-full lg:w-1/2 space-y-4">
+        <motion.div initial={{ x: 50, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: false,amount:0.3}} className="w-full lg:w-1/2 space-y-4">
          
           <div className="text-2xl text-purple_primary sm:text-3xl font-semibold"> Message us here, we’ll get back to you soon!</div>
          
@@ -268,7 +275,7 @@ function Contact({no_banner}) {
               </button>
             </form>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
     </div>
