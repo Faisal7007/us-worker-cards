@@ -255,7 +255,7 @@ background: linear-gradient(0deg, rgb(143, 8, 150) 0%, rgb(120, 2, 130) 100%);
       display: none;
     }
 
-    html, body {
+    body {
       overflow-x: hidden;
     }
     
