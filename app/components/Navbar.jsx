@@ -315,7 +315,7 @@ const Navbar = () => {
   
 
   return (
-    <div className="bg-purple_primary  sticky top-0 z-50 shadow-lg">
+    <div className="bg-purple_primary fixed min-w-[100vw] top-0 right-0 z-50 shadow-lg">
       <div className="max-w-[1440px] mx-auto px-4">
         <nav className="flex items-center justify-between py-4">
           {/* Logo */}
