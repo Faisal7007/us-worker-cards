@@ -949,123 +949,340 @@ const items=[
     },
     {   
         id:'136',
-        title:"Plymouth Test Center",
-        address:"Princess Court, 1st Floor, Princess Street, Plymouth, PL1 2EX",
-        button_text:"Plymouth",
-        link:"book-citb-test/Plymouth"
+        title:"Reading Test Center",
+        address:"2nd Floor, Havell House, 62-66 Queens Road, Reading, RG1 4AZ",
+        button_text:"Reading",
+        link:"book-citb-test/Reading"
     },
     {   
         id:'137',
-        title:"Plymouth Test Center",
-        address:"Princess Court, 1st Floor, Princess Street, Plymouth, PL1 2EX",
-        button_text:"Plymouth",
-        link:"book-citb-test/Plymouth"
+        title:"Redditch Test Center",
+        address:"Second Floor, Grosvenor House, Prospect Hill, Redditch, B97 4DL",
+        button_text:"Redditch",
+        link:"book-citb-test/Redditch"
     },
     {   
         id:'138',
-        title:"Plymouth Test Center",
-        address:"Princess Court, 1st Floor, Princess Street, Plymouth, PL1 2EX",
-        button_text:"Plymouth",
-        link:"book-citb-test/Plymouth"
+        title:"Rhyl Test Center",
+        address:"Pearson Centre - Rhyl, 3 Bodfor Street, Rhyl, LL18 1AS",
+        button_text:"Rhyl",
+        link:"book-citb-test/Rhyl"
     },
     {   
         id:'139',
-        title:"Plymouth Test Center",
-        address:"Princess Court, 1st Floor, Princess Street, Plymouth, PL1 2EX",
-        button_text:"Plymouth",
-        link:"book-citb-test/Plymouth"
+        title:"Salford Test Center",
+        address:"Unit 1A, Ground Floor, Sovereign Point, 31 The Quays, Salford Quays, Salford, M50 3AX",
+        button_text:"Salford",
+        link:"book-citb-test/Salford"
     },
     {   
         id:'140',
-        title:"Plymouth Test Center",
-        address:"Princess Court, 1st Floor, Princess Street, Plymouth, PL1 2EX",
-        button_text:"Plymouth",
-        link:"book-citb-test/Plymouth"
+        title:"Salisbury Test Center",
+        address:"Suite 104, Ground Floor, Warner House, 123 Castle Street, Salisbury, SP1 3TB",
+        button_text:"Salisbury",
+        link:"book-citb-test/Salisbury"
     },
     {   
         id:'141',
-        title:"Plymouth Test Center",
-        address:"Princess Court, 1st Floor, Princess Street, Plymouth, PL1 2EX",
-        button_text:"Plymouth",
-        link:"book-citb-test/Plymouth"
+        title:"Scarborough Test Center",
+        address:"Suite 229-230, St Nicholas Street, Scarborough, YO11 2HF",
+        button_text:"Scarborough",
+        link:"book-citb-test/Scarborough"
     },
     {   
         id:'142',
-        title:"Plymouth Test Center",
-        address:"Princess Court, 1st Floor, Princess Street, Plymouth, PL1 2EX",
-        button_text:"Plymouth",
-        link:"book-citb-test/Plymouth"
+        title:"Scunthorpe Test Center",
+        address:"Haldenby House (Unit 2A) Doncaster Road Scunthorpe DN15 7DQ",
+        button_text:"Scunthorpe",
+        link:"book-citb-test/Scunthorpe"
     },
     {   
         id:'143',
-        title:"Plymouth Test Center",
-        address:"Princess Court, 1st Floor, Princess Street, Plymouth, PL1 2EX",
-        button_text:"Plymouth",
-        link:"book-citb-test/Plymouth"
+        title:"Sheffield Test Center",
+        address:"Orchard House, 3rd Floor, Leopold Street, Sheffield, S1 2GY",
+        button_text:"Sheffield",
+        link:"book-citb-test/Sheffield"
     },
     {   
         id:'144',
-        title:"Plymouth Test Center",
-        address:"Princess Court, 1st Floor, Princess Street, Plymouth, PL1 2EX",
-        button_text:"Plymouth",
-        link:"book-citb-test/Plymouth"
+        title:"Shrewsbury Test Center",
+        address:"Suite 2, Canon Court West, Abbey Lawn, Abbey Foregate, Shrewsbury, SY2 5DE",
+        button_text:"Shrewsbury",
+        link:"book-citb-test/Shrewsbury"
     },
     {   
         id:'145',
-        title:"Plymouth Test Center",
-        address:"Princess Court, 1st Floor, Princess Street, Plymouth, PL1 2EX",
-        button_text:"Plymouth",
-        link:"book-citb-test/Plymouth"
+        title:"Sidcup Test Center",
+        address:"Planwell House, LEFA Business Park, Edgington Way, Sidcup (London), DA14 5BH",
+        button_text:"Sidcup",
+        link:"book-citb-test/Sidcup"
     },
     {   
         id:'146',
-        title:"Plymouth Test Center",
-        address:"Princess Court, 1st Floor, Princess Street, Plymouth, PL1 2EX",
-        button_text:"Plymouth",
-        link:"book-citb-test/Plymouth"
+        title:"Skipton Test Center",
+        address:"Suite 3 First floor High St House (access via Newmarket St)High St Skipton BD23 2HU",
+        button_text:"Skipton",
+        link:"book-citb-test/Skipton"
     },
     {   
         id:'147',
-        title:"Plymouth Test Center",
-        address:"Princess Court, 1st Floor, Princess Street, Plymouth, PL1 2EX",
-        button_text:"Plymouth",
-        link:"book-citb-test/Plymouth"
+        title:"Slough Test Center",
+        address:"Brooklands House, Brookland Business Centre, Petersfield Avenue, Slough, SL2 5DY",
+        button_text:"Slough",
+        link:"book-citb-test/Slough"
     },
     {   
         id:'148',
-        title:"Plymouth Test Center",
+        title:"Southampton Test Center",
         address:"Princess Court, 1st Floor, Princess Street, Plymouth, PL1 2EX",
-        button_text:"Plymouth",
-        link:"book-citb-test/Plymouth"
+        button_text:"Southampton",
+        link:"book-citb-test/Southampton"
     },
     {   
         id:'149',
-        title:"Plymouth Test Center",
-        address:"Princess Court, 1st Floor, Princess Street, Plymouth, PL1 2EX",
-        button_text:"Plymouth",
-        link:"book-citb-test/Plymouth"
+        title:"Southend Test Center",
+        address:"2nd Floor, Dencora Court, Tylers Avenue, Southend-on-Sea, SS1 2BB",
+        button_text:"Southend",
+        link:"book-citb-test/Southend"
     },
     {   
         id:'150',
-        title:"Plymouth Test Center",
-        address:"Princess Court, 1st Floor, Princess Street, Plymouth, PL1 2EX",
-        button_text:"Plymouth",
-        link:"book-citb-test/Plymouth"
+        title:"Southgate Test Center",
+        address:"1st Floor, Crown House, 47 Chase Side, Southgate (London), N14 5BP",
+        button_text:"Southgate",
+        link:"book-citb-test/Southgate"
     },
     {   
         id:'151',
-        title:"Plymouth Test Center",
-        address:"Princess Court, 1st Floor, Princess Street, Plymouth, PL1 2EX",
-        button_text:"Plymouth",
-        link:"book-citb-test/Plymouth"
+        title:"Southport Test Center",
+        address:"Suite 6, Gordon House, 3-5 Leicester Street, Southport, PR9 0ER",
+        button_text:"Southport",
+        link:"book-citb-test/Southport"
     },
     {   
         id:'152',
-        title:"Plymouth Test Center",
-        address:"Princess Court, 1st Floor, Princess Street, Plymouth, PL1 2EX",
-        button_text:"Plymouth",
-        link:"book-citb-test/Plymouth"
+        title:"Southwark Test Center",
+        address:"10 Holyrood Street, Southwark, London, SE1 2EL",
+        button_text:"Southwark",
+        link:"book-citb-test/Southwark"
     },
+    {   
+        id:'153',
+        title:"St Helens Test Center",
+        address:"2nd Floor, Century House, Hardshaw Street, St Helens, WA10 1QU",
+        button_text:"St Helens",
+        link:"book-citb-test/St-Helens"
+    },
+    {   
+        id:'154',
+        title:"Staines Test Center",
+        address:"First Floor, 11-17 Kingston Road, Staines, TW18 4QX",
+        button_text:"Staines",
+        link:"book-citb-test/Staines"
+    },
+    {   
+        id:'155',
+        title:"Stevenage Test Center",
+        address:"Middlesex House Meadway Technology Park Rutherford Close Stevenage SG1 2EF",
+        button_text:"Stevenage",
+        link:"book-citb-test/Stevenage"
+    },
+    {   
+        id:'156',
+        title:"Stirling Test Center",
+        address:"Hillside House Suite 1A Laurelhill Business Park Stirling FK7 9JQ",
+        button_text:"Stirling",
+        link:"book-citb-test/Stirling"
+    },
+    {   
+        id:'157',
+        title:"Stockport Test Center",
+        address:"Ground Floor, Kingsgate, Wellington Road North, Stockport, SK4 1LW",
+        button_text:"Stockport",
+        link:"book-citb-test/Stockport"
+    },
+    {   
+        id:'158',
+        title:"Stoke on Trent Test Center",
+        address:"Unit 8A, Whittle Court, Town Road Business Quarter, Hanley, Stoke-on-Trent, ST1 2QE",
+        button_text:"Stoke on Trent ",
+        link:"book-citb-test/Stoke-On-Trent "
+    },
+    {   
+        id:'159',
+        title:"Stornoway Test Center",
+        address:"Caladh Inn, 11 James Street, Stornoway, HS1 2QN",
+        button_text:"Stornoway",
+        link:"book-citb-test/Stornoway"
+    },
+    {   
+        id:'160',
+        title:"Stranraer Test Center",
+        address:"The Millennium Centre, 75 George Street, Stranraer, DG9 7JP",
+        button_text:"Stranraer",
+        link:"book-citb-test/Stranraer"
+    },
+    {   
+        id:'161',
+        title:"Stratford Upon Avon Test Center",
+        address:"2nd Floor, Packwood House, Guild Street, Stratford-Upon-Avon, CV37 6RP",
+        button_text:"Stratford Upon Avon",
+        link:"book-citb-test/Stratford-Upon-Avon"
+    },
+    {   
+        id:'162',
+        title:"Sunderland Test Center",
+        address:"2nd Floor, Havelock Buildings, High Street West, Sunderland, SR1 1TZ",
+        button_text:"Sunderland",
+        link:"book-citb-test/Sunderland"
+    },
+    {   
+        id:'163',
+        title:"Sutton Coldfield Test Center",
+        address:"Ground Floor, 31-33 Birmingham Road, Sutton Coldfield, B72 1QE",
+        button_text:"Sutton Coldfield",
+        link:"book-citb-test/Sutton Coldfield"
+    },
+    {   
+        id:'164',
+        title:"Swansea Test Center",
+        address:"2nd Floor, Grove House, 3 Grove Place, Swansea, SA1 5DF",
+        button_text:"Swansea",
+        link:"book-citb-test/Swansea"
+    },
+    {   
+        id:'165',
+        title:"Swindon Test Center",
+        address:"Ambrose House, Ground Floor, South Suite, 30-33 Milton Road, Swindon, SN1 5JA",
+        button_text:"Swindon",
+        link:"book-citb-test/Swindon"
+    },
+    {   
+        id:'166',
+        title:"Tarbert Test Center",
+        address:"Templer Arts and Leisure Centre, Harbour Street, Tarbert, PA29 6UD",
+        button_text:"Tarbert",
+        link:"book-citb-test/Tarbert"
+    },
+    {   
+        id:'167',
+        title:"Taunton Test Center",
+        address:"Ground Floor, Victoria House, Victoria Street, Taunton, TA1 3FA",
+        button_text:"Taunton",
+        link:"book-citb-test/Taunton"
+    },
+    {   
+        id:'168',
+        title:"Tongue Test Center",
+        address:"The Tongue Hotel, Tongue, Sutherland, IV27 4XD",
+        button_text:"Tongue",
+        link:"book-citb-test/Tongue"
+    },
+    {   
+        id:'169',
+        title:"Torquay Test Center",
+        address:"Castle Circus House, Rooms 36-38, 136 Union Street, Torquay, TQ2 5QB",
+        button_text:"Torquay",
+        link:"book-citb-test/Torquay"
+    },
+    {   
+        id:'170',
+        title:"Truro Test Center",
+        address:"Palace Buildings, Quay Street, Truro, TR1 2HE",
+        button_text:"Truro",
+        link:"book-citb-test/Truro"
+    },
+    {   
+        id:'171',
+        title:"Tunbridge Wells Test Center",
+        address:"Foundation House, Coach and Horses Passage, The Pantiles, Royal Tunbridge Wells, TN2 5NP",
+        button_text:"Tunbridge Wells",
+        link:"book-citb-test/Tunbridge-Wells"
+    },
+    {   
+        id:'172',
+        title:"Ullapool Test Center",
+        address:"Macphail Centre, Ullapool High School, Mill Street, Ullapool, IV26 2UN",
+        button_text:"Ullapool",
+        link:"book-citb-test/Ullapool"
+    },
+    {   
+        id:'173',
+        title:"Uxbridge Test Center",
+        address:"5-7 Pantiles Walk, Pavilions Shopping Centre, Uxbridge, UB8 1LP",
+        button_text:"Uxbridge",
+        link:"book-citb-test/Uxbridge"
+    },
+    {   
+        id:'174',
+        title:"Watford Test Center",
+        address:"1st Floor, Cassiobury House, 11-19 Station Road, Watford, WD17 1AP",
+        button_text:"Watford",
+        link:"book-citb-test/Watford"
+    },
+    {   
+        id:'175',
+        title:"Weymouth Test Center",
+        address:"Phoenix House, St. Nicholas Street, Weymouth, DT4 8AA",
+        button_text:"Weymouth",
+        link:"book-citb-test/Weymouth"
+    },
+    {   
+        id:'176',
+        title:"Wick Test Center",
+        address:"Wick Harbour, End of the Fish Mart, Wick, KW1 5HB",
+        button_text:"Wick",
+        link:"book-citb-test/Wick"
+    },
+    {   
+        id:'177',
+        title:"Wigan Test Center",
+        address:"Ground & Basement 38 - 40 Market Street Wigan WN1 1HX",
+        button_text:"Wigan",
+        link:"book-citb-test/Wigan"
+    },
+    {   
+        id:'178',
+        title:"Wolverhampton Test Center",
+        address:"2nd Floor, Derwent House, 42-46 Waterloo Road, Wolverhampton, WV1 4XB",
+        button_text:"Wolverhampton",
+        link:"book-citb-test/Wolverhampton"
+    },
+    {   
+        id:'179',
+        title:"Worcester Test Center",
+        address:"3rd Floor, Haswell House, Block B1, St. Nicholas Street, Worcester, WR1 1UN",
+        button_text:"Worcester",
+        link:"book-citb-test/Worcester"
+    },
+    {   
+        id:'180',
+        title:"Wrexham Test Center",
+        address:"Unit 7, 3 Henblas Street, Wrexham, LL13 8AE",
+        button_text:"Wrexham",
+        link:"book-citb-test/Wrexham"
+    },
+    {   
+        id:'181',
+        title:"Worthing Test Center",
+        address:"Pearson Professional Centres, Unit 2, Chatsworth House, 39 Chatsworth Road, Worthing, BN11 1LY",
+        button_text:"Worthing",
+        link:"book-citb-test/Worthing"
+    },
+    {   
+        id:'182',
+        title:"Yeovil Test Center",
+        address:"The Coach House, Ground Floor, St Nicholas Close, Penn Hill, Yeovil, BA20 1SF",
+        button_text:"Yeovil",
+        link:"book-citb-test/Yeovil"
+    },
+    {   
+        id:'183',
+        title:"York Test Center",
+        address:"Stirling House, Station Business Park, Holgate Park Drive, York, YO26 4GB",
+        button_text:"York",
+        link:"book-citb-test/York"
+    }
    ]
 
 export default items
