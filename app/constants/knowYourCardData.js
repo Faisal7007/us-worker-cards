@@ -3,7 +3,7 @@ const items=[
         card_type:'Red trainee card',
         test_requirement:'Operative test',
         image_path:'/red-trainee-img.png',
-        training_requirement:'NVQ Level2 (Enrollment)'
+        training_requirement:'NVQ Enrollment'
     },
     {
   
@@ -11,7 +11,7 @@ const items=[
         card_type:'Red Experienced worker (Temporary card)',
         test_requirement:'Operative test',
         image_path:'/red-experienced-worker-card-img.png',
-        training_requirement:'NVQ Level2 (Enrollment)'
+        training_requirement:'NVQ Enrollment'
     },
     {
         card_type:'Red Experienced technicial, supervisor or manager',
@@ -53,7 +53,7 @@ const items=[
         card_type:'Labourer Card',
         test_requirement:'Operative test',
         image_path:'/green-card-img.png',
-        training_requirement:'QVF Level1/SCQF Level4 Awand in Health & Safety in a constructionn environment'
+        training_requirement:'Level 1 / SCQF Level 4 Awand in Health & Safety in a constructionn environment'
     }
 ]
 

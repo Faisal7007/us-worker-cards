@@ -7,7 +7,6 @@ import Footer from "./components/Footer";
 import { MyProvider } from "./context-api/MyProvider";
 import { FirebaseProvider } from "./context/Firebase";
 import FooterConRender from "./components/FooterConRender"
-
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import NavConRender from "./components/NavConRender";
@@ -45,18 +44,16 @@ export default function RootLayout({ children }) {
       <body
         className={` ${geistSans.variable} ${geistMono.variable} ${allison_init.variable}  antialiased `}
       >
-            <MyProvider>
-
-        <ChakraProvider>
-          {/* <ToastContainer /> */}
-          <NavConRender/>
-          <FirebaseProvider>
+        <MyProvider>
+          <ChakraProvider>
+            {/* <ToastContainer /> */}
+            <NavConRender />
+            <FirebaseProvider>
               {children}
-          </FirebaseProvider>
-          <FooterConRender/>
-        </ChakraProvider>
+            </FirebaseProvider>
+            <FooterConRender />
+          </ChakraProvider>
         </MyProvider>
-
       </body>
     </html>
   );

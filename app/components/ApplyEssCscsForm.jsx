@@ -411,7 +411,7 @@ const firebase=useFirebase()
             </div>
             {
                 formData.applicationType==="Renew"?<div className="text-orange-700 text-sm">
-                Only gold advanced, gold supervisor, blue skilled and black manager, cards are renewable
+                Only Gold advanced, Gold supervisor, Blue skilled and Black manager, cards are renewable
               </div>:''
               }
           </div>
