@@ -167,7 +167,7 @@ function Contact({no_banner}) {
         <motion.div initial={{ x: -60, opacity: 0 }}
         whileInView={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        viewport={{ once: false,amount:0.4}} className="w-full lg:w-1/2 space-y-6">
+        viewport={{ once: false,amount:0.4}} className="w-full lg:w-1/2 space-y-6 overflow-x-hidden">
           <div className="text-2xl text-purple_primary sm:text-3xl font-semibold">Come, meet us!</div>
           <div className="text-lg inline-flex items-center text-gray-600"><IoIosMail className="size-8 mr-4 text-purple_primary"/>support@constructioncardservices.com</div>
           <br />

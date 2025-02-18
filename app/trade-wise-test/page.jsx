@@ -1,9 +1,20 @@
-import React from 'react';
-import TradeTestComponent from '../components/TradeTestComponent';
+"use client"
+import React, { useState } from 'react';
 import { FaHardHat } from 'react-icons/fa';
 import items from '../constants/tradeWiseTestData';
+import SearchInput from '../components/SearchInput'
+import TradeTestComponent from '../components/TradeTestComponent'
 
 const Page = () => {
+  const [search, setSearch] = useState("");
+  const filteredItems = items
+  .filter((item) => item.title.toLowerCase().includes(search.toLowerCase())) // Match all
+  .sort((a, b) => {
+    const query = search.toLowerCase();
+    const aStarts = a.title.toLowerCase().startsWith(query);
+    const bStarts = b.title.toLowerCase().startsWith(query);
+    return bStarts - aStarts; // Prioritize items starting with search term
+  });
   return (
     <div className="max-w-[1440px] mx-auto px-4 py-8 media-max-545px:text-[14px]">
       <h1 className='text-[30px] font-bold'>Find the right CSCS card and test for you.</h1>
@@ -47,11 +58,25 @@ const Page = () => {
               </li>
 
             </ul>
-      <div className=" mt-8 grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
+      {/* <div className=" mt-8 grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
         {items && items.map((item, index) => (
           <TradeTestComponent key={index} item={item} />
         ))}
-      </div>
+      </div> */}
+                  <SearchInput search={search} setSearch={setSearch} />
+      
+      <div className=" mt-8 grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
+            {
+
+                filteredItems.length>0? filteredItems.map((item)=>{
+                    return(
+                        <TradeTestComponent key={item.id} item={item}/>
+                    )
+                })
+                : <p className="text-gray-500 mt-2">No results found</p>
+
+            }
+                </div>
     </div>
   );
 };

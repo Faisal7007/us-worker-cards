@@ -254,13 +254,15 @@ background: linear-gradient(0deg, rgb(143, 8, 150) 0%, rgb(120, 2, 130) 100%);
     .vertical-scrollbar::-webkit-scrollbar{
       display: none;
     }
+
+
     html, body {
-      overflow-x: hidden; /* Prevents horizontal scroll */
-      min-height: 100vh;  /* Ensures full height */
+      overflow-x: hidden;
+      min-height: 100vh;  
     }
     
-    body {
-      overflow-y: auto; /* Allows scrolling */
+    html, body {
+      overflow-y: auto; 
     }
     
     

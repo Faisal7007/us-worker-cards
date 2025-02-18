@@ -1161,7 +1161,7 @@ const items=[
               link: '/book-citb-test/default'
             },
             { 
-              id:'160',
+              id:'169',
               title: 'Fascia, Soffit and Bargeboard Installer',
               test_required: 'Operative',
               card_available: 'Blue Skilled Worker',
@@ -2308,8 +2308,679 @@ const items=[
               card_available: 'Blue Skilled Worker, Gold Advanced Craft',
               link: '/book-citb-test/default'
             },
+            { 
+              id:'333',
+              title: 'Shopfitter Benchwork',
+              test_required: 'Operative',
+              card_available: 'Blue Skilled Worker, Green Labourer, Gold Advanced Craft',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'334',
+              title: 'Shopfitter Sitefixer',
+              test_required: 'Operative',
+              card_available: 'Red Trainee, Blue Skilled Worker, Green Labourer, Gold Advanced Craft',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'335',
+              title: 'Shotfiring Operator',
+              test_required: 'Operative',
+              card_available: 'Gold Advanced Craft',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'336',
+              title: 'Sign Installer - Illuminated',
+              test_required: 'Operative',
+              card_available: 'Blue Skilled Worker, Gold Advanced Craft',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'337',
+              title: 'Sign Installer - Non Illuminated',
+              test_required: 'Operative',
+              card_available: 'Blue Skilled Worker, Gold Advanced Craft',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'338',
+              title: 'Sign Maintenance/Repair Operative',
+              test_required: 'Working at Height Test',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'339',
+              title: 'Single Ply Roofer',
+              test_required: 'Working at Height Test',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'340',
+              title: 'Site Logistics - General',
+              test_required: 'Operative',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'341',
+              title: 'Site Logistics - Plant',
+              test_required: 'Operative',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'342',
+              title: 'Site Technical Assistant',
+              test_required: 'Supervisors Test',
+              card_available: 'Gold Supervisor',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'343',
+              title: 'Spatial Data Manager',
+              test_required: 'Managers and Professionals',
+              card_available: 'Black Manager',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'344',
+              title: 'Specialist Cladding and Rainscreen Operative',
+              test_required: 'Operative',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'345',
+              title: 'Specialist Operative - Sprayed Concrete',
+              test_required: 'Operative',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'346',
+              title: 'Specialist Operative - Sprayed Concrete',
+              test_required: 'Operative',
+              card_available: 'Gold Advanced Craft',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'347',
+              title: 'Specialist Operative: Concrete Placer',
+              test_required: 'Operative',
+              card_available: 'Gold Advanced Craft',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'348',
+              title: 'Specialist Operative: Concrete Repairer',
+              test_required: 'Operative',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'349',
+              title: 'Specialist Operative: Drainlayer',
+              test_required: 'Operative',
+              card_available: 'Gold Advanced Craft',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'350',
+              title: 'Specialist Operative: General',
+              test_required: 'Operative',
+              card_available: 'Gold Advanced Craft',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'351',
+              title: 'Specialist Operative: Highways Maintenance',
+              test_required: 'Operative',
+              card_available: 'Gold Advanced Craft',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'352',
+              title: 'Specialist Operative: Land Drilling',
+              test_required: 'Operative',
+              card_available: 'Gold Advanced Craft',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'353',
+              title: 'Specialist Operative: Pavior',
+              test_required: 'Operative',
+              card_available: 'Gold Advanced Craft',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'354',
+              title: 'Specialist Operative: Piling',
+              test_required: 'Operative',
+              card_available: 'Gold Advanced Craft',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'355',
+              title: 'Specialist Operative: Spray Concretor',
+              test_required: 'Operative',
+              card_available: 'Gold Advanced Craft',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'356',
+              title: 'Specialist Operative: Tunnelling',
+              test_required: 'Operative',
+              card_available: 'Gold Advanced Craft',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'357',
+              title: 'Specialist Rendering Operative',
+              test_required: 'Operative',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'358',
+              title: 'Specialist Restorer: Historic Sturctures',
+              test_required: 'Operative',
+              card_available: 'Gold Advanced Craft',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'359',
+              title: 'Spoil Removal Equipment Operative',
+              test_required: 'Operative',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'360',
+              title: 'Sprayed Concrete Lining Tunnelling Operative',
+              test_required: 'Operative',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'361',
+              title: 'Stairlift Engineer',
+              test_required: 'Operative',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'362',
+              title: 'Steel Erector',
+              test_required: 'Operative',
+              card_available: 'Blue Skilled Worker, Gold Advanced Craft',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'363',
+              title: 'Steel Fabricator - Plater',
+              test_required: 'Operative',
+              card_available: 'Blue Skilled Worker, Gold Advanced Craft',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'364',
+              title: 'Steel Fabricator - Welder',
+              test_required: 'Operative',
+              card_available: 'Blue Skilled Worker, Gold Advanced Craft',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'365',
+              title: 'Steelfixer',
+              test_required: 'Operative',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'366',
+              title: 'Steeplejack',
+              test_required: 'Working At Height Test',
+              card_available: 'Blue Skilled Worker, Gold Advanced Craft',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'367',
+              title: 'Sticker Operative (Plaster Board/Ceiling)',
+              test_required: 'Operative',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'368',
+              title: 'Stone Cladding Installer',
+              test_required: 'Working At Height Test',
+              card_available: 'Blue Skilled Worker, Gold Advanced Craft',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'369',
+              title: 'Stone Fixer',
+              test_required: 'Operative',
+              card_available: 'Blue Skilled Worker, Red Trainee',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'370',
+              title: 'Stonemason: Banker',
+              test_required: 'Operative',
+              card_available: 'Red Trainee, Gold Advanced Craft',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'371',
+              title: 'Stonemason: Banker',
+              test_required: 'Operative',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'372',
+              title: 'Stonemason: Banker/ Fixer',
+              test_required: 'Operative',
+              card_available: 'Red Trainee',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'373',
+              title: 'Stonemason: Banker/ Fixer',
+              test_required: 'Operative',
+              card_available: 'Gold Advanced Craft',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'374',
+              title: 'Stonemason: Fixer',
+              test_required: 'Operative',
+              card_available: 'Red Trainee, Gold Advanced Craft',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'375',
+              title: 'Stonemason: Fixer',
+              test_required: 'Operative',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'376',
+              title: 'Stonemason: Marble and Granite',
+              test_required: 'Operative',
+              card_available: 'Blue Skilled Worker, Red Trainee, Gold Advanced Craft',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'377',
+              title: 'Stonemason: Setter Out',
+              test_required: 'Operative',
+              card_available: 'Red Trainee, Gold Advanced Craft',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'378',
+              title: 'Structural Post and Beam Carpenter',
+              test_required: 'Operative',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'379',
+              title: 'Structural Repairer - Reinforcement',
+              test_required: 'Operative',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'380',
+              title: 'Stud Welder',
+              test_required: 'Working at Height Test',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'381',
+              title: 'Sub-Structure Operative - Preformed Piles',
+              test_required: 'Operative',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'382',
+              title: 'Sub-Structure Operative - Retaining Structures',
+              test_required: 'Operative',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'383',
+              title: 'Surveying Assistant (General Practice)',
+              test_required: 'Managers and Professionals',
+              card_available: 'White AQP, White PQP',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'384',
+              title: 'Surveying Assistant (General Practice)',
+              test_required: 'Supervisors Test',
+              card_available: 'Gold Supervisor',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'385',
+              title: 'Suspended Access Equipment Installer',
+              test_required: 'Working at Height Test',
+              card_available: 'Blue Skilled Worker, Gold Advanced Craft',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'386',
+              title: 'Tacker Operative (Plaster Board)',
+              test_required: 'Operative',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'387',
+              title: 'Tank Cleaner',
+              test_required: 'Operative',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'388',
+              title: 'Technical Designer (Built Environment)',
+              test_required: 'Supervisors Test',
+              card_available: 'Gold Supervisor',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'389',
+              title: 'Telecoms Cable Layer',
+              test_required: 'Operative',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'390',
+              title: 'Temporary Excavation Support Operative',
+              test_required: 'Operative',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'391',
+              title: 'Temporary Industrial Rope Access Installer',
+              test_required: 'Working at Height Test',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'392',
+              title: 'Temproary Traffic Management Operative',
+              test_required: 'Operative',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'393',
+              title: 'Terrazzo, Marble, Granite Installer',
+              test_required: 'Operative',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'394',
+              title: 'Timber Frame Erector',
+              test_required: 'Working At Height Test',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'395',
+              title: 'Tinsmith',
+              test_required: 'Working At Height Test',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'396',
+              title: 'Tower Crane Erector',
+              test_required: 'Operative',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'397',
+              title: 'Town Planning Assistant',
+              test_required: 'Supervisors Test',
+              card_available: 'Gold Supervisor',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'398',
+              title: 'Town Planning Practitioner',
+              test_required: 'Managers and Professionals',
+              card_available: 'Black Manager',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'399',
+              title: 'Transportation Assistant',
+              test_required: 'Supervisors Test',
+              card_available: 'Gold Supervisor',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'400',
+              title: 'Transportation Practitioner',
+              test_required: 'Managers and Professionals',
+              card_available: 'Black Manager',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'401',
+              title: 'Tunnel Transport Operative',
+              test_required: 'Tunnelling Test',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'402',
+              title: 'Tunneller',
+              test_required: 'Tunnelling Test',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'403',
+              title: 'Tunneller - Hand Miner',
+              test_required: 'Tunnelling Test',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'404',
+              title: 'Tunneller - Machine Miner',
+              test_required: 'Tunnelling Test',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'405',
+              title: 'Tunneller - NATM Miner',
+              test_required: 'Tunnelling Test',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'406',
+              title: 'Tunneller - Pipejacking/Micro Tunnelling Miner',
+              test_required: 'Tunnelling Test',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'407',
+              title: 'Tunneller - Shaft Miner',
+              test_required: 'Tunnelling Test',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'408',
+              title: 'Tunnelling Machine Operator',
+              test_required: 'Tunnelling Test',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'409',
+              title: 'Tunnelling Operative - Electricians Mate',
+              test_required: 'Tunnelling Test',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'410',
+              title: 'Tunnelling Services Operative',
+              test_required: 'Tunnelling Test',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'411',
+              title: 'Underpinner',
+              test_required: 'Operative',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'412',
+              title: 'Upholsterer',
+              test_required: 'Operative',
+              card_available: 'Blue Skilled Worker, Gold Advanced Craft',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'413',
+              title: 'Utilities Mapping Surveyor',
+              test_required: 'Supervisors Test',
+              card_available: 'Gold Supervisor',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'414',
+              title: 'Utilities Mapping Technician',
+              test_required: 'Operative',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'415',
+              title: 'Velocity Patcher',
+              test_required: 'Operative',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'416',
+              title: 'Wall and Floor Tiler',
+              test_required: 'Operative',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'417',
+              title: 'Wall and Floor Tiler',
+              test_required: 'Operative',
+              card_available: 'Gold Advanced Craft',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'418',
+              title: 'Water Jetter - Cutting & Breaking',
+              test_required: 'Operative',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'419',
+              title: 'Water Jetter - Drains and Sewers',
+              test_required: 'Operative',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'420',
+              title: 'Water Jetter - Surface Cleaning',
+              test_required: 'Operative',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'421',
+              title: 'Water Jetter - Tube Cleaning',
+              test_required: 'Operative',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'422',
+              title: 'Water Mains Layer',
+              test_required: 'Operative',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'423',
+              title: 'Water Services Layer',
+              test_required: 'Operative',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'424',
+              title: 'Wet Pour Rubber Surface Operative',
+              test_required: 'Operative',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'425',
+              title: 'Wood Machinist',
+              test_required: 'Operative',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'426',
+              title: 'Wood Machinist',
+              test_required: 'Operative',
+              card_available: 'Gold Advanced Craft',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'427',
+              title: 'Wood Preserver/ Damp Proofer',
+              test_required: 'Operative',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            },
+            { 
+              id:'428',
+              title: 'Work Surface Installer',
+              test_required: 'Operative',
+              card_available: 'Blue Skilled Worker',
+              link: '/book-citb-test/default'
+            }
 
-            
 ]
 
 export default items
