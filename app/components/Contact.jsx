@@ -155,7 +155,7 @@ function Contact({no_banner}) {
 
 
   return (
-    <div className="bg-gray-50 mt-[102px]">
+    <div className={`bg-gray-50 ${no_banner?"mt-0":"mt-[102px]"}`}>
  {
         no_banner?"":<ContactUsBanner/>
       }
