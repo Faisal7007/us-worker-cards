@@ -76,20 +76,21 @@ const Footer = () => {
           <motion.div initial={{ x: 50, opacity: 0 }}
         whileInView={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        viewport={{ once: false,amount:0.3}} className="relative flex flex-col items-center sm:items-start">
+        viewport={{ once: false,amount:0.3}} className="relative flex flex-col items-center  media-max-545px:justify-end">
+        <div className='media-max-545px:ml-4  '>
             <h3 className="text-lg font-semibold mb-4 text-center sm:text-left">
               Follow Us
             </h3>
             <div className="flex space-x-4 justify-center sm:justify-start">
               {[
-                { icon: <FaFacebook size={24} />, link: 'https://facebook.com' },
-                { icon: <FaTwitter size={24} />, link: 'https://twitter.com' },
-                { icon: <FaInstagram size={24} />, link: 'https://instagram.com' },
-                { icon: <FaLinkedin size={24} />, link: 'https://linkedin.com' },
+                { icon: <FaFacebook size={18}  />, link: 'https://facebook.com' },
+                { icon: <FaTwitter size={18} />, link: 'https://twitter.com' },
+                { icon: <FaInstagram size={18} />, link: 'https://instagram.com' },
+                { icon: <FaLinkedin size={18} />, link: 'https://linkedin.com' },
               ].map(({ icon, link }, index) => (
                 <div
                   key={index}
-                  className="h-10 w-10 flex justify-center items-center text-white bg-purple_primary rounded-full hover:text-purple_primary  hover:bg-white transition-all duration-300"
+                  className="h-8 w-8 flex justify-center items-center text-white bg-purple_primary rounded-full hover:text-purple_primary  hover:bg-white transition-all duration-300"
                 >
                   <a href={link} target="_blank" rel="noopener noreferrer">
                     {icon}
@@ -97,22 +98,24 @@ const Footer = () => {
                 </div>
               ))}
             </div>
-            <div className='mt-4'>
+            <div className='mt-4 h-12 media-max-545px:ml-12'>
               <Image
                 height={200}
                 width={200}
                 alt='payment-image'
                 src="/payment-img.png"
-                className='h-20 media-max-545px:h-16 mr-16'
+                className='h-full media-max-545px:h-full mr-16'
               />
             </div>
 
             <div className="mt-2 ">
               <Link href="/admin" className="flex items-center justify-center gap-2 text-gray-600 hover:text-gray-800">
-                <FaUserShield className="size-5 absolute right-16 -bottom-4 "/>
+                <FaUserShield className="size-5 absolute left-40 -bottom-4 "/>
               </Link>
             </div>
+        </div>
           </motion.div>
+          
         </div>
 
         {/* Copyright */}
