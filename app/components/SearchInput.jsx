@@ -19,7 +19,7 @@ export default function SearchTestCenter({search,setSearch}) {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         
-        className="flex-1 border rounded-lg p-2 shadow-sm"
+        className="flex-1 border-2 border-purple_primary  rounded-lg p-2 shadow-sm"
       />
       <button 
         onClick={handleSearch} 

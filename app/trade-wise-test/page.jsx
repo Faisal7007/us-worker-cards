@@ -58,11 +58,7 @@ const Page = () => {
         </li>
 
       </ul>
-      {/* <div className=" mt-8 grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
-        {items && items.map((item, index) => (
-          <TradeTestComponent key={index} item={item} />
-        ))}
-      </div> */}
+      <div className='h-[1px] w-full bg-slate-300 my-6'></div>
       <SearchInput search={search} setSearch={setSearch} />
 
       <div className=" mt-8 grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">

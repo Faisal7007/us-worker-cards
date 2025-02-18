@@ -19,7 +19,7 @@ const page = () => {
         <div className='max-w-[1440px] mx-auto px-4 pt-8 mt-[102px]'>
             <h1 className='text-[30px] font-bold mb-2 capitalize'>Test Centers</h1>
             <p className='text-justify'>Find a nearby test center and book your CITB Health, Safety, and Environment Test (also known as the CITB Touch Screen Test), which is required to apply for a CSCS Card.</p>
-            <div className='h-[1px] w-full bg-slate-300 my-4'></div>
+            <div className='h-[1px] w-full bg-slate-300 my-6'></div>
             <SearchInput search={search} setSearch={setSearch} />
             <div className=" mt-8 grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
                 {
