@@ -18,15 +18,18 @@ export default {
       },
       colors: {
         background: "var(--background)",
-        purple_primary:'#6A1E55',
-        blue_primary:'#7A1CAC',
+        purple_primary: '#6A1E55',
+        // purple_primary: '#B59F78',
+
+        
+        blue_primary: '#7A1CAC',
         foreground: "var(--foreground)",
       },
       fontFamily: {
         smooch: ['"Smooch Sans"', 'sans-serif'],
         slabo: ['"Slabo 27px"', 'serif'],
       },
-      Shadow:{
+      Shadow: {
         custom_shadow: "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)",
       },
       screens: {
@@ -61,8 +64,6 @@ export default {
         "media-max-460px": { max: "460px" },
 
         "media-max-410px": { max: "410px" },
-
-
 
         "between360-545": { min: "360px", max: "545px" },
         "between640-750": { min: "640px", max: "750px" },
