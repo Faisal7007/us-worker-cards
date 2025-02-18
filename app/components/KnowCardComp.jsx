@@ -16,8 +16,8 @@ const KnowCardComp = () => {
                 <tbody>
                     {items.map((item, id) => (
                         <tr key={id} className="border-b border-gray-300 text-sm md:text-base">
-                            <td className="px-4 py-2 border-l-0 border-r-0">{item.card_type}</td>
-                            <td className="px-4 py-2 border-l-0 border-r-0">{item.test_requirement}</td>
+                            <td className="px-4 py-2 border-l-0 border-r-0 capitalize">{item.card_type}</td>
+                            <td className="px-4 py-2 border-l-0 border-r-0 capitalize">{item.test_requirement}</td>
                             <td className="px-4 py-2 flex gap-2 items-center border-l-0 border-r-0">
                                 <Image
                                     src={item.image_path}
