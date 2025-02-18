@@ -52,7 +52,9 @@ const items=[
         card_type:'White Academically Qualified Person',
         test_requirement:'Manager & Professional Test',
         image_path:'/white-academically-qualified-card-img.png',
-        training_requirement:'NVQ Level 2 (Enrollment)'
+        training_requirement:'Construction related degrees, HNDs, HNCs, CIOB Certificates and NEBOSH diplomas.'
+
+    
     },
     {
         card_type:'Labourer Card',
