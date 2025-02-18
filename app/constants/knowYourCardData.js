@@ -12,17 +12,16 @@ const items=[
         training_requirement:'NVQ Enrollment'
     },
     {
-  
         card_type:'Red Provisional Worker (Temporary card)',
         test_requirement:'Operative test',
         image_path:'/red-experienced-worker-card-img.png',
-        training_requirement:'NVQ Enrollment'
+        training_requirement:'CITB Test'
     },
     {
         card_type:'Red Experienced technicial, supervisor or manager',
         test_requirement:'Specialist OR Manager & Professional Test',
         image_path:'/red-supervisor-card-img.png',
-        training_requirement:'NVQ Level 4  or above'
+        training_requirement:'NVQ Level 4 or above'
     },
     {
         card_type:'Blue Skilled Worker',
@@ -31,16 +30,16 @@ const items=[
         training_requirement:'NVQ Level 2'
     },
     {
-        card_type:'Gold Advanced Craft Supervisory',
+        card_type:'Gold Advanced Craft / Gold Supervisory',
         test_requirement:'Operative OR Specialist Test',
         image_path:'/gold-advanced-card-img.png',
-        training_requirement:'NVQ Level 3'
+        training_requirement:'NVQ Level 3 / 4'
     },
     {
         card_type:'Black Manager card',
         test_requirement:'Manager & Professional Test',
         image_path:'/black-manager-card-img.png',
-        training_requirement:'NVQ Level 4 / Level 5 / Level 6'
+        training_requirement:'NVQ Level 4 /  5 /  6'
     },
     {
         card_type:'White Professionally Qualified Person',
