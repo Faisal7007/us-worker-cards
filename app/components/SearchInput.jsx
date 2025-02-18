@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { IoSearch } from "react-icons/io5";
 
-export default function SearchTestCenter({search,setSearch}) {
+export default function SearchTestCenter({search,setSearch,flag}) {
   const [query, setQuery] = useState("");
 
   const handleSearch = () => {
@@ -15,7 +15,7 @@ export default function SearchTestCenter({search,setSearch}) {
     <div className="flex items-center gap-2 w-full max-w-md mx-auto mt-4">
       <input
         type="text"
-        placeholder="Search test center..."
+        placeholder={`${flag==="test-center"?"Search test center...":"Search trade wise test..."}`}
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         
