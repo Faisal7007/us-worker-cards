@@ -3,7 +3,7 @@ import React from 'react'
 
 const page = () => {
     return (
-        <div className='max-w-[1440px] mx-auto px-4 pt-8 text-justify media-max-545px:text-[14px]'>
+        <div className='max-w-[1440px] mx-auto px-4 pt-8 text-justify mt-[102px] media-max-545px:text-[14px]'>
             <h1 className='text-[30px] font-bold mb-2 capitalize'>Privacy Policy</h1>
             <div className='h-[1px] w-full bg-slate-300 my-4'></div>
  <h2 className='font-bold text-justify'>Construction Cards Services Privacy Policy</h2>

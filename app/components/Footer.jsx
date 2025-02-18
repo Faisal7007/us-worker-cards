@@ -110,7 +110,7 @@ const Footer = () => {
 
             <div className="mt-2 ">
               <Link href="/admin" className="flex items-center justify-center gap-2 text-gray-600 hover:text-gray-800">
-                <FaUserShield className="size-4 absolute left-40 -bottom-4 "/>
+                <FaUserShield className="size-4 absolute left-40 -bottom-4"/>
               </Link>
             </div>
         </div>

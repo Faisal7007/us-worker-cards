@@ -13,7 +13,7 @@ const page = () => {
     router.push('/apply-card-for/cscs')
   }
   return (
-    <div className='max-w-[1440px] mx-auto px-4 py-8 text-justify media-max-545px:text-[14px]'>
+    <div className='max-w-[1440px] mx-auto px-4 py-8 mt-[102px] text-justify media-max-545px:text-[14px]'>
         <h1 className='text-[30px] font-bold'>About CSCS Card</h1>
         <div className='h-[1px] w-full bg-slate-300 my-4'></div>
         <p className='mb-4'>CSCS cards serve as proof that applicants working on construction sites have the necessary training and qualifications for their roles. By ensuring the workforce is properly qualified, these cards contribute to enhancing standards and safety on construction sites.</p>

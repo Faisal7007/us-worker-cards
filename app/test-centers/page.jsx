@@ -16,7 +16,7 @@ const page = () => {
     });
 
     return (
-        <div className='max-w-[1440px] mx-auto px-4 pt-8'>
+        <div className='max-w-[1440px] mx-auto px-4 pt-8 mt-[102px]'>
             <h1 className='text-[30px] font-bold mb-2 capitalize'>Test Centers</h1>
              <p className='text-justify'>Find a nearby test center and book your CITB Health, Safety, and Environment Test (also known as the CITB Touch Screen Test), which is required to apply for a CSCS Card.</p>
             <div className='h-[1px] w-full bg-slate-300 my-4'></div>

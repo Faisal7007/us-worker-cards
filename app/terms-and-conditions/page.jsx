@@ -2,7 +2,7 @@ import React from 'react'
 
 const page = () => {
     return (
-        <div className='max-w-[1440px] mx-auto px-4 pt-8 media-max-545px:text-[14px] text-justify'>
+        <div className='max-w-[1440px] mx-auto px-4 pt-8 mt-[102px] media-max-545px:text-[14px] text-justify'>
             <h1 className='text-[30px] font-bold mb-2 capitalize'>Terms and Conditions</h1>
             <div className='h-[1px] w-full bg-slate-300 my-4'></div>
  <h2 className='font-bold text-justify'>Support for Construction Workers Ltd.</h2>
