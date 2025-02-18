@@ -143,13 +143,13 @@ import { useFirebase } from '../context/Firebase';
 const Page = () => {
 
   return (
-    <div className='max-w-[1440px] mx-auto px-4 pt-8'>
+    <div className='max-w-[1440px] mx-auto px-4 pt-8 mt-[102px]'>
       <h1 className='text-[30px] font-bold mb-2 capitalize'>Health & Safety Awareness Course</h1>
       <p className='text-justify media-max-545px:text-[14px] '>
         To obtain a <Link href="cscs-green-card" className='font-bold text-purple_primary'>CSCS Green Labourer</Link> Card you must complete the Level 1 Health and Safety in a Construction Environment course, commonly referred to as the One Day course.
       </p>
       <div className='flex justify-between items-center mt-10 media-max-1360px:flex-col media-max-1360px:gap-8'>
-        <div className='max-h-[380px] max-w-[660px]'>
+        <div className='h-[380px] max-w-[660px] media-max-545px:h-auto'>
           <Image 
             src='/green-card-img.png' 
             alt='card-image' 

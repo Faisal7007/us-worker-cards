@@ -318,7 +318,7 @@ const Navbar = () => {
     <div className="bg-purple_primary fixed min-w-[100vw] top-0 right-0 z-50 shadow-lg">
       <div className="max-w-[1440px] mx-auto px-4">
         <nav className="flex items-center justify-between py-4">
-          {/* Logo */}
+          
           <Link href="/" className="flex items-center">
             <Image
               src={"/new-logo-white.png"}
@@ -328,7 +328,7 @@ const Navbar = () => {
             />
           </Link>
 
-          {/* Mobile Hamburger */}
+          
           <button
             className="text-white text-2xl lg:hidden focus:outline-none"
             onClick={toggleMobileMenu}
@@ -336,7 +336,7 @@ const Navbar = () => {
             {isMobileMenuOpen ? <FaTimes size={28} /> : <FaBars size={28} />}
           </button>
 
-          {/* Desktop & Mobile Menu */}
+         
           
           <div
             className={` flex justify-center media-max-935px:pt-10 media-max-1022px:pt-10  lg:flex lg:items-center lg:space-x-8 ${

@@ -7,7 +7,7 @@ import CardForm from '../components/CardForm';
 import items from '../constants/nvqLevel2Data';
 const Page = () => {
   return (
-    <div className='max-w-[1440px] mx-auto px-4 pt-8'>
+    <div className='max-w-[1440px] mx-auto px-4 pt-8 mt-[102px]'>
       <h1 className='text-[30px] font-bold mb-4 capitalize'>NVQ Level 2 In Construction</h1>
       
       <div className='mb-4 text-justify media-max-545px:text-[14px]'>
@@ -25,7 +25,7 @@ const Page = () => {
       </p>
       
       <div className='flex justify-between items-center mt-10 media-max-1360px:flex-col media-max-1360px:gap-8'>
-        <div className='max-h-[380px] max-w-[660px]'>
+        <div className='h-[380px] max-w-[660px] media-max-545px:h-auto'>
           <Image 
             src='/blue-card-img.png'
             alt='card-image'

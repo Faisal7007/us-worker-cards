@@ -42,8 +42,10 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <link rel="icon" href="./favicon.ico" />
       <body
-        className={` ${geistSans.variable} ${geistMono.variable} ${allison_init.variable}  antialiased `}
+        className={` ${geistSans.variable} ${geistMono.variable} ${allison_init.variable}  antialiased`}
       >
+      <div>
+
         <MyProvider>
           <ChakraProvider>
             {/* <ToastContainer /> */}
@@ -54,6 +56,8 @@ export default function RootLayout({ children }) {
             <FooterConRender />
           </ChakraProvider>
         </MyProvider>
+      </div>
+
       </body>
     </html>
   );

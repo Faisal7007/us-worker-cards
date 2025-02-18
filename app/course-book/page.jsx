@@ -5,7 +5,7 @@ import CourseBookForm from '../components/CourseBookForm'
 
 const page = () => {
   return (
-    <div className='max-w-[1440px] mx-auto px-4 pt-8'>
+    <div className='max-w-[1440px] mx-auto px-4 pt-8 mt-[102px]'>
       <h1 className='text-[30px] font-bold mb-2 capitalize'>Level 1 Health and Safety in a Construction Environment</h1>
       <h2 className='text-[20px] font-bold mb-2 capitalize'>(leads to CSCS Green Labourer Card)</h2>
     <div className='h-[1px] w-full bg-slate-300 my-4'></div>

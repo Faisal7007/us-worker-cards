@@ -14,7 +14,7 @@ const page = () => {
       const form_type = params.slug;
       console.log(form_type,"form_type in slug page")
   return (
-    <div className='max-w-[1440px] mx-auto px-4 pt-8'>
+    <div className='max-w-[1440px] mx-auto px-4 pt-8 mt-[102px]'>
       <h1 className='text-[30px] font-bold mb-2 capitalize'>Apply For <span className='uppercase'>{form_type}</span> Card</h1>
     {/* <Link href='#' className='inline-flex items-center text-purple_primary '><IoIosArrowForward/><span>Go to full card types list</span></Link> */}
     <div className='h-[1px] w-full bg-slate-300 my-4'></div>

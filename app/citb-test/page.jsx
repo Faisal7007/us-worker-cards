@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 const page = () => {
   return (
-    <div className='max-w-[1440px] mx-auto px-4 pt-8'>
+    <div className='max-w-[1440px] mx-auto px-4 pt-8 mt-[102px]'>
       <h1 className='text-[30px] font-bold mb-2 capitalize'>
         CITB HS&E (Health, Safety, and Environment) Test.
       </h1>

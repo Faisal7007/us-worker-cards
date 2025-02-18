@@ -12,7 +12,7 @@ const EssPageComponent = ({id,title_page,image_path,title_form_one,title_form_tw
   console.log(id,'Id in ESS page Component')
 
   return (
-    <div className='max-w-[1440px] mx-auto px-4 pt-8'>
+    <div className='max-w-[1440px] mx-auto px-4 pt-8 mt-[102px]'>
     <h1 className='text-[30px] font-bold mb-2 capitalize'>{title_page}</h1>
     <Link href='/ess-card-types' className='inline-flex items-center text-purple_primary media-max-470px:text-[14px] '><IoIosArrowForward/><span>Go to full card types list</span></Link>
     <div className='h-[1px] w-full bg-slate-300 my-4'></div>

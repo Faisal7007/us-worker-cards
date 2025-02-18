@@ -7,7 +7,7 @@ import { FaHardHat } from 'react-icons/fa';
 
 const Page = () => {
   return (
-    <div className='max-w-[1440px] mx-auto px-4 pt-8'>
+    <div className='max-w-[1440px] mx-auto px-4 pt-8 mt-[102px]'>
     <h1 className='text-[30px] font-bold mb-2 capitalize'>White Academically Qualified Person</h1>
     <Link href='/cscs-card-types' className='inline-flex items-center text-purple_primary media-max-545px:text-[14px] '><IoIosArrowForward/><span>Go to full card types list</span></Link>
     <div className='h-[1px] w-full bg-slate-300 my-4'></div>

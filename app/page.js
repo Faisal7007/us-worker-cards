@@ -17,7 +17,7 @@ export default function Home() {
   return (
     <>
       <Banner />
-      <div className="max-w-[1440px] mx-auto px-4 pt-8 media-max-545px:pt-2">
+      <div className="max-w-[1440px] mx-auto px-4 pt-[102px]  media-max-545px:pt-2">
 
         <div className="flex  justify-between items-start gap-10  media-max-982px:flex-col">
           <motion.div  initial={{ x: -60, opacity: 0 }}

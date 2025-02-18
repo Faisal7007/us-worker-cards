@@ -59,7 +59,7 @@ const Page = () => {
 </div>
 </div>
 
-<div className='text-justify media-max-545px:text-[14px]'>
+<div className='text-justify media-max-545px:text-[14px] mt-[102px]'>
 <h1 className='capitalize text-[25px] text-black my-8 font-bold'>Validity - 5 Years</h1>
 
 <h2 className='font-bold'>How can you replace your CSCS Red Trainee Card?</h2>

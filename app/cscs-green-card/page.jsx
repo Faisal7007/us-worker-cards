@@ -16,7 +16,7 @@ const Page = () => {
   // const firebase=useFirebase()
 
   return (
-    <div className='max-w-[1440px] mx-auto px-4 pt-8'>
+    <div className='max-w-[1440px] mx-auto px-4 pt-8 mt-[102px]'>
     <ToastContainer/>
 
     <h1 className='text-[30px] font-bold mb-2 capitalize'>CSCS Green Card</h1>

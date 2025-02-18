@@ -19,7 +19,7 @@ const page = () => {
     console.log(id,'ID')
 
   return (
-    <div className='max-w-[1440px] mx-auto px-4 pt-8 '>
+    <div className='max-w-[1440px] mx-auto px-4 pt-8 mt-[102px]'>
     <ToastContainer/>
     <div>
     <h1 className='text-[30px] font-bold'>
