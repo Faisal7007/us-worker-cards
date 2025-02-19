@@ -329,7 +329,7 @@ const CitbForm = ({test_center}) => {
         type="submit"
         disabled={!agreed||isSubmitting}
        
-        className={`inline-flex items-center justify-center w-fit px-4 py-2 rounded media-max-545px:text-[14px] media-max-545px:px-2 media-max-545px:py-1 ${
+        className={`inline-flex items-center justify-center w-fit px-4 py-2 rounded media-max-545px:text-[14px] ${
           agreed
             ? "bg-purple_primary  text-white hover:bg-[#84286a]"
             : "bg-[#854c75] text-white cursor-not-allowed"
