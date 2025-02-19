@@ -169,9 +169,9 @@ function Contact({no_banner}) {
         transition={{ duration: 0.8, ease: "easeOut" }}
         viewport={{ once: false,amount:0.2}} className="w-full lg:w-1/2 space-y-6 overflow-x-hidden">
           <div className="text-2xl text-purple_primary sm:text-3xl font-semibold">Come, meet us!</div>
-          <div className="text-lg inline-flex items-center text-gray-600"><IoIosMail className="size-8 mr-4 text-purple_primary"/>support@constructioncardservices.com</div>
+          <div className="text-lg inline-flex items-center text-gray-500 media-max-545px:text-[14px] font-semibold"><IoIosMail className="size-8 mr-4 text-purple_primary"/>support@constructioncardsservices.com</div>
           <br />
-          <div className="text-lg inline-flex items-center text-gray-600"><IoLocation className="size-8 mr-4 text-purple_primary"/>265 City Road, London, EC1V 2NX,
+          <div className="text-lg inline-flex items-center text-gray-500 media-max-545px:text-[14px]  font-semibold"><IoLocation className="size-8 mr-4 text-purple_primary"/>265 City Road, London, EC1V 2NX,
           United Kingdom</div>
           <div className="">
             {/* <h2 className="text-xl sm:text-2xl font-bold mb-4">Our Location</h2> */}
@@ -190,7 +190,7 @@ function Contact({no_banner}) {
           </div>
         </motion.div>
 
-        {/* Contact Form Section */}
+       
         <motion.div initial={{ x: 50, opacity: 0 }}
         whileInView={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
