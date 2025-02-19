@@ -37,7 +37,7 @@ const page = () => {
     <Link href='/' className='text-purple_primary media-max-545px:text-[14px]'>Not Sure which test to take?</Link>
 
 {/* Form */}
-    <div className='mt-6 mb-4'>
+    <div className='mt-6 mb-8'>
     <CitbForm test_center={id} />
     </div>
 
