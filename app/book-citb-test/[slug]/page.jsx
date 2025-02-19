@@ -42,7 +42,7 @@ const page = () => {
     </div>
 
     <div>
-    <h1 className='text-center text-[40px] capitalize  mb-4 media-max-545px:leading-[54px]'>frequently Asked <span className=' text-[60px] text-purple_primary  font-light font allison_regular'>Questions</span></h1>
+    <h1 className='text-center text-[40px] capitalize  mb-4 media-max-545px:leading-[54px]'>frequently Asked <span className='text-[60px] text-purple_primary  font-light font allison_regular'>Questions</span></h1>
       <QuestionAccordionHAndS/>
     </div>
       <div className='mt-10 px-4 py-4 bg-gray-100 border-l-4 border-r-4 border-purple_primary'>

@@ -168,7 +168,7 @@ const Page = () => {
       </div>
 
       <div className='h-[1px] w-full bg-slate-300 mb-6 mt-12'></div>
-      <h1 className='text-[30px] font-bold mb-4 capitalize text-justify'>
+      <h1 className='text-[30px] font-bold mb-4 capitalize'>
         Level 1 Award in Health and Safety in a Construction Environment (Online)
       </h1>
 
@@ -229,7 +229,7 @@ const Page = () => {
       </ul>
 
       <div>
-      <h1 className='text-center text-[40px] capitalize  mb-4'>frequently Asked <span className=' text-[60px] text-purple_primary  font-light font allison_regular'>Questions</span></h1>
+      <h1 className='text-center text-[40px] capitalize mb-4 media-max-545px:leading-[54px]'>frequently Asked <span className=' text-[60px] text-purple_primary  font-light font allison_regular'>Questions</span></h1>
         <QuestionAccordionHAndS />
       </div>
 
