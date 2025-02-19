@@ -23,7 +23,7 @@ export default function Home() {
           <motion.div  initial={{ x: -60, opacity: 0 }}
         whileInView={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        viewport={{ once: false,amount:0.4}} className="flex items-center h-[450px] media-max-982px:hidden   media-max-510px:h-[400px] media-max-470px:h-[380px] media-max-410px:h-[350px]">
+        viewport={{ once: false,amount:0.3}} className="flex items-center h-[450px] media-max-982px:hidden   media-max-510px:h-[400px] media-max-470px:h-[380px] media-max-410px:h-[350px]">
             <Image
               src="/home-img2.jpg"
               alt="home-image"

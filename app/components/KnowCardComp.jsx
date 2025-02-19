@@ -5,7 +5,7 @@ import items from '../constants/knowYourCardData'
 const KnowCardComp = () => {
     return (
         <div className="overflow-x-auto">
-            <table className=" media-max-600px:min-w-max w-full table-auto border-collapse">
+            <table className="media-max-600px:min-w-max w-full table-auto border-collapse">
                 <thead>
                     <tr className="bg-gray-100 border-b border-gray-300">
                         <th className="px-4 py-2 text-left text-sm md:text-base border-l-0 border-r-0">Card Type</th>
