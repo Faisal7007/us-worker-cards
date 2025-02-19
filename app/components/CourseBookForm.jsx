@@ -290,7 +290,7 @@ const reset=()=>{
         />
         <label
           htmlFor="agreeCheckbox"
-          className="ml-2 text-sm text-gray-700 select-none"
+          className="ml-2 text-sm text-gray-700 select-none media-max-545px:text-[12px]"
         >
           I agree to the Terms and Conditions and Privacy Policy
         </label>
@@ -298,7 +298,7 @@ const reset=()=>{
       <button
         type="submit"
         disabled={!agreed}
-        className={`inline-flex items-center justify-center w-fit px-4 py-2 rounded ${agreed
+        className={`inline-flex items-center justify-center w-fit px-4 py-2 rounded media-max-545px:text-[14px] media-max-545px:px-2 media-max-545px:py-1 ${agreed
             ? "bg-purple_primary text-white hover:bg-[#84286a]"
             : "bg-[#854c75] text-white cursor-not-allowed"
           }`}
