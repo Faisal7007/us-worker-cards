@@ -13,8 +13,6 @@ const page = () => {
     <div className='mt-6 mb-4'>
     <CourseBookForm/>
     </div>
-    <div className='h-[1px] w-full bg-slate-300 my-4'></div>
-  
     </div>
   )
 }
