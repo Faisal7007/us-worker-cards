@@ -14,7 +14,7 @@ const items=[
     {
         card_type:'Red Provisional Worker (Temporary card)',
         test_requirement:'Operative test',
-        image_path:'/red-experienced-worker-card-img.png',
+        image_path:'/red-card-img.png',
         training_requirement:'CITB Test'
     },
     {
