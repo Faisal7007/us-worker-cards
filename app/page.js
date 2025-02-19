@@ -127,7 +127,7 @@ export default function Home() {
           <motion.div initial={{ x: -60, opacity: 0 }}
         whileInView={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        viewport={{ once: false,amount:0.4}} className="bg-purple_primary rounded-lg ">
+        viewport={{ once: false,amount:0.3}} className="bg-purple_primary rounded-lg ">
 
             <Image
               src="/citb-img3.png"
@@ -193,7 +193,7 @@ export default function Home() {
            <motion.div initial={{ x: -60, opacity: 0 }}
         whileInView={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        viewport={{ once: false,amount:0.4}}>
+        viewport={{ once: false,amount:0.3}}>
 
           <Image 
             src={`/green-card-img.png`}
