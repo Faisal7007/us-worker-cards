@@ -67,7 +67,7 @@ const CSCSCard = ({item}) => {
       <Link href={item.know_more_link}>
         <span className="text-purple_primary font-semibold hover:underline cursor-pointer">Know More →</span>
       </Link>
-      <Link href={item.apply_now_link}>
+      <Link onClick={handleApplyNow} href={item.apply_now_link}>
         <span className="bg-purple_primary text-white font-semibold py-2 px-4 rounded-md  border-2 border-transparent hover:border-purple_primary hover:text-purple_primary hover:bg-white transition-all duration-300 media-max-492px:text-[14px] media-max-490px:px-4 media-max-460px:text-[14px] media-max-460px:px-2 media-max-460px:py-2">Apply Now</span>
       </Link>
     </div>
