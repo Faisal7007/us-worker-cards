@@ -427,7 +427,7 @@ const firebase=useFirebase()
         />
         <label
           htmlFor="agreeCheckbox"
-          className="ml-2 text-sm text-gray-700 select-none"
+          className="ml-2 text-sm text-gray-700 select-none media-max-545px:text-[12px]"
         >
           I agree to the Terms and Conditions and Privacy Policy
         </label>
