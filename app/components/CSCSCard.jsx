@@ -74,7 +74,6 @@ const CSCSCard = ({item}) => {
   </div>
 </div>
 </div>
-
   )
 }
 
