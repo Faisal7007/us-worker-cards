@@ -101,13 +101,13 @@ const page = () => {
 
             <h2 className='font-bold text-justify'>To be in accordance with CAN-SPAM, we agree to the following:</h2>
 
-            <p className='mb-4 text-justify'>If at any time you would like to unsubscribe from receiving future emails, you can email us at support@constructioncardsservices.com, and we will promptly remove you from all correspondence.</p>
+            <p className='mb-4 text-justify'>If at any time you would like to unsubscribe from receiving future emails, you can email us at support@constructioncardservices.com, and we will promptly remove you from all correspondence.</p>
 
             <h2 className='font-bold text-justify'>Contacting Us</h2>
 
             <p className='mb-1 text-justify'>If you have any questions regarding this privacy policy, you may contact us using the information below.</p>
-            <p className='mb-1 text-justify'>constructioncardsservices.com</p>
-            <p className='mb-1 text-justify'>support@constructioncardsservices.com</p>
+            <p className='mb-1 text-justify'>constructioncardservices.com</p>
+            <p className='mb-1 text-justify'>support@constructioncardservices.com</p>
         </div>
     )
 }

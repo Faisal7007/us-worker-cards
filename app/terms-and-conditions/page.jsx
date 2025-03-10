@@ -6,7 +6,7 @@ const page = () => {
             <h1 className='text-[30px] font-bold mb-2 capitalize'>Terms and Conditions</h1>
             <div className='h-[1px] w-full bg-slate-300 my-4'></div>
             <h2 className='font-bold text-justify'>Support for Construction Workers Ltd.</h2>
-            <p className='mb-4 text-justify'>The website www.constructioncardsservices.com is owned and operated by Construction Worker Support Ltd.</p>
+            <p className='mb-4 text-justify'>The website www.constructioncardservices.com is owned and operated by Construction Worker Support Ltd.</p>
 
             <h2 className='font-bold text-justify'>Construction Cards Services Terminology</h2>
             <p className='mb-4 text-justify'>Within these terms and conditions, the terms "we," "our," "us," and "ours" refer to Construction Cards Services.</p>
@@ -20,7 +20,7 @@ const page = () => {
 
             <h2 className='font-bold text-justify'>Terms and Conditions of Our Service</h2>
             <p className='mb-4 text-justify'>
-                Our terms and conditions apply to any company or individual making single or multiple bookings with Construction Cards Services. By accessing our services and using www.constructioncardsservices.com, you agree to our Terms and Conditions. Construction Worker Support reserves the right to edit or amend any of our Terms and Conditions as deemed appropriate, without notifying the customer. Any new or edited terms will apply only to bookings made after the updated terms are added to the website and bookings policy. The terms on the Construction Worker Support website at the time of your booking will be the applicable terms. It is the responsibility of customers to ensure they agree with and comply with our terms and conditions before making a booking.</p>
+                Our terms and conditions apply to any company or individual making single or multiple bookings with Construction Cards Services. By accessing our services and using www.constructioncardservices.com, you agree to our Terms and Conditions. Construction Worker Support reserves the right to edit or amend any of our Terms and Conditions as deemed appropriate, without notifying the customer. Any new or edited terms will apply only to bookings made after the updated terms are added to the website and bookings policy. The terms on the Construction Worker Support website at the time of your booking will be the applicable terms. It is the responsibility of customers to ensure they agree with and comply with our terms and conditions before making a booking.</p>
 
             <h2 className='font-bold text-justify'>Age Restrictions for Service Use</h2>
             <p className='mb-4'>We are unable to book tests for individuals under the age of 16.</p>
@@ -33,7 +33,7 @@ const page = () => {
             <p className='mb-4 text-justify'>All bookings are made on a 'subject to availability' basis. While our team will make every effort to secure the requested time and date, this cannot always be guaranteed. In the rare event that we are unable to secure the requested date and time, our team will aim to book the nearest available option.</p>
 
             <h2 className='font-bold text-justify'>Booking Communication Guidelines</h2>
-            <p className='mb-4 text-justify'>Construction Cards Services will send a confirmation email and text to your mobile within 48 working hours of the booking being made. If requested, the customer can also receive confirmation via text for their date and time. If the customer has not received any communication from Construction Cards Services within 48 hours, they are advised to contact our support team at support@constructioncardsservices.com.</p>
+            <p className='mb-4 text-justify'>Construction Cards Services will send a confirmation email and text to your mobile within 48 working hours of the booking being made. If requested, the customer can also receive confirmation via text for their date and time. If the customer has not received any communication from Construction Cards Services within 48 hours, they are advised to contact our support team at support@constructioncardservices.com.</p>
 
             <h2 className='font-bold mb-4 text-justify'>
                 Cancellation requests are subject to a £20.00 administration and cancellation fee. This fee covers, but is not limited to, communication with the candidate, cancellation of requested tests with CITB, and the refund process. In the case of a test and retake cancellation, an additional £10.00 will be deducted along with the standard £20.00 cancellation fee.</h2>
@@ -51,7 +51,7 @@ const page = () => {
             <h2 className='font-bold text-justify'>Booking Your Test with Construction Cards Services</h2>
             <p className='mb-4 text-justify'>By booking your test with us, you fully acknowledge that your booking is for arranging the test and not for the selected date, as all bookings are sold 'subject to availability.' The fee you pay includes the £22 test fee and our booking and support fee. The details you provide when filling out the form will be used to process your booking. We are not responsible for any incorrect details you provide. If an error occurs on our part, such as submitting incorrect details, we will correct it at no extra charge. The Construction Worker Support team reviews every booking for inaccuracies. If additional information is needed or we believe you've booked the wrong test or test center, we will contact you via email to confirm your details before proceeding with your test booking.</p>
 
-            <p className='mb-4 text-justify'>Please contact us at Support@constructioncardsservices.com if you find any errors in your order. It is your responsibility to attend the test center on the correct date and time. We cannot accept liability for your absence under any circumstances. It is also your responsibility to bring the correct ID/documentation to the test center. Once we have confirmed the booking and sent the confirmation to you, we are not responsible for any actions taken afterward. Your payment fully covers the test fee and an administration fee. As a third-party booking agent, we charge a fee for the management services we provide, including:</p>
+            <p className='mb-4 text-justify'>Please contact us at Support@constructioncardservices.com if you find any errors in your order. It is your responsibility to attend the test center on the correct date and time. We cannot accept liability for your absence under any circumstances. It is also your responsibility to bring the correct ID/documentation to the test center. Once we have confirmed the booking and sent the confirmation to you, we are not responsible for any actions taken afterward. Your payment fully covers the test fee and an administration fee. As a third-party booking agent, we charge a fee for the management services we provide, including:</p>
             <p className='mb-4 text-justify'>Construction cards services explicitly states that we are not part of, or associated with CSCS or CITB.</p>
 
             <p className='mb-2 text-justify'>Reviewing each booking to ensure the details are correct and that the correct test is booked</p>
@@ -65,8 +65,8 @@ const page = () => {
             <h2 className='font-bold text-justify'>The Right to Cancel Your Test</h2>
             <p className='mb-4 text-justify'>You have a right to cancel a booked test and receive a partial refund. If you wish to cancel your test, you need to contact us via the email below:</p>
 
-            <h2 className='font-bold text-justify'>Support@constructioncardsservices.com</h2>
-            <h2 className='font-bold text-justify'>https://www.constructioncardsservices.com/contact-us</h2>
+            <h2 className='font-bold text-justify'>Support@constructioncardservices.com</h2>
+            <h2 className='font-bold text-justify'>https://www.constructioncardservices.com/contact-us</h2>
 
 
             <h2 className='font-bold text-justify'>The right to reschedule your test</h2>
@@ -77,8 +77,8 @@ const page = () => {
             <p className='mb-4 text-justify'>At least 3 alternative test dates when you are available</p>
             <p className='mb-4 text-justify'>To ensure we can reschedule your test in time, we require these details at least 3 working days prior to your test date. If you fail to provide the required information, we will be unable to reschedule your test until 48 hours after the original test date has passed.</p>
 
-            <h2 className='font-bold mb-4 text-justify'>By agreeing to these Terms stipulated here, you thus agree to the terms of our Privacy Policy. Please see https://www.constructioncardsservices.com/privacy-policy for more details.</h2>
-            <h2 className='font-bold mb-4 text-justify'>By agreeing to these Terms stipulated here, you thus agree to the terms of our Privacy Policy. Please see https://www.constructioncardsservices.com/privacy-policy for more details.</h2>
+            <h2 className='font-bold mb-4 text-justify'>By agreeing to these Terms stipulated here, you thus agree to the terms of our Privacy Policy. Please see https://www.constructioncardservices.com/privacy-policy for more details.</h2>
+            <h2 className='font-bold mb-4 text-justify'>By agreeing to these Terms stipulated here, you thus agree to the terms of our Privacy Policy. Please see https://www.constructioncardservices.com/privacy-policy for more details.</h2>
 
             <h2 className='font-bold text-justify'>One Day Courses Booking and Cancellation Policy</h2>
             <p className='mb-4 text-justify'>

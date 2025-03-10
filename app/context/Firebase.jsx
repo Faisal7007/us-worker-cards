@@ -916,7 +916,7 @@ export const FirebaseProvider = ({ children }) => {
       await signInWithEmailAndPassword(auth, email, password);
 
       toast.success('Login success')
-      setIsSubmitting(false)
+      // setIsSubmitting(false)
     } catch (error) {
       toast.error('Envalid email or password')
     }

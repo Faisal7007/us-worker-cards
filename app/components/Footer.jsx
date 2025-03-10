@@ -16,7 +16,7 @@ const Footer = () => {
         viewport={{ once: false,amount:0.4}} className="flex flex-col items-center lg:items-start space-y-4">
             <Link href="/">
               <Image
-                src="/new-logo-color.png"
+                src="/color-logo.png"
                 width={100}
                 height={100}
                 alt="logo"
@@ -25,7 +25,7 @@ const Footer = () => {
             </Link>
 
             <div className="w-full lg:w-72 sm:w-72 text-justify text-sm md:text-base media-max-545px:text-[14px]">
-            Construction Cards Services simplifies ordering CSCS and ESS cards for all construction professionals. We provide clear guidance on eligibility, validity, and application steps for a smooth experience.
+            Construction Card Services simplifies ordering CSCS and ESS cards for all construction professionals. We provide clear guidance on eligibility, validity, and application steps for a smooth experience.
             </div>
           </motion.div>
 
@@ -81,7 +81,7 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-4 text-center sm:text-left">
               Follow Us
             </h3>
-            <div className="flex space-x-4 justify-center sm:justify-start">
+            {/* <div className="flex space-x-4 justify-center sm:justify-start">
               {[
                 { icon: <FaFacebook size={18}  />, link: 'https://facebook.com' },
                 { icon: <FaTwitter size={18} />, link: 'https://twitter.com' },
@@ -97,7 +97,7 @@ const Footer = () => {
                   </a>
                 </div>
               ))}
-            </div>
+            </div> */}
             <div className='mt-4 h-12 media-max-545px:ml-12'>
               <Image
                 height={200}
@@ -123,7 +123,7 @@ const Footer = () => {
           <Link href="/terms-and-conditions" className='mr-4 text-purple_primary'>Terms & Conditions</Link>
           <Link href="/privacy-policy" className='text-purple_primary'>Privacy Policy</Link>
           <p className="text-sm text-gray-500 mt-2 media-max-545px:text-[12px]">
-            &copy; {new Date().getFullYear()} Construction cards services. All rights reserved.
+            &copy; {new Date().getFullYear()} Construction card services. All rights reserved.
           </p>
         </div>
       </footer>
