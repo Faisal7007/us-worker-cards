@@ -1,7 +1,7 @@
 "use client"
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { FaAngleDoubleDown, FaCheckCircle, FaDotCircle, FaHardHat, FaIdCard, FaLongArrowAltRight, FaUsers } from "react-icons/fa";
+import { FaAngleDoubleDown, FaAward, FaCheckCircle, FaDotCircle, FaHardHat, FaIdCard, FaLongArrowAltRight, FaUsers } from "react-icons/fa";
 import { GoDotFill } from "react-icons/go"
 import HomeCard from "./components/HomeCard";
 import { MdOutlineLaptopMac } from "react-icons/md";
@@ -122,8 +122,8 @@ export default function Home() {
               viewport={{ once: false, amount: 0.3 }}>
 
               <HomeCard
-                icon={<FaUsers className="size-8 text-white" />}
-                title="NVQ Level 2"
+                icon={<FaAward className="size-8 text-white" />}
+                title="NVQ Level 2 or Higher"
                 description="Get exclusive discounts when you book the CITB Health & Safety Test, CSCS Cards, and Construction Course leading to the Green Card for multiple delegates."
                 button_text="Apply Now"
                 link_to="/nvq-level-2"

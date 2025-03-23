@@ -88,7 +88,7 @@ const page = () => {
             <p className='mb-4 text-justify'>Construction Card Services will not be held responsible for any reasons that prevent a candidate from attending the course. This includes, but is not limited to, circumstances such as bad weather, vehicle breakdown, or any other factors that may prevent attendance on the day of the course.</p>
 
             <div>
-      <h2 className="font-bold text-justify text-lg mb-2">
+      <h2 className="font-bold text-justify mb-2">
         Card Booking and Cancellation Policy
       </h2>
       <p className="mb-4 text-justify">
@@ -97,7 +97,7 @@ const page = () => {
       <h3 className="font-semibold text-justify">Cancellation Fees:</h3>
       <ul className="mb-4 text-justify list-disc list-inside">
         <li><strong>CSCS Card Cancellation Fee:</strong> £14.00</li>
-        <li><strong>ESS Card Cancellation Fee:</strong> £16.00 (Digital Card) / £27.00 (Physical Card)</li>
+        <li><strong>ESS Card Cancellation Fee:</strong> £16.00 (Digital Card) / £30.00 (Physical Card)</li>
         <li><strong>CITB Cancellation Fee:</strong> £15.00</li>
       </ul>
       <p className="mb-4 text-justify">
