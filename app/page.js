@@ -20,10 +20,10 @@ export default function Home() {
       <div className="max-w-[1440px] mx-auto px-4 pt-[102px]  media-max-545px:pt-2">
 
         <div className="flex  justify-between items-start gap-10  media-max-982px:flex-col">
-          <motion.div  initial={{ x: -60, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        viewport={{ once: false,amount:0.3}} className="flex items-center h-[450px] media-max-982px:hidden   media-max-510px:h-[400px] media-max-470px:h-[380px] media-max-410px:h-[350px]">
+          <motion.div initial={{ x: -60, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: false, amount: 0.3 }} className="flex items-center h-[450px] media-max-982px:hidden   media-max-510px:h-[400px] media-max-470px:h-[380px] media-max-410px:h-[350px]">
             <Image
               src="/home-img2.jpg"
               alt="home-image"
@@ -34,16 +34,16 @@ export default function Home() {
             />
           </motion.div>
           <motion.div initial={{ x: 50, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        viewport={{ once: false,amount:0.3}} className="flex flex-col justify-between ">
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: false, amount: 0.3 }} className="flex flex-col justify-between ">
             <div>
-              
+
               <h1 className="text-[70px] leading-[85px] font-bold text-justify media-max-1336px:text-[60px] media-max-1336px:leading-[80px] media-max-545px:text-[40px] media-max-545px:leading-[70px] media-max-545px:text-start media-max-510px:text-[45px] media-max-510px:leading-[60px]">Complete All Requirements to Secure On-Site Access</h1>
               <br />
               <h2 className="text-[40px] font-semibold text-justify media-max-1212px:text-[30px] media-max-510px:text-[25px] ">Verify credentials and stay compliant with industry standards.</h2>
             </div>
-          
+
             <div className="flex gap-5 mt-[94px] media-max-1212px:mt-28 media-max-1206px:mt-8 media-max-982px:mt-10 media-max-492px:justify-between">
               <Link href="/cscs-card-types" className="bg-purple_primary text-white font-semibold py-2 px-4 rounded-md  border-2 border-transparent hover:border-purple_primary hover:text-purple_primary hover:bg-white transition-all duration-300 media-max-492px:text-[14px] media-max-490px:px-4 media-max-460px:text-[14px] media-max-460px:px-2 media-max-460px:py-2"><span>CSCS Card</span></Link>
 
@@ -61,9 +61,9 @@ export default function Home() {
 
           <div className="flex gap-6 justify-between items-center flex-wrap mt-4 media-max-1015px:gap-6 media-max-690px:justify-center media-max-545px:gap-6 media-max-545px:justify-center">
             <motion.div initial={{ x: -60, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        viewport={{ once: false,amount:0.4}}>
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              viewport={{ once: false, amount: 0.4 }}>
               <HomeCard
                 icon={<FaIdCard className="size-8 text-white" />}
                 title="Get a CSCS Card"
@@ -74,9 +74,9 @@ export default function Home() {
             </motion.div>
 
             <motion.div initial={{ x: -60, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        viewport={{ once: false,amount:0.4}}>
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              viewport={{ once: false, amount: 0.4 }}>
 
               <HomeCard
                 icon={<MdOutlineLaptopMac className="size-8 text-white" />}
@@ -87,14 +87,14 @@ export default function Home() {
               />
             </motion.div>
             <motion.div initial={{ x: 50, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        viewport={{ once: false,amount:0.3}}>
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              viewport={{ once: false, amount: 0.3 }}>
 
 
               <HomeCard
                 icon={<FaHardHat className="size-8 text-white" />}
-                title="Construction Course  Green Card"
+                title="Construction Course Green Card"
                 description="Schedule your Health & Safety Awareness Course online or offline."
                 button_text="Apply Now"
                 link_to="/course-book"
@@ -102,16 +102,31 @@ export default function Home() {
             </motion.div>
 
             <motion.div initial={{ x: 50, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        viewport={{ once: false,amount:0.3}}>
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              viewport={{ once: false, amount: 0.3 }}>
 
               <HomeCard
                 icon={<FaUsers className="size-8 text-white" />}
-                title="Group booking available."
+                title="Group Booking Available"
                 description="Get exclusive discounts when you book the CITB Health & Safety Test, CSCS Cards, and Construction Course leading to the Green Card for multiple delegates."
                 button_text="Apply Now"
                 link_to="/group-booking"
+              />
+            </motion.div>
+
+
+            <motion.div initial={{ x: 50, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              viewport={{ once: false, amount: 0.3 }}>
+
+              <HomeCard
+                icon={<FaUsers className="size-8 text-white" />}
+                title="NVQ Level 2"
+                description="Get exclusive discounts when you book the CITB Health & Safety Test, CSCS Cards, and Construction Course leading to the Green Card for multiple delegates."
+                button_text="Apply Now"
+                link_to="/nvq-level-2"
               />
             </motion.div>
           </div>
@@ -125,9 +140,9 @@ export default function Home() {
         <div className="flex flex-col lg:flex-row lg:justify-between items-center lg:items-start gap-6 rounded-lg">
 
           <motion.div initial={{ x: -60, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        viewport={{ once: false,amount:0.3}} className="bg-purple_primary rounded-lg ">
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: false, amount: 0.3 }} className="bg-purple_primary rounded-lg ">
 
             <Image
               src="/citb-img3.png"
@@ -139,9 +154,9 @@ export default function Home() {
           </motion.div>
 
           <motion.div initial={{ x: 50, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        viewport={{ once: false,amount:0.3}} className="w-[660px] media-max-1298px:w-[560px] media-max-600px:w-[100vw] media-max-410px:w-[100vw] media-max-600px:px-4 media-max-410px:px-4 media-max-545px:text-[14px]">
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: false, amount: 0.3 }} className="w-[660px] media-max-1298px:w-[560px] media-max-600px:w-[100vw] media-max-410px:w-[100vw] media-max-600px:px-4 media-max-410px:px-4 media-max-545px:text-[14px]">
             <h2 className="text-[25px] font-bold text-purple_primary text-justify mb-4 media-max-545px:text-[20px]">
               Scheduling Your CITB Health, Safety & Environment Test
             </h2>
@@ -188,28 +203,28 @@ export default function Home() {
           <h2 className="text-[25px] font-bold inline-block  px-4 py-1 bg-purple_primary rounded-full text-white media-max-600px:text-[22px]">Apply for CSCS Card</h2>
         </div>
 
-        <div  className="flex flex-col lg:flex-row lg:justify-between items-center lg:items-start gap-6  rounded-lg">
-           
-           <motion.div initial={{ x: -60, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        viewport={{ once: false,amount:0.3}}>
+        <div className="flex flex-col lg:flex-row lg:justify-between items-center lg:items-start gap-6  rounded-lg">
 
-          <Image 
-            src={`/green-card-img.png`}
-            alt='card-image'
-            width={800}
-            height={400}
-            className='rounded-lg h-[380px] w-[660px] media-max-1298px:w-[560px] media-max-600px:w-[100vw] media-max-545px:h-[220px]'
-          />
-           </motion.div>
+          <motion.div initial={{ x: -60, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: false, amount: 0.3 }}>
+
+            <Image
+              src={`/green-card-img.png`}
+              alt='card-image'
+              width={800}
+              height={400}
+              className='rounded-lg h-[380px] w-[660px] media-max-1298px:w-[560px] media-max-600px:w-[100vw] media-max-545px:h-[220px]'
+            />
+          </motion.div>
 
 
 
           <motion.div initial={{ x: 50, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        viewport={{ once: false,amount:0.3}} className="w-[660px] media-max-1298px:w-[560px] media-max-600px:w-[100vw] media-max-410px:w-[100vw] media-max-600px:px-4 media-max-410px:px-4 media-max-545px:text-[14px]">
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: false, amount: 0.3 }} className="w-[660px] media-max-1298px:w-[560px] media-max-600px:w-[100vw] media-max-410px:w-[100vw] media-max-600px:px-4 media-max-410px:px-4 media-max-545px:text-[14px]">
 
 
             <ul className="mb-4 text-gray-700">
