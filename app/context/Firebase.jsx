@@ -22,13 +22,13 @@ import { toast } from "react-toastify";
 // };
 
 const firebaseConfig = {
-  apiKey: "AIzaSyA-M-HqK89uWu3jDCnU4KB26whljYlbe-E",
-  authDomain: "construction-cards-services-2.firebaseapp.com",
-  projectId: "construction-cards-services-2",
-  storageBucket: "construction-cards-services-2.firebasestorage.app",
-  messagingSenderId: "646312492499",
-  appId: "1:646312492499:web:bc28389124b3f9fe29c326",
-  measurementId: "G-EXVMEPCWDX"
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain:process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
 const app = initializeApp(firebaseConfig);
