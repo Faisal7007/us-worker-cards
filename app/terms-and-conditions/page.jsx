@@ -87,7 +87,7 @@ const page = () => {
             <h2 className='font-bold text-justify'>Cancellation, Reschedules, and Non-Attendance Policy:</h2>
             <p className='mb-4 text-justify'>Construction Card Services will not be held responsible for any reasons that prevent a candidate from attending the course. This includes, but is not limited to, circumstances such as bad weather, vehicle breakdown, or any other factors that may prevent attendance on the day of the course.</p>
 
-            <div className="p-4">
+            <div>
       <h2 className="font-bold text-justify text-lg mb-2">
         Card Booking and Cancellation Policy
       </h2>
