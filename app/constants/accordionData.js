@@ -5,7 +5,7 @@ const items=[
     },
     {
         heading:"Can you help me book my test as soon as possible?",
-        content:"Our team will strive to book your preferred appointment date at your chosen test centre. While next-day bookings are possible, it is more likely to be scheduled within the next three days. If you need to take the test as soon as possible, we recommend calling us at 0203 769 9047."
+        content:"Our team will strive to book your preferred appointment date at your chosen test centre. While next-day bookings are possible, it is more likely to be scheduled within the next three days. If you need to take the test as soon as possible, we recommend calling us at 00000."
     },
     {
         heading:"Can you help me? I won’t be able to attend the test centre on my scheduled appointment date and time.",
@@ -25,7 +25,7 @@ const items=[
     },
     {
         heading:"Are there any materials or revision guides that can help me prepare for the CITB Health, Safety, and Environment Test?",
-        content:"To book the revision material for the CITB Health, Safety, and Environment Test, you can call us at 0203 769 9047."
+        content:"To book the revision material for the CITB Health, Safety, and Environment Test, you can call us at 000000."
     }
 ]
 
