@@ -75,7 +75,7 @@ const Footer = () => {
         whileInView={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         viewport={{ once: false,amount:0.3}} className="relative flex flex-col items-center  media-max-545px:justify-end">
-        <div className=''>
+        <div>
             <h3 className="text-lg font-semibold mb-4">
               We Accept
             </h3>
@@ -97,13 +97,22 @@ const Footer = () => {
               ))}
             </div> */}
             <div className='mt-4'>
-              <Image
-              className="cursor-pointer max-h-[80px] w-auto h-auto"
-                height={200}
-                width={200}
-                alt='payment-image'
-                src="/payment-img.png"
-              />
+            <Image
+  className="
+    cursor-pointer 
+    max-h-[80px] 
+    w-auto 
+    h-auto 
+    relative 
+    right-7 
+    max-[800px]:right-0
+  "
+  height={200}
+  width={200}
+  alt="payment-image"
+  src="/payment-img.png"
+/>
+
             </div>
 
             
