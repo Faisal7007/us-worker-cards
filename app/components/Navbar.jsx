@@ -322,8 +322,10 @@ const Navbar = () => {
           <Link href="/" className="flex items-center">
             <Image
               src={"/white-logo.png"}
+              className="cursor-pointer max-h-[80px] w-auto h-auto"
               width={100}
               height={100}
+              priority
               alt="Logo"
             />
           </Link>

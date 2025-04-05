@@ -5,11 +5,14 @@ import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 import { useRouter } from 'next/navigation';
 import { FirebaseProvider, useFirebase } from '@/app/context/Firebase';
+import { AiOutlineHome } from 'react-icons/ai';
+
 // import { ToastContainer } from 'react-toastify';
 import Image from 'next/image';
 import { RiArrowGoBackFill } from "react-icons/ri";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Link from 'next/link';
 
 const Login = () => {
   // redparts2001@gmail.com
@@ -100,6 +103,14 @@ const Login = () => {
       {isSubmitting?"Submitting...":"Login"}
         
       </button>
+
+      <Link
+        href="/"
+        className="flex items-center justify-center gap-2 text-gray-700 hover:text-gray-700 mt-6 transition-colors duration-200"
+      >
+        <AiOutlineHome size={20} />
+        <span>Home</span>
+    </Link>
     </form>
     </div>
 
