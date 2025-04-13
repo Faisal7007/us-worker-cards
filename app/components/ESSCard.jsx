@@ -7,10 +7,11 @@ import { UserContext } from '../context-api/UserContext';
 const ESSCard = ({item}) => {
   // const id=11
 
-  const {setEssId} = useContext(UserContext);
+  const {setEssId,setItem} = useContext(UserContext);
 
   const handleApplyNow=()=>{
     setEssId(item.id)
+    setItem(item)
   }
 
   return (

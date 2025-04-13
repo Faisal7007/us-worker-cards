@@ -4,8 +4,9 @@ import { MdArrowRight } from "react-icons/md";
 import CardForList from "./CardForList";
 import { UserContext } from "../context-api/UserContext";
 import { useFirebase } from "../context/Firebase";
+import GenericCardDetailsView from "./GenericCardDetailsView";
 
-const ApplyEssCscsForm = ({form_type}) => {
+const ApplyEssCscsForm = ({form_type,setOpenDetails,setGetCardType}) => {
   const [formData, setFormData] = useState({
     title: "",
     firstName: "",
@@ -19,6 +20,8 @@ const ApplyEssCscsForm = ({form_type}) => {
     applicationType: "", 
   });
 
+
+  // console.log(formData.cardtype,"Card Types")
  
     const cscsCardTypes = [
       {id:1, value: 'Green Labourer Card', component:<CardForList image_path="/green-card-img.png" title="Green Labourer Card" description="For General Labourers and Site Operatives"/> },
@@ -117,6 +120,7 @@ const ApplyEssCscsForm = ({form_type}) => {
   const handleSelect = (value) => {
     setFormData({ ...formData, cardtype: value });
     setIsOpen(false);
+    setGetCardType(value)
   };
 
   const handleClickOutside = (event) => {
@@ -154,17 +158,21 @@ const firebase=useFirebase()
   const handleSubmit = (e) => {
     e.preventDefault();
     if(form_type==='cscs'){
-
-      firebase.applyForCSCSCard(formData.title,formData.firstName,formData.middleName,formData.lastName,formData.dob,formData.nationalInsuranceNumber,formData.phoneNumber,formData.email,formData.cardtype,formData.applicationType,form_type) 
-      resetForm()
+  //  <GenericCardDetailsView/>
+  setOpenDetails(true)
+      // firebase.applyForCSCSCard(formData.title,formData.firstName,formData.middleName,formData.lastName,formData.dob,formData.nationalInsuranceNumber,formData.phoneNumber,formData.email,formData.cardtype,formData.applicationType,form_type) 
+      // resetForm()
      
     }
     if(form_type==='ess'){
       firebase.applyForESSCard(formData.title,formData.firstName,formData.middleName,formData.lastName,formData.dob,formData.nationalInsuranceNumber,formData.phoneNumber,formData.email,formData.cardtype,formData.applicationType,form_type) 
       resetForm()  
     }
+
     
   };
+
+
 
   return (
     <form
@@ -410,10 +418,14 @@ const firebase=useFirebase()
               
             </div>
             {
-                formData.applicationType==="Renew"?<div className="text-orange-700 text-sm">
-                Only Green, Gold advanced, Gold supervisor, Blue skilled and Black manager, cards are renewable
-              </div>:''
-              }
+  formData.applicationType === "Renew" &&
+  !["Green Labourer Card", "Gold Advanced Craft Card", "Gold Supervisor Card", "Blue Skilled Worker Card", "Black Manager Card"].includes(formData.cardType) && (
+    <div className="text-orange-700 text-sm">
+      Only Green, Gold advanced, Gold supervisor, Blue skilled and Black manager cards are renewable
+    </div>
+  )
+}
+
           </div>
         </div>
       </div>

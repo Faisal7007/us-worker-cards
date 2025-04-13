@@ -8,10 +8,11 @@ export const MyProvider = ({ children }) => {
   const [viewDetailsId,setViewDetailsId] = useState(null);
   const [formType, setFormType] = useState('cscs')
   const [counts, setCounts] = useState([])
+  const [item, setItem] = useState(null)
 
   return (
     <UserContext.Provider value={{ idx, setIdx ,essId,setEssId,viewDetailsId,
-      setViewDetailsId,formType,setFormType,counts,setCounts}}>
+      setViewDetailsId,formType,setFormType,counts,setCounts,item,setItem}}>
       {children}
     </UserContext.Provider>
   );

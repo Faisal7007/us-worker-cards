@@ -36,7 +36,7 @@ const page = () => {
             <p className='mb-4 text-justify'>Construction Card Services will send a confirmation email and text to your mobile within 48 working hours of the booking being made. If requested, the customer can also receive confirmation via text for their date and time. If the customer has not received any communication from Construction Card Services within 48 hours, they are advised to contact our support team at support@constructioncardservices.com.</p>
 
             <h2 className='font-bold mb-4 text-justify'>
-                Cancellation requests are subject to a £20.00 administration and cancellation fee. This fee covers, but is not limited to, communication with the candidate, cancellation of requested tests with CITB, and the refund process. In the case of a test and retake cancellation, an additional £10.00 will be deducted along with the standard £20.00 cancellation fee.</h2>
+            Cancellation requests are subject to specific administration and cancellation fees depending on the service. For CSCS cards, the cancellation fee is £14. For ESS cards, the fee is £16 for a digital card and £27 for a physical card. CITB test cancellations incur a separate fee of £15. These charges cover, but are not limited to, communication with the candidate, cancellation of requested services with CITB, and the refund process. In the case of a test and retake cancellation, an additional £10.00 will be deducted along with the applicable cancellation fee.</h2>
 
             <h2 className='font-bold mb-4 text-justify'>The cancellation fees for various cards are as follows: the CSCS card cancellation fee is £14, while for the ESS card, the cancellation fee for the digital card is £16 and for the physical card, it is £27. Additionally, the CITB cancellation fee is set at £15.</h2>
 
@@ -77,7 +77,6 @@ const page = () => {
             <p className='mb-4 text-justify'>At least 3 alternative test dates when you are available</p>
             <p className='mb-4 text-justify'>To ensure we can reschedule your test in time, we require these details at least 3 working days prior to your test date. If you fail to provide the required information, we will be unable to reschedule your test until 48 hours after the original test date has passed.</p>
 
-            <h2 className='font-bold mb-4 text-justify'>By agreeing to these Terms stipulated here, you thus agree to the terms of our Privacy Policy. Please see https://www.constructioncardservices.com/privacy-policy for more details.</h2>
             <h2 className='font-bold mb-4 text-justify'>By agreeing to these Terms stipulated here, you thus agree to the terms of our Privacy Policy. Please see https://www.constructioncardservices.com/privacy-policy for more details.</h2>
 
             <h2 className='font-bold text-justify'>One Day Courses Booking and Cancellation Policy</h2>

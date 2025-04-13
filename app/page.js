@@ -18,7 +18,6 @@ export default function Home() {
     <>
       <Banner />
       <div className="max-w-[1440px] mx-auto px-4 pt-[102px]  media-max-545px:pt-2">
-
         <div className="flex  justify-between items-start gap-10  media-max-982px:flex-col">
           <motion.div initial={{ x: -60, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
@@ -38,7 +37,6 @@ export default function Home() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: false, amount: 0.3 }} className="flex flex-col justify-between ">
             <div>
-
               <h1 className="text-[70px] leading-[85px] font-bold text-justify media-max-1336px:text-[60px] media-max-1336px:leading-[80px] media-max-545px:text-[40px] media-max-545px:leading-[70px] media-max-545px:text-start media-max-510px:text-[45px] media-max-510px:leading-[60px]">Complete All Requirements to Secure On-Site Access</h1>
               <br />
               <h2 className="text-[40px] font-semibold text-justify media-max-1212px:text-[30px] media-max-510px:text-[25px] ">Verify credentials and stay compliant with industry standards.</h2>
@@ -77,11 +75,24 @@ export default function Home() {
               whileInView={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
               viewport={{ once: false, amount: 0.4 }}>
+              <HomeCard
+                icon={<FaIdCard className="size-8 text-white" />}
+                title="Get a ESS Card"
+                description="The ESS card is a CSCS partner scheme. You can apply online to get a new CSCS card, renew your existing card, or request a replacement if your card is lost"
+                button_text="Apply Now"
+                link_to="/apply-card-for/ess"
+              />
+            </motion.div>
+
+            <motion.div initial={{ x: -60, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              viewport={{ once: false, amount: 0.4 }}>
 
               <HomeCard
                 icon={<MdOutlineLaptopMac className="size-8 text-white" />}
                 title="Schedule the CITB HS&E Test."
-                description="Schedule your CITB Health, Safety & Environment Test at the nearest test center.booking fee of CITB Test 35 pounds for one chance and for 2 chances it will cost 55 pounds."
+                description="Schedule your CITB Health, Safety & Environment Test at the nearest test center.Booking fee of CITB Test &#163;35 for one chance and for 2 chances it will cost &#163;55."
                 button_text="Apply Now"
                 link_to="/citb-test"
               />

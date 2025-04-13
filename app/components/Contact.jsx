@@ -169,7 +169,9 @@ function Contact({ no_banner }) {
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: false, amount: 0.2 }} className="w-full lg:w-1/2 space-y-6 overflow-x-hidden">
             <div className="text-2xl text-purple_primary sm:text-3xl font-semibold">Come, meet us!</div>
-            <div className="text-lg inline-flex items-center text-gray-500 media-max-545px:text-[14px] font-semibold"><IoIosMail className="size-8 mr-4 text-purple_primary" />support@constructioncardservices.com</div>
+            <a href="mailto:support@constructioncardservices." className="text-lg inline-flex items-center text-gray-500 media-max-545px:text-[14px] font-semibold"  ><IoIosMail className="size-8 mr-4 text-purple_primary" />support@constructioncardservices.com</a>
+           
+
             <br />
             <div className="text-lg inline-flex items-center text-gray-500 media-max-545px:text-[14px]  font-semibold"><IoLocation className="size-8 mr-4 text-purple_primary" />9, Dalton House 60 Winsdor Avenue London SW19 2RR</div>
             <div className="">
@@ -187,16 +189,6 @@ function Contact({ no_banner }) {
                   title="Google Map"
                 ></iframe>
 
-{/* 
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2482.0811007441507!2d-0.10030592387103734!3d51.530072309047505!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761b59306c170f%3A0xd688ddd82fe75dc0!2s265%20City%20Rd%2C%20London%20EC1V%201JX%2C%20UK!5e0!3m2!1sen!2sin!4v1736163138056!5m2!1sen!2sin"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen=""
-                  loading="lazy"
-                  title="Google Map"
-                >
-                </iframe> */}
               </div>
             </div>
           </motion.div>
