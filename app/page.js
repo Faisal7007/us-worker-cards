@@ -10,6 +10,8 @@ import Contact from "./components/Contact";
 import Banner from "./components/Banner";
 import { useFirebase } from "./context/Firebase";
 import { motion } from "framer-motion";
+import DemoTestCenters from "./components/DemoTestCenters";
+import PaymentPage from "./payment";
 
 
 export default function Home() {
@@ -297,6 +299,7 @@ export default function Home() {
       </div>
       <div className="">
         <Contact no_banner />
+      {/* <PaymentPage/> */}
       </div>
     </>
 

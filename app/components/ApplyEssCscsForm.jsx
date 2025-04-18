@@ -28,7 +28,7 @@ const ApplyEssCscsForm = ({form_type,setOpenDetails,setGetCardType}) => {
   
       {id:2, value: 'Blue Skilled Worker Card', component: <CardForList image_path="/blue-card-img.png" title="Blue Skilled Worker Card" description="For the skilled workers who have Level 2 NVQ or SVQ."/> },
   
-      {id:3, value: 'Red Provisional Card Check', component: <CardForList image_path="/red-card-img.png" title="Red Provisional Card" description="This card does not require any qualification."/> },
+      {id:3, value: 'Red Provisional Card', component: <CardForList image_path="/red-card-img.png" title="Red Provisional Card" description="This card does not require any qualification."/> },
   
       {id:4, value: 'Red Trainee Card', component: <CardForList image_path="/red-trainee-img.png" title="Red Trainee Card" description="For applicants registered for NVQ / SVQ or relevant Construction Award."/> },
   
@@ -160,8 +160,7 @@ const firebase=useFirebase()
     if(form_type==='cscs'){
   //  <GenericCardDetailsView/>
   setOpenDetails(true)
-      // firebase.applyForCSCSCard(formData.title,formData.firstName,formData.middleName,formData.lastName,formData.dob,formData.nationalInsuranceNumber,formData.phoneNumber,formData.email,formData.cardtype,formData.applicationType,form_type) 
-      // resetForm()
+   
      
     }
     if(form_type==='ess'){

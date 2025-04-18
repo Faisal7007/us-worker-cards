@@ -70,7 +70,14 @@ const Navbar = () => {
               alt="Logo"
             />
           </Link>
-          <div className="text-white font-bold cursor-pointer flex justify-center gap-2 items-center "><FaPhoneAlt/><span>+91 7483939335</span></div>
+          <div className="text-white font-bold  flex flex-col items-center">
+  <div className="flex gap-2 items-center justify-center cursor-pointer">
+    <FaPhoneAlt />
+    <a href="tel:+443030030136">+44 3030030136</a>
+  </div>
+  <p className="text-sm font-normal mt-1">9 AM to 7 PM</p>
+</div>
+
 
           
           <button

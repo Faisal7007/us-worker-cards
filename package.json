@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@chakra-ui/react": "^2.10.2",
+    "axios": "^1.8.4",
     "firebase": "^11.1.0",
     "framer-motion": "^12.4.2",
     "next": "15.1.3",

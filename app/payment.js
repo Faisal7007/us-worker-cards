@@ -11,7 +11,6 @@ const PaymentPage = () => {
 
   return (
     <div style={{ textAlign: "center", padding: "50px" }}>
-      <h1>Buy My Product</h1>
       <p>Click the button below to proceed to payment</p>
       <button
         onClick={handlePay}

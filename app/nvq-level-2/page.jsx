@@ -3,16 +3,12 @@ import Link from 'next/link';
 import React from 'react';
 import { GiCheckMark } from 'react-icons/gi';
 import CardForm from '../components/CardForm';
-
 import items from '../constants/nvqLevel2Data';
-import PaymentPage from '../payment';
+
 const Page = () => {
   return (
     <div className='max-w-[1440px] mx-auto px-4 pt-8 mt-[102px]'>
-      <h1 className='text-[30px] font-bold mb-4 capitalize'>NVQ Level 2 or Higher In Construction</h1>
-      <PaymentPage/>
-      
-      
+      <h1 className='text-[30px] font-bold mb-4 capitalize'>NVQ Level 2 or Higher In Construction</h1>      
       <div className='mb-4 text-justify media-max-545px:text-[14px]'>
         {items?.benefits?.map((benefit, index) => (
           <p key={index} className="flex items-center font-bold text-green-500 mb-2">
