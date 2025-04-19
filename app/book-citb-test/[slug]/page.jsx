@@ -10,7 +10,7 @@ import React, { useState } from 'react'
 import { ToastContainer } from 'react-toastify';
 import { useParams } from 'next/navigation';
 import CitbForm from '@/app/components/CitbFrom';
-import QuestionAccordionHAndS from '@/app/components/QuestionAccordionHAndS';
+import QuestionAccordion from '@/app/components/QuestionAccordion';
 
 const page = () => {
 
@@ -43,7 +43,7 @@ const page = () => {
 
     <div>
     <h1 className='text-center text-[40px] capitalize  mb-4 media-max-545px:leading-[54px]'>frequently Asked <span className='text-[60px] text-purple_primary  font-light font allison_regular'>Questions</span></h1>
-      <QuestionAccordionHAndS/>
+      <QuestionAccordion/>
     </div>
       <div className='mt-10 px-4 py-4 bg-gray-100 border-l-4 border-r-4 border-purple_primary'>
         <h1 className='font-bold text-purple_primary'>What does the CITB Health, Safety, and Environment Test involve?</h1>

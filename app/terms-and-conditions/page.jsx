@@ -79,9 +79,9 @@ const page = () => {
 
             <h2 className='font-bold mb-4 text-justify'>By agreeing to these Terms stipulated here, you thus agree to the terms of our Privacy Policy. Please see https://www.constructioncardservices.com/privacy-policy for more details.</h2>
 
-            <h2 className='font-bold text-justify'>One Day Courses Booking and Cancellation Policy</h2>
+            <h2 className='font-bold text-justify'>One Day Courses & NVQ Booking and Cancellation Policy</h2>
             <p className='mb-4 text-justify'>
-                The One Day Awareness Course, once booked, cannot be cancelled and is non-refundable. Construction Worker Support Ltd reserves the right to cancel or alter the course dates, the provision of services, the location, or the individual/organisation providing the service, and make reasonable variations to the courses without prior notice. In the event of a cancellation, the booking will typically be transferred to the next available course, unless the customer specifically requests otherwise.</p>
+                The One Day Awareness Course, and NVQ once booked, cannot be cancelled and is non-refundable. Construction Card Services Ltd reserves the right to cancel or alter the course dates, the provision of services, the location, or the individual/organisation providing the service, and make reasonable variations to the courses without prior notice. In the event of a cancellation, the booking will typically be transferred to the next available course, unless the customer specifically requests otherwise.</p>
 
             <h2 className='font-bold text-justify'>Cancellation, Reschedules, and Non-Attendance Policy:</h2>
             <p className='mb-4 text-justify'>Construction Card Services will not be held responsible for any reasons that prevent a candidate from attending the course. This includes, but is not limited to, circumstances such as bad weather, vehicle breakdown, or any other factors that may prevent attendance on the day of the course.</p>
@@ -95,9 +95,11 @@ const page = () => {
       </p>
       <h3 className="font-semibold text-justify">Cancellation Fees:</h3>
       <ul className="mb-4 text-justify list-disc list-inside">
-        <li><strong>CSCS Card Cancellation Fee:</strong> £14.00</li>
-        <li><strong>ESS Card Cancellation Fee:</strong> £16.00 (Digital Card) / £30.00 (Physical Card)</li>
-        <li><strong>CITB Cancellation Fee:</strong> £15.00</li>
+        <li><strong>CSCS Card:</strong> £14.00</li>
+        <li><strong>ESS Card:</strong> £18.00 (Digital Card)</li>
+        <li><strong>ESS Card:</strong> £30.00 (Physical Card)</li>
+        <li><strong>CITB Test:</strong> £15.00</li>
+        <li><strong>CITB Test (Retake):</strong> £22.00</li>
       </ul>
       <p className="mb-4 text-justify">
         Once you have completed the booking for your Card, you will receive an email listing the documents required for processing your Card within 48 hours. It is advised that you send a clear photograph of all relevant documents requested by the card processing team promptly via email. Failure to do so may delay the processing of your Card.

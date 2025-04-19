@@ -10,10 +10,10 @@ const items={
       ],
       
        trades : [
-        "Piling", "Tiling", "Joinery", "Roofing", "Cladding", "Dry Lining", 
+        "Piling", "Tiling", "Joinery", "Roofing", "Cladding","Formwork","Scaffolding", "Dry Lining", 
         "Plastering", "Demolition", "Steelfixing", "Fenestration", 
         "Steel Erection", "Stone Masonry", "Plant Operations", 
-        "Plant Installations", "Painting and Decorating", "Floorcovering occupations",
+        "Plant Installations","Engineering surveying", "Painting and Decorating", "Floorcovering occupations",
         "Post Tensioning Operations", "Concrete Drilling & Sawing", 
         "Plant Operations Road Sweeper", "Specialist Concrete Operations", 
         "Erection of Precast Installations", "Insulation & Building Treatments",

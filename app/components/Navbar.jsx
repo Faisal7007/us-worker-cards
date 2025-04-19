@@ -75,7 +75,7 @@ const Navbar = () => {
     <FaPhoneAlt />
     <a href="tel:+443030030136">+44 3030030136</a>
   </div>
-  <p className="text-sm font-normal mt-1">9 AM to 7 PM</p>
+  <p className="text-sm font-normal mt-1">Mon-Sat ( 9 AM to 7 PM )</p>
 </div>
 
 

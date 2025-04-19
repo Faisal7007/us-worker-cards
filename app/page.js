@@ -10,8 +10,7 @@ import Contact from "./components/Contact";
 import Banner from "./components/Banner";
 import { useFirebase } from "./context/Firebase";
 import { motion } from "framer-motion";
-import DemoTestCenters from "./components/DemoTestCenters";
-import PaymentPage from "./payment";
+
 
 
 export default function Home() {
@@ -174,7 +173,7 @@ export default function Home() {
               Scheduling Your CITB Health, Safety & Environment Test
             </h2>
             <p className="text-gray-700 mb-5 text-justify">
-              Booking your CITB Touchscreen Test, officially called the CITB Health, Safety & Environment Test, is simpler with Construction Worker Support.
+              Booking your CITB Touchscreen Test, officially called the CITB Health, Safety & Environment Test, is simpler with Construction Card Services.
             </p>
             <ul className="pl-6 mb-4 text-gray-700 media-max-545px:text-[14px]">
               <li className="flex items-start mb-2 text-justify">
@@ -204,9 +203,9 @@ export default function Home() {
             <p className="text-gray-700">
               <strong>Not sure which test to book?</strong> Find the correct test
               according to your occupation{" "}
-              <a href="#" className="text-purple_primary underline">
+              <Link href="/trade-wise-test" className="text-purple_primary underline">
                 here
-              </a>
+              </Link>
               .
             </p>
           </motion.div>
