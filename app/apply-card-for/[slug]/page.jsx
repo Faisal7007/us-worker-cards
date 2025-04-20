@@ -20,6 +20,8 @@ const page = () => {
   const form_type = params.slug;
   const { item } = useContext(UserContext);
 
+  console.log(item, "item in slug page")
+
   // const searchParams = useSearchParams()
   // const id = searchParams.get('id')
   // const image_path = searchParams.get('image_path')
@@ -48,12 +50,13 @@ const page = () => {
               <div>
 
                 <Image
-                  src={`${item.image_path}`}
-                  alt='card-image'
+                  src={item?.image_path || "/green-card-img.png"} 
+                  alt="card-image"
                   width={800}
                   height={400}
-                  className='rounded-lg h-[380px] w-[660px] media-max-1298px:w-[560px] media-max-600px:w-[100vw] media-max-545px:h-[220px]'
+                  className="rounded-lg h-[380px] w-[660px] media-max-1298px:w-[560px] media-max-600px:w-[100vw] media-max-545px:h-[220px]"
                 />
+
               </div>
 
 

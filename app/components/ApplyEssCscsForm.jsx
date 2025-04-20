@@ -167,8 +167,6 @@ const firebase=useFirebase()
       firebase.applyForESSCard(formData.title,formData.firstName,formData.middleName,formData.lastName,formData.dob,formData.nationalInsuranceNumber,formData.phoneNumber,formData.email,formData.cardtype,formData.applicationType,form_type) 
       resetForm()  
     }
-
-    
   };
 
 
