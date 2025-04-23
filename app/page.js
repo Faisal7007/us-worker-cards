@@ -11,6 +11,8 @@ import Banner from "./components/Banner";
 import { useFirebase } from "./context/Firebase";
 import { motion } from "framer-motion";
 
+import ChatbotEmbed from "./components/ChatbotEmbed"; // This is the extra line (import from componets.chatbotembed)
+
 
 
 export default function Home() {
@@ -293,7 +295,12 @@ export default function Home() {
 
           </motion.div>
         </div>
-
+                    
+        // New code lines start here 
+        <section className="my-16 max-w-[1440px] mx-auto px-4"> 
+        <h2 className="text-2xl font-bold mb-4">Chat with Our Consultant</h2>    
+        <ChatbotEmbed />
+        // New code lines end here 
 
       </div>
       <div className="">
