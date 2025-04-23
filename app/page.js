@@ -295,12 +295,11 @@ export default function Home() {
 
           </motion.div>
         </div>
-                    
-        // New code lines start here 
-        <section className="my-16 max-w-[1440px] mx-auto px-4"> 
-        <h2 className="text-2xl font-bold mb-4">Chat with Our Consultant</h2>    
-        <ChatbotEmbed />
-        // New code lines end here 
+        {/* ===== Chatbot Section ===== */}
+        <section className="my-16 max-w-[1440px] mx-auto px-4">
+          <h2 className="text-2xl font-bold mb-4">Chat with Our Consultant</h2>
+          <ChatbotEmbed />
+        </section>
 
       </div>
       <div className="">
