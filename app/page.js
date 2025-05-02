@@ -11,7 +11,7 @@ import Banner from "./components/Banner";
 import { useFirebase } from "./context/Firebase";
 import { motion } from "framer-motion";
 
-import ChatbotEmbed from "./components/ChatbotEmbed"; // This is the extra line (import from componets.chatbotembed)
+// import ChatbotEmbed from "./components/ChatbotEmbed"; // This is the extra line (import from componets.chatbotembed)
 
 
 
@@ -48,7 +48,7 @@ export default function Home() {
               {/* ===== Chatbot Section ===== */}
             <section className="my-16 max-w-[1440px] mx-auto px-4">
             <h2 className="text-2xl font-bold mb-4">Chat with Our Consultant</h2>
-            <ChatbotEmbed />
+            
             </section>
 
             <div className="flex gap-5 mt-[94px] media-max-1212px:mt-28 media-max-1206px:mt-8 media-max-982px:mt-10 media-max-492px:justify-between">
