@@ -11,25 +11,37 @@ import { toast } from "react-toastify";
 
 
 // const firebaseConfig = {
-//   apiKey: "AIzaSyDzbmYBbg6hHKQi9lA3P8IwKOQwOBQ779o",
+//   apiKey: "AIzaSyA601k0fvF6Q5ZZ-xUKDDeFlW4B3m4ipGQ",
 //   authDomain: "construction-cards-services.firebaseapp.com",
-//   projectId: "construction-cards-services",
+//   projectId: "construtioncardservices",
 //   storageBucket: "construction-cards-services.firebasestorage.app",
 //   messagingSenderId: "341499834053",
-//   appId: "1:341499834053:web:d178f71e59efcefd0e0aac",
+//   appId: "1:658917393195:web:380c7837d08dd8c5a93b6e",
 //   measurementId: "G-93YYE8G0S8",
 //   databaseURL: "https://construction-cards-services-default-rtdb.firebaseio.com"
 // };
 
 const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-  authDomain:process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
+  apiKey: "AIzaSyA601k0fvF6Q5ZZ-xUKDDeFlW4B3m4ipGQ",
+  authDomain: "construtioncardservices.firebaseapp.com",
+  projectId: "construtioncardservices",
+  storageBucket: "construtioncardservices.firebasestorage.app",
+  messagingSenderId: "658917393195",
+  appId: "1:658917393195:web:380c7837d08dd8c5a93b6e",
+  measurementId: "G-2NS8DNH22R",
+  databaseURL: "https://construtioncardservices-default-rtdb.firebaseio.com/"
 };
+
+// const firebaseConfig = {
+//   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+//   authDomain:process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+//   projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+//   storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+//   messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+//   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+//   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
+//   databaseURL: process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL
+// };
 
 const app = initializeApp(firebaseConfig);
 
@@ -849,10 +861,12 @@ export const FirebaseProvider = ({ children }) => {
     try {
       setIsLoading && setIsLoading(true);
 
-
+      console.log("Goo")
       const docRef = collection(firestore, "contact-us");
+      console.log(docRef)
 
       const querySnapshot = await getDocs(docRef);
+      console.log(querySnapshot, "Good")
 
       const contactUsData = querySnapshot.docs.map((doc) => ({
         id: doc.id,
@@ -863,7 +877,7 @@ export const FirebaseProvider = ({ children }) => {
 
       setContactUsData(contactUsData);
     } catch (error) {
-
+      console.log(error, "ERROR")
       toast.error("Error fetching data!");
     } finally {
       setIsLoading && setIsLoading(false);

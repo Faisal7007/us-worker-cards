@@ -11,12 +11,16 @@ import Banner from "./components/Banner";
 import { useFirebase } from "./context/Firebase";
 import { motion } from "framer-motion";
 
-import ChatbotEmbed from "./components/ChatbotEmbed"; // This is the extra line (import from componets.chatbotembed)
-import Carousel from "./components/Carousel";
+// import ChatbotEmbed from "./components/ChatbotEmbed"; // This is the extra line (import from componets.chatbotembed)
 
 
 
 export default function Home() {
+
+  const [hasMounted, setHasMounted] = useState(false);
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
 
   return (
     <>
@@ -47,10 +51,10 @@ export default function Home() {
             </div>
 
               {/* ===== Chatbot Section ===== */}
-            {/* <section className="my-16 max-w-[1440px] mx-auto px-4">
+            <section className="my-16 max-w-[1440px] mx-auto px-4">
             <h2 className="text-2xl font-bold mb-4">Chat with Our Consultant</h2>
             <ChatbotEmbed />
-            </section> */}
+            </section>
 
             <div className="flex gap-5 mt-[94px] media-max-1212px:mt-28 media-max-1206px:mt-8 media-max-982px:mt-10 media-max-492px:justify-between">
               <Link href="/cscs-card-types" className="bg-purple_primary text-white font-semibold py-2 px-4 rounded-md  border-2 border-transparent hover:border-purple_primary hover:text-purple_primary hover:bg-white transition-all duration-300 media-max-492px:text-[14px] media-max-490px:px-4 media-max-460px:text-[14px] media-max-460px:px-2 media-max-460px:py-2"><span>CSCS Card</span></Link>
@@ -307,12 +311,12 @@ export default function Home() {
           </motion.div>
         </div>
 
-        
+
 
       </div>
       <div className="">
         <Contact no_banner />
-      {/* <PaymentPage/> */}
+        {/* <PaymentPage/> */}
       </div>
     </>
 

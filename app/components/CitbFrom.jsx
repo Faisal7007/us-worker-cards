@@ -58,6 +58,8 @@ const CitbForm = ({ test_center }) => {
 
     // console.log("Form Data:", formData);
     reset()
+
+    window.location.href = "https://buy.stripe.com/00gaGx6wBfLJ1uE3ce";
   };
 
   return (
@@ -312,8 +314,8 @@ const CitbForm = ({ test_center }) => {
         disabled={!agreed || isSubmitting}
 
         className={`inline-flex items-center justify-center w-fit px-4 py-2 rounded media-max-545px:text-[14px] ${agreed
-            ? "bg-purple_primary  text-white hover:bg-[#84286a]"
-            : "bg-[#854c75] text-white cursor-not-allowed"
+          ? "bg-purple_primary  text-white hover:bg-[#84286a]"
+          : "bg-[#854c75] text-white cursor-not-allowed"
           }`}
       >
         <span className="ml-2">{isSubmitting ? "Submitting..." : "Move Forward"}</span>
