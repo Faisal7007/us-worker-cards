@@ -26,20 +26,20 @@ const CscsForm = () => {
   const firestore = useFirebase()
 
 
-const reset=()=>{
-  setFormData({
-    title: "",
-    firstName: "",
-    middleName: "",
-    lastName: "",
-    assessmentDate: "",
-    nationalInsuranceNumber: "",
-    phoneNumber: "",
-    email: "",
-    applicationMode: "",
-    location: ""
-  })
-}
+  const reset = () => {
+    setFormData({
+      title: "",
+      firstName: "",
+      middleName: "",
+      lastName: "",
+      assessmentDate: "",
+      nationalInsuranceNumber: "",
+      phoneNumber: "",
+      email: "",
+      applicationMode: "",
+      location: ""
+    })
+  }
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -50,8 +50,9 @@ const reset=()=>{
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    firestore.applyForHealthAndSafetyCourse(formData.title, formData.firstName, formData.middleName, formData.lastName, formData.nationalInsuranceNumber, formData.phoneNumber, formData.email, formData.applicationMode, formData.assessmentDate, formData.location,setIsSubmitting)
+    firestore.applyForHealthAndSafetyCourse(formData.title, formData.firstName, formData.middleName, formData.lastName, formData.nationalInsuranceNumber, formData.phoneNumber, formData.email, formData.applicationMode, formData.assessmentDate, formData.location, setIsSubmitting)
     reset()
+    window.location.href = "https://buy.stripe.com/00gaGx6wBfLJ1uE3ce";
   };
 
 
@@ -74,7 +75,7 @@ const reset=()=>{
       onSubmit={handleSubmit}
       className="max-w-full mx-auto rounded space-y-6"
     >
-    <ToastContainer/>
+      <ToastContainer />
 
       <div className="pt-6">
         <h2 className="text-[25px] bg-purple_primary text-white py-4 font-bold mb-6 text-center">
@@ -299,11 +300,11 @@ const reset=()=>{
         type="submit"
         disabled={!agreed}
         className={`inline-flex items-center justify-center w-fit px-4 py-2 rounded media-max-545px:text-[14px]  ${agreed
-            ? "bg-purple_primary text-white hover:bg-[#84286a]"
-            : "bg-[#854c75] text-white cursor-not-allowed"
+          ? "bg-purple_primary text-white hover:bg-[#84286a]"
+          : "bg-[#854c75] text-white cursor-not-allowed"
           }`}
       >
-        <span className="ml-2">{isSubmitting?"Submitting...":"Move Forward"}</span>
+        <span className="ml-2">{isSubmitting ? "Submitting..." : "Move Forward"}</span>
         <MdArrowRight className="size-6" />
       </button>
     </form>

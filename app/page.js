@@ -17,6 +17,11 @@ import { motion } from "framer-motion";
 
 export default function Home() {
 
+  const [hasMounted, setHasMounted] = useState(false);
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
   return (
     <>
       <Banner />
@@ -45,10 +50,10 @@ export default function Home() {
               <h2 className="text-[40px] font-semibold text-justify media-max-1212px:text-[30px] media-max-510px:text-[25px] ">Verify credentials and stay compliant with industry standards.</h2>
             </div>
 
-              {/* ===== Chatbot Section ===== */}
+            {/* ===== Chatbot Section ===== */}
             <section className="my-16 max-w-[1440px] mx-auto px-4">
-            <h2 className="text-2xl font-bold mb-4">Chat with Our Consultant</h2>
-            
+              <h2 className="text-2xl font-bold mb-4">Chat with Our Consultant</h2>
+
             </section>
 
             <div className="flex gap-5 mt-[94px] media-max-1212px:mt-28 media-max-1206px:mt-8 media-max-982px:mt-10 media-max-492px:justify-between">
@@ -302,12 +307,12 @@ export default function Home() {
           </motion.div>
         </div>
 
-        
+
 
       </div>
       <div className="">
         <Contact no_banner />
-      {/* <PaymentPage/> */}
+        {/* <PaymentPage/> */}
       </div>
     </>
 
