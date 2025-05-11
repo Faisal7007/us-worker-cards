@@ -50,10 +50,10 @@ export default function Home() {
               <h2 className="text-[40px] font-semibold text-justify media-max-1212px:text-[30px] media-max-510px:text-[25px] ">Verify credentials and stay compliant with industry standards.</h2>
             </div>
 
-            {/* ===== Chatbot Section ===== */}
+              {/* ===== Chatbot Section ===== */}
             <section className="my-16 max-w-[1440px] mx-auto px-4">
-              <h2 className="text-2xl font-bold mb-4">Chat with Our Consultant</h2>
-
+            <h2 className="text-2xl font-bold mb-4">Chat with Our Consultant</h2>
+            <ChatbotEmbed />
             </section>
 
             <div className="flex gap-5 mt-[94px] media-max-1212px:mt-28 media-max-1206px:mt-8 media-max-982px:mt-10 media-max-492px:justify-between">
@@ -63,6 +63,10 @@ export default function Home() {
               <Link href="/book-citb-test/default" className="bg-purple_primary text-white font-semibold py-2 px-4 rounded-md  border-2 border-transparent hover:border-purple_primary hover:text-purple_primary hover:bg-white transition-all duration-300 media-max-492px:text-[14px] media-max-490px:px-4 media-max-460px:text-[14px] media-max-460px:px-2 media-max-460px:py-2"><span>CITB HS&E </span></Link>
             </div>
           </motion.div>
+        </div>
+
+        <div>
+          <Carousel/>
         </div>
 
         <div className="mt-16 media-max-545px:mt-12">
@@ -92,7 +96,7 @@ export default function Home() {
               <HomeCard
                 icon={<FaIdCard className="size-8 text-white" />}
                 title="Get a ESS Card"
-                description="The ESS card is a CSCS partner scheme. You can apply online to get a new CSCS card, renew your existing card, or request a replacement if your card is lost"
+                description="The ESS card is a ESS partner scheme. You can apply online to get a new ESS card, renew your existing card, or request a replacement if your card is lost"
                 button_text="Apply Now"
                 link_to="/apply-card-for/ess"
               />
