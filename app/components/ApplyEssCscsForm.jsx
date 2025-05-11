@@ -6,7 +6,7 @@ import { UserContext } from "../context-api/UserContext";
 import { useFirebase } from "../context/Firebase";
 import GenericCardDetailsView from "./GenericCardDetailsView";
 
-const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType }) => {
+const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImagePath }) => {
   const [formData, setFormData] = useState({
     title: "",
     firstName: "",
@@ -32,7 +32,7 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType }) => {
 
     { id: 4, value: 'Red Trainee Card', component: <CardForList image_path="/red-trainee-img.png" title="Red Trainee Card" description="For applicants registered for NVQ / SVQ or relevant Construction Award." /> },
 
-    { id: 5, value: 'Red Experienced Worker Card', component: <CardForList image_path="/red-supervisor-card-img.png" title="Red Technical Supervisor/Manager Card" description="For applicants registered for a Construction NVQ or SVQ Level 2." /> },
+    { id: 5, value: 'Red Experienced Worker Card', component: <CardForList image_path="/red-supervisor-card-img.png" title="Red Experienced Worker Card" description="For applicants registered for a Construction NVQ or SVQ Level 2." /> },
 
     { id: 6, value: 'Red Technical Supervisor/Manager Card', component: <CardForList image_path="/red-supervisor-card-img.png" title="Red Technical Supervisor/Manager Card" description="For Supervisors with on the job experience (at least one year in the last three years)" /> },
 
@@ -68,6 +68,7 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType }) => {
     { id: 9, value: 'White Professionally Qualified Person', component: <CardForList image_path="/ess-white-pqp-img.png" title="White Professionally Qualified Person" description="This card is available to members of ESS approved Professional Bodies." /> },
 
     { id: 10, value: 'White Academically Qualified Person', component: <CardForList image_path="/ess-white-aqp-img.png" title="White Academically Qualified Person" description="For anyone with a construction degree, HND, HNC, CIOB Certificate, or NEBOSH diploma." /> },
+
     { id: 11, value: 'White ACRIB Refrigerant Handler', component: <CardForList image_path="/ess-white-acrib-img.png" title="White ACRIB Refrigerant Handler" description="For anyone with City & Guilds 2079 (Cat1), BESA FG Cat1, an NVQ unit recognized by DEFRA, or Logic 603/1917/3 (Cat1)." /> },
   ];
 
@@ -120,6 +121,26 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType }) => {
   const handleSelect = (value) => {
     setFormData({ ...formData, cardtype: value });
     setIsOpen(false);
+
+    const cardImageMap = {
+      "Green Labourer Card": "/green-card-img.png",
+      "Blue Skilled Worker Card": "/blue-card-img.png",
+      "Gold Advanced Craft Card": "/gold-advanced-card-img.png",
+      "Gold Supervisor Card": "/gold-supervisor-card-img.png",
+      "Black Manager Card": "/black-manager-card-img.png",
+      "White Academically Qualified Person": "/white-academically-qualified-card-img.png",
+      "White Professionally Qualified Person": "/white-professionally-qualified-card-img.png",
+      "Red Provisional Card": "/red-card-img.png",
+      "Red Trainee Card": "/red-trainee-img.png",
+      "Red Experienced Worker Card": "/red-experienced-worker-card-img.png",
+      "Red Technical Supervisor/Manager Card": "/red-supervisor-card-img.png"
+    };
+
+    if (setImagePath) {
+      console.log(value)
+      setImagePath(cardImageMap[value] || "/green-card-img.png");
+    }
+
     setGetCardType(value)
   };
 
@@ -424,9 +445,13 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType }) => {
                   checked={formData.applicationType === "Renew"}
                   onChange={handleChange}
                   className="w-5 h-5 accent-purple_primary"
+                  disabled={["White Academically Qualified Person", "White Professionally Qualified Person", "Red Provisional Card", "Red Technical Supervisor/Manager Card"].includes(formData.cardtype)}
                 />
-                <span className="ml-2">Renew</span>
+                <span className="ml-2">
+                  Renew
+                </span>
               </label>
+
 
 
             </div>

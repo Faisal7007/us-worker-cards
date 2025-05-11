@@ -17,7 +17,8 @@ const CitbForm = ({ test_center }) => {
     locality: "",
     townCity: "",
     county: "",
-    postcode: ""
+    postcode: "",
+    testType: "",
   });
 
 
@@ -54,13 +55,35 @@ const CitbForm = ({ test_center }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    firebase.applyForCITBTest(formData.title, formData.firstName, formData.middleName, formData.lastName, formData.dob, formData.nationalInsuranceNumber, formData.phoneNumber, formData.email, formData.houseNumber, formData.locality, formData.townCity, formData.county, formData.postcode, test_center, setIsSubmitting)
+    setIsSubmitting(true);
 
-    // console.log("Form Data:", formData);
-    reset()
+    firebase.applyForCITBTest(
+      formData.title,
+      formData.firstName,
+      formData.middleName,
+      formData.lastName,
+      formData.dob,
+      formData.nationalInsuranceNumber,
+      formData.phoneNumber,
+      formData.email,
+      formData.houseNumber,
+      formData.locality,
+      formData.townCity,
+      formData.county,
+      formData.postcode,
+      test_center,
+      setIsSubmitting
+    );
 
-    window.location.href = "https://buy.stripe.com/00gaGx6wBfLJ1uE3ce";
+    reset();
+
+    if (formData.testType === "normal") {
+      window.location.href = "https://buy.stripe.com/00gaGx6wBfLJ1uE3ce";
+    } else if (formData.testType === "retake") {
+      window.location.href = "https://buy.stripe.com/dR601T3kp6b9ddmeUZ"; // Replace this with your actual retake payment link
+    }
   };
+
 
   return (
     <form
@@ -309,6 +332,27 @@ const CitbForm = ({ test_center }) => {
           I agree to the Terms and Conditions and Privacy Policy
         </label>
       </div>
+
+      <div className="mb-6">
+        <label htmlFor="testType" className="block text-md font-medium">
+          Choose Test Type
+        </label>
+        <select
+          id="testType"
+          name="testType"
+          value={formData.testType}
+          onChange={handleChange}
+          className="w-50% border border-gray-500 py-4 px-3"
+          required
+        >
+          <option value="" disabled>
+            Please select a test type
+          </option>
+          <option value="normal">Take CITB Test</option>
+          <option value="retake">Take CITB Test + Retake</option>
+        </select>
+      </div>
+
       <button
         type="submit"
         disabled={!agreed || isSubmitting}

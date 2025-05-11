@@ -47,7 +47,7 @@ const page = () => {
         </div>
         <div className='mt-10 px-4 py-4 bg-gray-100 border-l-4 border-r-4 border-purple_primary'>
           <h1 className='font-bold text-purple_primary'>What does the CITB Health, Safety, and Environment Test involve?</h1>
-          <p className='text-justify media-max-545px:text-[14px]'>The CITB Test (Touchscreen Test) is a requirement for obtaining a CSCS Card. Officially called the CITB Health, Safety, and Environment Test, it can be booked by completing the form above. Your test booking confirmation will be sent to you via email and phone. Construction Worker Support (CWS) specializes in supporting the construction industry, providing workers with the guidance needed to obtain their construction cards.</p>
+          <p className='text-justify media-max-545px:text-[14px]'>The CITB Test (Touchscreen Test) is a requirement for obtaining a CSCS Card. Officially called the CITB Health, Safety, and Environment Test, it can be booked by completing the form above. Your test booking confirmation will be sent to you via email and phone. Construction Card Services (CCS) specializes in supporting the construction industry, providing workers with the guidance needed to obtain their construction cards.</p>
         </div>
       </div>
     </div>

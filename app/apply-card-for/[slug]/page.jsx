@@ -15,6 +15,7 @@ import { UserContext } from '@/app/context-api/UserContext'
 const page = () => {
   const [openDetails, setOpenDetails] = useState(false)
   const [getCardType, setGetCardType] = useState("")
+  const [imagePath, setImagePath] = useState("/green-card-img.png");
 
   const params = useParams();
   const form_type = params.slug;
@@ -38,7 +39,7 @@ const page = () => {
             <div className='h-[1px] w-full bg-slate-300 my-4'></div>
             <p>To apply for a <span className='uppercase'>{form_type}</span> Card, the applicant must have completed the CITB HS&E Test within the past two years. If you have not taken the test, <Link href="/book-citb-test/default" className='text-purple_primary font-bold'>you can schedule an appointment.</Link></p>
             <div className='mt-6 mb-4'>
-              <ApplyEssCscsForm form_type={form_type} setOpenDetails={setOpenDetails} setGetCardType={setGetCardType} />
+              <ApplyEssCscsForm form_type={form_type} setOpenDetails={setOpenDetails} setGetCardType={setGetCardType} setImagePath={setImagePath} />
             </div>
             <div className='h-[1px] w-full bg-slate-300 my-4'></div>
             <div className="text-center py-8">
@@ -50,7 +51,7 @@ const page = () => {
               <div>
 
                 <Image
-                  src={item?.image_path || "/green-card-img.png"} 
+                  src={imagePath}
                   alt="card-image"
                   width={800}
                   height={400}
