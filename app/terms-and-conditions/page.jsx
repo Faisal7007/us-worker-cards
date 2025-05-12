@@ -70,7 +70,7 @@ const page = () => {
 
 
       <h2 className='font-bold text-justify'>The right to reschedule your test</h2>
-      <p className='mb-4 text-justify'>If you need to reschedule a test, the request must be made at least 96 hours before the scheduled test date. Please forward your request to Support@constructionworkersupport.com.</p>
+      <p className='mb-4 text-justify'>If you need to reschedule a test, the request must be made at least 96 hours before the scheduled test date. Please forward your request to Support@constructioncardservices.com.</p>
 
       <h2 className='font-bold text-justify'>Please provide the following details for rescheduling your test:</h2>
       <p className='mb-4 text-justify'>Your full name and booking reference number</p>
