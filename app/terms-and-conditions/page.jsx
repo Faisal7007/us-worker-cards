@@ -5,8 +5,8 @@ const page = () => {
     <div className='max-w-[1440px] mx-auto px-4 pt-8 mt-[102px] media-max-545px:text-[14px] text-justify'>
       <h1 className='text-[30px] font-bold mb-2 capitalize'>Terms and Conditions</h1>
       <div className='h-[1px] w-full bg-slate-300 my-4'></div>
-      <h2 className='font-bold text-justify'>Support for Construction Workers Ltd.</h2>
-      <p className='mb-4 text-justify'>The website www.constructioncardservices.com is owned and operated by Construction Card Services Ltd.</p>
+      <h2 className='font-bold text-justify'>Support for Construction Card Services.</h2>
+      <p className='mb-4 text-justify'>The website www.constructioncardservices.com is owned and operated by Construction Card Services.</p>
 
       <h2 className='font-bold text-justify'>Construction Card Services Terminology</h2>
       <p className='mb-4 text-justify'>Within these terms and conditions, the terms "we," "our," "us," and "ours" refer to Construction Card Services.</p>
@@ -20,7 +20,7 @@ const page = () => {
 
       <h2 className='font-bold text-justify'>Terms and Conditions of Our Service</h2>
       <p className='mb-4 text-justify'>
-        Our terms and conditions apply to any company or individual making single or multiple bookings with Construction Card Services. By accessing our services and using www.constructioncardservices.com, you agree to our Terms and Conditions. Construction Worker Support reserves the right to edit or amend any of our Terms and Conditions as deemed appropriate, without notifying the customer. Any new or edited terms will apply only to bookings made after the updated terms are added to the website and bookings policy. The terms on the Construction Card Services website at the time of your booking will be the applicable terms. It is the responsibility of customers to ensure they agree with and comply with our terms and conditions before making a booking.</p>
+        Our terms and conditions apply to any company or individual making single or multiple bookings with Construction Card Services. By accessing our services and using www.constructioncardservices.com, you agree to our Terms and Conditions. Construction Card Services reserves the right to edit or amend any of our Terms and Conditions as deemed appropriate, without notifying the customer. Any new or edited terms will apply only to bookings made after the updated terms are added to the website and bookings policy. The terms on the Construction Card Services website at the time of your booking will be the applicable terms. It is the responsibility of customers to ensure they agree with and comply with our terms and conditions before making a booking.</p>
 
       <h2 className='font-bold text-justify'>Age Restrictions for Service Use</h2>
       <p className='mb-4'>We are unable to book tests for individuals under the age of 16.</p>
@@ -36,9 +36,9 @@ const page = () => {
       <p className='mb-4 text-justify'>Construction Card Services will send a confirmation email and text to your mobile within 48 working hours of the booking being made. If requested, the customer can also receive confirmation via text for their date and time. If the customer has not received any communication from Construction Card Services within 48 hours, they are advised to contact our support team at support@constructioncardservices.com.</p>
 
       <h2 className='font-bold mb-4 text-justify'>
-        Cancellation requests are subject to specific administration and cancellation fees depending on the service. For CSCS cards, the cancellation fee is £14. For ESS cards, the fee is £16 for a digital card and £27 for a physical card. CITB test cancellations incur a separate fee of £15. These charges cover, but are not limited to, communication with the candidate, cancellation of requested services with CITB, and the refund process. In the case of a test and retake cancellation, an additional £10.00 will be deducted along with the applicable cancellation fee.</h2>
+        Cancellation requests are subject to specific administration and cancellation fees depending on the service. For CSCS cards, the cancellation fee is £14. For ESS cards, the fee is £18 for a digital card and £30 for a physical card. CITB test cancellations incur a separate fee of £15. These charges cover, but are not limited to, communication with the candidate, cancellation of requested services with CITB, and the refund process. In the case of a test and retake cancellation, an additional £22.00 will be deducted along with the applicable cancellation fee.</h2>
 
-      <h2 className='font-bold mb-4 text-justify'>The cancellation fees for various cards are as follows: the CSCS card cancellation fee is £14, while for the ESS card, the cancellation fee for the digital card is £16 and for the physical card, it is £27. Additionally, the CITB cancellation fee is set at £15.</h2>
+      <h2 className='font-bold mb-4 text-justify'>The cancellation fees for various cards are as follows: the CSCS card cancellation fee is £14, while for the ESS card, the cancellation fee for the digital card is £18 and for the physical card, it is £30. Additionally, the CITB cancellation fee is set at £15.</h2>
 
 
 
@@ -81,7 +81,7 @@ const page = () => {
 
       <h2 className='font-bold text-justify'>One Day Courses & NVQ Booking and Cancellation Policy</h2>
       <p className='mb-4 text-justify'>
-        The One Day Awareness Course, and NVQ once booked, cannot be cancelled and is non-refundable. Construction Card Services Ltd reserves the right to cancel or alter the course dates, the provision of services, the location, or the individual/organisation providing the service, and make reasonable variations to the courses without prior notice. In the event of a cancellation, the booking will typically be transferred to the next available course, unless the customer specifically requests otherwise.</p>
+        The One Day Awareness Course, and NVQ once booked, cannot be cancelled and is non-refundable. Construction Card Services reserves the right to cancel or alter the course dates, the provision of services, the location, or the individual/organisation providing the service, and make reasonable variations to the courses without prior notice. In the event of a cancellation, the booking will typically be transferred to the next available course, unless the customer specifically requests otherwise.</p>
 
       <h2 className='font-bold text-justify'>Cancellation, Reschedules, and Non-Attendance Policy:</h2>
       <p className='mb-4 text-justify'>Construction Card Services will not be held responsible for any reasons that prevent a candidate from attending the course. This includes, but is not limited to, circumstances such as bad weather, vehicle breakdown, or any other factors that may prevent attendance on the day of the course.</p>
@@ -91,7 +91,7 @@ const page = () => {
           Card Booking and Cancellation Policy
         </h2>
         <p className="mb-4 text-justify">
-          By applying for your CSCS Card with us, you grant permission to Construction Card Services Ltd to contact CSCS on your behalf to resolve any issues with your application. Cancellation requests are subject to an administration and cancellation fee, which covers communication with the candidate, communication with CSCS, and the refund process.
+          By applying for your CSCS Card with us, you grant permission to Construction Card Services to contact CSCS on your behalf to resolve any issues with your application. Cancellation requests are subject to an administration and cancellation fee, which covers communication with the candidate, communication with CSCS, and the refund process.
         </p>
         <h3 className="font-semibold text-justify">Cancellation Fees:</h3>
         <ul className="mb-4 text-justify list-disc list-inside">
@@ -105,7 +105,7 @@ const page = () => {
           Once you have completed the booking for your Card, you will receive an email listing the documents required for processing your Card within 48 hours. It is advised that you send a clear photograph of all relevant documents requested by the card processing team promptly via email. Failure to do so may delay the processing of your Card.
         </p>
         <p className="mb-4 text-justify">
-          Please note that if you are unable to submit the required documents within <strong>75 days</strong> of booking, Construction Card Services Ltd reserves the right to cancel your Card booking and issue a refund after deducting the applicable administration and cancellation fee as stated above.
+          Please note that if you are unable to submit the required documents within <strong>75 days</strong> of booking, Construction Card Services reserves the right to cancel your Card booking and issue a refund after deducting the applicable administration and cancellation fee as stated above.
         </p>
       </div>
     </div>

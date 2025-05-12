@@ -26,44 +26,67 @@ export default function Home() {
     <>
       <Banner />
       <div className="max-w-[1440px] mx-auto px-4 pt-[102px]  media-max-545px:pt-2">
-        <div className="flex  justify-between items-start gap-10  media-max-982px:flex-col">
-          <motion.div initial={{ x: -60, opacity: 0 }}
+        <div className="flex justify-between items-start gap-10 flex-col lg:flex-row">
+          {/* Image Section */}
+          <motion.div
+            initial={{ x: -60, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            viewport={{ once: false, amount: 0.3 }} className="flex items-center h-[450px] media-max-982px:hidden   media-max-510px:h-[400px] media-max-470px:h-[380px] media-max-410px:h-[350px]">
+            viewport={{ once: false, amount: 0.3 }}
+            className="hidden lg:flex items-center h-[450px] md:h-[400px] sm:h-[350px]"
+          >
             <Image
               src="/home-img2.jpg"
               alt="home-image"
-              className=" h-full rounded-lg media-max-982px:w-full"
               width={800}
-              height={1000}
+              height={600}
               priority
+              className="h-full w-auto rounded-lg"
             />
           </motion.div>
-          <motion.div initial={{ x: 50, opacity: 0 }}
+
+          {/* Text Section */}
+          <motion.div
+            initial={{ x: 50, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            viewport={{ once: false, amount: 0.3 }} className="flex flex-col justify-between ">
+            viewport={{ once: false, amount: 0.3 }}
+            className="flex flex-col justify-between w-full"
+          >
             <div>
-              <h1 className="text-[70px] leading-[85px] font-bold text-justify media-max-1336px:text-[60px] media-max-1336px:leading-[80px] media-max-545px:text-[40px] media-max-545px:leading-[70px] media-max-545px:text-start media-max-510px:text-[45px] media-max-510px:leading-[60px]">Complete All Requirements to Secure On-Site Access</h1>
+              <h1 className="text-[40px] leading-[50px] font-bold text-justify md:text-[60px] md:leading-[70px] lg:text-[70px] lg:leading-[85px] sm:text-start">
+                Complete All Requirements to Secure On-Site Access
+              </h1>
               <br />
-              <h2 className="text-[40px] font-semibold text-justify media-max-1212px:text-[30px] media-max-510px:text-[25px] ">Verify credentials and stay compliant with industry standards.</h2>
+              <h2 className="text-[22px] font-semibold text-justify md:text-[30px] lg:text-[40px]">
+                Verify credentials and stay compliant with industry standards.
+              </h2>
             </div>
 
-            {/* ===== Chatbot Section ===== */}
-            {/* <section className="my-16 max-w-[1440px] mx-auto px-4">
-              <h2 className="text-2xl font-bold mb-4">Chat with Our Consultant</h2>
-              <ChatbotEmbed />
-            </section> */}
-
-            <div className="flex gap-5 mt-[94px] media-max-1212px:mt-28 media-max-1206px:mt-8 media-max-982px:mt-10 media-max-492px:justify-between">
-              <Link href="/cscs-card-types" className="bg-purple_primary text-white font-semibold py-2 px-4 rounded-md  border-2 border-transparent hover:border-purple_primary hover:text-purple_primary hover:bg-white transition-all duration-300 media-max-492px:text-[14px] media-max-490px:px-4 media-max-460px:text-[14px] media-max-460px:px-2 media-max-460px:py-2"><span>CSCS Card</span></Link>
-
-              <Link href="/health-and-safety-awareness" className="bg-purple_primary text-white font-semibold py-2 px-4 rounded-md  border-2 border-transparent hover:border-purple_primary hover:text-purple_primary hover:bg-white transition-all duration-300 media-max-492px:text-[14px] media-max-490px:px-4 media-max-460px:text-[14px] media-max-460px:px-2 media-max-460px:py-2"><span>Health & Safety</span></Link>
-              <Link href="/book-citb-test/default" className="bg-purple_primary text-white font-semibold py-2 px-4 rounded-md  border-2 border-transparent hover:border-purple_primary hover:text-purple_primary hover:bg-white transition-all duration-300 media-max-492px:text-[14px] media-max-490px:px-4 media-max-460px:text-[14px] media-max-460px:px-2 media-max-460px:py-2"><span>CITB HS&E </span></Link>
+            {/* Button Links */}
+            <div className="flex flex-wrap gap-4 mt-12 sm:mt-10">
+              <Link
+                href="/cscs-card-types"
+                className="bg-purple_primary text-white font-semibold py-2 px-4 rounded-md border-2 border-transparent hover:border-purple_primary hover:text-purple_primary hover:bg-white transition-all duration-300 text-sm sm:text-base"
+              >
+                <span>CSCS Card</span>
+              </Link>
+              <Link
+                href="/health-and-safety-awareness"
+                className="bg-purple_primary text-white font-semibold py-2 px-4 rounded-md border-2 border-transparent hover:border-purple_primary hover:text-purple_primary hover:bg-white transition-all duration-300 text-sm sm:text-base"
+              >
+                <span>Health & Safety</span>
+              </Link>
+              <Link
+                href="/book-citb-test/default"
+                className="bg-purple_primary text-white font-semibold py-2 px-4 rounded-md border-2 border-transparent hover:border-purple_primary hover:text-purple_primary hover:bg-white transition-all duration-300 text-sm sm:text-base"
+              >
+                <span>CITB HS&E</span>
+              </Link>
             </div>
           </motion.div>
         </div>
+
 
         <div>
           {/* <Carousel /> */}
@@ -166,60 +189,63 @@ export default function Home() {
         <div className="text-center mt-16 media-max-545px:mt-12">
           <h2 className="text-[25px] font-bold inline-block mb-8  px-4 py-1 bg-purple_primary rounded-full text-white media-max-600px:text-[22px]">Your Guide to Booking the CITB Test</h2>
         </div>
-        <div className="flex flex-col lg:flex-row lg:justify-between items-center lg:items-start gap-6 rounded-lg">
 
-          <motion.div initial={{ x: -60, opacity: 0 }}
+        <div className="flex flex-col lg:flex-row lg:justify-between items-center gap-10 rounded-lg px-4 sm:px-6 lg:px-0">
+          {/* Left Image */}
+          <motion.div
+            initial={{ x: -60, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            viewport={{ once: false, amount: 0.3 }} className="bg-purple_primary rounded-lg ">
-
+            viewport={{ once: false, amount: 0.3 }}
+            className="w-full lg:w-1/2 flex justify-center bg-purple_primary"
+          >
             <Image
               src="/citb-img3.png"
               alt="CITB Test Booking"
               width={800}
               height={400}
-              className='rounded-lg h-[380px] w-[660px] media-max-1298px:w-[560px] media-max-600px:w-[100vw] media-max-545px:h-[220px]'
+              className="rounded-lg w-full max-w-[660px] h-auto sm:h-[380px] object-cover"
             />
           </motion.div>
 
-          <motion.div initial={{ x: 50, opacity: 0 }}
+          {/* Right Content */}
+          <motion.div
+            initial={{ x: 50, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            viewport={{ once: false, amount: 0.3 }} className="w-[660px] media-max-1298px:w-[560px] media-max-600px:w-[100vw] media-max-410px:w-[100vw] media-max-600px:px-4 media-max-410px:px-4 media-max-545px:text-[14px]">
-            <h2 className="text-[25px] font-bold text-purple_primary text-justify mb-4 media-max-545px:text-[20px]">
+            viewport={{ once: false, amount: 0.3 }}
+            className="w-full lg:w-1/2 text-[16px] sm:text-[15px] lg:text-[16px]"
+          >
+            <h2 className="text-[25px] sm:text-[20px] font-bold text-purple_primary text-left mb-4">
               Scheduling Your CITB Health, Safety & Environment Test
             </h2>
             <p className="text-gray-700 mb-5 text-justify">
               Booking your CITB Touchscreen Test, officially called the CITB Health, Safety & Environment Test, is simpler with Construction Card Services.
             </p>
-            <ul className="pl-6 mb-4 text-gray-700 media-max-545px:text-[14px]">
-              <li className="flex items-start mb-2 text-justify">
+
+            <ul className="pl-6 mb-4 text-gray-700 space-y-3">
+              <li className="flex items-start text-justify">
                 <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />
                 <span>
                   Fill out the CITB Test Booking application
                   <Link href="/book-citb-test/default" className="text-purple_primary ml-1 underline">here.</Link>
                 </span>
               </li>
-              <li className="flex items-start mb-2 text-justify">
+              <li className="flex items-start text-justify">
                 <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />
-                <span>
-                  Select your preferred test centre and date.
-                </span>
+                <span>Select your preferred test centre and date.</span>
               </li>
-              <li className="flex items-start mb-2 text-justify">
+              <li className="flex items-start text-justify">
                 <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />
-                <span>
-                  Complete the payment and review your booking.
-                </span>
+                <span>Complete the payment and review your booking.</span>
               </li>
             </ul>
 
-            <p className="text-gray-700 mb-5">
+            <p className="text-gray-700 mb-5 text-justify">
               Within a few minutes, you will receive the confirmation via email and/or text at your registered email address. That’s it!
             </p>
-            <p className="text-gray-700">
-              <strong>Not sure which test to book?</strong> Find the correct test
-              according to your occupation{" "}
+            <p className="text-gray-700 text-justify">
+              <strong>Not sure which test to book?</strong> Find the correct test according to your occupation{" "}
               <Link href="/trade-wise-test" className="text-purple_primary underline">
                 here
               </Link>
@@ -228,11 +254,12 @@ export default function Home() {
           </motion.div>
         </div>
 
+
         <div className="text-center mt-16 mb-8 media-max-545px:mt-12">
           <h2 className="text-[25px] font-bold inline-block  px-4 py-1 bg-purple_primary rounded-full text-white media-max-600px:text-[22px]">Apply for CSCS Card</h2>
         </div>
 
-        <div className="flex flex-col lg:flex-row lg:justify-between items-center lg:items-start gap-6  rounded-lg">
+        <div className="flex flex-col lg:flex-row lg:justify-between items-center lg:items-start gap-6 rounded-lg px-4 lg:px-0">
 
           <motion.div initial={{ x: -60, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
@@ -240,23 +267,22 @@ export default function Home() {
             viewport={{ once: false, amount: 0.3 }}>
 
             <Image
-              src={`/green-card-img.png`}
+              src={"/green-card-img.png"}
               alt='card-image'
-              width={800}
-              height={400}
-              className='rounded-lg h-[380px] w-[660px] media-max-1298px:w-[560px] media-max-600px:w-[100vw] media-max-545px:h-[220px]'
+              width={600}
+              height={200}
+              className='rounded-lg h-[310px] w-[610px] media-max-1298px:w-[560px] media-max-600px:w-[100vw] media-max-545px:h-[220px]'
             />
           </motion.div>
 
-
-
-          <motion.div initial={{ x: 50, opacity: 0 }}
+          <motion.div
+            initial={{ x: 50, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            viewport={{ once: false, amount: 0.3 }} className="w-[660px] media-max-1298px:w-[560px] media-max-600px:w-[100vw] media-max-410px:w-[100vw] media-max-600px:px-4 media-max-410px:px-4 media-max-545px:text-[14px]">
-
-
-            <ul className="mb-4 text-gray-700">
+            viewport={{ once: false, amount: 0.3 }}
+            className="w-full max-w-[660px] text-gray-700 sm:text-sm"
+          >
+            <ul className="mb-4">
               <li className="flex items-start gap-2 mb-4">
                 <FaHardHat className="text-purple_primary mt-1 flex-shrink-0" />
                 <p className="text-justify">
@@ -269,7 +295,7 @@ export default function Home() {
                 <p className="text-justify">Select the type of card booking you want to proceed with.</p>
               </li>
 
-              <li className="flex items-start gap-2 mb-1 ml-6">
+              <li className="flex items-start gap-2 mb-1 pl-6">
                 <GoDotFill className="text-purple_primary mt-1 flex-shrink-0" />
                 <p className="text-justify">
                   If you are applying for the first time, select
@@ -277,7 +303,7 @@ export default function Home() {
                 </p>
               </li>
 
-              <li className="flex items-start gap-2 mb-4 ml-6">
+              <li className="flex items-start gap-2 mb-4 pl-6">
                 <GoDotFill className="text-purple_primary mt-1 flex-shrink-0" />
                 <p className="text-justify">
                   If you want a replacement for your existing CSCS card, select
@@ -305,11 +331,9 @@ export default function Home() {
                 </p>
               </li>
             </ul>
-
-
-
           </motion.div>
         </div>
+
 
 
 
