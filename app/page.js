@@ -25,8 +25,8 @@ export default function Home() {
   return (
     <>
       <Banner />
-      <div className="max-w-[1440px] mx-auto px-4 pt-[102px]  media-max-545px:pt-2">
-        <div className="flex justify-between items-start gap-10 flex-col lg:flex-row">
+      <div className="Helvetica Neue max-w-[1440px] mx-auto px-4 pt-[102px]  media-max-545px:pt-2">
+        <div className="flex justify-between items-start gap-5 flex-col lg:flex-row">
           {/* Image Section */}
           <motion.div
             initial={{ x: -60, opacity: 0 }}
@@ -38,14 +38,14 @@ export default function Home() {
             <Image
               src="/home-img2.jpg"
               alt="home-image"
-              width={800}
-              height={600}
+              width={850}
+              height={700}
               priority
-              className="h-full w-auto rounded-lg"
+              className="h-40% w-40% rounded-lg"
             />
           </motion.div>
 
-          {/* Text Section */}
+          {/* Text Section  */}
           <motion.div
             initial={{ x: 50, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
@@ -54,11 +54,11 @@ export default function Home() {
             className="flex flex-col justify-between w-full"
           >
             <div>
-              <h1 className="text-[40px] leading-[50px] font-bold text-justify md:text-[60px] md:leading-[70px] lg:text-[70px] lg:leading-[85px] sm:text-start">
+              <h1 className="text-[40px] leading-[50px] font-bold text-justify md:text-[60px] md:leading-[70px] lg:text-[60px] lg:leading-[70px] sm:text-start">
                 Complete All Requirements to Secure On-Site Access
               </h1>
               <br />
-              <h2 className="text-[22px] font-semibold text-justify md:text-[30px] lg:text-[40px]">
+              <h2 className="text-[22px] font-semibold text-justify md:text-[30px] lg:text-[35px]">
                 Verify credentials and stay compliant with industry standards.
               </h2>
             </div>
@@ -86,6 +86,7 @@ export default function Home() {
             </div>
           </motion.div>
         </div>
+
 
 
         <div>

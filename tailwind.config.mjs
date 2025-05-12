@@ -26,8 +26,9 @@ export default {
         foreground: "var(--foreground)",
       },
       fontFamily: {
-        smooch: ['"Smooch Sans"', 'sans-serif'],
-        slabo: ['"Slabo 27px"', 'serif'],
+        sans: ['Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
+        // smooch: ['"Smooch Sans"', 'sans-serif'],
+        // slabo: ['"Slabo 27px"', 'serif'],
       },
       Shadow: {
         custom_shadow: "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)",
