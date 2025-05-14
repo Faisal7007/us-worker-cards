@@ -56,12 +56,12 @@ const Page = () => {
           <SmallCard icon={<FaHardHat className="size-6 text-white" />}
             title="CITB Test"
             button_text="Apply Now"
-            link_to="#" />
+            link_to="/book-citb-test/default" />
 
           <SmallCard icon={<FaAward className="size-6 text-white" />}
             title="NVQ Level 2"
             button_text="Apply Now"
-            link_to="#" />
+            link_to="/nvq-level-2" />
         </div>
       </div>
 
