@@ -134,7 +134,7 @@ export default function Home() {
               <HomeCard
                 icon={<MdOutlineLaptopMac className="size-8 text-white" />}
                 title="Schedule the CITB HS&E Test."
-                description="Schedule your CITB Health, Safety & Environment Test at the nearest test center.Booking fee of CITB Test &#163;35 for one chance and for 2 chances it will cost &#163;55."
+                description="Schedule your CITB Health, Safety & Environment Test at the nearest test center.Booking fee of CITB Test &#163;40 for one chance and for 2 chances it will cost &#163;60."
                 button_text="Apply Now"
                 link_to="/citb-test"
               />

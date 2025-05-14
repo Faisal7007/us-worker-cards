@@ -456,27 +456,32 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
                 />
                 <span className="ml-2">Stolen</span>
               </label>
-              <label className="flex items-center">
-                <input
-                  type="radio"
-                  name="applicationType"
-                  value="Renew"
-                  checked={formData.applicationType === "Renew"}
-                  onChange={handleChange}
-                  className="w-5 h-5 accent-purple_primary"
-                  disabled={["White Academically Qualified Person", "White Professionally Qualified Person", "Red Provisional Card", "Red Technical Supervisor/Manager Card"].includes(formData.cardtype)}
-                />
-                <span className="ml-2">
-                  Renew
-                </span>
-              </label>
+              {
+                // !["White Academically Qualified Person", "White Professionally Qualified Person", "Red Provisional Card", "Red Technical Supervisor/Manager Card"].includes(formData.cardtype) && (
+                <label className="flex items-center">
+                  <input
+                    type="radio"
+                    name="applicationType"
+                    value="Renew"
+                    checked={formData.applicationType === "Renew"}
+                    onChange={handleChange}
+                    className="w-5 h-5 accent-purple_primary"
+                  />
+                  <span className="ml-2">
+                    Renew
+                  </span>
+                </label>
+                // )
+              }
+
+
 
 
 
             </div>
             {
               formData.applicationType === "Renew" &&
-              !["Green Labourer Card", "Gold Advanced Craft Card", "Gold Supervisor Card", "Blue Skilled Worker Card", "Black Manager Card"].includes(formData.cardType) && (
+              ["White Academically Qualified Person", "White Professionally Qualified Person"].includes(formData.cardtype) && (
                 <div className="text-orange-700 text-sm">
                   Only Green, Gold advanced, Gold supervisor, Blue skilled and Black manager cards are renewable
                 </div>
