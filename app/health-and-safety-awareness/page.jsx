@@ -160,6 +160,7 @@ const Page = () => {
             titleOne='Health & Safety Awareness'
             titleTwo='Easy apply for Level 1 Health & Safety in Construction.'
             cardType="health-and-safety-awareness"
+            card="course-book"
           />
         </div>
       </div>

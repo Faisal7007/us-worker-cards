@@ -96,6 +96,8 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
     )
   }, [idx]);
 
+
+
   useEffect(() => {
     if (essId) {
       const selectedCard = essCardTypes.find((card) => card.id === essId);
@@ -109,6 +111,23 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
       setEssId(null)
     )
   }, [essId]);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+
+    const firstName = params.get("firstName");
+    const lastName = params.get("lastName");
+    const phoneNumber = params.get("phoneNumber");
+    const email = params.get("email");
+
+    setFormData((prev) => ({
+      ...prev,
+      ...(firstName && { firstName }),
+      ...(lastName && { lastName }),
+      ...(phoneNumber && { phoneNumber }),
+      ...(email && { email }),
+    }));
+  }, []);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });

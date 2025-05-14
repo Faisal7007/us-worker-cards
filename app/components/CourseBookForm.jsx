@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { MdArrowRight } from "react-icons/md";
 import CardForList from "./CardForList";
 import { useFirebase } from "../context/Firebase";
@@ -24,6 +25,8 @@ const CscsForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const dropdownRef = useRef(null);
   const firestore = useFirebase()
+
+  const searchParams = useSearchParams();
 
 
   const reset = () => {
@@ -62,6 +65,20 @@ const CscsForm = () => {
     }
   };
 
+  useEffect(() => {
+    const firstName = searchParams.get("firstName") || "";
+    const lastName = searchParams.get("lastName") || "";
+    const email = searchParams.get("email") || "";
+    const phoneNumber = searchParams.get("phoneNumber") || "";
+
+    setFormData(prev => ({
+      ...prev,
+      firstName,
+      lastName,
+      email,
+      phoneNumber
+    }));
+  }, [searchParams]);
 
   useEffect(() => {
     document.addEventListener("click", handleClickOutside);

@@ -173,7 +173,7 @@ function Contact({ no_banner }) {
 
 
             <br />
-            <div className="text-lg inline-flex items-center text-gray-500 media-max-545px:text-[14px]  font-semibold"><IoLocation className="size-8 mr-4 text-purple_primary" />9, Dalton House 60 Winsdor Avenue London SW19 2RR</div>
+            <div className="text-lg inline-flex items-center text-gray-500 media-max-545px:text-[14px]  font-semibold"><IoLocation className="size-8 mr-4 text-purple_primary" />Dalton House 60 Winsdor Avenue London SW19 2RR</div>
             <div className="">
               {/* <h2 className="text-xl sm:text-2xl font-bold mb-4">Our Location</h2> */}
               <div className="w-full h-48 sm:h-80 lg:h-96 overflow-hidden">

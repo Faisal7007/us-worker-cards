@@ -36,25 +36,25 @@ const page = () => {
             title_form_two="Easy apply for ESS Blue Card - Skilled Worker Card."
             card_type="blue-skilled"
             validity={"5"}
-
+            card="ess"
 
           />
         );
 
-        case "blue-experienced":
-          return (
-            <EssPageComponent
-              id={id}
-              title_page="ESS Blue Experienced Worker Card"
-              image_path="/ess-blue-experienced-img.png"
-              title_form_one="Blue Experienced Worker Card"
-              title_form_two="Easy apply for ESS Blue Card - Experienced Worker Card." 
-              card_type="blue-experienced"
-              validity={"5"}
+      case "blue-experienced":
+        return (
+          <EssPageComponent
+            id={id}
+            title_page="ESS Blue Experienced Worker Card"
+            image_path="/ess-blue-experienced-img.png"
+            title_form_one="Blue Experienced Worker Card"
+            title_form_two="Easy apply for ESS Blue Card - Experienced Worker Card."
+            card_type="blue-experienced"
+            validity={"5"}
 
 
-            />
-          );
+          />
+        );
 
       case "red-trainee":
         return (
@@ -71,7 +71,7 @@ const page = () => {
           />
         );
 
-        case "red-industry":
+      case "red-industry":
         return (
           <EssPageComponent
             id={id}
@@ -161,19 +161,19 @@ const page = () => {
           />
         );
 
-        case "acrib":
-          return (
-            <EssPageComponent
-              id={id}
-              title_page="ESS White ACRIB Refrigerant Handler"
-              image_path="/ess-white-acrib-img.png"
-              title_form_one="White ACRIB Refrigerant Handler Card"
-              title_form_two="Easy apply for ESS White Card - ACRIB Refrigerant Handler"
-              card_type="white-acrib"
-              validity={"3"}
+      case "acrib":
+        return (
+          <EssPageComponent
+            id={id}
+            title_page="ESS White ACRIB Refrigerant Handler"
+            image_path="/ess-white-acrib-img.png"
+            title_form_one="White ACRIB Refrigerant Handler Card"
+            title_form_two="Easy apply for ESS White Card - ACRIB Refrigerant Handler"
+            card_type="white-acrib"
+            validity={"3"}
 
-            />
-          );
+          />
+        );
 
       default:
         return <div>Invalid ID or Page Not Found</div>;

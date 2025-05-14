@@ -7,8 +7,8 @@ import { useRouter } from "next/navigation";
 import { toast, ToastContainer } from "react-toastify";
 
 
-const CardForm = ({ titleOne, titleTwo, cardType }) => {
-   // Use your Firebase context
+const CardForm = ({ titleOne, titleTwo, cardType, card }) => {
+  // Use your Firebase context
   const router = useRouter();
 
   const [firstName, setFirstName] = useState("");
@@ -20,17 +20,17 @@ const CardForm = ({ titleOne, titleTwo, cardType }) => {
   const [saved, setSaved] = useState(false);
   const [cscsUsers, setCscsUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(false)
-  const firebase=useFirebase()
-  
-  
-  const cscsCardTypes = ["green-labourer", "blue-skilled","red-provisional","red-trainee","red-experienced","red-technical-supervisor","gold-craft","gold-supervisor","black-manager","white-aqp","white-pqp","health-and-safety-awareness"];
-  
-    useEffect(()=>{
-        firebase.fetchAllCscsEssData('cscs',cscsCardTypes,setCscsUsers,setIsLoading)
-    },[cardType])
+  const firebase = useFirebase()
 
-  
-  console.log(cscsUsers,'All users')  
+
+  const cscsCardTypes = ["green-labourer", "blue-skilled", "red-provisional", "red-trainee", "red-experienced", "red-technical-supervisor", "gold-craft", "gold-supervisor", "black-manager", "white-aqp", "white-pqp", "health-and-safety-awareness"];
+
+  useEffect(() => {
+    firebase.fetchAllCscsEssData('cscs', cscsCardTypes, setCscsUsers, setIsLoading)
+  }, [cardType])
+
+
+  console.log(cscsUsers, 'All users')
   const reset = () => {
     setFirstName("");
     setLastName("");
@@ -40,53 +40,73 @@ const CardForm = ({ titleOne, titleTwo, cardType }) => {
 
 
 
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-  // Check if email or phone already exists in the database
-  const emailExists = cscsUsers.some((user) => user.email === email.trim());
-  const phoneExists = cscsUsers.some((user) => user.phone === phone.trim());
+    const trimmedEmail = email.trim();
+    const trimmedPhone = phone.trim();
 
-  if (emailExists || phoneExists) {
-      if(emailExists){
-          toast.error("Email already exists!", {
-            position: "top-center",
-            autoClose: 3000,
-            hideProgressBar: true,
-            className: "bg-red-100 text-red-800 font-medium",
-          });
-        }
-        if(phoneExists){
-          toast.error("Mobile number already exists!", {
-            position: "top-center",
-            autoClose: 3000,
-            hideProgressBar: true,
-            className: "bg-red-100 text-red-800 font-medium",
-          });
-    
-        }
-    return;
-  }
+    // Check if email or phone already exists in the database
+    const emailExists = cscsUsers.some((user) => user.email === trimmedEmail);
+    const phoneExists = cscsUsers.some((user) => user.phone === trimmedPhone);
 
-  // Add new data if it doesn't exist
-  firebase.addCscsData(firstName, lastName, email, phone, cardType, setIsSubmitting,'manual');
-  reset()
+    if (emailExists || phoneExists) {
+      if (emailExists) {
+        toast.error("Email already exists!", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: true,
+          className: "bg-red-100 text-red-800 font-medium",
+        });
+      }
+      if (phoneExists) {
+        toast.error("Mobile number already exists!", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: true,
+          className: "bg-red-100 text-red-800 font-medium",
+        });
+      }
+      return;
+    }
+
+    // Add new data if it doesn't exist
+    firebase.addCscsData(firstName, lastName, trimmedEmail, trimmedPhone, cardType, setIsSubmitting, 'manual');
+
+    // Reset the form fields
+    reset();
+
+    // Redirect to target URL with query params
+    const queryParams = new URLSearchParams({
+      firstName,
+      lastName,
+      phoneNumber: trimmedPhone,
+      email: trimmedEmail
+    });
+
+    if (card == 'course-book') {
+      router.push(`/course-book?${queryParams.toString()}`);
+      return;
+    }
+
+    router.push(`/apply-card-for/${card}?${queryParams.toString()}`);
   };
+
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const autoSave = () => {
-    if (saved) return; 
+    if (saved) return;
     setSaved(true);
     try {
       const emailExists = cscsUsers.some((user) => user.email === email.trim());
       const phoneExists = cscsUsers.some((user) => user.phone === phone.trim());
-    
+
       if (emailExists || phoneExists) {
         // alert("Email or phone number already exists in the database.");
         return;
       }
-      firebase.AutoaddCscsData(firstName, lastName, email, phone, cardType,'auto');
+      firebase.AutoaddCscsData(firstName, lastName, email, phone, cardType, 'auto');
       console.log("Auto CSCS details saved successfully!");
     } catch (error) {
       console.error("Error saving user details:", error);
@@ -112,27 +132,30 @@ const CardForm = ({ titleOne, titleTwo, cardType }) => {
 
   const saveUserDetails = () => {
     const emailExists = cscsUsers.some((user) => user.email === email.trim());
-      const phoneExists = cscsUsers.some((user) => user.phone === phone.trim());
-    
-      if (emailExists || phoneExists) {
+    const phoneExists = cscsUsers.some((user) => user.phone === phone.trim());
+
+    if (emailExists || phoneExists) {
       //alert("Email or phone number already exists in the database. On URL change");
-        return;
-      }
-      else{
-        if (email || phone) {
-          try {
-            firebase.AutoaddCscsData(firstName, lastName, email, phone, cardType,'auto');
-            console.log("Auto CSCS details saved successfully!");
-          } catch (error) {
-            console.error("Error saving user details:", error);
-          }
+      return;
+    }
+    else {
+      if (email || phone) {
+        try {
+          firebase.AutoaddCscsData(firstName, lastName, email, phone, cardType, 'auto');
+          console.log("Auto CSCS details saved successfully!");
+        } catch (error) {
+          console.error("Error saving user details:", error);
         }
       }
-    
+    }
+
   };
 
   useEffect(() => {
-    
+
+
+    console.log("Card", cardType)
+
     const handleUrlChange = () => {
       saveUserDetails();
     };
@@ -140,7 +163,7 @@ const CardForm = ({ titleOne, titleTwo, cardType }) => {
     // window.addEventListener("popstate", handleUrlChange); // For history navigation
     window.addEventListener("beforeunload", handleUrlChange); // For page refresh or close
 
-   
+
     return () => {
       // window.removeEventListener("popstate", handleUrlChange);
       window.removeEventListener("beforeunload", handleUrlChange);
@@ -149,7 +172,7 @@ const CardForm = ({ titleOne, titleTwo, cardType }) => {
 
   return (
     <div className="w-[660px] media-max-700px:w-full">
-    <ToastContainer/>
+      <ToastContainer />
 
       <div className="w-full px-6 py-[30px] bg-gray-200 shadow-md rounded-lg">
         <h2 className="text-xl font-bold text-center mb-2">{titleOne}</h2>
@@ -246,7 +269,7 @@ const CardForm = ({ titleOne, titleTwo, cardType }) => {
               disabled={isSubmitting}
               className="w-full bg-purple_primary text-white py-2 px-4 mt-4 rounded-md hover:bg-[#84286a] focus:outline-none focus:ring-2 focus:ring-purple_primary focus:ring-offset-2"
             >
-              {isSubmitting ? "Submitting..." : "Submit"}
+              {isSubmitting ? "Submitting..." : "Easy Apply"}
             </button>
           </div>
         </form>
