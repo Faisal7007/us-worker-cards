@@ -379,7 +379,7 @@ const EssPageComponent = ({ id, title_page, image_path, title_form_one, title_fo
 
         <p className='mb-2 font-bold'> Cost of ESS card :</p>
         <p className="flex items-start mb-2">
-          <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" /><span className='font-semibold mr-1'>Physical card :</span>  108 £  including 72 pound ESS fee+ VAT fee + booking fee</p>
+          <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" /><span className='font-semibold mr-1'>Physical card :</span>  120 £  including 84 pound ESS fee+ VAT fee + booking fee</p>
         <p className="flex items-start mb-2">
           <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" /><span className='font-semibold mr-1'>Digital card :</span> 66 £ including 48 pound ESS fee+ VAT fee + booking fee</p>
 
