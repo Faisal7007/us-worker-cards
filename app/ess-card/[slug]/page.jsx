@@ -36,7 +36,7 @@ const page = () => {
             title_form_two="Easy apply for ESS Blue Card - Skilled Worker Card."
             card_type="blue-skilled"
             validity={"5"}
-            card="ess"
+
 
           />
         );

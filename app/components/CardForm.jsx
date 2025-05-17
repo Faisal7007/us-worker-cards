@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { toast, ToastContainer } from "react-toastify";
 
 
-const CardForm = ({ titleOne, titleTwo, cardType, card }) => {
+const CardForm = ({ titleOne, titleTwo, cardType }) => {
   // Use your Firebase context
   const router = useRouter();
 
@@ -44,12 +44,9 @@ const CardForm = ({ titleOne, titleTwo, cardType, card }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const trimmedEmail = email.trim();
-    const trimmedPhone = phone.trim();
-
     // Check if email or phone already exists in the database
-    const emailExists = cscsUsers.some((user) => user.email === trimmedEmail);
-    const phoneExists = cscsUsers.some((user) => user.phone === trimmedPhone);
+    const emailExists = cscsUsers.some((user) => user.email === email.trim());
+    const phoneExists = cscsUsers.some((user) => user.phone === phone.trim());
 
     if (emailExists || phoneExists) {
       if (emailExists) {
@@ -67,32 +64,15 @@ const CardForm = ({ titleOne, titleTwo, cardType, card }) => {
           hideProgressBar: true,
           className: "bg-red-100 text-red-800 font-medium",
         });
+
       }
       return;
     }
 
     // Add new data if it doesn't exist
-    firebase.addCscsData(firstName, lastName, trimmedEmail, trimmedPhone, cardType, setIsSubmitting, 'manual');
-
-    // Reset the form fields
-    reset();
-
-    // Redirect to target URL with query params
-    const queryParams = new URLSearchParams({
-      firstName,
-      lastName,
-      phoneNumber: trimmedPhone,
-      email: trimmedEmail
-    });
-
-    if (card == 'course-book') {
-      router.push(`/course-book?${queryParams.toString()}`);
-      return;
-    }
-
-    router.push(`/apply-card-for/${card}?${queryParams.toString()}`);
+    firebase.addCscsData(firstName, lastName, email, phone, cardType, setIsSubmitting, 'manual');
+    reset()
   };
-
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const autoSave = () => {
@@ -153,9 +133,6 @@ const CardForm = ({ titleOne, titleTwo, cardType, card }) => {
 
   useEffect(() => {
 
-
-    console.log("Card", cardType)
-
     const handleUrlChange = () => {
       saveUserDetails();
     };
@@ -171,18 +148,19 @@ const CardForm = ({ titleOne, titleTwo, cardType, card }) => {
   }, [email, phone, cardType]);
 
   return (
-    <div className="w-[660px] media-max-700px:w-full">
+    <div className="w-full min-w-[100%] max-w-[660px] px-4 mx-auto">
       <ToastContainer />
 
       <div className="w-full px-6 py-[30px] bg-gray-200 shadow-md rounded-lg">
         <h2 className="text-xl font-bold text-center mb-2">{titleOne}</h2>
-        <h2 className="text-lg font-semibold text-center mb-6 media-max-480px:text-[16px] media-max-480px:text-justify">
+        <h2 className="text-lg font-semibold text-center mb-6 text-justify sm:text-center">
           {titleTwo}
         </h2>
 
         <form onSubmit={handleSubmit}>
           <div>
-            <div className="grid grid-cols-2 gap-4 mb-5 media-max-480px:grid-cols-1">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+              {/* First Name */}
               <div>
                 <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">
                   First Name
@@ -199,6 +177,7 @@ const CardForm = ({ titleOne, titleTwo, cardType, card }) => {
                 />
               </div>
 
+              {/* Last Name */}
               <div>
                 <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">
                   Last Name
@@ -216,7 +195,8 @@ const CardForm = ({ titleOne, titleTwo, cardType, card }) => {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4 mb-8 media-max-480px:grid-cols-1">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+              {/* Phone */}
               <div>
                 <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
                   Phone Number
@@ -240,6 +220,7 @@ const CardForm = ({ titleOne, titleTwo, cardType, card }) => {
                 </div>
               </div>
 
+              {/* Email */}
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                   Email
@@ -263,19 +244,22 @@ const CardForm = ({ titleOne, titleTwo, cardType, card }) => {
               </div>
             </div>
           </div>
+
           <div>
             <button
               type="submit"
               disabled={isSubmitting}
               className="w-full bg-purple_primary text-white py-2 px-4 mt-4 rounded-md hover:bg-[#84286a] focus:outline-none focus:ring-2 focus:ring-purple_primary focus:ring-offset-2"
             >
-              {isSubmitting ? "Submitting..." : "Easy Apply"}
+              {isSubmitting ? "Submitting..." : "Submit"}
             </button>
           </div>
         </form>
       </div>
     </div>
   );
+
+
 };
 
 export default CardForm;

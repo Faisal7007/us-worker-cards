@@ -1,13 +1,13 @@
 import React from "react";
 
-const GenericCardDetailsView = ({getCardType}) => {
-    console.log(getCardType)
+const GenericCardDetailsView = ({ getCardType }) => {
+  console.log(getCardType, "alnf")
   return (
     <div className="min-h-screen bg-gray-100 p-6">
       <div className="max-w-3xl mx-auto bg-white shadow-md rounded-2xl p-8">
         {/* Title */}
         <h1 className="text-2xl font-semibold text-gray-800 mb-2">
-         {getCardType}
+          {getCardType}
         </h1>
         <p className="text-green-600 font-medium mb-6">FREE DELIVERY – 7 days after approval</p>
 

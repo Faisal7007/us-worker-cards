@@ -10,6 +10,7 @@ import Contact from "./components/Contact";
 import Banner from "./components/Banner";
 import { useFirebase } from "./context/Firebase";
 import { motion } from "framer-motion";
+import { BadgeCheck, ShieldCheck, BookOpenCheck } from "lucide-react";
 
 // import ChatbotEmbed from "./components/ChatbotEmbed"; // This is the extra line (import from componets.chatbotembed)
 
@@ -25,67 +26,84 @@ export default function Home() {
   return (
     <>
       <Banner />
+
+
       <div className="Helvetica Neue max-w-[1440px] mx-auto px-4 pt-[102px]  media-max-545px:pt-2">
-        <div className="flex justify-between items-start gap-5 flex-col lg:flex-row">
+
+
+        <div className="flex flex-col lg:flex-row justify-center items-center gap-2 px-4 sm:px-6">
           {/* Image Section */}
           <motion.div
             initial={{ x: -60, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: false, amount: 0.3 }}
-            className="hidden lg:flex items-center h-[450px] md:h-[400px] sm:h-[350px]"
+            className="flex items-center h-auto max-w-[400px] sm:max-w-[500px] lg:h-[350px] xl:h-[400px]"
           >
             <Image
               src="/home-img2.jpg"
               alt="home-image"
-              width={850}
-              height={700}
+              width={800}
+              height={600}
               priority
-              className="h-40% w-40% rounded-lg"
+              className="w-full h-auto rounded-xl shadow-lg"
             />
           </motion.div>
 
-          {/* Text Section  */}
+          {/* Text Section */}
           <motion.div
             initial={{ x: 50, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: false, amount: 0.3 }}
-            className="flex flex-col justify-between w-full"
+            className="flex flex-col gap-6 justify-between w-full max-w-2xl mx-auto text-center"
           >
+            {/* Headings */}
             <div>
-              <h1 className="text-[40px] leading-[50px] font-bold text-justify md:text-[60px] md:leading-[70px] lg:text-[60px] lg:leading-[70px] sm:text-start">
-                Complete All Requirements to Secure On-Site Access
+              <h1 className="text-xl sm:text-2xl md:text-3xl font-bold leading-snug text-gray-900">
+                Complete All Requirements to{" "}
+                <span className="text-purple_primary relative inline-block">
+                  Secure On-Site Access
+                  <span className="absolute left-0 bottom-0 w-full h-0.5 bg-purple_primary" />
+                </span>
               </h1>
-              <br />
-              <h2 className="text-[22px] font-semibold text-justify md:text-[30px] lg:text-[35px]">
+              <h2 className="mt-3 text-sm sm:text-base md:text-lg text-gray-700 font-normal">
                 Verify credentials and stay compliant with industry standards.
               </h2>
             </div>
 
-            {/* Button Links */}
-            <div className="flex flex-wrap gap-4 mt-12 sm:mt-10">
+            {/* Buttons */}
+            <div className="flex flex-col sm:flex-row justify-center gap-4 mt-6">
               <Link
                 href="/cscs-card-types"
-                className="bg-purple_primary text-white font-semibold py-2 px-4 rounded-md border-2 border-transparent hover:border-purple_primary hover:text-purple_primary hover:bg-white transition-all duration-300 text-sm sm:text-base"
+                className="flex items-center justify-center gap-2 bg-purple_primary text-white font-medium py-2.5 px-5 rounded-md shadow hover:bg-white hover:text-purple_primary hover:border hover:border-purple_primary transition-all duration-300 text-sm"
               >
-                <span>CSCS Card</span>
+                <BadgeCheck size={16} />
+                CSCS Card
               </Link>
+
               <Link
                 href="/health-and-safety-awareness"
-                className="bg-purple_primary text-white font-semibold py-2 px-4 rounded-md border-2 border-transparent hover:border-purple_primary hover:text-purple_primary hover:bg-white transition-all duration-300 text-sm sm:text-base"
+                className="flex items-center justify-center gap-2 bg-purple_primary text-white font-medium py-2.5 px-5 rounded-md shadow hover:bg-white hover:text-purple_primary hover:border hover:border-purple_primary transition-all duration-300 text-sm"
               >
-                <span>Health & Safety</span>
+                <ShieldCheck size={16} />
+                Health & Safety
               </Link>
+
               <Link
                 href="/book-citb-test/default"
-                className="bg-purple_primary text-white font-semibold py-2 px-4 rounded-md border-2 border-transparent hover:border-purple_primary hover:text-purple_primary hover:bg-white transition-all duration-300 text-sm sm:text-base"
+                className="flex items-center justify-center gap-2 bg-purple_primary text-white font-medium py-2.5 px-5 rounded-md shadow hover:bg-white hover:text-purple_primary hover:border hover:border-purple_primary transition-all duration-300 text-sm"
               >
-                <span>CITB HS&E</span>
+                <BookOpenCheck size={16} />
+                CITB HS&E
               </Link>
             </div>
           </motion.div>
         </div>
+
+
+
+
 
 
 
@@ -99,90 +117,69 @@ export default function Home() {
             <p className="text-lg text-gray-600 mt-4 media-max-545px:text-[14px]">Explore the various services we offer to help with your construction and safety needs.</p>
           </div>
 
-          <div className="flex gap-6 justify-between items-center flex-wrap mt-4 media-max-1015px:gap-6 media-max-690px:justify-center media-max-545px:gap-6 media-max-545px:justify-center">
-            <motion.div initial={{ x: -60, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              viewport={{ once: false, amount: 0.4 }}>
-              <HomeCard
-                icon={<FaIdCard className="size-8 text-white" />}
-                title="Get a CSCS Card"
-                description="Apply online for a CSCS Card, renew your CSCS Card, or request a replacement for a lost card. The CSCS Card booking fee is £54, which includes the £36 CSCS fee, a booking fee, and VAT."
-                button_text="Apply Now"
-                link_to="/apply-card-for/cscs"
-              />
-            </motion.div>
-
-            <motion.div initial={{ x: -60, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              viewport={{ once: false, amount: 0.4 }}>
-              <HomeCard
-                icon={<FaIdCard className="size-8 text-white" />}
-                title="Get a ESS Card"
-                description="The ESS card is a ESS partner scheme. You can apply online to get a new ESS card, renew your existing card, or request a replacement if your card is lost"
-                button_text="Apply Now"
-                link_to="/apply-card-for/ess"
-              />
-            </motion.div>
-
-            <motion.div initial={{ x: -60, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              viewport={{ once: false, amount: 0.4 }}>
-
-              <HomeCard
-                icon={<MdOutlineLaptopMac className="size-8 text-white" />}
-                title="Schedule the CITB HS&E Test."
-                description="Schedule your CITB Health, Safety & Environment Test at the nearest test center.Booking fee of CITB Test &#163;40 for one chance and for 2 chances it will cost &#163;60."
-                button_text="Apply Now"
-                link_to="/citb-test"
-              />
-            </motion.div>
-            <motion.div initial={{ x: 50, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              viewport={{ once: false, amount: 0.3 }}>
-
-
-              <HomeCard
-                icon={<FaHardHat className="size-8 text-white" />}
-                title="Construction Course Green Card"
-                description="Schedule your Health & Safety Awareness Course online or offline."
-                button_text="Apply Now"
-                link_to="/course-book"
-              />
-            </motion.div>
-
-            <motion.div initial={{ x: 50, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              viewport={{ once: false, amount: 0.3 }}>
-
-              <HomeCard
-                icon={<FaUsers className="size-8 text-white" />}
-                title="Group Booking Available"
-                description="Get exclusive discounts when you book the CITB Health & Safety Test, CSCS Cards, and Construction Course leading to the Green Card for multiple delegates."
-                button_text="Apply Now"
-                link_to="/group-booking"
-              />
-            </motion.div>
-
-
-            <motion.div initial={{ x: 50, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              viewport={{ once: false, amount: 0.3 }}>
-
-              <HomeCard
-                icon={<FaAward className="size-8 text-white" />}
-                title="NVQ Level 2 or Higher"
-                description="Get exclusive discounts when you book the CITB Health & Safety Test, CSCS Cards, and Construction Course leading to the Green Card for multiple delegates."
-                button_text="Apply Now"
-                link_to="/nvq-level-2"
-              />
-            </motion.div>
+          <div className="flex flex-wrap justify-center items-stretch gap-6 mt-10 max-w-[1300px] mx-auto px-4">
+            {[
+              {
+                icon: <FaIdCard className="size-8 text-white" />,
+                title: "Get a CSCS Card",
+                description:
+                  "Apply online for a CSCS Card, renew your CSCS Card, or request a replacement for a lost card. The CSCS Card booking fee is £54, which includes the £36 CSCS fee, a booking fee, and VAT.",
+                link_to: "/apply-card-for/cscs",
+              },
+              {
+                icon: <FaIdCard className="size-8 text-white" />,
+                title: "Get a ESS Card",
+                description:
+                  "The ESS card is a ESS partner scheme. You can apply online to get a new ESS card, renew your existing card, or request a replacement if your card is lost",
+                link_to: "/apply-card-for/ess",
+              },
+              {
+                icon: <MdOutlineLaptopMac className="size-8 text-white" />,
+                title: "Schedule the CITB HS&E Test.",
+                description:
+                  "Schedule your CITB Health, Safety & Environment Test at the nearest test center. Booking fee of CITB Test £40 for one chance and £60 for two.",
+                link_to: "/citb-test",
+              },
+              {
+                icon: <FaHardHat className="size-8 text-white" />,
+                title: "Construction Course Green Card",
+                description: "Schedule your Health & Safety Awareness Course online or offline.",
+                link_to: "/course-book",
+              },
+              {
+                icon: <FaUsers className="size-8 text-white" />,
+                title: "Group Booking Available",
+                description:
+                  "Get exclusive discounts when you book the CITB Health & Safety Test, CSCS Cards, and Construction Course leading to the Green Card for multiple delegates.",
+                link_to: "/group-booking",
+              },
+              {
+                icon: <FaAward className="size-8 text-white" />,
+                title: "NVQ Level 2 or Higher",
+                description:
+                  "Get exclusive discounts when you book the CITB Health & Safety Test, CSCS Cards, and Construction Course leading to the Green Card for multiple delegates.",
+                link_to: "/nvq-level-2",
+              },
+            ].map((card, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, ease: "easeOut", delay: idx * 0.1 }}
+                viewport={{ once: true, amount: 0.3 }}
+                className="w-full sm:w-[48%] md:w-[30%] flex justify-center"
+              >
+                <HomeCard
+                  icon={card.icon}
+                  title={card.title}
+                  description={card.description}
+                  button_text="Apply Now"
+                  link_to={card.link_to}
+                />
+              </motion.div>
+            ))}
           </div>
+
 
 
         </div>
@@ -262,19 +259,37 @@ export default function Home() {
 
         <div className="flex flex-col lg:flex-row lg:justify-between items-center lg:items-start gap-6 rounded-lg px-4 lg:px-0">
 
-          <motion.div initial={{ x: -60, opacity: 0 }}
+          <motion.div
+            initial={{ x: -60, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            viewport={{ once: false, amount: 0.3 }}>
+            viewport={{ once: false, amount: 0.3 }}
+          >
+            {/* Desktop & Tablet View */}
+            <div className="media-min-601px:block">
+              <Image
+                src="/green-card-img.png"
+                alt="card-image"
+                width={600}
+                height={310}
+                className="rounded-lg w-[610px] media-max-1298px:w-[560px]"
+              />
+            </div>
 
-            <Image
-              src={"/green-card-img.png"}
-              alt='card-image'
-              width={600}
-              height={200}
-              className='rounded-lg h-[310px] w-[610px] media-max-1298px:w-[560px] media-max-600px:w-[100vw] media-max-545px:h-[220px]'
-            />
+            {/* Mobile View */}
+            <div className="hidden media-min-601px:hidden">
+              <Image
+                src="/green-card-img-vertical.png"
+                alt="card-image-mobile"
+                width={400}
+                height={700}
+                className="rounded-lg w-full h-full object-cover"
+              />
+            </div>
           </motion.div>
+
+
+
 
           <motion.div
             initial={{ x: 50, opacity: 0 }}

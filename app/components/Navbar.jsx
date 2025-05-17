@@ -18,7 +18,7 @@ const Navbar = () => {
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen((prev) => !prev);
-   
+
   };
 
   // useEffect(()=>{
@@ -53,13 +53,13 @@ const Navbar = () => {
   }, []);
 
 
-  
+
 
   return (
     <div className="bg-purple_primary fixed min-w-[100vw] top-0 right-0 z-50 shadow-lg">
       <div className="max-w-[1440px] mx-auto px-4">
         <nav className="flex items-center justify-between py-4">
-          
+
           <Link href="/" className="flex items-center">
             <Image
               src={"/white-logo.png"}
@@ -71,15 +71,15 @@ const Navbar = () => {
             />
           </Link>
           <div className="text-white font-bold  flex flex-col items-center">
-  <div className="flex gap-2 items-center justify-center cursor-pointer">
-    <FaPhoneAlt />
-    <a href="tel:+443030030136">+44 3030030136</a>
-  </div>
-  <p className="text-sm font-normal mt-1">Mon-Sat ( 9 AM to 7 PM )</p>
-</div>
+            <div className="flex gap-2 items-center justify-center cursor-pointer">
+              <FaPhoneAlt />
+              <a href="tel:+443030030136">+44 3030030136</a>
+            </div>
+            <p className="text-sm font-normal mt-1">Mon-Sat ( 9 AM to 7 PM )</p>
+          </div>
 
 
-          
+
           <button
             className="text-white text-2xl lg:hidden focus:outline-none"
             onClick={toggleMobileMenu}
@@ -87,32 +87,30 @@ const Navbar = () => {
             {isMobileMenuOpen ? <FaTimes size={28} /> : <FaBars size={28} />}
           </button>
 
-         
-          
+
+
           <div
-            className={` flex justify-center media-max-935px:pt-10 media-max-1022px:pt-10  lg:flex lg:items-center lg:space-x-8 ${
-              isMobileMenuOpen
-                ? "block absolute top-24 left-0 w-full media-max-935px:h-[100vh] media-max-1022px:h-[100vh]  bg-purple_primary  text-white transition-all duration-500 "
-                : "hidden"
-            } lg:static lg:bg-transparent lg:w-auto`}
+            className={` flex justify-center media-max-935px:pt-10 media-max-1022px:pt-10  lg:flex lg:items-center lg:space-x-8 ${isMobileMenuOpen
+              ? "block absolute top-24 left-0 w-full media-max-935px:h-[100vh] media-max-1022px:h-[100vh]  bg-purple_primary  text-white transition-all duration-500 "
+              : "hidden"
+              } lg:static lg:bg-transparent lg:w-auto`}
           >
             <div
               className="flex flex-col lg:flex-row lg:items-center lg:space-x-8"
               ref={dropdownRef}
             >
 
-<Link
-  href="/book-citb-test/default"
-  className={`relative  text-white after:content-[''] after:absolute 
+              <Link
+                href="/book-citb-test/default"
+                className={`relative  text-white after:content-[''] after:absolute 
     after:left-0 after:bottom-[-2px] after:w-0 after:h-[2px] 
     after:bg-current after:transition-all after:duration-300 
-    hover:after:w-full media-max-935px:hover:after:w-[70px] media-max-1022px:hover:after:w-[70px] media-max-935px:mb-2 media-max-1022px:mb-2 ${
-      pathname === "/book-citb-test/default" ? "after:w-full media-max-935px:after:w-[70px] media-max-1022px:after:w-[70px] underline-offset-2" : ""
-    }`}
-  onClick={handleOptionClick}
->
-  CITB Test
-</Link>
+    hover:after:w-full media-max-935px:hover:after:w-[70px] media-max-1022px:hover:after:w-[70px] media-max-935px:mb-2 media-max-1022px:mb-2 ${pathname === "/book-citb-test/default" ? "after:w-full media-max-935px:after:w-[70px] media-max-1022px:after:w-[70px] underline-offset-2" : ""
+                  }`}
+                onClick={handleOptionClick}
+              >
+                CITB Test
+              </Link>
 
               {/* CSCS Cards */}
               <div className="relative">
@@ -124,10 +122,9 @@ const Navbar = () => {
                   <FaAngleDown className="ml-2" />
                 </button>
                 <div
-                  className={`transition-all text-purple_primary  whitespace-nowrap duration-300 overflow-hidden ${
-                    dropdownOpen === "CSCS" ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-                  } lg:absolute lg:top-[72px] lg:left-0 lg:bg-white lg:text-black lg:rounded lg:shadow-lg lg:py-2`}
-                  style={{ visibility: dropdownOpen === "CSCS" ? "visible" : "hidden"}}
+                  className={`transition-all text-purple_primary  whitespace-nowrap duration-300 overflow-hidden ${dropdownOpen === "CSCS" ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                    } lg:absolute lg:top-[72px] lg:left-0 lg:bg-white lg:text-black lg:rounded lg:shadow-lg lg:py-2`}
+                  style={{ visibility: dropdownOpen === "CSCS" ? "visible" : "hidden" }}
                 >
                   {[
                     { path: "/cscs-green-card", label: "Green Labourer" },
@@ -160,9 +157,8 @@ const Navbar = () => {
                   <FaAngleDown className="ml-2" />
                 </button>
                 <div
-                  className={`transition-all whitespace-nowrap duration-300 overflow-hidden ${
-                    dropdownOpen === "ESS" ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-                  } lg:absolute lg:top-[72px] lg:left-0 lg:bg-white lg:text-black lg:rounded lg:shadow-lg lg:py-2`}
+                  className={`transition-all whitespace-nowrap duration-300 overflow-hidden ${dropdownOpen === "ESS" ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                    } lg:absolute lg:top-[72px] lg:left-0 lg:bg-white lg:text-black lg:rounded lg:shadow-lg lg:py-2`}
                   style={{ visibility: dropdownOpen === "ESS" ? "visible" : "hidden" }}
                 >
                   {[
@@ -191,19 +187,18 @@ const Navbar = () => {
                   onClick={() => toggleDropdown("CC")}
                   className="inline-flex items-center py-2 px-4 text-white hover:text-gray-300 focus:outline-none media-max-935px:px-0 media-max-1022px:px-0"
                 >
-                 Construction Courses
-                  <FaAngleDown className="ml-2"/>
+                  Construction Courses
+                  <FaAngleDown className="ml-2" />
                 </button>
                 <div
-                  className={`transition-all whitespace-nowrap duration-300 overflow-hidden ${
-                    dropdownOpen === "CC" ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-                  } lg:absolute lg:top-[72px] lg:left-0 lg:bg-white lg:text-black lg:rounded lg:shadow-lg lg:py-2`}
+                  className={`transition-all whitespace-nowrap duration-300 overflow-hidden ${dropdownOpen === "CC" ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                    } lg:absolute lg:top-[72px] lg:left-0 lg:bg-white lg:text-black lg:rounded lg:shadow-lg lg:py-2`}
                   style={{ visibility: dropdownOpen === "CC" ? "visible" : "hidden" }}
                 >
                   {[
                     { path: "/health-and-safety-awareness", label: "Health & Safety Awareness" },
                     { path: "/nvq-level-2", label: "NVQ Level 2" },
-                  
+
                   ].map((item) => (
                     <Link
                       key={item.path}
@@ -223,9 +218,8 @@ const Navbar = () => {
                 className={`relative media-max-935px:mb-4 media-max-1022px:mb-4 text-white after:content-[''] after:absolute 
     after:left-0 after:bottom-[-2px] after:w-0 after:h-[2px] 
     after:bg-current after:transition-all after:duration-300 
-    hover:after:w-full media-max-935px:hover:after:w-[110px] media-max-1022px:hover:after:w-[110px] ${
-      pathname === "/group-booking" ? "after:w-full media-max-935px:after:w-[110px] media-max-1022px:after:w-[110px] underline-offset-2" : ""
-    }`}
+    hover:after:w-full media-max-935px:hover:after:w-[110px] media-max-1022px:hover:after:w-[110px] ${pathname === "/group-booking" ? "after:w-full media-max-935px:after:w-[110px] media-max-1022px:after:w-[110px] underline-offset-2" : ""
+                  }`}
                 onClick={handleOptionClick}
               >
                 Group Booking
@@ -235,9 +229,8 @@ const Navbar = () => {
                 className={`relative  text-white after:content-[''] after:absolute 
     after:left-0 after:bottom-[-2px] after:w-0 after:h-[2px] 
     after:bg-current after:transition-all after:duration-300 
-    hover:after:w-full media-max-935px:hover:after:w-[10px] ${
-      pathname === "/contact-us" ? "after:w-full media-max-935px:after:w-[80px]  media-max-1022px:after:w-[80px] underline-offset-2" : ""
-    }`}
+    hover:after:w-full media-max-935px:hover:after:w-[10px] ${pathname === "/contact-us" ? "after:w-full media-max-935px:after:w-[80px]  media-max-1022px:after:w-[80px] underline-offset-2" : ""
+                  }`}
                 onClick={handleOptionClick}
               >
                 Contact Us

@@ -32,7 +32,7 @@ const Page = () => {
 
       {/* Form */}
       <div className='flex justify-between  items-center  mt-10'>
-        <div className='h-[380px] max-w-[660px] media-max-545px:h-auto'>
+        <div className='hidden sm:block h-[380px] max-w-[660px]'>
           <Image
             src='/red-experienced-worker-card-img.png'
             alt='card-image'

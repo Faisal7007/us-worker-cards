@@ -28,14 +28,17 @@ const Page = () => {
       {/* Form */}
 
       <div className='flex justify-between items-center mt-10 media-max-1360px:flex-col media-max-1360px:gap-8'>
-        <div className='h-[380px] max-w-[660px] media-max-545px:h-auto'>
-          <Image src='/white-academically-qualified-card-img.png'
+        <div className="hidden sm:block h-[380px] max-w-[660px]">
+          <Image
+            src='/white-academically-qualified-card-img.png'
             alt='card-image'
             width={800}
             height={400}
             className='rounded-lg h-full w-full'
           />
         </div>
+
+
         <div>
           <CardForm titleOne='White Academically Qualified Person' titleTwo='Easy apply for CSCS White Card - Academically Qualified Person CSCS Card.' cardType="white-aqp" card="cscs" />
         </div>

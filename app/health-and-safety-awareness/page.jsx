@@ -146,7 +146,7 @@ const Page = () => {
         To obtain a <Link href="cscs-green-card" className='font-bold text-purple_primary'>CSCS Green Labourer</Link> Card you must complete the Level 1 Health and Safety in a Construction Environment course, commonly referred to as the One Day course.
       </p>
       <div className='flex justify-between items-center mt-10 media-max-1360px:flex-col media-max-1360px:gap-8'>
-        <div className='h-[380px] max-w-[660px] media-max-545px:h-auto'>
+        <div className='hidden sm:block h-[380px] max-w-[660px]'>
           <Image
             src='/green-card-img.png'
             alt='card-image'
