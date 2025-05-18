@@ -162,19 +162,22 @@ const EssCardForm = ({ titleOne, titleTwo, cardType }) => {
   }, [email, phone, cardType]);
 
   return (
-    <div className='w-[660px] media-max-700px:w-full'>
+    <div className="w-full max-w-[660px] px-4 mx-auto">
       <ToastContainer />
 
-
-      <div className="px-6 py-[26px]  bg-gray-200 shadow-md rounded-lg">
+      <div className="w-full px-6 py-[30px] bg-gray-200 shadow-md rounded-lg">
         <h2 className="text-xl font-bold text-center mb-2">{titleOne}</h2>
-        <h2 className="text-lg font-semibold text-center mb-6 media-max-480px:text-[16px] media-max-480px:text-justify">{titleTwo}</h2>
+        <h2 className="text-lg font-semibold text-center mb-6 text-justify sm:text-center">
+          {titleTwo}
+        </h2>
 
         <form onSubmit={handleSubmit}>
           <div>
-            <div className="grid grid-cols-2 gap-4 mb-5 media-max-480px:grid-cols-1 ">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
               <div>
-                <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">First Name</label>
+                <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">
+                  First Name
+                </label>
                 <input
                   type="text"
                   id="firstName"
@@ -187,7 +190,9 @@ const EssCardForm = ({ titleOne, titleTwo, cardType }) => {
               </div>
 
               <div>
-                <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">Last Name</label>
+                <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">
+                  Last Name
+                </label>
                 <input
                   type="text"
                   id="lastName"
@@ -200,9 +205,11 @@ const EssCardForm = ({ titleOne, titleTwo, cardType }) => {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4 mb-8 media-max-480px:grid-cols-1">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
               <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Phone Number</label>
+                <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
+                  Phone Number
+                </label>
                 <div className="relative">
                   <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
                     <FaPhoneAlt />
@@ -222,7 +229,9 @@ const EssCardForm = ({ titleOne, titleTwo, cardType }) => {
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                  Email
+                </label>
                 <div className="relative">
                   <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
                     <FaEnvelope />
@@ -254,7 +263,6 @@ const EssCardForm = ({ titleOne, titleTwo, cardType }) => {
         </form>
       </div>
     </div>
-
   );
 };
 

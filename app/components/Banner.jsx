@@ -1,16 +1,23 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Search, CheckCircle } from 'lucide-react';
 // import { CourseCategory } from '../types';
 
 const Banner = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategories, setSelectedCategories] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const categories = [
     'Construction',
     'First Aid',
     'Health and Safety',
     'CITB Approved'
+  ];
+
+  const images = [
+    '/green-vertical.png',
+    '/red-vertical.png',
+    '/black-vertical.png'
   ];
 
   const toggleCategory = (category) => {
@@ -20,6 +27,14 @@ const Banner = () => {
       setSelectedCategories([...selectedCategories, category]);
     }
   };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 3000); // Change image every 3 seconds
+
+    return () => clearInterval(interval); // Cleanup on unmount
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,67 +50,61 @@ const Banner = () => {
         className="absolute inset-0 bg-cover bg-center z-0"
         style={{
           backgroundImage: "url('/banner.jpg')",
-          filter: 'brightness(0.3)'
+          filter: 'brightness(0.3)',
         }}
       />
 
-      {/* Content */}
-      <div className="container mx-auto px-4 z-10 text-center">
-        <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 leading-tight">
-          Construction Card Services
-        </h1>
-        <p className="text-xl md:text-2xl text-white mb-8">
-          "The UK's leading construction and health & safety course provider"
-        </p>
+      {/* Foreground Content */}
+      <div className="container mx-auto px-4 z-10 text-white">
+        <div className="text-center lg:text-left max-w-5xl mx-auto">
 
-        {/* Search Box */}
-        {/* <form
-          onSubmit={handleSubmit}
-          className="max-w-3xl mx-auto bg-opacity-40 bg-white p-2 rounded-full mb-8"
-        >
-          <div className="flex items-center">
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search Courses..."
-              className="flex-grow bg-transparent text-white placeholder-gray-300 px-4 py-2 focus:outline-none"
+          {/* Paragraph and image side-by-side */}
+          <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-0 mb-6">
+            <div>
+              <h1 className="text-4xl md:text-6xl font-bold mb-4 leading-tight max-w-2xl">
+                Construction Card Services
+              </h1>
+              <p className="text-xl md:text-2xl max-w-lg">
+                "The UK's leading construction and health & safety course provider"
+              </p>
+
+              {/* Category Filters */}
+              <div className="flex flex-wrap justify-center lg:justify-start gap-1 md:gap-1 max-w-xs">
+                {categories.map((category) => (
+                  <button
+                    key={category}
+                    onClick={() => toggleCategory(category)}
+                    className={`flex items-center font-medium ${selectedCategories.includes(category)
+                      ? 'text-green-400'
+                      : 'text-white'
+                      }`}
+                  >
+                    <CheckCircle
+                      size={20}
+                      className={`mr-2 ${selectedCategories.includes(category)
+                        ? 'text-green-400'
+                        : 'text-white opacity-80'
+                        }`}
+                    />
+                    {category}
+                  </button>
+                ))}
+              </div>
+
+            </div>
+            <img
+              src={images[currentIndex]}
+              alt="Illustration"
+              className="w-60 h-86 object-cover mt-6 sm:mt-0 rounded-lg shadow-md transition duration-500"
             />
-            <button
-              type="submit"
-              className="bg-green-600 hover:bg-green-700 transition-colors text-white font-medium px-6 py-2 rounded-full flex items-center"
-            >
-              <span className="hidden md:inline mr-2">Search</span>
-              <Search size={20} />
-            </button>
           </div>
-        </form> */}
 
-        {/* Category Filters */}
-        <div className="flex flex-wrap text-white justify-center gap-4 md:gap-8">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => toggleCategory(category)}
-              className={`flex items-center font-medium ${selectedCategories.includes(category)
-                ? 'text-green-400'
-                : 'text-white'
-                }`}
-            >
-              <CheckCircle
-                size={20}
-                className={`mr-2 ${selectedCategories.includes(category)
-                  ? 'text-green-400'
-                  : 'text-white opacity-80'
-                  }`}
-              />
-              {category}
-            </button>
-          ))}
+
         </div>
-
       </div>
     </div>
+
+
   );
 };
 

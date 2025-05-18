@@ -83,53 +83,87 @@ export const FirebaseProvider = ({ children }) => {
 
 
 
-  const addCscsData = async (firstName, lastName, email, phone, cardType, setIsSubmitting, submit_type) => {
+  const addCscsData = async (
+    formData, // new object-based parameter
+    // setIsSubmitting,
+    submit_type
+  ) => {
     try {
-      setIsSubmitting(true);
+      // setIsSubmitting(true);
 
-      const docRef = doc(firestore, "cscs-cards-users", cardType);
-      const usersCollection = collection(docRef, "users");
+      const {
+        title,
+        firstName,
+        middleName,
+        lastName,
+        dob,
+        nationalInsuranceNumber,
+        phoneNumber,
+        email,
+        addressLine1,
+        town,
+        city,
+        pincode,
+        citbId,
+        cardtype,
+      } = formData;
 
-      // 🔍 Check if a user with the same email OR mobile number already exists
+      console.log("Calling From, CSCS", formData);
+
+      const usersCollection = collection(firestore, "cscs-cards-users", "cscs", "users");
+
+
       const q = query(usersCollection, where("email", "==", email));
-      const phoneQuery = query(usersCollection, where("phone", "==", phone));
+      const phoneQuery = query(usersCollection, where("phone", "==", phoneNumber));
 
-      const [emailSnapshot, phoneSnapshot] = await Promise.all([getDocs(q), getDocs(phoneQuery)]);
+      const [emailSnapshot, phoneSnapshot] = await Promise.all([
+        getDocs(q),
+        getDocs(phoneQuery),
+      ]);
 
       let existingDoc = null;
 
       if (!emailSnapshot.empty) {
-        existingDoc = emailSnapshot.docs[0]; // User exists with same email
+        existingDoc = emailSnapshot.docs[0];
       } else if (!phoneSnapshot.empty) {
-        existingDoc = phoneSnapshot.docs[0]; // User exists with same phone number
+        existingDoc = phoneSnapshot.docs[0];
       }
 
       const data = {
+        title,
         firstName,
+        middleName,
         lastName,
+        dob,
+        nationalInsuranceNumber,
+        phone: phoneNumber,
         email,
-        phone,
-        createdAt: new Date().toISOString(),
-        cardType,
+        addressLine1,
+        town,
+        city,
+        pincode,
+        citbId,
+        cardtype,
         submitType: submit_type,
+        createdAt: new Date().toISOString(),
       };
 
       if (existingDoc) {
-        // ✅ If user exists, update the existing document
         const userRef = doc(usersCollection, existingDoc.id);
         await updateDoc(userRef, data);
-        toast.success("Form Submitted successfully");
+        toast.success("Form submitted successfully (updated)");
       } else {
-        // ➕ If user doesn't exist, create a new document
         await addDoc(usersCollection, data);
-        // toast.success("Form Submitted Successfully");
+        toast.success("Form submitted successfully");
       }
     } catch (error) {
+      console.error(error);
       toast.error("Error adding data!");
     } finally {
-      setIsSubmitting(false);
+      // setIsSubmitting(false);
     }
   };
+
 
 
 
@@ -154,12 +188,13 @@ export const FirebaseProvider = ({ children }) => {
 
   const fetchAllCscsEssData = async (isCard, cardTypes, setAllUsers, setIsLoading) => {
     try {
-      setIsLoading(true)
+      setIsLoading(true);
       let allUsers = [];
 
       for (const cardType of cardTypes) {
-        const docRef = collection(firestore, `${isCard}-cards-users`, cardType, "users");
-        const querySnapshot = await getDocs(docRef);
+        const docRef = doc(firestore, `${isCard}-cards-users`, cardType);
+        const usersCollection = collection(docRef, "users");
+        const querySnapshot = await getDocs(usersCollection);
 
         const users = querySnapshot.docs.map((doc) => ({
           id: doc.id,
@@ -172,13 +207,15 @@ export const FirebaseProvider = ({ children }) => {
 
       allUsers.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
-
       setAllUsers(allUsers);
-      setIsLoading(false)
     } catch (error) {
-
+      console.error("Error fetching users:", error);
+      toast.error("Failed to fetch user data.");
+    } finally {
+      setIsLoading(false);
     }
   };
+
 
   const AutoaddCscsData = async (firstName, lastName, email, phone, cardType, submit_type) => {
     try {
@@ -265,9 +302,31 @@ export const FirebaseProvider = ({ children }) => {
 
 
 
-  const addEssData = async (firstName, lastName, email, phone, cardType, setIsSubmitting, submit_type) => {
+  const addEssData = async (
+    formData, // Pass all fields as an object
+    // setIsSubmitting,
+    submit_type
+  ) => {
     try {
-      setIsSubmitting(true);
+      // setIsSubmitting(true);
+
+      const {
+        firstName,
+        lastName,
+        email,
+        phone,
+        cardType,
+        employmentStatus,
+        jobTitle,
+        location,
+        nationality,
+        jobSector,
+        experienceLevel,
+        qualification,
+        howDidYouHear,
+        preferredLanguage,
+        companyName,
+      } = formData;
 
       const docRef = doc(firestore, "ess-cards-users", cardType);
       const usersCollection = collection(docRef, "users");
@@ -276,7 +335,10 @@ export const FirebaseProvider = ({ children }) => {
       const emailQuery = query(usersCollection, where("email", "==", email));
       const phoneQuery = query(usersCollection, where("phone", "==", phone));
 
-      const [emailSnapshot, phoneSnapshot] = await Promise.all([getDocs(emailQuery), getDocs(phoneQuery)]);
+      const [emailSnapshot, phoneSnapshot] = await Promise.all([
+        getDocs(emailQuery),
+        getDocs(phoneQuery),
+      ]);
 
       let existingDoc = null;
 
@@ -291,27 +353,39 @@ export const FirebaseProvider = ({ children }) => {
         lastName,
         email,
         phone,
-        createdAt: new Date().toISOString(),
         cardType,
+        employmentStatus,
+        jobTitle,
+        location,
+        nationality,
+        jobSector,
+        experienceLevel,
+        qualification,
+        howDidYouHear,
+        preferredLanguage,
+        companyName,
         submitType: submit_type,
+        createdAt: new Date().toISOString(),
       };
 
       if (existingDoc) {
         // ✅ If user exists, update the existing document
         const userRef = doc(usersCollection, existingDoc.id);
         await updateDoc(userRef, data);
-        toast.success("Form Submitted successfully");
+        toast.success("Form submitted successfully (updated)");
       } else {
         // ➕ If user doesn't exist, create a new document
         await addDoc(usersCollection, data);
-        toast.success("Form Submitted Successfully");
+        toast.success("Form submitted successfully");
       }
     } catch (error) {
+      console.error(error);
       toast.error("Error adding data!");
     } finally {
-      setIsSubmitting(false);
+      // setIsSubmitting(false);
     }
   };
+
 
 
 
@@ -421,28 +495,32 @@ export const FirebaseProvider = ({ children }) => {
 
   const fetchCscsEssApplicants = async (formType, setApplicants, setIsLoading) => {
     try {
-      setIsLoading(true)
-      const docRef = collection(firestore, `${formType}-cards-applicants`, formType, "users");
-      const querySnapshot = await getDocs(docRef);
+      setIsLoading(true);
 
-      // Map through the documents and format the data
+      // Build the path: `${formType}-cards-applicants` collection, then document with ID `${formType}`
+      const docRef = doc(firestore, `${formType}-cards-users`, formType);
+      const usersCollection = collection(docRef, "users");
+
+      const querySnapshot = await getDocs(usersCollection);
+
       const applicants = querySnapshot.docs.map((doc) => ({
-        id: doc.id, // Add the document ID
+        id: doc.id,
         ...doc.data(),
       }));
 
-      // Sort the applicants by createdAt (newest first)
+      console.log(querySnapshot, "Query")
+
       applicants.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
-      // Update state with the sorted applicants
       setApplicants(applicants);
-      setIsLoading(false)
-      // console.log("CSCS Applicants fetched successfully:", applicants);
     } catch (error) {
-      // console.error("Error fetching CSCS applicants:", error);
+      console.error("Error fetching applicants:", error);
       toast.error("Error fetching applicants!");
+    } finally {
+      setIsLoading(false);
     }
   };
+
 
   const fetchCscsEssApplicantById = async (form_type, userId, setApplicant) => {
     try {

@@ -279,7 +279,7 @@ export default function Home() {
             {/* Mobile View */}
             <div className="hidden media-min-601px:hidden">
               <Image
-                src="/green-card-img-vertical.png"
+                src="/green-vertical.png"
                 alt="card-image-mobile"
                 width={400}
                 height={700}

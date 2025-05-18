@@ -56,7 +56,7 @@ const page = () => {
 
           </div>
           <div className="p-6 space-y-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {/* <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <p className="text-gray-500 font-semibold">Title</p>
                 <p>{user.title}</p>
@@ -101,7 +101,7 @@ const page = () => {
                 <p className="text-gray-500 font-semibold">Created At</p>
                 <p>{new Date(user.createdAt).toLocaleString()}</p>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

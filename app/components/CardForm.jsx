@@ -70,7 +70,7 @@ const CardForm = ({ titleOne, titleTwo, cardType }) => {
     }
 
     // Add new data if it doesn't exist
-    firebase.addCscsData(firstName, lastName, email, phone, cardType, setIsSubmitting, 'manual');
+    firebase.addCscsData({ firstName, lastName, email, phone, cardType }, setIsSubmitting, 'manual');
     reset()
   };
 

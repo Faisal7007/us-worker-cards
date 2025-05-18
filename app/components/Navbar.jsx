@@ -91,8 +91,8 @@ const Navbar = () => {
 
           <div
             className={` flex justify-center media-max-935px:pt-10 media-max-1022px:pt-10  lg:flex lg:items-center lg:space-x-8 ${isMobileMenuOpen
-              ? "block absolute top-24 left-0 w-full media-max-935px:h-[100vh] media-max-1022px:h-[100vh]  bg-purple_primary  text-white transition-all duration-500 "
-              : "hidden"
+                ? "block absolute top-24 left-0 w-full media-max-935px:h-[100vh] media-max-1022px:h-[100vh]  bg-purple_primary  text-white transition-all duration-500 "
+                : "hidden"
               } lg:static lg:bg-transparent lg:w-auto`}
           >
             <div
@@ -197,7 +197,7 @@ const Navbar = () => {
                 >
                   {[
                     { path: "/health-and-safety-awareness", label: "Health & Safety Awareness" },
-                    { path: "/nvq-level-2", label: "NVQ Level 2" },
+                    { path: "/nvq-level-2", label: "NVQs" },
 
                   ].map((item) => (
                     <Link

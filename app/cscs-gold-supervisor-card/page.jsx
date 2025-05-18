@@ -3,7 +3,8 @@ import React from 'react'
 import { IoIosArrowForward } from "react-icons/io";
 import CardForm from '../components/CardForm';
 import Image from 'next/image';
-import { FaHardHat } from 'react-icons/fa';
+import { FaAward, FaHardHat } from 'react-icons/fa';
+import SmallCard from '../components/SmallCard';
 
 const Page = () => {
   return (
@@ -38,6 +39,22 @@ const Page = () => {
         </div>
         <div>
           <CardForm titleOne='Gold supervisor Card' titleTwo='Easy apply for CSCS Gold Card - Supervisor.' cardType="gold-supervisor" card="cscs" />
+        </div>
+      </div>
+
+      <div className='flex justify-center mt-8'>
+
+        <div className=" flex gap-10">
+
+          <SmallCard icon={<FaHardHat className="size-6 text-white" />}
+            title="CITB Test"
+            button_text="Apply Now"
+            link_to="/book-citb-test/default" />
+
+          <SmallCard icon={<FaAward className="size-6 text-white" />}
+            title="NVQ Level 2"
+            button_text="Apply Now"
+            link_to="/nvq-level-2" />
         </div>
       </div>
 

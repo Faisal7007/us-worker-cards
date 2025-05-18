@@ -16,6 +16,11 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
     nationalInsuranceNumber: "",
     phoneNumber: "",
     email: "",
+    addressLine1: "",
+    town: "",
+    city: "",
+    pincode: "",
+    citbId: "",
     cardtype: "",
     applicationType: "",
   });
@@ -199,29 +204,17 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
     e.preventDefault();
 
     if (form_type === 'cscs') {
-      setOpenDetails(true);
+      firebase.addCscsData(formData, "manual");
     }
 
     if (form_type === 'ess') {
-      firebase.applyForESSCard(
-        formData.title,
-        formData.firstName,
-        formData.middleName,
-        formData.lastName,
-        formData.dob,
-        formData.nationalInsuranceNumber,
-        formData.phoneNumber,
-        formData.email,
-        formData.cardtype,
-        formData.applicationType,
-        form_type
-      );
-
-      resetForm();
+      firebase.addEssData(formData, "manual");
 
       // Redirect to Stripe after submission
       window.location.href = "https://buy.stripe.com/00gaGx6wBfLJ1uE3ce";
     }
+
+    // resetForm();
   };
 
 
@@ -372,6 +365,89 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
             />
           </div>
         </div>
+
+        <h2 className="text-2xl font-bold mb-6">Address Details</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-4">
+          <div>
+            <label htmlFor="addressLine1" className="block text-md font-medium">
+              First Line of Address
+            </label>
+            <input
+              type="text"
+              id="addressLine1"
+              name="addressLine1"
+              placeholder="123 Main Street"
+              value={formData.addressLine1}
+              onChange={handleChange}
+              className="w-full border border-gray-500 py-4 px-3 mb-4"
+              required
+            />
+          </div>
+
+          <div>
+            <label htmlFor="town" className="block text-md font-medium">
+              Town
+            </label>
+            <input
+              type="text"
+              id="town"
+              name="town"
+              placeholder="e.g. Hounslow"
+              value={formData.town}
+              onChange={handleChange}
+              className="w-full border border-gray-500 py-4 px-3 mb-4"
+              required
+            />
+          </div>
+
+          <div>
+            <label htmlFor="city" className="block text-md font-medium">
+              City
+            </label>
+            <input
+              type="text"
+              id="city"
+              name="city"
+              placeholder="e.g. London"
+              value={formData.city}
+              onChange={handleChange}
+              className="w-full border border-gray-500 py-4 px-3 mb-4"
+              required
+            />
+          </div>
+
+          <div>
+            <label htmlFor="pincode" className="block text-md font-medium">
+              Pincode
+            </label>
+            <input
+              type="text"
+              id="pincode"
+              name="pincode"
+              placeholder="e.g. W1A 1AA"
+              value={formData.pincode}
+              onChange={handleChange}
+              className="w-full border border-gray-500 py-4 px-3 mb-4"
+              required
+            />
+          </div>
+
+          <div>
+            <label htmlFor="citbId" className="block text-md font-medium">
+              CITB Testing ID
+            </label>
+            <input
+              type="text"
+              id="citbId"
+              name="citbId"
+              placeholder="e.g. 1234567890"
+              value={formData.citbId}
+              onChange={handleChange}
+              className="w-full border border-gray-500 py-4 px-3 mb-4"
+            />
+          </div>
+        </div>
+
 
         <h2 className="text-2xl font-bold mb-6">Card Details</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-4">
