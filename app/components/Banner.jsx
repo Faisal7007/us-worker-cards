@@ -69,7 +69,7 @@ const Banner = () => {
                 Construction Card Services
               </h1>
               <p className="text-xl md:text-2xl max-w-lg">
-                "The UK's leading construction and health & safety course provider"
+                "Empowering the Future of Construction and Safety in the UK"
               </p>
 
               {/* Category Filters */}
