@@ -5,6 +5,7 @@ import CardForList from "./CardForList";
 import { UserContext } from "../context-api/UserContext";
 import { useFirebase } from "../context/Firebase";
 import GenericCardDetailsView from "./GenericCardDetailsView";
+import { ToastContainer } from "react-toastify";
 
 const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImagePath }) => {
   const [formData, setFormData] = useState({
@@ -83,6 +84,9 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
   const [isOpen, setIsOpen] = useState(false);
   const [isPreSelected, setIsPreSelected] = useState(false)
   const dropdownRef = useRef(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showOverlay, setShowOverlay] = useState(false);
+
   const { idx, essId, setIdx, setEssId } = useContext(UserContext);
   // console.log(essId,"ess id Context Api")
   // console.log(idx,"cscs id Context Api")
@@ -200,21 +204,20 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
 
   const firebase = useFirebase()
   // console.log(firebase)
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (form_type === 'cscs') {
-      firebase.addCscsData(formData, "manual");
+      await firebase.addCscsData(formData, "manual");
     }
 
     if (form_type === 'ess') {
-      firebase.addEssData(formData, "manual");
+      await firebase.addEssData(formData, "manual");
 
       // Redirect to Stripe after submission
-      window.location.href = "https://buy.stripe.com/00gaGx6wBfLJ1uE3ce";
     }
 
-    // resetForm();
+    resetForm();
   };
 
 
@@ -225,6 +228,70 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
       onSubmit={handleSubmit}
       className="max-w-full mx-auto rounded space-y-6"
     >
+      <ToastContainer />
+
+
+      {showOverlay && (
+        <div className="fixed inset-0 bg-black bg-opacity-70 backdrop-blur-sm flex items-center justify-center z-50">
+          <div className="bg-white p-8 rounded-2xl shadow-2xl w-[95%] max-w-3xl border border-gray-200">
+            <h2 className="text-2xl font-semibold text-purple_primary mb-8 text-center">
+              🔍 Review & Confirm Your Details
+            </h2>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-800">
+              {[
+                { label: "Title", value: formData.title },
+                { label: "DOB", value: formData.dob },
+                { label: "Full Name", value: `${formData.firstName} ${formData.middleName} ${formData.lastName}`, span: 2 },
+                { label: "Phone Number", value: formData.phoneNumber },
+                { label: "Email", value: formData.email },
+                { label: "National Insurance No.", value: formData.nationalInsuranceNumber, span: 2 },
+                {
+                  label: "Address",
+                  value: `${formData.addressLine1}, ${formData.town}, ${formData.city} - ${formData.pincode}`,
+                  span: 2
+                },
+                { label: "CITB ID", value: formData.citbId },
+                { label: "Card Type", value: formData.cardtype },
+                { label: "Application Type", value: formData.applicationType, span: 2 },
+              ].map((item, idx) => (
+                <div
+                  key={idx}
+                  className={`bg-gray-100 rounded-lg px-4 py-3 ${item.span === 2 ? "col-span-2" : ""} border border-gray-200`}
+                >
+                  <p className="text-xs font-medium text-gray-500">{item.label}</p>
+                  <p className="text-sm font-semibold text-gray-800 break-words">{item.value || "—"}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-10 flex justify-end gap-4">
+              <button
+                className="px-5 py-2 rounded-full border border-gray-400 text-gray-700 hover:bg-gray-100 transition"
+                onClick={() => setShowOverlay(false)}
+              >
+                Cancel
+              </button>
+              <button
+                className="px-5 py-2 rounded-full bg-purple_primary text-white hover:bg-[#84286a] transition flex items-center gap-2"
+                onClick={() => {
+                  setShowOverlay(false);
+                  addCscsData(formData, setIsSubmitting, "new");
+                }}
+              >
+                Confirm & Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+
+
+
+
+
+
       <div className="pt-6">
         <h2 className="text-[25px] bg-purple_primary text-white py-4 font-bold mb-6 text-center">
           Easy Apply For <span className="uppercase">{form_type}</span> Card
@@ -583,11 +650,10 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
         </label>
       </div>
       <button
-        type="submit"
-        disabled={!agreed}
-        className={`inline-flex items-center justify-center w-fit px-4 py-2 rounded ${agreed
-          ? "bg-purple_primary text-white hover:bg-[#84286a]"
-          : "bg-[#854c75] text-white cursor-not-allowed"
+        type="button"
+        disabled={!agreed || isSubmitting}
+        onClick={() => setShowOverlay(true)}
+        className={`inline-flex items-center justify-center w-fit px-4 py-2 rounded ${agreed ? "bg-purple_primary text-white hover:bg-[#84286a]" : "bg-[#854c75] text-white cursor-not-allowed"
           }`}
       >
         <span className="ml-2">Move Forward</span>

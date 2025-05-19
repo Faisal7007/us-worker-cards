@@ -156,6 +156,7 @@ export const FirebaseProvider = ({ children }) => {
         await addDoc(usersCollection, data);
         toast.success("Form submitted successfully");
       }
+      window.location.href = "https://buy.stripe.com/00gaGx6wBfLJ1uE3ce";
     } catch (error) {
       console.error(error);
       toast.error("Error adding data!");
@@ -311,29 +312,27 @@ export const FirebaseProvider = ({ children }) => {
       // setIsSubmitting(true);
 
       const {
+        title,
         firstName,
+        middleName,
         lastName,
+        dob,
+        nationalInsuranceNumber,
+        phoneNumber,
         email,
-        phone,
-        cardType,
-        employmentStatus,
-        jobTitle,
-        location,
-        nationality,
-        jobSector,
-        experienceLevel,
-        qualification,
-        howDidYouHear,
-        preferredLanguage,
-        companyName,
+        addressLine1,
+        town,
+        city,
+        pincode,
+        citbId,
+        cardtype,
       } = formData;
 
-      const docRef = doc(firestore, "ess-cards-users", cardType);
-      const usersCollection = collection(docRef, "users");
+      const usersCollection = collection(firestore, "ess-cards-users", "ess", "users");
 
       // 🔍 Check if a user with the same email OR phone already exists
       const emailQuery = query(usersCollection, where("email", "==", email));
-      const phoneQuery = query(usersCollection, where("phone", "==", phone));
+      const phoneQuery = query(usersCollection, where("phone", "==", phoneNumber));
 
       const [emailSnapshot, phoneSnapshot] = await Promise.all([
         getDocs(emailQuery),
@@ -349,21 +348,20 @@ export const FirebaseProvider = ({ children }) => {
       }
 
       const data = {
+        title,
         firstName,
+        middleName,
         lastName,
+        dob,
+        nationalInsuranceNumber,
+        phoneNumber,
         email,
-        phone,
-        cardType,
-        employmentStatus,
-        jobTitle,
-        location,
-        nationality,
-        jobSector,
-        experienceLevel,
-        qualification,
-        howDidYouHear,
-        preferredLanguage,
-        companyName,
+        addressLine1,
+        town,
+        city,
+        pincode,
+        citbId,
+        cardtype,
         submitType: submit_type,
         createdAt: new Date().toISOString(),
       };
@@ -378,6 +376,7 @@ export const FirebaseProvider = ({ children }) => {
         await addDoc(usersCollection, data);
         toast.success("Form submitted successfully");
       }
+      window.location.href = "https://buy.stripe.com/00gaGx6wBfLJ1uE3ce";
     } catch (error) {
       console.error(error);
       toast.error("Error adding data!");
