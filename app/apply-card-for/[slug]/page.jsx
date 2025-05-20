@@ -50,7 +50,7 @@ const page = () => {
               {/* Left Side - Image */}
               <div className="media-min-601px:block">
                 <Image
-                  src="/green-card-img.png"
+                  src={imagePath}
                   alt="card-image"
                   width={600}
                   height={310}
