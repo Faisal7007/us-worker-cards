@@ -178,7 +178,7 @@ const Navbar = () => {
                   { path: "/cscs-card-types", label: "All CSCS Cards" },
                 ]}
                 dropdownOpen={dropdownOpen}
-                toggleDropdown={() => toggleDropdown("CSCS")}
+                toggleDropdown={toggleDropdown}
                 handleOptionClick={handleOptionClick}
               />
 
@@ -195,7 +195,7 @@ const Navbar = () => {
                   { path: "/ess-card-types", label: "All ESS Cards" },
                 ]}
                 dropdownOpen={dropdownOpen}
-                toggleDropdown={() => toggleDropdown("ESS")}
+                toggleDropdown={toggleDropdown}
                 handleOptionClick={handleOptionClick}
               />
 
