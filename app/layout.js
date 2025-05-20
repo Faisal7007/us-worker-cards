@@ -63,7 +63,7 @@ export default function RootLayout({ children }) {
           <MyProvider>
             <ChakraProvider>
               <NavConRender />
-              <FirebaseProvider>
+              <FirebaseProvider className='container mx-auto px-4'>
                 {children}
               </FirebaseProvider>
               <FooterConRender />

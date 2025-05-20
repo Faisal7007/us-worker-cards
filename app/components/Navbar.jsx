@@ -207,7 +207,7 @@ const Navbar = () => {
                   { path: "/nvq-level-2", label: "NVQs" },
                 ]}
                 dropdownOpen={dropdownOpen}
-                toggleDropdown={() => toggleDropdown("CC")}
+                toggleDropdown={toggleDropdown}
                 handleOptionClick={handleOptionClick}
               />
 

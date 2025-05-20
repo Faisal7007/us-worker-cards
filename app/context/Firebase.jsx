@@ -477,10 +477,12 @@ export const FirebaseProvider = ({ children }) => {
   const fetchCscsEssApplicantById = async (form_type, userId, setApplicant) => {
     try {
       // Reference to the document using the user's id
-      const docRef = doc(firestore, `${form_type}-cards-applicants`, form_type, "users", userId);
+      const docRef = doc(firestore, `${form_type}-cards-users`, form_type, "users", userId);
       const docSnapshot = await getDoc(docRef);
+      const data = docSnapshot.data()
 
-      setApplicant(docSnapshot.data())
+      setApplicant(data)
+
 
     } catch (error) {
       // console.error("Error fetching applicant by ID:", error);
@@ -956,6 +958,103 @@ export const FirebaseProvider = ({ children }) => {
     }
   };
 
+  const addNVQ = async (formValues, setIsLoading) => {
+    try {
+      setIsLoading && setIsLoading(true);
+      const data = {
+        ...formValues,
+        createdAt: new Date().toISOString(),
+      };
+
+      const docRef = collection(firestore, "nvq");
+      await addDoc(docRef, data);
+
+      toast.success("NVQ form submitted successfully!");
+    } catch (error) {
+      toast.error("Error submitting NVQ form!");
+    } finally {
+      setIsLoading && setIsLoading(false);
+    }
+  };
+
+  const autoAddNVQ = async (formValues, submitType) => {
+    try {
+      const data = {
+        ...formValues,
+        createdAt: new Date().toISOString(),
+        submitType: submitType
+      };
+
+      const docRef = collection(firestore, "nvq");
+      await addDoc(docRef, data);
+    } catch (error) {
+      console.error("Auto add NVQ error:", error);
+      // Optional: toast.error("Error in automatic NVQ submission!");
+    }
+  };
+
+  const fetchNVQData = async (setNVQData, setIsLoading) => {
+    try {
+      setIsLoading && setIsLoading(true);
+
+      const docRef = collection(firestore, "nvq");
+      const querySnapshot = await getDocs(docRef);
+
+      const nvqData = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+
+      nvqData.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+
+      setNVQData(nvqData);
+    } catch (error) {
+      console.error("Fetch NVQ error:", error);
+      toast.error("Error fetching NVQ data!");
+    } finally {
+      setIsLoading && setIsLoading(false);
+    }
+  };
+
+  const fetchNVQDataById = async (userId, setApplicant) => {
+    try {
+      const docRef = doc(firestore, "nvq", userId);
+      const docSnapshot = await getDoc(docRef);
+      setApplicant(docSnapshot.data());
+    } catch (error) {
+      toast.error("Error fetching NVQ applicant data!");
+    }
+  };
+
+  const deleteNVQMessages = async (ids, setIsDeleting) => {
+    if (!ids || ids.length === 0) {
+      toast.error("No NVQ records selected for deletion!");
+      return;
+    }
+
+    try {
+      setIsDeleting && setIsDeleting(true);
+
+      const batch = writeBatch(firestore);
+      const docRef = collection(firestore, "nvq");
+
+      ids.forEach((id) => {
+        const docToDelete = doc(docRef, id);
+        batch.delete(docToDelete);
+      });
+
+      await batch.commit();
+      toast.success("Selected NVQ records deleted successfully!");
+    } catch (error) {
+      console.error("Delete NVQ error:", error);
+      toast.error("Error deleting NVQ records!");
+    } finally {
+      setIsDeleting && setIsDeleting(false);
+    }
+  };
+
+
   const LoginUser = async (email, password, setIsSubmitting) => {
     try {
       setIsSubmitting(true)
@@ -999,7 +1098,7 @@ export const FirebaseProvider = ({ children }) => {
   };
 
   return (
-    <FirebaseContext.Provider value={{ addCscsData, AutoaddCscsData, addEssData, AutoaddEssData, deleteCscsData, applyForESSCard, applyForCSCSCard, deleteCscsApplications, deleteEssApplications, applyForCITBTest, deleteCitbApplications, fetchApplicantsData, applyForHealthAndSafetyCourse, fetchHealthAndSafetyApplicants, fetchAllCscsEssData, fetchCscsData, fetchEssData, deleteEssData, fetchCscsEssApplicants, fetchCscsEssApplicantById, fetchCITBTestApplicants, fetchCitbApplicantById, fetchHealthAndSafetyApplicantById, deleteHealthAndSafetyApplications, addGroupBooking, fetchGroupBooking, fetchGroupBookingById, deleteGroupBookings, addContactUs, autoAddContactUs, fetchContactUsData, fetchContactUsDataById, deleteContactUsMessages, LoginUser, onAuthChange, logOut, ForgotPassword }}>
+    <FirebaseContext.Provider value={{ addCscsData, AutoaddCscsData, addEssData, AutoaddEssData, deleteCscsData, applyForESSCard, applyForCSCSCard, deleteCscsApplications, deleteEssApplications, applyForCITBTest, deleteCitbApplications, fetchApplicantsData, applyForHealthAndSafetyCourse, fetchHealthAndSafetyApplicants, fetchAllCscsEssData, fetchCscsData, fetchEssData, deleteEssData, fetchCscsEssApplicants, fetchCscsEssApplicantById, fetchCITBTestApplicants, fetchCitbApplicantById, fetchHealthAndSafetyApplicantById, deleteHealthAndSafetyApplications, addGroupBooking, fetchGroupBooking, fetchGroupBookingById, deleteGroupBookings, addContactUs, autoAddContactUs, fetchContactUsData, fetchContactUsDataById, deleteContactUsMessages, LoginUser, onAuthChange, logOut, ForgotPassword, addNVQ, autoAddNVQ, fetchNVQData, fetchNVQDataById, deleteNVQMessages }}>
       {children}
     </FirebaseContext.Provider>
   );

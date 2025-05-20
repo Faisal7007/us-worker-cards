@@ -24,14 +24,18 @@ const page = () => {
   useEffect(() => {
     if (formType === 'cscs') {
 
-      firebase.fetchCscsEssApplicantById('cscs', id, setUser)
+      firebase.fetchCscsEssApplicantById('cscs', id, setUser);
+
+      setViewDetailsId(id);
     }
   }, [])
 
   useEffect(() => {
     if (formType === 'ess') {
 
-      firebase.fetchCscsEssApplicantById('ess', id, setUser)
+      firebase.fetchCscsEssApplicantById('ess', id, setUser);
+
+      setViewDetailsId(id);
     }
   }, [])
 
@@ -56,7 +60,7 @@ const page = () => {
 
           </div>
           <div className="p-6 space-y-4">
-            {/* <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <p className="text-gray-500 font-semibold">Title</p>
                 <p>{user.title}</p>
@@ -82,26 +86,47 @@ const page = () => {
                 <p>{user.email}</p>
               </div>
               <div>
-                <p className="text-gray-500 font-semibold">Phone Number</p>
-                <p>{user.phoneNumber}</p>
+                <p className="text-gray-500 font-semibold">Phone</p>
+                <p>{user.phone}</p>
               </div>
               <div>
                 <p className="text-gray-500 font-semibold">National Insurance Number</p>
                 <p>{user.nationalInsuranceNumber}</p>
               </div>
               <div>
-                <p className="text-gray-500 font-semibold">Application Type</p>
-                <p>{user.applicationType}</p>
+                <p className="text-gray-500 font-semibold">CITB ID</p>
+                <p>{user.citbId}</p>
               </div>
               <div>
                 <p className="text-gray-500 font-semibold">Card Type</p>
-                <p>{user.cardType}</p>
+                <p>{user.cardtype}</p>
+              </div>
+              <div>
+                <p className="text-gray-500 font-semibold">Submit Type</p>
+                <p>{user.submitType}</p>
+              </div>
+              <div>
+                <p className="text-gray-500 font-semibold">Address Line 1</p>
+                <p>{user.addressLine1}</p>
+              </div>
+              <div>
+                <p className="text-gray-500 font-semibold">City</p>
+                <p>{user.city}</p>
+              </div>
+              <div>
+                <p className="text-gray-500 font-semibold">Town</p>
+                <p>{user.town}</p>
+              </div>
+              <div>
+                <p className="text-gray-500 font-semibold">Pincode</p>
+                <p>{user.pincode}</p>
               </div>
               <div>
                 <p className="text-gray-500 font-semibold">Created At</p>
                 <p>{new Date(user.createdAt).toLocaleString()}</p>
               </div>
-            </div> */}
+            </div>
+
           </div>
         </div>
       </div>

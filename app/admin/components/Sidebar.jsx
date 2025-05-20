@@ -1,6 +1,6 @@
 "use client";
 import Link from 'next/link';
-import { usePathname } from 'next/navigation'; 
+import { usePathname } from 'next/navigation';
 import { IoSettingsOutline } from "react-icons/io5";
 import { RiContactsBook3Line } from "react-icons/ri";
 import { useFirebase } from '@/app/context/Firebase';
@@ -16,7 +16,7 @@ import { FaListUl, FaRegListAlt } from 'react-icons/fa';
 const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const firebase = useFirebase();
-  const pathname=usePathname()
+  const pathname = usePathname()
 
   const handleLogout = () => {
     setIsModalOpen(true);
@@ -89,6 +89,13 @@ const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
             <Link href="/admin/citb-applicants-list" className={`p-2 rounded flex items-center gap-2 ${isActive('/admin/citb-applicants-list') ? 'bg-gray-700' : 'hover:bg-gray-700'}`}>
               <FaUsersRectangle className="text-xl" />
               <span className='text-[18px]'>CITB Applicants List</span>
+            </Link>
+          </div>
+
+          <div onClick={() => { setIsSidebarOpen(!isSidebarOpen) }}>
+            <Link href="/admin/nvq-list" className={`p-2 rounded flex items-center gap-2 ${isActive('/admin/nvq-list') ? 'bg-gray-700' : 'hover:bg-gray-700'}`}>
+              <FaUsersRectangle className="text-xl" />
+              <span className='text-[18px]'>NVQ List</span>
             </Link>
           </div>
 

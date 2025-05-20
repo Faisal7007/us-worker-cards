@@ -71,26 +71,33 @@ const CardForm = ({ titleOne, titleTwo, cardType }) => {
       router.push(`/course-book`)
       return;
     }
-
-    try {
-
-      // Redirect after successful submission
-      const query = new URLSearchParams({
-        firstName: firstName.trim(),
-        lastName: lastName.trim(),
-        phoneNumber: phone.trim(),
-        email: email.trim(),
-        card: titleOne.trim()
-      }).toString();
-
-      router.push(`/apply-card-for/cscs?${query}`);
-    } catch (error) {
-      console.error("Submission error:", error);
-      toast.error("Something went wrong while submitting.", {
-        position: "top-center",
-        autoClose: 3000,
-      });
+    else if (cardType == 'nvq-level-2') {
+      firebase.addNVQ({ firstName, lastName, phone, email });
+      reset()
+      return;
     }
+
+    // console.log(cardType)
+
+    // try {
+
+    //   // Redirect after successful submission
+    //   const query = new URLSearchParams({
+    //     firstName: firstName.trim(),
+    //     lastName: lastName.trim(),
+    //     phoneNumber: phone.trim(),
+    //     email: email.trim(),
+    //     card: titleOne.trim()
+    //   }).toString();
+
+    //   router.push(`/apply-card-for/cscs?${query}`);
+    // } catch (error) {
+    //   console.error("Submission error:", error);
+    //   toast.error("Something went wrong while submitting.", {
+    //     position: "top-center",
+    //     autoClose: 3000,
+    //   });
+    // }
 
     reset();
   };

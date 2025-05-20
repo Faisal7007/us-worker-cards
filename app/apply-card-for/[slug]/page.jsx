@@ -48,16 +48,14 @@ const page = () => {
 
             <div className="flex flex-col lg:flex-row lg:justify-between items-center lg:items-start gap-6  rounded-lg">
               {/* Left Side - Image */}
-              <div>
-
+              <div className="media-min-601px:block">
                 <Image
-                  src={imagePath}
+                  src="/green-card-img.png"
                   alt="card-image"
-                  width={800}
-                  height={400}
-                  className="rounded-lg h-[380px] w-[660px] media-max-1298px:w-[560px] media-max-600px:w-[100vw] media-max-545px:h-[220px]"
+                  width={600}
+                  height={310}
+                  className="rounded-lg w-[610px] media-max-1298px:w-[560px]"
                 />
-
               </div>
 
 
