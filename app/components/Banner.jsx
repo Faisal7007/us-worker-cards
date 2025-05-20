@@ -62,7 +62,7 @@ const Banner = () => {
 
       <div className="container mx-auto px-4 z-10 text-white">
         <div className="text-center lg:text-left max-w-5xl mx-auto">
-          <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-0 mb-6">
+          <div className="flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-6 mb-6">
             <div>
               <h1 className="text-4xl md:text-6xl font-bold mb-4 leading-tight max-w-2xl">
                 Construction Card Services
@@ -71,59 +71,35 @@ const Banner = () => {
                 "Empowering the Future of Construction and Safety in the UK"
               </p>
 
-              {/* Category Filters */}
-              <div className="flex flex-wrap justify-center lg:justify-start gap-1 md:gap-1 max-w-xs">
+              <div className="flex flex-wrap justify-center lg:justify-start gap-2 mt-4">
                 {categories.map((category) => (
                   <Link href={categoryLinks[category]} key={category} passHref>
                     <div
                       onClick={() => toggleCategory(category)}
-                      className={`
-        flex items-center
-        font-medium
-        px-4 py-2
-        rounded-md
-        border
-        border-green-400
-        text-white
-        transition
-        duration-300
-        hover:bg-green-400 hover:text-black
-        focus:outline-none focus:ring-2 focus:ring-green-400
-        focus:ring-offset-2
-        ${selectedCategories.includes(category)
-                          ? 'bg-green-400 text-black'
-                          : 'bg-transparent'
-                        }
-        max-w-full
-        sm:max-w-max
-        cursor-pointer
-      `}
+                      className={`flex items-center font-medium px-4 py-2 rounded-md border border-green-400 text-white transition duration-300 hover:bg-green-400 hover:text-black focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2 ${selectedCategories.includes(category) ? 'bg-green-400 text-black' : 'bg-transparent'} cursor-pointer`}
                       role="button"
                       tabIndex={0}
                     >
                       <CheckCircle
                         size={20}
-                        className={` mr-2 ${selectedCategories.includes(category) ? 'text-black' : 'text-white'
-                          }`}
+                        className={`mr-2 ${selectedCategories.includes(category) ? 'text-black' : 'text-white'}`}
                       />
                       {category}
                     </div>
                   </Link>
                 ))}
-
               </div>
             </div>
 
-            {/* Image wrapped in Link for redirection */}
             <Link href="/apply-card-for/cscs" passHref>
               <img
                 src={images[currentIndex]}
                 alt="Illustration"
-                className="w-60 h-86 object-cover mt-6 sm:mt-0 rounded-lg shadow-md transition duration-500 cursor-pointer"
+                className="w-60 h-86 object-cover rounded-lg shadow-md transition duration-500 cursor-pointer"
               />
-              {/* </a> */}
             </Link>
           </div>
+
         </div>
       </div>
     </div>
