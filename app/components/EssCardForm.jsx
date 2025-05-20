@@ -31,9 +31,9 @@ const EssCardForm = ({ titleOne, titleTwo, cardType }) => {
   const firestore = useFirebase()
   const essCardTypes = ["green-labourer", "blue-skilled", "blue-experienced", "red-trainee", "red-industry", "gold-advanced", "gold-supervisor", "black-manager", "white-aqp", "white-pqp"];
 
-  useEffect(() => {
-    firebase.fetchAllCscsEssData('ess', essCardTypes, setEssUsers, setIsLoading)
-  }, [cardType])
+  // useEffect(() => {
+  //   firebase.fetchAllCscsEssData('ess', essCardTypes, setEssUsers, setIsLoading)
+  // }, [cardType])
 
   const reset = () => {
     setFirstName('')
@@ -45,43 +45,50 @@ const EssCardForm = ({ titleOne, titleTwo, cardType }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const emailExists = essUsers.some((user) => user.email === email.trim());
-    const phoneExists = essUsers.some((user) => user.phone === phone.trim());
+    // const emailExists = essUsers.some((user) => user.email === email.trim());
+    // const phoneExists = essUsers.some((user) => user.phone === phone.trim());
 
-    if (emailExists || phoneExists) {
-      if (emailExists) {
-        toast.error("Email already exists!", {
-          position: "top-center",
-          autoClose: 3000,
-          hideProgressBar: true,
-          className: "bg-red-100 text-red-800 font-medium",
-        });
-      }
-      if (phoneExists) {
-        toast.error("Mobile number already exists!", {
-          position: "top-center",
-          autoClose: 3000,
-          hideProgressBar: true,
-          className: "bg-red-100 text-red-800 font-medium",
-        });
-      }
+    // if (emailExists || phoneExists) {
+    //   if (emailExists) {
+    //     toast.error("Email already exists!", {
+    //       position: "top-center",
+    //       autoClose: 3000,
+    //       hideProgressBar: true,
+    //       className: "bg-red-100 text-red-800 font-medium",
+    //     });
+    //   }
+    //   if (phoneExists) {
+    //     toast.error("Mobile number already exists!", {
+    //       position: "top-center",
+    //       autoClose: 3000,
+    //       hideProgressBar: true,
+    //       className: "bg-red-100 text-red-800 font-medium",
+    //     });
+    //   }
+    //   return;
+    // }
+
+    // firestore.addEssData({ firstName, lastName, email, phone, cardType }, 'manual');
+    setisSubmitBtnClicked(true);
+
+    console.log(cardType)
+    if (cardType == 'health-and-safety-awareness') {
+      router.push(`/course-book`)
       return;
     }
-
-    firestore.addEssData(firstName, lastName, email, phone, cardType, setIsSubmitting, 'manual');
-    setisSubmitBtnClicked(true);
 
     var queryParams = new URLSearchParams({
       firstName,
       lastName,
       phoneNumber: phone,
       email,
+      card: titleOne
     });
 
     queryParams.append("cardType", cardType); // or use `.set` if needed
 
 
-    router.push(`/apply-card-for/ess?${queryParams.toString()}`);
+    router.push(`/apply-card-for/${cardType}?${queryParams.toString()}`);
   };
 
 

@@ -83,14 +83,8 @@ export const FirebaseProvider = ({ children }) => {
 
 
 
-  const addCscsData = async (
-    formData, // new object-based parameter
-    // setIsSubmitting,
-    submit_type
-  ) => {
+  const addCscsData = async (formData, submit_type) => {
     try {
-      // setIsSubmitting(true);
-
       const {
         title,
         firstName,
@@ -106,28 +100,12 @@ export const FirebaseProvider = ({ children }) => {
         pincode,
         citbId,
         cardtype,
+        variant
       } = formData;
 
       console.log("Calling From, CSCS", formData);
 
       const usersCollection = collection(firestore, "cscs-cards-users", "cscs", "users");
-
-
-      const q = query(usersCollection, where("email", "==", email));
-      const phoneQuery = query(usersCollection, where("phone", "==", phoneNumber));
-
-      const [emailSnapshot, phoneSnapshot] = await Promise.all([
-        getDocs(q),
-        getDocs(phoneQuery),
-      ]);
-
-      let existingDoc = null;
-
-      if (!emailSnapshot.empty) {
-        existingDoc = emailSnapshot.docs[0];
-      } else if (!phoneSnapshot.empty) {
-        existingDoc = phoneSnapshot.docs[0];
-      }
 
       const data = {
         title,
@@ -144,26 +122,27 @@ export const FirebaseProvider = ({ children }) => {
         pincode,
         citbId,
         cardtype,
+        variant,
         submitType: submit_type,
         createdAt: new Date().toISOString(),
       };
 
-      if (existingDoc) {
-        const userRef = doc(usersCollection, existingDoc.id);
-        await updateDoc(userRef, data);
-        toast.success("Form submitted successfully (updated)");
+      await addDoc(usersCollection, data); // ➕ Always create new entry
+
+      toast.success("Form submitted successfully");
+
+      // 🔁 Redirect to Stripe
+      if (formData.variant === "Digital") {
+        window.location.href = "https://buy.stripe.com/5kA5mdbQV8jh7T26ov";
       } else {
-        await addDoc(usersCollection, data);
-        toast.success("Form submitted successfully");
+        window.location.href = "https://buy.stripe.com/3cs15X8EJ5752yI6ou";
       }
-      window.location.href = "https://buy.stripe.com/00gaGx6wBfLJ1uE3ce";
     } catch (error) {
       console.error(error);
       toast.error("Error adding data!");
-    } finally {
-      // setIsSubmitting(false);
     }
   };
+
 
 
 
@@ -303,14 +282,8 @@ export const FirebaseProvider = ({ children }) => {
 
 
 
-  const addEssData = async (
-    formData, // Pass all fields as an object
-    // setIsSubmitting,
-    submit_type
-  ) => {
+  const addEssData = async (formData, submit_type) => {
     try {
-      // setIsSubmitting(true);
-
       const {
         title,
         firstName,
@@ -326,26 +299,10 @@ export const FirebaseProvider = ({ children }) => {
         pincode,
         citbId,
         cardtype,
+        variant,
       } = formData;
 
       const usersCollection = collection(firestore, "ess-cards-users", "ess", "users");
-
-      // 🔍 Check if a user with the same email OR phone already exists
-      const emailQuery = query(usersCollection, where("email", "==", email));
-      const phoneQuery = query(usersCollection, where("phone", "==", phoneNumber));
-
-      const [emailSnapshot, phoneSnapshot] = await Promise.all([
-        getDocs(emailQuery),
-        getDocs(phoneQuery),
-      ]);
-
-      let existingDoc = null;
-
-      if (!emailSnapshot.empty) {
-        existingDoc = emailSnapshot.docs[0]; // User exists with same email
-      } else if (!phoneSnapshot.empty) {
-        existingDoc = phoneSnapshot.docs[0]; // User exists with same phone number
-      }
 
       const data = {
         title,
@@ -362,28 +319,26 @@ export const FirebaseProvider = ({ children }) => {
         pincode,
         citbId,
         cardtype,
+        variant,
         submitType: submit_type,
         createdAt: new Date().toISOString(),
       };
 
-      if (existingDoc) {
-        // ✅ If user exists, update the existing document
-        const userRef = doc(usersCollection, existingDoc.id);
-        await updateDoc(userRef, data);
-        toast.success("Form submitted successfully (updated)");
-      } else {
-        // ➕ If user doesn't exist, create a new document
-        await addDoc(usersCollection, data);
-        toast.success("Form submitted successfully");
-      }
-      window.location.href = "https://buy.stripe.com/00gaGx6wBfLJ1uE3ce";
+      await addDoc(usersCollection, data); // ➕ Always add new document
+
+      toast.success("Form submitted successfully");
+
+      // 🔁 Redirect to Stripe checkout
+      if (formData.variant === "Digital")
+        window.location.href = "https://buy.stripe.com/5kA5mdbQV8jh7T26ov";
+      else
+        window.location.href = "https://buy.stripe.com/3cs15X8EJ5752yI6ou";
     } catch (error) {
       console.error(error);
       toast.error("Error adding data!");
-    } finally {
-      // setIsSubmitting(false);
     }
   };
+
 
 
 
@@ -721,6 +676,8 @@ export const FirebaseProvider = ({ children }) => {
       const docRef = doc(firestore, "health-and-safety-course-applicants", 'all-applicants');
       await addDoc(collection(docRef, "users"), data);
       toast.success("Form Submitted Successfully");
+
+      window.location.href = "https://buy.stripe.com/3cs2a19INbvt6OYcMQ";
 
     } catch (error) {
       toast("Error adding data!");

@@ -1,4 +1,5 @@
 import { Allison, Geist, Geist_Mono, Smooch_Sans } from "next/font/google";
+import Script from 'next/script';
 import "./globals.css";
 // import 'react-accessible-accordion/dist/fancy-example.css';
 import Navbar from "./components/Navbar";
@@ -37,28 +38,40 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-
   return (
     <html lang="en">
-      <link rel="icon" href="./favicon.ico" />
+      <head>
+        <link rel="icon" href="./favicon.ico" />
+        {/* Google Tag Manager Script */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-17089975780"
+          strategy="afterInteractive"
+        />
+        <Script id="google-gtag" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-17089975780');
+          `}
+        </Script>
+      </head>
       <body
-        className={` ${geistSans.variable} ${geistMono.variable} ${allison_init.variable}  antialiased`}
+        className={` ${geistSans.variable} ${geistMono.variable} ${allison_init.variable} antialiased`}
       >
-      <div>
-
-        <MyProvider>
-          <ChakraProvider>
-            {/* <ToastContainer /> */}
-            <NavConRender />
-            <FirebaseProvider>
-              {children}
-            </FirebaseProvider>
-            <FooterConRender />
-          </ChakraProvider>
-        </MyProvider>
-      </div>
-
+        <div>
+          <MyProvider>
+            <ChakraProvider>
+              <NavConRender />
+              <FirebaseProvider>
+                {children}
+              </FirebaseProvider>
+              <FooterConRender />
+            </ChakraProvider>
+          </MyProvider>
+        </div>
       </body>
     </html>
   );
 }
+

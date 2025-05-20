@@ -53,7 +53,6 @@ const CscsForm = () => {
     e.preventDefault();
     firestore.applyForHealthAndSafetyCourse(formData.title, formData.firstName, formData.middleName, formData.lastName, formData.nationalInsuranceNumber, formData.phoneNumber, formData.email, formData.applicationMode, formData.assessmentDate, formData.location, setIsSubmitting)
     reset()
-    window.location.href = "https://buy.stripe.com/00gaGx6wBfLJ1uE3ce";
   };
 
 

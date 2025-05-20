@@ -78,7 +78,7 @@ const CitbForm = ({ test_center }) => {
     reset();
 
     if (formData.testType === "normal") {
-      window.location.href = "https://buy.stripe.com/00gaGx6wBfLJ1uE3ce";
+      window.location.href = "https://buy.stripe.com/8wMeWN3kp0QP3CMfZ6";
     } else if (formData.testType === "retake") {
       window.location.href = "https://buy.stripe.com/dR601T3kp6b9ddmeUZ"; // Replace this with your actual retake payment link
     }

@@ -24,6 +24,7 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
     citbId: "",
     cardtype: "",
     applicationType: "",
+    variant: ""
   });
 
 
@@ -78,6 +79,20 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
     { id: 11, value: 'White ACRIB Refrigerant Handler', component: <CardForList image_path="/ess-white-acrib-img.png" title="White ACRIB Refrigerant Handler" description="For anyone with City & Guilds 2079 (Cat1), BESA FG Cat1, an NVQ unit recognized by DEFRA, or Logic 603/1917/3 (Cat1)." /> },
   ];
 
+  const cardImageMap = {
+    "Green Labourer Card": "/green-card-img.png",
+    "Blue Skilled Worker Card": "/blue-card-img.png",
+    "Gold Advanced Craft Card": "/gold-advanced-card-img.png",
+    "Gold Supervisor Card": "/gold-supervisor-card-img.png",
+    "Black Manager Card": "/black-manager-card-img.png",
+    "White Academically Qualified Person": "/white-academically-qualified-card-img.png",
+    "White Professionally Qualified Person": "/white-professionally-qualified-card-img.png",
+    "Red Provisional Card": "/red-card-img.png",
+    "Red Trainee Card": "/red-trainee-img.png",
+    "Red Experienced Worker Card": "/red-experienced-worker-card-img.png",
+    "Red Technical Supervisor/Manager Card": "/red-supervisor-card-img.png"
+  };
+
 
 
   const [agreed, setAgreed] = useState(false);
@@ -128,6 +143,7 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
     const lastName = params.get("lastName");
     const phoneNumber = params.get("phoneNumber");
     const email = params.get("email");
+    const cardtype = params.get("card")
 
     setFormData((prev) => ({
       ...prev,
@@ -135,8 +151,18 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
       ...(lastName && { lastName }),
       ...(phoneNumber && { phoneNumber }),
       ...(email && { email }),
+      ...(cardtype && { cardtype })
     }));
+
+    if (setImagePath) {
+      console.log(cardtype)
+      setImagePath(cardImageMap[cardtype] || "/green-card-img.png");
+    }
+
+    setGetCardType(cardtype)
+
   }, []);
+
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -150,19 +176,6 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
     setFormData({ ...formData, cardtype: value });
     setIsOpen(false);
 
-    const cardImageMap = {
-      "Green Labourer Card": "/green-card-img.png",
-      "Blue Skilled Worker Card": "/blue-card-img.png",
-      "Gold Advanced Craft Card": "/gold-advanced-card-img.png",
-      "Gold Supervisor Card": "/gold-supervisor-card-img.png",
-      "Black Manager Card": "/black-manager-card-img.png",
-      "White Academically Qualified Person": "/white-academically-qualified-card-img.png",
-      "White Professionally Qualified Person": "/white-professionally-qualified-card-img.png",
-      "Red Provisional Card": "/red-card-img.png",
-      "Red Trainee Card": "/red-trainee-img.png",
-      "Red Experienced Worker Card": "/red-experienced-worker-card-img.png",
-      "Red Technical Supervisor/Manager Card": "/red-supervisor-card-img.png"
-    };
 
     if (setImagePath) {
       console.log(value)
@@ -197,6 +210,7 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
       email: "",
       cardtype: "",
       applicationType: "",
+      variant: ""
     });
     setAgreed(false);
     setIdx(null);
@@ -205,7 +219,7 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
   const firebase = useFirebase()
   // console.log(firebase)
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    if (e && e.preventDefault) e.preventDefault(); // Safe check for event
 
     if (form_type === 'cscs') {
       await firebase.addCscsData(formData, "manual");
@@ -213,12 +227,11 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
 
     if (form_type === 'ess') {
       await firebase.addEssData(formData, "manual");
-
-      // Redirect to Stripe after submission
     }
 
     resetForm();
   };
+
 
 
 
@@ -252,6 +265,7 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
                   span: 2
                 },
                 { label: "CITB ID", value: formData.citbId },
+                { label: "Card Variant", value: formData.variant },
                 { label: "Card Type", value: formData.cardtype },
                 { label: "Application Type", value: formData.applicationType, span: 2 },
               ].map((item, idx) => (
@@ -276,7 +290,7 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
                 className="px-5 py-2 rounded-full bg-purple_primary text-white hover:bg-[#84286a] transition flex items-center gap-2"
                 onClick={() => {
                   setShowOverlay(false);
-                  addCscsData(formData, setIsSubmitting, "new");
+                  handleSubmit();
                 }}
               >
                 Confirm & Submit
@@ -519,6 +533,26 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
         <h2 className="text-2xl font-bold mb-6">Card Details</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-4">
 
+          <div>
+            <label htmlFor="variant" className="block text-md font-medium">
+              Card Variant
+            </label>
+            <select
+              id="variant"
+              name="variant"
+              value={formData.variant}
+              onChange={handleChange}
+              className="w-full border border-gray-500 py-4 px-3 mb-4"
+              required
+            >
+              <option value="" disabled>
+                Please select the variant
+              </option>
+              <option value="Physical + Digital">Physical + Digital</option>
+              <option value="Digital">Digital</option>
+            </select>
+          </div>
+
 
           <div className="relative">
             <label htmlFor="email" className="block text-md font-medium">
@@ -616,6 +650,7 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
                 </label>
                 // )
               }
+
 
 
 

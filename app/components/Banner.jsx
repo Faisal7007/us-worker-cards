@@ -9,7 +9,6 @@ const Banner = () => {
 
   const categories = [
     'NVQs',
-    // 'First Aid',
     'Health and Safety Course',
     'CITB Test'
   ];
@@ -93,7 +92,7 @@ const Banner = () => {
         focus:ring-offset-2
         ${selectedCategories.includes(category)
                           ? 'bg-green-400 text-black'
-                          : 'bg-green-400'
+                          : 'bg-transparent'
                         }
         max-w-full
         sm:max-w-max

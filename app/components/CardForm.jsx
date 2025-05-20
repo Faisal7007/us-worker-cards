@@ -25,9 +25,9 @@ const CardForm = ({ titleOne, titleTwo, cardType }) => {
 
   const cscsCardTypes = ["green-labourer", "blue-skilled", "red-provisional", "red-trainee", "red-experienced", "red-technical-supervisor", "gold-craft", "gold-supervisor", "black-manager", "white-aqp", "white-pqp", "health-and-safety-awareness"];
 
-  useEffect(() => {
-    firebase.fetchAllCscsEssData('cscs', cscsCardTypes, setCscsUsers, setIsLoading)
-  }, [cardType])
+  // useEffect(() => {
+  //   firebase.fetchAllCscsEssData('cscs', cscsCardTypes, setCscsUsers, setIsLoading)
+  // }, [cardType])
 
 
   console.log(cscsUsers, 'All users')
@@ -41,10 +41,9 @@ const CardForm = ({ titleOne, titleTwo, cardType }) => {
 
 
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Check if email or phone already exists in the database
     const emailExists = cscsUsers.some((user) => user.email === email.trim());
     const phoneExists = cscsUsers.some((user) => user.phone === phone.trim());
 
@@ -64,15 +63,38 @@ const CardForm = ({ titleOne, titleTwo, cardType }) => {
           hideProgressBar: true,
           className: "bg-red-100 text-red-800 font-medium",
         });
-
       }
       return;
     }
 
-    // Add new data if it doesn't exist
-    firebase.addCscsData({ firstName, lastName, email, phone, cardType }, setIsSubmitting, 'manual');
-    reset()
+    if (cardType == 'health-and-safety-awareness') {
+      router.push(`/course-book`)
+      return;
+    }
+
+    try {
+
+      // Redirect after successful submission
+      const query = new URLSearchParams({
+        firstName: firstName.trim(),
+        lastName: lastName.trim(),
+        phoneNumber: phone.trim(),
+        email: email.trim(),
+        card: titleOne.trim()
+      }).toString();
+
+      router.push(`/apply-card-for/${cardType}?${query}`);
+    } catch (error) {
+      console.error("Submission error:", error);
+      toast.error("Something went wrong while submitting.", {
+        position: "top-center",
+        autoClose: 3000,
+      });
+    }
+
+    reset();
   };
+
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const autoSave = () => {
@@ -251,7 +273,7 @@ const CardForm = ({ titleOne, titleTwo, cardType }) => {
               disabled={isSubmitting}
               className="w-full bg-purple_primary text-white py-2 px-4 mt-4 rounded-md hover:bg-[#84286a] focus:outline-none focus:ring-2 focus:ring-purple_primary focus:ring-offset-2"
             >
-              {isSubmitting ? "Submitting..." : "Submit"}
+              {isSubmitting ? "Submitting..." : "Easy Apply"}
             </button>
           </div>
         </form>

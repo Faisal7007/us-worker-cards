@@ -259,7 +259,7 @@ const Page = () => {
             </button>
           </Link>
           <h1 className='text-[25px] font-bold mb-2 text-justify'>How to apply</h1>
-          <p>Call <Link href='/' className='text-purple_primary font-semibold media-max-545px:text-[14px] hover:text-black '>00000</Link> to book by phone. Our lines are open Monday to Saturday, from 9 AM to 7 PM.</p>
+          <p>Call <Link href='/' className='text-purple_primary font-semibold media-max-545px:text-[14px] hover:text-black '>+44 3030030136</Link> to book by phone. Our lines are open Monday to Saturday, from 9 AM to 7 PM.</p>
         </div>
 
       </div>
