@@ -15,10 +15,10 @@ const Banner = () => {
 
   const images = [
     '/green-vertical.png',
-    '/red-vertical.png',
-    '/black-vertical.png',
-    '/blue-vertical.png',
-    '/white-vertical.png'
+    // '/red-vertical.png',
+    // '/black-vertical.png',
+    // '/blue-vertical.png',
+    // '/white-vertical.png'
   ];
 
   // Map category names to URL slugs
