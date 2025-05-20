@@ -6,53 +6,53 @@ import { motion } from 'framer-motion';
 const Footer = () => {
   return (
     <div className='bg-gray-50'>
-    <div className=' max-w-[1440px] mx-auto bg-gray-50 pt-4 px-4'>
-      <footer className="bg-gray-50 max-w-[1440px] mx-auto pt-8  text-color_dark_red1">
-        <div className=" flex justify-between items-start gap-8 flex-wrap media-max-545px:justify-between">
-          {/* Logo and Description */}
-          <motion.div initial={{ x: -60, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        viewport={{ once: false,amount:0.4}} className="flex flex-col items-center lg:items-start space-y-4">
-            <Link href="/">
-              <Image
-              className="cursor-pointer max-h-[80px] w-auto h-auto"
-                src="/color-logo.png"
-                width={100}
-                height={100}
-                alt="logo"
-                priority={true}
-              />
-            </Link>
+      <div className=' max-w-[1440px] mx-auto bg-gray-50 pt-4 px-4'>
+        <footer className="bg-gray-50 max-w-[1440px] mx-auto pt-8  text-color_dark_red1">
+          <div className=" flex justify-between items-start gap-8 flex-wrap media-max-545px:justify-between">
+            {/* Logo and Description */}
+            <motion.div initial={{ x: -60, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              viewport={{ once: false, amount: 0.4 }} className="flex flex-col items-center lg:items-start space-y-4">
+              <Link href="/">
+                <Image
+                  className="cursor-pointer max-h-[80px] w-auto h-auto"
+                  src="/color-logo.png"
+                  width={100}
+                  height={100}
+                  alt="logo"
+                  priority={true}
+                />
+              </Link>
 
-            <div className="w-full lg:w-72 sm:w-72 text-justify text-sm md:text-base media-max-545px:text-[14px]">
-            Construction Card Services explicitly states that we are not part of, or associated with CSCS or CITB.
-            </div>
-          </motion.div>
+              <div className="w-full lg:w-72 sm:w-72 text-justify text-sm md:text-base media-max-545px:text-[14px]">
+                Construction Card Services explicitly states that we are not part of, or associated with CSCS or CITB.
+              </div>
+            </motion.div>
 
-          {/* Important Links */}
-          <motion.div  initial={{ x: -60, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        viewport={{ once: false,amount:0.4}} className="flex flex-col items-center sm:items-start">
-            <h3 className="text-lg font-semibold mb-4 text-center sm:text-right media-max-545px:text-[16px]">
-              Important Links
-            </h3>
-            <div className="space-y-2 text-center sm:text-left media-max-545px:text-justify ">
-              {[{title:'CSCS Card Types',link:'cscs-card-types'}, {title:'Know Your Card',link:'know-your-card'}, {title:'Trade Wise Test',link:'trade-wise-test'}, {title:'Test Center',link:'test-centers'}].map((elem) => (
-                <div key={elem.link} className='media-max-545px:text-[14px] media-max-545px:mr-2'>
-                  <Link
-                    href={`/${elem.link}`}
-                    className="text-purple_primary hover:text-black transition-all duration-300"
-                  >
-                    {elem.title}
-                  </Link>
-                </div>
-              ))}
-            </div>
-          </motion.div>
+            {/* Important Links */}
+            <motion.div initial={{ x: -60, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              viewport={{ once: false, amount: 0.4 }} className="flex flex-col items-center sm:items-start">
+              <h3 className="text-lg font-semibold mb-4 text-center sm:text-right media-max-545px:text-[16px]">
+                Important Links
+              </h3>
+              <div className="space-y-2 text-center sm:text-left media-max-545px:text-justify ">
+                {[{ title: 'CSCS Card Types', link: 'cscs-card-types' }, { title: 'Know Your Card', link: 'know-your-card' }, { title: 'Trade Wise Test', link: 'trade-wise-test' }, { title: 'Test Center', link: 'test-centers' }].map((elem) => (
+                  <div key={elem.link} className='media-max-545px:text-[14px] media-max-545px:mr-2'>
+                    <Link
+                      href={`/${elem.link}`}
+                      className="text-purple_primary hover:text-black transition-all duration-300"
+                    >
+                      {elem.title}
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
 
-              <div>
+            <div>
               <h3 className="text-lg font-semibold mb-4 text-center  sm:text-left media-max-545px:mr-12 media-max-545px:text-[16px]">
                 CSCS Cards
               </h3>
@@ -70,16 +70,16 @@ const Footer = () => {
               </div>
             </div>
 
-          {/* Social Media Links */}
-          <motion.div initial={{ x: 50, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        viewport={{ once: false,amount:0.3}} className="relative flex flex-col items-center  media-max-545px:justify-end">
-        <div>
-            <h3 className="text-lg font-semibold mb-4">
-              We Accept
-            </h3>
-            {/* <div className="flex space-x-4 justify-center sm:justify-start">
+            {/* Social Media Links */}
+            <motion.div initial={{ x: 50, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              viewport={{ once: false, amount: 0.3 }} className="relative flex flex-col items-center  media-max-545px:justify-end">
+              <div>
+                <h3 className="text-lg font-semibold mb-4">
+                  We Accept
+                </h3>
+                {/* <div className="flex space-x-4 justify-center sm:justify-start">
               {[
                 { icon: <FaFacebook size={18}  />, link: 'https://facebook.com' },
                 { icon: <FaTwitter size={18} />, link: 'https://twitter.com' },
@@ -96,9 +96,9 @@ const Footer = () => {
                 </div>
               ))}
             </div> */}
-            <div className='mt-4'>
-            <Image
-  className="
+                <div className='mt-4'>
+                  <Image
+                    className="
     cursor-pointer 
     max-h-[80px] 
     w-auto 
@@ -107,37 +107,37 @@ const Footer = () => {
     right-7 
     max-[800px]:right-0
   "
-  height={200}
-  width={200}
-  alt="payment-image"
-  src="/payment-img.png"
-/>
+                    height={200}
+                    width={200}
+                    alt="payment-image"
+                    src="/payment-image.png"
+                  />
 
+                </div>
+
+
+              </div>
+            </motion.div>
+
+          </div>
+
+          {/* Copyright */}
+          <div className='flex items-center justify-between mt-8'>
+            <div className="w-full text-center border-t border-gray-300 pt-4 pb-2 media-max-545px:text-[14px]">
+              <Link href="/terms-and-conditions" className='mr-4 text-purple_primary'>Terms & Conditions</Link>
+              <Link href="/privacy-policy" className='text-purple_primary'>Privacy Policy</Link>
+              <p className="text-sm text-gray-500 mt-2 media-max-545px:text-[12px]">
+                &copy; {new Date().getFullYear()} Construction card services. All rights reserved.
+              </p>
             </div>
-
-            
-        </div>
-          </motion.div>
-          
-        </div>
-
-        {/* Copyright */}
-        <div className='flex items-center justify-between mt-8'>
-          <div className="w-full text-center border-t border-gray-300 pt-4 pb-2 media-max-545px:text-[14px]">
-            <Link href="/terms-and-conditions" className='mr-4 text-purple_primary'>Terms & Conditions</Link>
-            <Link href="/privacy-policy" className='text-purple_primary'>Privacy Policy</Link>
-            <p className="text-sm text-gray-500 mt-2 media-max-545px:text-[12px]">
-              &copy; {new Date().getFullYear()} Construction card services. All rights reserved.
-            </p>
+            <div className="mt-2 ">
+              <Link href="/admin" className="flex items-center justify-center gap-2 text-gray-600 hover:text-gray-800">
+                <FaUserShield className="size-4" />
+              </Link>
+            </div>
           </div>
-          <div className="mt-2 ">
-            <Link href="/admin" className="flex items-center justify-center gap-2 text-gray-600 hover:text-gray-800">
-              <FaUserShield className="size-4"/>
-            </Link>
-          </div>
-        </div>
-      </footer>
-    </div>
+        </footer>
+      </div>
     </div>
 
   );
