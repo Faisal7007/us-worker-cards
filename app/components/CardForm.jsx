@@ -79,25 +79,25 @@ const CardForm = ({ titleOne, titleTwo, cardType }) => {
 
     // console.log(cardType)
 
-    // try {
+    try {
 
-    //   // Redirect after successful submission
-    //   const query = new URLSearchParams({
-    //     firstName: firstName.trim(),
-    //     lastName: lastName.trim(),
-    //     phoneNumber: phone.trim(),
-    //     email: email.trim(),
-    //     card: titleOne.trim()
-    //   }).toString();
+      // Redirect after successful submission
+      const query = new URLSearchParams({
+        firstName: firstName.trim(),
+        lastName: lastName.trim(),
+        phoneNumber: phone.trim(),
+        email: email.trim(),
+        card: titleOne.trim()
+      }).toString();
 
-    //   router.push(`/apply-card-for/cscs?${query}`);
-    // } catch (error) {
-    //   console.error("Submission error:", error);
-    //   toast.error("Something went wrong while submitting.", {
-    //     position: "top-center",
-    //     autoClose: 3000,
-    //   });
-    // }
+      router.push(`/apply-card-for/cscs?${query}`);
+    } catch (error) {
+      console.error("Submission error:", error);
+      toast.error("Something went wrong while submitting.", {
+        position: "top-center",
+        autoClose: 3000,
+      });
+    }
 
     reset();
   };
