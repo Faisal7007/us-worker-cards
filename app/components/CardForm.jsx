@@ -83,7 +83,7 @@ const CardForm = ({ titleOne, titleTwo, cardType }) => {
         card: titleOne.trim()
       }).toString();
 
-      router.push(`/apply-card-for/${cardType}?${query}`);
+      router.push(`/apply-card-for/cscs?${query}`);
     } catch (error) {
       console.error("Submission error:", error);
       toast.error("Something went wrong while submitting.", {

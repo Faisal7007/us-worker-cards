@@ -132,11 +132,9 @@ export const FirebaseProvider = ({ children }) => {
       toast.success("Form submitted successfully");
 
       // 🔁 Redirect to Stripe
-      if (formData.variant === "Digital") {
-        window.location.href = "https://buy.stripe.com/5kA5mdbQV8jh7T26ov";
-      } else {
-        window.location.href = "https://buy.stripe.com/3cs15X8EJ5752yI6ou";
-      }
+
+      window.location.href = "https://buy.stripe.com/00gaGx6wBfLJ1uE3ce";
+
     } catch (error) {
       console.error(error);
       toast.error("Error adding data!");

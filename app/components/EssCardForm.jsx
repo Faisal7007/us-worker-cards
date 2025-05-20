@@ -88,7 +88,7 @@ const EssCardForm = ({ titleOne, titleTwo, cardType }) => {
     queryParams.append("cardType", cardType); // or use `.set` if needed
 
 
-    router.push(`/apply-card-for/${cardType}?${queryParams.toString()}`);
+    router.push(`/apply-card-for/ess?${queryParams.toString()}`);
   };
 
 
