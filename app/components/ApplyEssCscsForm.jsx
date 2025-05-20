@@ -176,8 +176,13 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
     setFormData({ ...formData, cardtype: value });
     setIsOpen(false);
 
+    if (form_type == 'ess') {
+      const matchedCard = essCardTypes.find((card) => card.value === value);
+      const imagePath = matchedCard?.component?.props?.image_path || "/green-card-img.png";
+      setImagePath(imagePath);
+    }
 
-    if (setImagePath) {
+    else {
       console.log(value)
       setImagePath(cardImageMap[value] || "/green-card-img.png");
     }
@@ -533,25 +538,27 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
         <h2 className="text-2xl font-bold mb-6">Card Details</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-4">
 
-          <div>
-            <label htmlFor="variant" className="block text-md font-medium">
-              Card Variant
-            </label>
-            <select
-              id="variant"
-              name="variant"
-              value={formData.variant}
-              onChange={handleChange}
-              className="w-full border border-gray-500 py-4 px-3 mb-4"
-              required
-            >
-              <option value="" disabled>
-                Please select the variant
-              </option>
-              <option value="Physical + Digital">Physical + Digital</option>
-              <option value="Digital">Digital</option>
-            </select>
-          </div>
+          {form_type == 'ess' ?
+            <div>
+              <label htmlFor="variant" className="block text-md font-medium">
+                Card Variant
+              </label>
+              <select
+                id="variant"
+                name="variant"
+                value={formData.variant}
+                onChange={handleChange}
+                className="w-full border border-gray-500 py-4 px-3 mb-4"
+                required
+              >
+                <option value="" disabled>
+                  Please select the variant
+                </option>
+                <option value="Physical + Digital">Physical + Digital</option>
+                <option value="Digital">Digital</option>
+              </select>
+            </div>
+            : <></>}
 
 
           <div className="relative">

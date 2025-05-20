@@ -51,7 +51,8 @@ const Banner = () => {
   };
 
   return (
-    <div className="relative h-screen flex items-center pt-16">
+    <div className="relative min-h-screen flex items-center pt-24 sm:pt-20">
+
       <div
         className="absolute inset-0 bg-cover bg-center z-0"
         style={{
@@ -71,22 +72,27 @@ const Banner = () => {
                 "Empowering the Future of Construction and Safety in the UK"
               </p>
 
-              <div className="flex flex-wrap justify-center lg:justify-start gap-2 mt-4">
+              <div className="flex flex-col items-center sm:items-start sm:flex-row sm:justify-center lg:justify-start gap-2 mt-4">
                 {categories.map((category) => (
-                  <Link href={categoryLinks[category]} key={category} passHref>
-                    <div
+
+                  <Link className='w-fit' legacyBehavior href={categoryLinks[category]} key={category}>
+                    <a
                       onClick={() => toggleCategory(category)}
-                      className={`flex items-center font-medium px-4 py-2 rounded-md border border-green-400 text-white transition duration-300 hover:bg-green-400 hover:text-black focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2 ${selectedCategories.includes(category) ? 'bg-green-400 text-black' : 'bg-transparent'} cursor-pointer`}
-                      role="button"
-                      tabIndex={0}
+                      className={`inline-flex flex-row items-center w-fit font-medium px-4 py-2 rounded-md border border-green-400 text-white transition duration-300 hover:bg-green-400 hover:text-black focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2 ${selectedCategories.includes(category)
+                        ? 'bg-green-400 text-black'
+                        : 'bg-transparent'
+                        }`}
                     >
                       <CheckCircle
                         size={20}
-                        className={`mr-2 ${selectedCategories.includes(category) ? 'text-black' : 'text-white'}`}
+                        className={`mr-2 ${selectedCategories.includes(category) ? 'text-black' : 'text-white'
+                          }`}
                       />
                       {category}
-                    </div>
+                    </a>
                   </Link>
+
+
                 ))}
               </div>
             </div>
