@@ -66,7 +66,7 @@ const page = () => {
                 <p className="text-gray-500 font-semibold">National Insurance Number</p>
                 <p>{user.nationalInsuranceNumber}</p>
               </div>
-             
+
               <div>
                 <p className="text-gray-500 font-semibold">Created At</p>
                 <p>{new Date(user.createdAt).toLocaleString()}</p>
@@ -95,6 +95,30 @@ const page = () => {
               <div>
                 <p className="text-gray-500 font-semibold">Country</p>
                 <p>{user.country}</p>
+              </div>
+              <div>
+                <p className="text-gray-500 font-semibold">Test Variant</p>
+                <p>{user.testVariant}</p>
+              </div>
+              <div>
+                <p className="text-gray-500 font-semibold">Time Slot</p>
+                <p>{user.timeSlot}</p>
+              </div>
+              <div>
+                <p className="text-gray-500 font-semibold">Test Type</p>
+                <p>{user.testType}</p>
+              </div>
+              <div>
+                <p className="text-gray-500 font-semibold">Alternate Test Date</p>
+                <p>{user.alternateTestDate}</p>
+              </div>
+              <div>
+                <p className="text-gray-500 font-semibold">Preffered Test date</p>
+                <p>{user.preferredTestDate}</p>
+              </div>
+              <div>
+                <p className="text-gray-500 font-semibold">Language</p>
+                <p>{user.language}</p>
               </div>
             </div>
           </div>

@@ -18,8 +18,14 @@ const CitbForm = ({ test_center }) => {
     townCity: "",
     county: "",
     postcode: "",
-    testType: "",
+    testType: "",                  // Test Type (select dropdown)
+    language: "",                 // Language (select dropdown)
+    preferredTestDate: "",        // Preferred Test Date
+    alternateTestDate: "",        // Alternate Test Date
+    timeSlot: "",                 // Time Slot (morning, afternoon, evening)
+    testVariant: ""
   });
+
 
 
   const reset = () => {
@@ -41,7 +47,9 @@ const CitbForm = ({ test_center }) => {
   }
 
   const [agreed, setAgreed] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showOverlayForm, setShowOverlayForm] = useState(false);
+
 
   const firebase = useFirebase()
 
@@ -71,26 +79,175 @@ const CitbForm = ({ test_center }) => {
       formData.townCity,
       formData.county,
       formData.postcode,
+      formData.testVariant,              // Newly added
+      formData.language,              // Newly added
+      formData.preferredTestDate,     // Newly added
+      formData.alternateTestDate,     // Newly added
+      formData.timeSlot,              // Newly added
+      formData.testType,
       test_center,
       setIsSubmitting
     );
 
     reset();
-
-    if (formData.testType === "normal") {
-      window.location.href = "https://buy.stripe.com/8wMeWN3kp0QP3CMfZ6";
-    } else if (formData.testType === "retake") {
-      window.location.href = "https://buy.stripe.com/dR601T3kp6b9ddmeUZ"; // Replace this with your actual retake payment link
-    }
   };
 
 
   return (
+
     <form
       onSubmit={handleSubmit}
       className="max-w-full mx-auto  rounded  space-y-6"
     >
       <div className="pt-6">
+
+        {showOverlayForm && (
+          <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50">
+            <div className="bg-white w-full max-w-xl p-6 rounded shadow-lg">
+              <h2 className="text-2xl font-semibold mb-4">Additional Information</h2>
+
+              {/* Test Type */}
+              <div className="mb-4">
+                <label className="block text-md font-medium">Test Type</label>
+                <select
+                  name="testVariant"
+                  value={formData.testVariant || ""}
+                  onChange={handleChange}
+                  className="w-full border border-gray-500 py-3 px-3"
+                >
+                  <option value="">Select a Test Type</option>
+                  {[
+                    "Operative",
+                    "Managers and Professionals",
+                    "Supervisors Test",
+                    "Working at Height Test",
+                    "Plumbing or Gas Test",
+                    "Highway Works Test",
+                    "Demolition Test",
+                    "HVACR Test (Domestic Heating and Plumbing)",
+                    "HVACR Test (Ductwork)",
+                    "HVACR Test (Pipelifting and Welding)",
+                    "HVACR Test (Refrigeration and Air Conditioning)",
+                    "HVACR Test (Services and Facilities)",
+                    "Lift and Escalators Test",
+                    "Tunnelling Test",
+                  ].map((type) => (
+                    <option key={type} value={type}>{type}</option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Language */}
+              <div className="mb-4">
+                <label className="block text-md font-medium">Language</label>
+                <select
+                  name="language"
+                  value={formData.language || ""}
+                  onChange={handleChange}
+                  className="w-full border border-gray-500 py-3 px-3"
+                >
+                  <option value="">Select a Language</option>
+                  {[
+                    "English",
+                    "Voice Over English",
+                    "Bulgarian",
+                    "Czetch",
+                    "French",
+                    "German",
+                    "Hungarian",
+                    "Lithunian",
+                    "Polish",
+                    "Portuguese",
+                    "Punjabi",
+                    "Romanian",
+                    "Russian",
+                    "Spanish",
+                    "Welsh",
+                  ].map((lang) => (
+                    <option key={lang} value={lang}>{lang}</option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Preferred Test Date */}
+              <div className="mb-4">
+                <label className="block text-md font-medium">Preferred Test Date</label>
+                <input
+                  type="date"
+                  name="preferredTestDate"
+                  min={new Date(Date.now() + 86400000).toISOString().split("T")[0]}
+                  value={formData.preferredTestDate || ""}
+                  onChange={handleChange}
+                  className="w-full border border-gray-500 py-3 px-3"
+                />
+              </div>
+
+              {/* Alternate Test Date */}
+              <div className="mb-4">
+                <label className="block text-md font-medium">Alternate Test Date</label>
+                <input
+                  type="date"
+                  name="alternateTestDate"
+                  min={new Date(Date.now() + 86400000).toISOString().split("T")[0]}
+                  value={formData.alternateTestDate || ""}
+                  onChange={handleChange}
+                  className="w-full border border-gray-500 py-3 px-3"
+                />
+              </div>
+
+              {/* Time Slot */}
+              <div className="mb-4">
+                <label className="block text-md font-medium">Time Slot</label>
+                <select
+                  name="timeSlot"
+                  value={formData.timeSlot || ""}
+                  onChange={handleChange}
+                  className="w-full border border-gray-500 py-3 px-3"
+                >
+                  <option value="morning">Morning</option>
+                  <option value="afternoon">Afternoon</option>
+                  <option value="evening">Evening</option>
+                </select>
+              </div>
+
+              <div className="mb-4">
+                <label className="block text-md font-medium">Test variant</label>
+                <select
+                  id="testType"
+                  name="testType"
+                  value={formData.testType}
+                  onChange={handleChange}
+                  className="w-full border border-gray-500 py-3 px-3"
+                >
+                  <option value="normal">Take CITB Test £40</option>
+                  <option value="retake">Take CITB Test + Retake £60</option>
+                </select>
+              </div>
+
+              {/* Buttons */}
+              <div className="flex justify-between mt-6">
+                <button
+                  type="button"
+                  onClick={() => setShowOverlayForm(false)}
+                  className="bg-gray-300 px-4 py-2 rounded"
+                >
+                  Back
+                </button>
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="bg-purple_primary text-white px-4 py-2 rounded hover:bg-[#84286a]"
+                >
+                  Submit
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+
+
 
         <h2 className="text-[25px] bg-purple_primary text-white py-4    font-bold mb-6 text-center">Candidate Undergoing the Test</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-4">
@@ -333,7 +490,7 @@ const CitbForm = ({ test_center }) => {
         </label>
       </div>
 
-      <div className="mb-6">
+      {/* <div className="mb-6">
         <label htmlFor="testType" className="block text-md font-medium">
           Choose Test Type
         </label>
@@ -351,20 +508,20 @@ const CitbForm = ({ test_center }) => {
           <option value="normal">Take CITB Test</option>
           <option value="retake">Take CITB Test + Retake</option>
         </select>
-      </div>
+      </div> */}
 
       <button
-        type="submit"
-        disabled={!agreed || isSubmitting}
-
+        type="button"
+        disabled={!agreed}
+        onClick={() => setShowOverlayForm(true)}
         className={`inline-flex items-center justify-center w-fit px-4 py-2 rounded media-max-545px:text-[14px] ${agreed
-          ? "bg-purple_primary  text-white hover:bg-[#84286a]"
-          : "bg-[#854c75] text-white cursor-not-allowed"
+          ? "bg-purple_primary text-white hover:bg-[#84286a]"
+          : "bg-gray-300 text-gray-600 cursor-not-allowed"
           }`}
       >
-        <span className="ml-2">{isSubmitting ? "Submitting..." : "Move Forward"}</span>
-        <MdArrowRight className="size-6" />
+        Move Forward <MdArrowRight className="ml-2" />
       </button>
+
     </form>
   );
 };

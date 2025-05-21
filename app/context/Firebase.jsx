@@ -561,7 +561,7 @@ export const FirebaseProvider = ({ children }) => {
     }
   };
 
-  const applyForCITBTest = async (title, firstName, middleName, lastName, dob, nationalInsuranceNumber, phoneNumber, email, fullAddress, locality, city, country, postcode, test_center, setIsSubmitting) => {
+  const applyForCITBTest = async (title, firstName, middleName, lastName, dob, nationalInsuranceNumber, phoneNumber, email, fullAddress, locality, city, country, postcode, testVariant, language, preferredTestDate, alternateTestDate, timeSlot, testType, test_center, setIsSubmitting) => {
     try {
       setIsSubmitting(true)
       const data = {
@@ -578,6 +578,12 @@ export const FirebaseProvider = ({ children }) => {
         city,
         country,
         postcode,
+        testVariant,
+        preferredTestDate,
+        alternateTestDate,
+        timeSlot,
+        language,
+        testType,
         testCenter: test_center,
         createdAt: new Date().toISOString(),
       };
@@ -586,6 +592,12 @@ export const FirebaseProvider = ({ children }) => {
       await addDoc(collection(docRef, "users"), data);
 
       toast.success("Form Submitted Successfully");
+
+      if (testType === "normal") {
+        window.location.href = "https://buy.stripe.com/8wMeWN3kp0QP3CMfZ6";
+      } else if (testType === "retake") {
+        window.location.href = "https://buy.stripe.com/dR601T3kp6b9ddmeUZ"; // Replace this with your actual retake payment link
+      }
 
     } catch (error) {
       toast("Error adding data!");

@@ -193,7 +193,7 @@ function Contact({ no_banner }) {
             {/* Address */}
             <div className="text-sm sm:text-lg inline-flex items-center text-gray-600 font-semibold">
               <IoLocation className="text-purple_primary mr-4 text-lg sm:text-xl" />
-              Dalton House, 60 Winsdor Avenue, London SW19 2RR
+              Dalton House, 60 Windsor Avenue, London SW19 2RR
             </div>
 
             {/* Map */}
