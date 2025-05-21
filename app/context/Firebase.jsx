@@ -561,7 +561,7 @@ export const FirebaseProvider = ({ children }) => {
     }
   };
 
-  const applyForCITBTest = async (title, firstName, middleName, lastName, dob, nationalInsuranceNumber, phoneNumber, email, fullAddress, locality, city, country, postcode, testVariant, language, preferredTestDate, alternateTestDate, timeSlot, testType, test_center, setIsSubmitting) => {
+  const applyForCITBTest = async (title, firstName, middleName, lastName, dob, nationalInsuranceNumber, phoneNumber, email, fullAddress, locality, city, country, postcode, testVariant, language, preferredTestDate, alternateTestDate, timeSlot, testType, testCenter, test_center, setIsSubmitting) => {
     try {
       setIsSubmitting(true)
       const data = {
@@ -584,7 +584,7 @@ export const FirebaseProvider = ({ children }) => {
         timeSlot,
         language,
         testType,
-        testCenter: test_center,
+        testCenter,
         createdAt: new Date().toISOString(),
       };
 

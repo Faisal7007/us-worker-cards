@@ -23,7 +23,8 @@ const CitbForm = ({ test_center }) => {
     preferredTestDate: "",        // Preferred Test Date
     alternateTestDate: "",        // Alternate Test Date
     timeSlot: "",                 // Time Slot (morning, afternoon, evening)
-    testVariant: ""
+    testVariant: "",
+    testCenter: ""
   });
 
 
@@ -85,6 +86,7 @@ const CitbForm = ({ test_center }) => {
       formData.alternateTestDate,     // Newly added
       formData.timeSlot,              // Newly added
       formData.testType,
+      formData.testCenter,
       test_center,
       setIsSubmitting
     );
@@ -169,6 +171,18 @@ const CitbForm = ({ test_center }) => {
                 </select>
               </div>
 
+              <div className="mb-4">
+                <label className="block text-md font-medium">Test Center Name (Optional)</label>
+                <input
+                  id="testCenter"
+                  name="testCenter"
+                  value={formData.testCenter}
+                  onChange={handleChange}
+                  className="w-full border border-gray-500 py-3 px-3"
+                >
+                </input>
+              </div>
+
               {/* Preferred Test Date */}
               <div className="mb-4">
                 <label className="block text-md font-medium">Preferred Test Date</label>
@@ -223,6 +237,9 @@ const CitbForm = ({ test_center }) => {
                   <option value="retake">Take CITB Test + Retake £60</option>
                 </select>
               </div>
+
+
+
 
               {/* Buttons */}
               <div className="flex justify-between mt-6">
