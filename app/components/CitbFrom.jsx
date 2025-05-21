@@ -147,6 +147,7 @@ const CitbForm = ({ test_center }) => {
                   value={formData.language || ""}
                   onChange={handleChange}
                   className="w-full border border-gray-500 py-3 px-3"
+                  required
                 >
                   <option value="">Select a Language</option>
                   {[
