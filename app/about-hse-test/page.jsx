@@ -197,7 +197,7 @@ const page = () => {
         </ul>
         <p className="font-bold text-center md:text-left flex flex-col items-center md:items-start">
           Not sure which test to take?
-          <Link href={"#"} className="text-purple_primary  underline">Talk to one of our executives.</Link>
+          <Link href={"/trade-wise-test"} className="text-purple_primary  underline">Talk to one of our executives.</Link>
           <span className="text-sm text-gray-600">Lines are open from 9am to 7pm (Monday to Saturday)</span>
         </p>
       </div>

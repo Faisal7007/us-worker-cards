@@ -51,7 +51,7 @@ const page = () => {
           The CITB Health, Safety & Environment Test, also called the CITB Touch Screen Test, is necessary for obtaining or renewing a CSCS Card. The cost of the CITB HS&E Test is <span className="font-semibold">£22.50</span>.
         </p>
         <Link
-          href="/"
+          href="/trade-wise-test"
           className="inline-block text-purple_primary font-semibold hover:text-purple-700 transition-colors duration-300 underline"
         >
           Not Sure which test to take?
