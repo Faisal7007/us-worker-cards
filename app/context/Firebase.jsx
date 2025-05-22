@@ -593,10 +593,13 @@ export const FirebaseProvider = ({ children }) => {
 
       toast.success("Form Submitted Successfully");
 
-      if (testType === "normal") {
-        window.location.href = "https://buy.stripe.com/8wMeWN3kp0QP3CMfZ6";
-      } else if (testType === "retake") {
+      console.log(testType)
+
+      if (testType === "retake") {
         window.location.href = "https://buy.stripe.com/dR601T3kp6b9ddmeUZ"; // Replace this with your actual retake payment link
+      }
+      else {
+        window.location.href = "https://buy.stripe.com/8wMeWN3kp0QP3CMfZ6";
       }
 
     } catch (error) {
