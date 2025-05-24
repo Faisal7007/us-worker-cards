@@ -44,7 +44,7 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="./favicon.ico" />
         {/* Google Tag Manager Script */}
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=AW-17089975780"
+          src="https://www.googletagmanager.com/gtag/js?id=AW-17099031001"
           strategy="afterInteractive"
         />
         <Script id="google-gtag" strategy="afterInteractive">
@@ -52,7 +52,7 @@ export default function RootLayout({ children }) {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'AW-17089975780');
+            gtag('config', 'AW-17099031001');
           `}
         </Script>
       </head>
