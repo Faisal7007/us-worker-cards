@@ -15,7 +15,7 @@ const DropdownMenu = ({ label, items, dropdownOpen, toggleDropdown, handleOption
     <div className="relative">
       <button
         onClick={() => toggleDropdown(label)}
-        className="inline-flex items-center py-2 px-4 text-white hover:text-gray-300 focus:outline-none media-max-935px:px-0 media-max-1022px:px-0"
+        className="inline-flex items-center py-1 px-0 text-white hover:text-gray-300 focus:outline-none media-max-935px:px-0 media-max-1022px:px-0"
       >
         {label}
         <FaAngleDown className="ml-2" />
@@ -111,7 +111,7 @@ const Navbar = () => {
       className={`bg-purple_primary fixed min-w-[100vw] top-0 right-0 z-50 shadow-lg transition-transform duration-500 ease-in-out ${showNavbar ? "translate-y-0" : "-translate-y-full"
         }`}
     >
-      <div className="max-w-[1440px] mx-auto px-4 lg:px-8">
+      <div className="max-w-[1440px] mx-auto px-4 lg:px-4">
         <nav className="flex flex-wrap items-center justify-between py-4 lg:py-6 gap-4">
 
           {/* Logo */}
@@ -147,94 +147,96 @@ const Navbar = () => {
 
           {/* Main Nav Links */}
           <div
-            className={`w-full lg:w-auto lg:flex lg:items-center lg:space-x-8 ${isMobileMenuOpen
+            className={`w-full lg:w-auto lg:flex lg:items-center ${isMobileMenuOpen
               ? "block absolute top-24 left-0 w-full sm:h-[5vh] h-fit bg-purple_primary text-white transition-all duration-500 pb-2 pt-6 px-6"
               : "hidden"
               } lg:static lg:bg-transparent lg:p-0`}
           >
-            <div
-              className="flex flex-col gap-4 lg:flex-row lg:items-center lg:gap-8"
-              ref={dropdownRef}
-            >
-
-              {/* Individual Links */}
-              <Link href="/book-citb-test/default" onClick={handleOptionClick}
-                className={`relative text-white hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-0 after:h-[2px] after:bg-current after:transition-all after:duration-300 ${pathname === "/book-citb-test/default" ? "after:w-full underline-offset-2" : ""
-                  }`}
+            <div className="flex justify-start w-full">
+              <div
+                className="flex flex-col gap-4 lg:flex-row lg:items-center lg:gap-4"
+                ref={dropdownRef}
               >
-                CITB Test
-              </Link>
 
-              {/* Dropdowns - CSCS Cards */}
-              <DropdownMenu
-                label="CSCS Cards"
-                items={[
-                  { path: "/cscs-green-card", label: "Green Labourer" },
-                  { path: "/cscs-blue-card", label: "Blue Skilled" },
-                  { path: "/cscs-red-provisional-card", label: "Red Provisional" },
-                  { path: "/cscs-gold-advanced-craft-card", label: "Gold Advanced Craft" },
-                  { path: "/cscs-gold-supervisor-card", label: "Gold Supervisor" },
-                  { path: "/cscs-black-manager-card", label: "Black Manager" },
-                  { path: "/cscs-card-types", label: "All CSCS Cards" },
-                ]}
-                dropdownOpen={dropdownOpen}
-                toggleDropdown={toggleDropdown}
-                handleOptionClick={handleOptionClick}
-              />
+                {/* Individual Links */}
+                <Link href="/book-citb-test/default" onClick={handleOptionClick}
+                  className={`relative text-white hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-0 after:h-[2px] after:bg-current after:transition-all after:duration-300 ${pathname === "/book-citb-test/default" ? "after:w-full underline-offset-2" : ""
+                    }`}
+                >
+                  CITB Test
+                </Link>
 
-              {/* Dropdowns - ESS Cards */}
-              <DropdownMenu
-                label="ESS Cards"
-                items={[
-                  { path: "/ess-card/green", label: "Green Card" },
-                  { path: "/ess-card/blue-skilled", label: "Blue Skilled Card" },
-                  { path: "/ess-card/red-trainee", label: "Red Trainee Card" },
-                  { path: "/ess-card/gold-advanced", label: "Gold Advanced Card" },
-                  { path: "/ess-card/gold-supervisor", label: "Gold Supervisor Card" },
-                  { path: "/ess-card/manager", label: "Manager Card" },
-                  { path: "/ess-card-types", label: "All ESS Cards" },
-                ]}
-                dropdownOpen={dropdownOpen}
-                toggleDropdown={toggleDropdown}
-                handleOptionClick={handleOptionClick}
-              />
+                {/* Dropdowns - CSCS Cards */}
+                <DropdownMenu
+                  label="CSCS Cards"
+                  items={[
+                    { path: "/cscs-green-card", label: "Green Labourer" },
+                    { path: "/cscs-blue-card", label: "Blue Skilled" },
+                    { path: "/cscs-red-provisional-card", label: "Red Provisional" },
+                    { path: "/cscs-gold-advanced-craft-card", label: "Gold Advanced Craft" },
+                    { path: "/cscs-gold-supervisor-card", label: "Gold Supervisor" },
+                    { path: "/cscs-black-manager-card", label: "Black Manager" },
+                    { path: "/cscs-card-types", label: "All CSCS Cards" },
+                  ]}
+                  dropdownOpen={dropdownOpen}
+                  toggleDropdown={toggleDropdown}
+                  handleOptionClick={handleOptionClick}
+                />
 
-              {/* Dropdowns - Construction Courses */}
-              <DropdownMenu
-                label="Construction Courses"
-                items={[
-                  { path: "/health-and-safety-awareness", label: "Health & Safety Awareness" },
-                  { path: "/nvq-level-2", label: "NVQs" },
-                ]}
-                dropdownOpen={dropdownOpen}
-                toggleDropdown={toggleDropdown}
-                handleOptionClick={handleOptionClick}
-              />
+                {/* Dropdowns - ESS Cards */}
+                <DropdownMenu
+                  label="ESS Cards"
+                  items={[
+                    { path: "/ess-card/green", label: "Green Card" },
+                    { path: "/ess-card/blue-skilled", label: "Blue Skilled Card" },
+                    { path: "/ess-card/red-trainee", label: "Red Trainee Card" },
+                    { path: "/ess-card/gold-advanced", label: "Gold Advanced Card" },
+                    { path: "/ess-card/gold-supervisor", label: "Gold Supervisor Card" },
+                    { path: "/ess-card/manager", label: "Manager Card" },
+                    { path: "/ess-card-types", label: "All ESS Cards" },
+                  ]}
+                  dropdownOpen={dropdownOpen}
+                  toggleDropdown={toggleDropdown}
+                  handleOptionClick={handleOptionClick}
+                />
 
-              {/* Other Links */}
-              <Link
-                href="/group-booking"
-                className={`relative text-white hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-0 after:h-[2px] after:bg-current after:transition-all after:duration-300 ${pathname === "/group-booking" ? "after:w-full underline-offset-2" : ""
-                  }`}
-                onClick={handleOptionClick}
-              >
-                Group Booking
-              </Link>
-              <Link
-                href="/contact-us"
-                className={`relative text-white hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-0 after:h-[2px] after:bg-current after:transition-all after:duration-300 ${pathname === "/contact-us" ? "after:w-full underline-offset-2" : ""
-                  }`}
-                onClick={handleOptionClick}
-              >
-                Contact Us
-              </Link>
+                {/* Dropdowns - Construction Courses */}
+                <DropdownMenu
+                  label="Construction Courses"
+                  items={[
+                    { path: "/health-and-safety-awareness", label: "Health & Safety Awareness" },
+                    { path: "/nvq-level-2", label: "NVQs" },
+                  ]}
+                  dropdownOpen={dropdownOpen}
+                  toggleDropdown={toggleDropdown}
+                  handleOptionClick={handleOptionClick}
+                />
+
+                {/* Other Links */}
+                <Link
+                  href="/group-booking"
+                  className={`relative text-white hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-0 after:h-[2px] after:bg-current after:transition-all after:duration-300 ${pathname === "/group-booking" ? "after:w-full underline-offset-2" : ""
+                    }`}
+                  onClick={handleOptionClick}
+                >
+                  Group Booking
+                </Link>
+                <Link
+                  href="/contact-us"
+                  className={`relative text-white hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-0 after:h-[2px] after:bg-current after:transition-all after:duration-300 ${pathname === "/contact-us" ? "after:w-full underline-offset-2" : ""
+                    }`}
+                  onClick={handleOptionClick}
+                >
+                  Contact Us
+                </Link>
+              </div>
             </div>
           </div>
         </nav>
       </div>
     </div>
-
   );
+
 };
 
 export default Navbar;

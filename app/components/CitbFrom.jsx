@@ -137,37 +137,40 @@ const CitbForm = ({ test_center }) => {
               </div>
 
               {/* Language */}
-              <div className="mb-4">
-                <label className="block text-md font-medium">Language</label>
-                <select
-                  name="language"
-                  value={formData.language || ""}
-                  onChange={handleChange}
-                  className="w-full border border-gray-500 py-3 px-3"
-                  required
-                >
-                  <option value="">Select a Language</option>
-                  {[
-                    "English",
-                    "Voice Over English",
-                    "Bulgarian",
-                    "Czetch",
-                    "French",
-                    "German",
-                    "Hungarian",
-                    "Lithunian",
-                    "Polish",
-                    "Portuguese",
-                    "Punjabi",
-                    "Romanian",
-                    "Russian",
-                    "Spanish",
-                    "Welsh",
-                  ].map((lang) => (
-                    <option key={lang} value={lang}>{lang}</option>
-                  ))}
-                </select>
-              </div>
+              {
+                formData.testVariant == "Operative" ?
+                  <div className="mb-4">
+                    <label className="block text-md font-medium">Language</label>
+                    <select
+                      name="language"
+                      value={formData.language || ""}
+                      onChange={handleChange}
+                      className="w-full border border-gray-500 py-3 px-3"
+                      required
+                    >
+                      <option value="">Select a Language</option>
+                      {[
+                        "English",
+                        "Voice Over English",
+                        "Bulgarian",
+                        "Czetch",
+                        "French",
+                        "German",
+                        "Hungarian",
+                        "Lithunian",
+                        "Polish",
+                        "Portuguese",
+                        "Punjabi",
+                        "Romanian",
+                        "Russian",
+                        "Spanish",
+                        "Welsh",
+                      ].map((lang) => (
+                        <option key={lang} value={lang}>{lang}</option>
+                      ))}
+                    </select>
+                  </div> : <></>
+              }
 
               <div className="mb-4">
                 <label className="block text-md font-medium">Test Center Name (Optional)</label>

@@ -27,21 +27,27 @@ const Page = () => {
 
       {/* Form */}
 
-      <div className='flex justify-between items-center mt-10 media-max-1360px:flex-col media-max-1360px:gap-8'>
-        <div className='hidden sm:block h-[380px] max-w-[660px]'>
-
-          <Image src='/red-card-img.png'
-            alt='card-image'
-            width={800}
-            height={400}
-            className='rounded-lg h-full w-full'
+      <div className="flex flex-col sm:flex-row justify-between items-center mt-10 gap-8">
+        <div className="w-full sm:max-w-[660px]">
+          <Image
+            src="/red-card-img.png"
+            alt="card-image"
+            width={600}
+            height={310}
+            className="rounded-lg w-[610px] media-max-1298px:w-[560px]"
           />
         </div>
 
-        <div>
-          <CardForm titleOne='Red Provisional Card' titleTwo='Easy apply for Provisional- CSCS Temorary Card.' cardType="red-provisional" card="cscs" />
+        <div className="w-full sm:max-w-[660px]">
+          <CardForm
+            titleOne="Red Provisional Card"
+            titleTwo="Easy apply for Provisional- CSCS Temporary Card."
+            cardType="red-provisional"
+            card="cscs"
+          />
         </div>
       </div>
+
 
 
       <div className='mt-8'>
