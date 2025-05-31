@@ -199,7 +199,7 @@ function Contact({ no_banner }) {
             {/* Map */}
             <div className="w-full h-56 sm:h-80 lg:h-96 rounded-md overflow-hidden shadow-inner mt-6">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2488.5566585166084!2d-0.18871782387861788!3d51.411200317727136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487607004b00d293%3A0x4e5b71cce0946809!2s9%20Dalton%20House!5e0!3m2!1sen!2sin!4v1741453322175!5m2!1sen!2sin"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2488.5471223637405!2d-0.1892843234904513!3d51.411375517713836!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4876061fc2c0f7c7%3A0xdc0cdfd2caab07ff!2sDalton%20House%2C%2060%20Windsor%20Ave%2C%20London%20SW19%202RR%2C%20UK!5e0!3m2!1sen!2sin!4v1748694571025!5m2!1sen!2sin"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -208,6 +208,7 @@ function Contact({ no_banner }) {
                 referrerPolicy="no-referrer-when-downgrade"
                 title="Google Map"
               />
+
             </div>
           </motion.div>
 
