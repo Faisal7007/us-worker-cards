@@ -12,6 +12,7 @@ import { useFirebase } from "./context/Firebase";
 import { motion } from "framer-motion";
 import { BadgeCheck, ShieldCheck, BookOpenCheck } from "lucide-react";
 
+
 // import ChatbotEmbed from "./components/ChatbotEmbed"; // This is the extra line (import from componets.chatbotembed)
 
 

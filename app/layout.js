@@ -11,6 +11,10 @@ import FooterConRender from "./components/FooterConRender"
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import NavConRender from "./components/NavConRender";
+import WhatsAppOverlay from "./components/WhatsAppOverlay";
+import WhatsAppModalOverlay from "./components/WhatsAppModalOverlay";
+
+
 
 const allison_init = Allison({
   subsets: ["latin"],
@@ -70,7 +74,12 @@ export default function RootLayout({ children }) {
             </ChakraProvider>
           </MyProvider>
         </div>
+
+        {/* WhatsApp Overlay */}
+        <WhatsAppOverlay />
+        <WhatsAppModalOverlay />
       </body>
+
     </html>
   );
 }
