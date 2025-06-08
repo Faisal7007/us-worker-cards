@@ -31,14 +31,14 @@ export default function Home() {
       <div className="Helvetica Neue max-w-[1440px] mx-auto px-4 pt-[102px]  media-max-545px:pt-2">
 
 
-        <div className="flex flex-col lg:flex-row justify-center items-center gap-2 px-4 sm:px-6">
+        <div className="flex flex-col lg:flex-row justify-center items-center gap-2 lg:gap-10 px-4 sm:px-6">
           {/* Image Section */}
           <motion.div
             initial={{ x: -60, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: false, amount: 0.3 }}
-            className="flex items-center h-auto max-w-[400px] sm:max-w-[500px] lg:h-[350px] xl:h-[400px]"
+            className="flex items-center h-auto max-w-[350px] sm:max-w-[400px] lg:h-[300px] xl:h-[350px]" // ↓ Reduced height/width
           >
             <Image
               src="/home-img2.jpg"
@@ -56,50 +56,29 @@ export default function Home() {
             whileInView={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: false, amount: 0.3 }}
-            className="flex flex-col gap-6 justify-between w-full max-w-2xl mx-auto text-center"
+            className="flex flex-col gap-10 justify-around max-w-xl text-center lg:text-left lg:ml-2" // ↓ reduced gap & margin
           >
             {/* Headings */}
-            <div>
-              <h1 className="text-xl sm:text-2xl md:text-3xl font-bold leading-snug text-gray-900">
-                Complete All Requirements to{" "}
-                <span className="text-purple_primary relative inline-block">
-                  Secure On-Site Access
-                  <span className="absolute left-0 bottom-0 w-full h-0.5 bg-purple_primary" />
-                </span>
-              </h1>
-              <h2 className="mt-3 text-sm sm:text-base md:text-lg text-gray-700 font-normal">
-                Verify credentials and stay compliant with industry standards.
-              </h2>
-            </div>
+            {/* <div> */}
+            <h1 className="text-xl sm:text-2xl md:text-3xl font-bold leading-snug text-gray-900">
+              Complete All Requirements to{" "}
+              <span className="text-purple_primary relative inline-block">
+                Secure On-Site Access
+                <span className="absolute left-0 bottom-0 w-full h-0.5 bg-purple_primary" />
+              </span>
+            </h1>
+            <h2 className="mt-2 text-sm sm:text-base md:text-lg text-gray-700 font-normal">
+              Verify credentials and stay compliant with industry standards.
+            </h2>
+            {/* </div> */}
 
             {/* Buttons */}
-            <div className="flex flex-col sm:flex-row justify-center gap-4 mt-6">
-              <Link
-                href="/cscs-card-types"
-                className="flex items-center justify-center gap-2 bg-purple_primary text-white font-medium py-2.5 px-5 rounded-md shadow hover:bg-white hover:text-purple_primary hover:border hover:border-purple_primary transition-all duration-300 text-sm"
-              >
-                <BadgeCheck size={16} />
-                CSCS Card
-              </Link>
-
-              <Link
-                href="/health-and-safety-awareness"
-                className="flex items-center justify-center gap-2 bg-purple_primary text-white font-medium py-2.5 px-5 rounded-md shadow hover:bg-white hover:text-purple_primary hover:border hover:border-purple_primary transition-all duration-300 text-sm"
-              >
-                <ShieldCheck size={16} />
-                Health & Safety
-              </Link>
-
-              <Link
-                href="/book-citb-test/default"
-                className="flex items-center justify-center gap-2 bg-purple_primary text-white font-medium py-2.5 px-5 rounded-md shadow hover:bg-white hover:text-purple_primary hover:border hover:border-purple_primary transition-all duration-300 text-sm"
-              >
-                <BookOpenCheck size={16} />
-                CITB HS&E
-              </Link>
+            <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 mt-4">
+              {/* Buttons here */}
             </div>
           </motion.div>
         </div>
+
 
 
 
@@ -111,7 +90,7 @@ export default function Home() {
           {/* <Carousel /> */}
         </div>
 
-        <div className="mt-16 media-max-545px:mt-12">
+        <div className="mt-2 sm:mt-16">
           <div className="text-center ">
             <h2 className="text-[25px] font-bold inline-block  px-4 py-1 bg-purple_primary rounded-full text-white media-max-600px:text-[22px] ">Our Services</h2>
             <p className="text-lg text-gray-600 mt-4 media-max-545px:text-[14px]">Explore the various services we offer to help with your construction and safety needs.</p>
@@ -184,27 +163,31 @@ export default function Home() {
 
         </div>
 
+
         <div className="text-center mt-16 media-max-545px:mt-12">
           <h2 className="text-[25px] font-bold inline-block mb-8  px-4 py-1 bg-purple_primary rounded-full text-white media-max-600px:text-[22px]">Your Guide to Booking the CITB Test</h2>
         </div>
 
-        <div className="flex flex-col lg:flex-row lg:justify-between items-center gap-10 rounded-lg px-4 sm:px-6 lg:px-0">
+
+
+        <div className="flex flex-col lg:flex-row lg:justify-center items-center gap-10 rounded-lg px-4 sm:px-6 lg:px-0">
           {/* Left Image */}
           <motion.div
             initial={{ x: -60, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: false, amount: 0.3 }}
-            className="w-full lg:w-1/2 flex justify-center bg-purple_primary"
+            className="w-full lg:w-[40%] flex justify-center bg-purple_primary"
           >
             <Image
               src="/citb-img3.png"
               alt="CITB Test Booking"
-              width={800}
-              height={400}
-              className="rounded-lg w-full max-w-[660px] h-auto sm:h-[380px] object-cover"
+              width={700}
+              height={350}
+              className="rounded-lg w-full max-w-[500px] h-auto sm:h-[320px] object-cover"
             />
           </motion.div>
+
 
           {/* Right Content */}
           <motion.div
@@ -253,11 +236,16 @@ export default function Home() {
         </div>
 
 
+
+
+
+
+
         <div className="text-center mt-16 mb-8 media-max-545px:mt-12">
           <h2 className="text-[25px] font-bold inline-block  px-4 py-1 bg-purple_primary rounded-full text-white media-max-600px:text-[22px]">Apply for CSCS Card</h2>
         </div>
 
-        <div className="flex flex-col lg:flex-row lg:justify-between items-center lg:items-start gap-6 rounded-lg px-4 lg:px-0">
+        <div className="flex flex-col lg:flex-row lg:justify-center items-center lg:gap-10 gap-6 rounded-lg px-4 lg:px-0">
 
           <motion.div
             initial={{ x: -60, opacity: 0 }}
@@ -270,11 +258,12 @@ export default function Home() {
               <Image
                 src="/green-card-img.png"
                 alt="card-image"
-                width={600}
-                height={310}
-                className="rounded-lg w-[610px] media-max-1298px:w-[560px]"
+                width={500}
+                height={280}
+                className="rounded-lg w-full max-w-[500px] h-auto media-max-1298px:max-w-[460px]"
               />
             </div>
+
 
             {/* Mobile View */}
             <div className="hidden media-min-601px:hidden">

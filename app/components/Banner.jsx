@@ -57,7 +57,7 @@ const Banner = () => {
         className="absolute inset-0 bg-cover bg-center z-0"
         style={{
           backgroundImage: "url('/banner.jpg')",
-          filter: 'brightness(0.3)',
+          filter: 'brightness(0.5)',
         }}
       />
 

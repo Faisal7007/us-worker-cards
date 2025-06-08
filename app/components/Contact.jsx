@@ -155,49 +155,42 @@ function Contact({ no_banner }) {
 
 
   return (
-    <div className={`bg-gray-50 ${no_banner ? "mt-0" : "mt-[102px]"}`}>
+    <div className={`bg-gray-50 ${no_banner ? "mt-0" : "mt-[80px]"}`}>
       {!no_banner && <ContactUsBanner />}
-      <div className="max-w-[1440px] mx-auto px-6 pt-10">
+
+      <div className="max-w-[1280px] mx-auto px-4 pt-8">
         <ToastContainer />
 
-        <div className="pb-12 bg-gray-50 flex flex-col lg:flex-row justify-between items-start gap-12">
+        <div className="pb-10 flex flex-col lg:flex-row justify-between gap-10">
           {/* Address Section */}
           <motion.div
-            initial={{ x: -60, opacity: 0 }}
+            initial={{ x: -40, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.6 }}
             viewport={{ once: false, amount: 0.2 }}
-            className="w-full lg:w-1/2 space-y-8 overflow-x-hidden bg-white p-8 rounded-lg shadow-md"
+            className="w-full lg:w-1/2 bg-white p-6 rounded-xl shadow-sm space-y-6"
           >
-            <div className="text-xl sm:text-3xl md:text-4xl text-purple_primary font-semibold tracking-wide">
-              Come, meet us!
-            </div>
+            <h2 className="text-2xl font-semibold text-purple_primary">Come, meet us!</h2>
 
-            {/* Email */}
-            <div>
-              <a
-                href="mailto:support@constructioncardservices.com"
-                className="text-sm sm:text-lg inline-flex items-center text-gray-600 hover:text-purple_primary transition-colors duration-300 font-semibold"
-              >
-                <IoIosMail className="text-purple_primary mr-4 text-lg sm:text-xl" />
-                support@constructioncardservices.com
-              </a>
-            </div>
+            <a
+              href="mailto:support@constructioncardservices.com"
+              className="text-base flex items-center text-gray-700 hover:text-purple_primary transition"
+            >
+              <IoIosMail className="text-purple_primary mr-3" />
+              support@constructioncardservices.com
+            </a>
 
-            {/* Phone Number */}
-            <div className="text-sm sm:text-lg inline-flex items-center text-gray-600 font-semibold">
-              <IoIosCall className="text-purple_primary mr-4 text-lg sm:text-xl" />
+            <div className="text-base flex items-center text-gray-700">
+              <IoIosCall className="text-purple_primary mr-3" />
               +44 3030030136
             </div>
 
-            {/* Address */}
-            <div className="text-sm sm:text-lg inline-flex items-center text-gray-600 font-semibold">
-              <IoLocation className="text-purple_primary mr-4 text-lg sm:text-xl" />
+            <div className="text-base flex items-center text-gray-700">
+              <IoLocation className="text-purple_primary mr-3" />
               Dalton House, 60 Windsor Avenue, London SW19 2RR
             </div>
 
-            {/* Map */}
-            <div className="w-full h-56 sm:h-80 lg:h-96 rounded-md overflow-hidden shadow-inner mt-6">
+            <div className="h-64 rounded-md overflow-hidden mt-4 shadow">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2488.5471223637405!2d-0.1892843234904513!3d51.411375517713836!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4876061fc2c0f7c7%3A0xdc0cdfd2caab07ff!2sDalton%20House%2C%2060%20Windsor%20Ave%2C%20London%20SW19%202RR%2C%20UK!5e0!3m2!1sen!2sin!4v1748694571025!5m2!1sen!2sin"
                 width="100%"
@@ -205,80 +198,48 @@ function Contact({ no_banner }) {
                 style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
                 title="Google Map"
-              />
-
+              ></iframe>
             </div>
           </motion.div>
 
-
           {/* Contact Form */}
           <motion.div
-            initial={{ x: 50, opacity: 0 }}
+            initial={{ x: 40, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.6 }}
             viewport={{ once: false, amount: 0.2 }}
-            className="w-full lg:w-1/2 bg-white p-8 rounded-lg shadow-md space-y-6"
+            className="w-full lg:w-1/2 bg-white p-6 rounded-xl shadow-sm space-y-5"
           >
-            <div className="text-3xl text-purple_primary sm:text-4xl font-semibold tracking-wide">
-              Message us here, we’ll get back to you soon!
-            </div>
+            <h2 className="text-2xl font-semibold text-purple_primary">Message us, we’ll get back to you soon</h2>
 
-            <form onSubmit={handleSubmit} className="space-y-5">
-              <div>
-                <label htmlFor="name" className="block text-gray-700 font-semibold mb-1">
-                  Enter Full Name
-                </label>
-                <input
-                  value={formValues.name}
-                  onChange={handleChange}
-                  type="text"
-                  id="name"
-                  name="name"
-                  placeholder="Your Name"
-                  required
-                  className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple_primary transition"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="email" className="block text-gray-700 font-semibold mb-1">
-                  Enter Email
-                </label>
-                <input
-                  value={formValues.email}
-                  onChange={handleChange}
-                  onBlur={handleEmailBlur}
-                  type="email"
-                  id="email"
-                  name="email"
-                  placeholder="Your Email"
-                  required
-                  className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple_primary transition"
-                />
-              </div>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              {[
+                { label: "Full Name", name: "name", type: "text", value: formValues.name },
+                { label: "Email", name: "email", type: "email", value: formValues.email },
+                { label: "Mobile Number", name: "mobile", type: "tel", value: formValues.mobile, pattern: "[0-9]{7,15}" },
+              ].map(({ label, name, type, value, pattern }) => (
+                <div key={name}>
+                  <label htmlFor={name} className="block text-gray-700 text-sm mb-1 font-medium">
+                    {label}
+                  </label>
+                  <input
+                    value={value}
+                    onChange={handleChange}
+                    onBlur={name === "email" ? handleEmailBlur : name === "mobile" ? handleMobileBlur : undefined}
+                    type={type}
+                    id={name}
+                    name={name}
+                    required
+                    placeholder={`Your ${label}`}
+                    pattern={pattern}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-purple_primary focus:outline-none"
+                  />
+                </div>
+              ))}
 
               <div>
-                <label htmlFor="mobile" className="block text-gray-700 font-semibold mb-1">
-                  Enter Mobile Number
-                </label>
-                <input
-                  value={formValues.mobile}
-                  onChange={handleChange}
-                  onBlur={handleMobileBlur}
-                  type="tel"
-                  id="mobile"
-                  name="mobile"
-                  pattern="[0-9]{7,15}"
-                  placeholder="Your Mobile Number"
-                  required
-                  className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple_primary transition"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="description" className="block text-gray-700 font-semibold mb-1">
+                <label htmlFor="description" className="block text-gray-700 text-sm mb-1 font-medium">
                   Description
                 </label>
                 <textarea
@@ -286,16 +247,16 @@ function Contact({ no_banner }) {
                   onChange={handleChange}
                   id="description"
                   name="description"
+                  rows="5"
                   placeholder="Write a description..."
-                  rows="6"
-                  className="w-full p-3 border border-gray-300 rounded-lg shadow-sm resize-none focus:outline-none focus:ring-2 focus:ring-purple_primary transition"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm resize-none focus:ring-2 focus:ring-purple_primary focus:outline-none"
                 ></textarea>
               </div>
 
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-purple_primary text-white p-3 rounded-lg hover:bg-[#84286a] transition duration-300 font-semibold shadow-md"
+                className="w-full py-3 bg-purple_primary text-white rounded-md font-semibold hover:bg-[#84286a] transition"
               >
                 {isSubmitting ? "Submitting..." : "Submit"}
               </button>
@@ -304,6 +265,7 @@ function Contact({ no_banner }) {
         </div>
       </div>
     </div>
+
   );
 }
 

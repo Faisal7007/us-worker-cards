@@ -15,7 +15,7 @@ const DropdownMenu = ({ label, items, dropdownOpen, toggleDropdown, handleOption
     <div className="relative">
       <button
         onClick={() => toggleDropdown(label)}
-        className="inline-flex items-center py-1 px-0 text-white hover:text-gray-300 focus:outline-none media-max-935px:px-0 media-max-1022px:px-0"
+        className="inline-flex items-center py-1 px-0 text-purple_primary hover:text-gray-300 focus:outline-none media-max-935px:px-0 media-max-1022px:px-0"
       >
         {label}
         <FaAngleDown className="ml-2" />
@@ -23,14 +23,14 @@ const DropdownMenu = ({ label, items, dropdownOpen, toggleDropdown, handleOption
 
       <div
         className={`transition-all duration-300 overflow-hidden whitespace-nowrap ${isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-          } lg:absolute lg:top-[72px] lg:left-0 lg:bg-white lg:text-black lg:rounded lg:shadow-lg lg:py-2`}
+          } lg:absolute lg:top-[72px] lg:left-0 lg:bg-white lg:text-purple_primary lg:rounded lg:shadow-lg lg:py-2`}
         style={{ visibility: isOpen ? "visible" : "hidden" }}
       >
         {items.map((item) => (
           <Link
             key={item.path}
             href={item.path}
-            className="block font-semibold px-6 py-2 text-[14px] text-black hover:bg-purple_primary hover:text-white media-max-935px:text-white media-max-1022px:text-white"
+            className="block font-semibold px-6 py-2 text-[14px] text-purple_primary hover:bg-purple_primary hover:text-purple_primary media-max-935px:text-purple_primary media-max-1022px:text-purple_primary"
             onClick={handleOptionClick}
           >
             {item.label}
@@ -108,16 +108,16 @@ const Navbar = () => {
 
   return (
     <div
-      className={`bg-purple_primary fixed min-w-[100vw] top-0 right-0 z-50 shadow-lg transition-transform duration-500 ease-in-out ${showNavbar ? "translate-y-0" : "-translate-y-full"
+      className={`bg-white fixed min-w-[100vw] top-0 right-0 z-50 shadow-lg transition-transform duration-500 ease-in-out ${showNavbar ? "translate-y-0" : "-translate-y-full"
         }`}
     >
-      <div className="max-w-[1440px] mx-auto px-4 lg:px-4">
+      <div className="max-w-[1440px] mx-auto px-6 lg:px-4">
         <nav className="flex flex-wrap items-center justify-between py-4 lg:py-6 gap-4">
 
           {/* Logo */}
           <Link href="/" className="flex items-center">
             <Image
-              src="/white-logo.png"
+              src="/color-logo.png"
               className="cursor-pointer max-h-[70px] w-auto"
               width={100}
               height={100}
@@ -127,7 +127,7 @@ const Navbar = () => {
           </Link>
 
           {/* Contact Info */}
-          <div className="text-white font-bold flex flex-col items-center lg:items-end gap-1">
+          <div className="text-purple_primary font-bold flex flex-col items-center lg:items-end gap-1">
             <div className="flex gap-2 items-center justify-center cursor-pointer">
               <FaPhoneAlt />
               <a href="tel:+443030030136" className="hover:underline">
@@ -139,7 +139,7 @@ const Navbar = () => {
 
           {/* Mobile Menu Toggle */}
           <button
-            className="text-white text-2xl lg:hidden focus:outline-none"
+            className="text-purple_primary text-2xl lg:hidden focus:outline-none"
             onClick={toggleMobileMenu}
           >
             {isMobileMenuOpen ? <FaTimes size={28} /> : <FaBars size={28} />}
@@ -148,7 +148,7 @@ const Navbar = () => {
           {/* Main Nav Links */}
           <div
             className={`w-full lg:w-auto lg:flex lg:items-center ${isMobileMenuOpen
-              ? "block absolute top-24 left-0 w-full sm:h-[5vh] h-fit bg-purple_primary text-white transition-all duration-500 pb-2 pt-6 px-6"
+              ? "block absolute top-24 left-0 w-full sm:h-[5vh] h-fit bg-white text-purple_primary transition-all duration-500 pb-2 pt-6 px-6"
               : "hidden"
               } lg:static lg:bg-transparent lg:p-0`}
           >
@@ -160,7 +160,7 @@ const Navbar = () => {
 
                 {/* Individual Links */}
                 <Link href="/book-citb-test/default" onClick={handleOptionClick}
-                  className={`relative text-white hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-0 after:h-[2px] after:bg-current after:transition-all after:duration-300 ${pathname === "/book-citb-test/default" ? "after:w-full underline-offset-2" : ""
+                  className={`relative text-purple_primary hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-0 after:h-[2px] after:bg-current after:transition-all after:duration-300 ${pathname === "/book-citb-test/default" ? "after:w-full underline-offset-2" : ""
                     }`}
                 >
                   CITB Test
@@ -215,7 +215,7 @@ const Navbar = () => {
                 {/* Other Links */}
                 <Link
                   href="/group-booking"
-                  className={`relative text-white hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-0 after:h-[2px] after:bg-current after:transition-all after:duration-300 ${pathname === "/group-booking" ? "after:w-full underline-offset-2" : ""
+                  className={`relative text-purple_primary hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-0 after:h-[2px] after:bg-current after:transition-all after:duration-300 ${pathname === "/group-booking" ? "after:w-full underline-offset-2" : ""
                     }`}
                   onClick={handleOptionClick}
                 >
@@ -223,7 +223,7 @@ const Navbar = () => {
                 </Link>
                 <Link
                   href="/contact-us"
-                  className={`relative text-white hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-0 after:h-[2px] after:bg-current after:transition-all after:duration-300 ${pathname === "/contact-us" ? "after:w-full underline-offset-2" : ""
+                  className={`relative text-purple_primary hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-0 after:h-[2px] after:bg-current after:transition-all after:duration-300 ${pathname === "/contact-us" ? "after:w-full underline-offset-2" : ""
                     }`}
                   onClick={handleOptionClick}
                 >
