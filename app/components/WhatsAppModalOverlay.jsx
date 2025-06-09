@@ -19,7 +19,7 @@ export default function WhatsAppModalOverlay() {
                 <h2 className="text-xl font-semibold text-gray-800 mb-4">Talk to Our Experts</h2>
                 <p className="text-sm text-gray-600 mb-6">Get a free consultation form one of our experts.</p>
                 <a
-                    href="https://wa.me/917883317237?text=Hi%20there!%20I%20need%20help%20with%20Construction%20Card%20Services."
+                    href="https://wa.me/7883317237?text=Hi%20there!%20I%20need%20help%20with%20Construction%20Card%20Services."
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-md text-sm font-medium transition"
