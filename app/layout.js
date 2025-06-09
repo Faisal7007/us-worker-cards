@@ -77,7 +77,7 @@ export default function RootLayout({ children }) {
 
         {/* WhatsApp Overlay */}
         <WhatsAppOverlay />
-        <WhatsAppModalOverlay />
+        {/* <WhatsAppModalOverlay /> */}
       </body>
 
     </html>

@@ -54,7 +54,7 @@ const Page = () => {
             link_to="/book-citb-test/default" />
 
           <SmallCard icon={<FaAward className="size-6 text-white" />}
-            title="NVQ Level 2"
+            title="NVQ Level 4 or above"
             button_text="Apply Now"
             link_to="/nvq-level-2" />
         </div>
@@ -69,7 +69,7 @@ const Page = () => {
 
         <p className="flex items-start mb-2 text-justify ">
           <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />
-          Achievement of a relevant Construction Management/Technical related NVQ/SVQ level 5, 6 or 7.</p>
+          Achievement of a relevant Construction Management/Technical related NVQ/SVQ level 4 or above.</p>
         <p className="flex items-start mb-2 text-justify">
           <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />A SVQ Level 4 in Construction Management/Technical related qualification or</p>
         <p className="flex items-start mb-6 text-justify">

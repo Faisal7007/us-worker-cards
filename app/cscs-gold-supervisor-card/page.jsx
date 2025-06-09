@@ -40,7 +40,7 @@ const Page = () => {
         </div>
 
         <div className="w-full sm:max-w-[660px]">
-          <CardForm titleOne='Gold supervisor Card' titleTwo='Easy apply for CSCS Gold Card - Supervisor.' cardType="gold-supervisor" card="cscs" />
+          <CardForm titleOne='Gold Supervisor Card' titleTwo='Easy apply for CSCS Gold Card - Supervisor.' cardType="gold-supervisor" card="cscs" />
         </div>
       </div>
 
@@ -54,7 +54,7 @@ const Page = () => {
             link_to="/book-citb-test/default" />
 
           <SmallCard icon={<FaAward className="size-6 text-white" />}
-            title="NVQ Level 2"
+            title="NVQ Level 3"
             button_text="Apply Now"
             link_to="/nvq-level-2" />
         </div>

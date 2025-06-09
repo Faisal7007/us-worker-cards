@@ -95,6 +95,16 @@ const Banner = () => {
 
                 ))}
               </div>
+              <br />
+
+              <Link
+                href="https://wa.me/447883317237?text=Hi%20there!%20I%20need%20help%20with%20Construction%20Card%20Services."
+                className="block underline font-semibold md:text-xl max-w-lg hover:underline hover:text-purple_primary transition-colors duration-200"
+              >
+                <p>Need help or want to solve queries?</p>
+                <p>Get free consultation from our experts today.</p>
+              </Link>
+
             </div>
 
             <Link href="/apply-card-for/cscs" passHref>

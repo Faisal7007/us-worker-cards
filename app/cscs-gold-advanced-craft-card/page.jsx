@@ -54,7 +54,7 @@ const Page = () => {
             link_to="/book-citb-test/default" />
 
           <SmallCard icon={<FaAward className="size-6 text-white" />}
-            title="NVQ Level 2"
+            title="NVQ Level 3"
             button_text="Apply Now"
             link_to="/nvq-level-2" />
         </div>

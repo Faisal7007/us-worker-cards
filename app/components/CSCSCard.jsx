@@ -3,20 +3,20 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React, { useContext } from 'react'
 import { UserContext } from '../context-api/UserContext';
-import {  useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 const CSCSCard = ({ item }) => {
   // const id=11
 
-  const { setIdx,setItem } = useContext(UserContext);
+  const { setIdx, setItem } = useContext(UserContext);
   const router = useRouter();
 
   const handleApplyNow = () => {
     setIdx(item.id)
     setItem(item)
-    router.push(item.apply_now_link)
+    router.push(item.apply_now_link + `?image_path=${item.image_path}`)
   }
 
-  console.log(item,"item")
+  console.log(item, "item")
   return (
     <div className="flex justify-center items-center rounded-xl  bg-purple_primary p-1">
       <div className="max-w-full bg-white shadow-2xl rounded-xl overflow-hidden border border-gray-300 transform transition duration-500 hover:scale-[1.02]">
@@ -37,7 +37,7 @@ const CSCSCard = ({ item }) => {
             <Link href={item.know_more_link}>
               <span className="text-purple_primary font-semibold hover:underline cursor-pointer">Know More →</span>
             </Link>
-            <div onClick={()=>handleApplyNow(item)}>
+            <div onClick={() => handleApplyNow(item)}>
               <span className="bg-purple_primary text-white font-semibold py-2 px-4 rounded-md  border-2 border-transparent hover:border-purple_primary hover:text-purple_primary hover:bg-white transition-all duration-300 media-max-492px:text-[14px] media-max-490px:px-4 media-max-460px:text-[14px] media-max-460px:px-2 media-max-460px:py-2">Apply Now</span>
             </div>
           </div>

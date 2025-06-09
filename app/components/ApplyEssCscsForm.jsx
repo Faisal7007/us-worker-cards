@@ -143,7 +143,8 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
     const lastName = params.get("lastName");
     const phoneNumber = params.get("phoneNumber");
     const email = params.get("email");
-    const cardtype = params.get("card")
+    const cardtype = params.get("card");
+    const imagePath = params.get("image_path");
 
     setFormData((prev) => ({
       ...prev,
@@ -155,10 +156,13 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
     }));
 
     if (setImagePath) {
-      console.log(cardtype)
-      setImagePath(cardImageMap[cardtype] || "/green-card-img.png");
+      console.log(cardtype);
+      if (cardtype)
+        setImagePath(cardImageMap[cardtype]);
+      else if (imagePath) setImagePath(imagePath);
+      else setImagePath("/green-card-img.png")
     }
-
+    console.log(imagePath)
     setGetCardType(cardtype)
 
   }, []);

@@ -15,7 +15,7 @@ const DropdownMenu = ({ label, items, dropdownOpen, toggleDropdown, handleOption
     <div className="relative">
       <button
         onClick={() => toggleDropdown(label)}
-        className="inline-flex items-center py-1 px-0 text-purple_primary hover:text-gray-300 focus:outline-none media-max-935px:px-0 media-max-1022px:px-0"
+        className="inline-flex items-center py-1 px-0 text-purple_primary hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-0 after:h-[2px] after:bg-current after:transition-all after:duration-300 focus:outline-none media-max-935px:px-0 media-max-1022px:px-0"
       >
         {label}
         <FaAngleDown className="ml-2" />
@@ -30,7 +30,7 @@ const DropdownMenu = ({ label, items, dropdownOpen, toggleDropdown, handleOption
           <Link
             key={item.path}
             href={item.path}
-            className="block font-semibold px-6 py-2 text-[14px] text-purple_primary hover:bg-purple_primary hover:text-purple_primary media-max-935px:text-purple_primary media-max-1022px:text-purple_primary"
+            className="block font-semibold px-6 py-2 text-[14px] text-purple_primary hover:bg-purple_primary hover:text-white hover:under line media-max-935px:text-purple_primary media-max-1022px:text-purple_primary"
             onClick={handleOptionClick}
           >
             {item.label}
