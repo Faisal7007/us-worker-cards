@@ -102,7 +102,7 @@ const Banner = () => {
                 className="block underline font-semibold md:text-xl max-w-lg hover:underline hover:text-purple_primary transition-colors duration-200"
               >
                 <p>Need help or want to solve queries?</p>
-                <p>Get free consultation from our experts today.</p>
+                <p>Get free consultation from our experts on whatsapp today.</p>
               </Link>
 
             </div>

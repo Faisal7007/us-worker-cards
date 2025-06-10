@@ -148,10 +148,11 @@ const Navbar = () => {
           {/* Main Nav Links */}
           <div
             className={`w-full lg:w-auto lg:flex lg:items-center ${isMobileMenuOpen
-              ? "block absolute top-24 left-0 w-full sm:h-[5vh] h-fit bg-white text-purple_primary transition-all duration-500 pb-2 pt-6 px-6"
-              : "hidden"
+                ? "block absolute top-full left-0 w-full bg-white text-purple_primary transition-all duration-500 pb-6 pt-6 px-6 shadow-lg"
+                : "hidden"
               } lg:static lg:bg-transparent lg:p-0`}
           >
+
             <div className="flex justify-start w-full">
               <div
                 className="flex flex-col gap-4 lg:flex-row lg:items-center lg:gap-4"

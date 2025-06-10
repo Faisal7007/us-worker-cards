@@ -57,19 +57,24 @@ const Page = () => {
         <h1 className='capitalize text-[25px] text-white inline-block px-4 py-1 bg-purple_primary rounded-full  font-semibold text-center media-max-600px:text-[22px] media-max-600px:inline'>Eligibility Requirements</h1>
       </div>
 
-      <div className='flex justify-center mt-8'>
-        <div className=" flex gap-10">
-          <SmallCard icon={<FaHardHat className="size-6 text-white" />}
+      <div className="flex justify-center mt-8 px-4">
+        <div className="flex flex-wrap justify-center gap-6">
+          <SmallCard
+            icon={<FaHardHat className="size-6 text-white" />}
             title="CITB Test(Operatives)"
             button_text="Apply Now"
-            link_to="/book-citb-test/default" />
+            link_to="/book-citb-test/default"
+          />
 
-          <SmallCard icon={<FaAward className="size-6 text-white" />}
+          <SmallCard
+            icon={<FaAward className="size-6 text-white" />}
             title="Health & Safety Awareness Course"
             button_text="Apply Now"
-            link_to="/health-and-safety-awareness" />
+            link_to="/health-and-safety-awareness"
+          />
         </div>
       </div>
+
 
       <div>
         <h1 className='capitalize text-[25px] text-black mt-8 mb-4 font-bold'>Validity</h1>
