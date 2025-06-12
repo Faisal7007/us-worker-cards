@@ -164,36 +164,66 @@ export const FirebaseProvider = ({ children }) => {
     }
   };
 
+  // const fetchAllCscsEssData = async (isCard, cardTypes, setAllUsers, setIsLoading) => {
+  //   try {
+  //     setIsLoading(true);
+  //     let allUsers = [];
+
+  //     for (const cardType of cardTypes) {
+  //       const docRef = doc(firestore, `${isCard}-cards-users`, cardType);
+  //       const usersCollection = collection(docRef, "users");
+  //       const querySnapshot = await getDocs(usersCollection);
+
+  //       const users = querySnapshot.docs.map((doc) => ({
+  //         id: doc.id,
+  //         cardType,
+  //         ...doc.data(),
+  //       }));
+
+  //       allUsers = [...allUsers, ...users];
+  //     }
+
+  //     allUsers.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+  //     setAllUsers(allUsers);
+  //   } catch (error) {
+  //     console.error("Error fetching users:", error);
+  //     toast.error("Failed to fetch user data.");
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
+
+
   const fetchAllCscsEssData = async (isCard, cardTypes, setAllUsers, setIsLoading) => {
-    try {
-      setIsLoading(true);
-      let allUsers = [];
+  try {
+    setIsLoading(true);
 
-      for (const cardType of cardTypes) {
-        const docRef = doc(firestore, `${isCard}-cards-users`, cardType);
-        const usersCollection = collection(docRef, "users");
-        const querySnapshot = await getDocs(usersCollection);
+    const promises = cardTypes.map(async (cardType) => {
+      const docRef = doc(firestore, `${isCard}-cards-users`, cardType);
+      const usersCollection = collection(docRef, "users");
+      const querySnapshot = await getDocs(usersCollection);
 
-        const users = querySnapshot.docs.map((doc) => ({
-          id: doc.id,
-          cardType,
-          ...doc.data(),
-        }));
+      return querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        cardType,
+        ...doc.data(),
+      }));
+    });
 
-        allUsers = [...allUsers, ...users];
-      }
+    const results = await Promise.all(promises);
+    const allUsers = results.flat();
 
-      allUsers.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    allUsers.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
-      setAllUsers(allUsers);
-    } catch (error) {
-      console.error("Error fetching users:", error);
-      toast.error("Failed to fetch user data.");
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
+    setAllUsers(allUsers);
+  } catch (error) {
+    console.error("Error fetching users:", error);
+    toast.error("Failed to fetch user data.");
+  } finally {
+    setIsLoading(false);
+  }
+};
 
   const AutoaddCscsData = async (firstName, lastName, email, phone, cardType, submit_type) => {
     try {

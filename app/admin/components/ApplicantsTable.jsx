@@ -93,6 +93,7 @@ const ApplicantsTable = ({ userData, isLoading, form_type,setUserData}) => {
           setIsDeleting(false);
         }
     };
+console.log('userData : ',userData);
 
     return (
         <div className="overflow-x-auto">
@@ -146,7 +147,7 @@ const ApplicantsTable = ({ userData, isLoading, form_type,setUserData}) => {
                                 <td className="border border-gray-300 px-4 py-2">{user.firstName}</td>
                                 <td className="border border-gray-300 px-4 py-2">{user.lastName}</td>
                                 <td className="border border-gray-300 px-4 py-2">{user.email}</td>
-                                <td className="border border-gray-300 px-4 py-2">{user.phoneNumber}</td>
+                                <td className="border border-gray-300 px-4 py-2">{user.phoneNumber || user.phone}</td>
                                 <td onClick={() => handleViewDetails(user.id)} className="border border-gray-300 px-4 py-2 text-green-500 font-semibold cursor-pointer">{isViewing ? "Wait..." : "View"}</td>
                             </tr>
                         ))

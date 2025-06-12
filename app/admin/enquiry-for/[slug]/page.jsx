@@ -1,10 +1,10 @@
-"use client"
-import CscsEssTable from '@/app/components/CscsEssTable';
-import { UserContext } from '@/app/context-api/UserContext';
-import { useFirebase } from '@/app/context/Firebase';
-import { useParams } from 'next/navigation';
-import React, { useContext, useEffect, useState } from 'react'
-import { FaAngleDown, FaAngleUp } from 'react-icons/fa';
+"use client";
+import CscsEssTable from "@/app/components/CscsEssTable";
+import { UserContext } from "@/app/context-api/UserContext";
+import { useFirebase } from "@/app/context/Firebase";
+import { useParams } from "next/navigation";
+import React, { useContext, useEffect, useState } from "react";
+import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 
 const Page = () => {
   const params = useParams();
@@ -18,10 +18,8 @@ const Page = () => {
   const [isEssOpen, setIsEssOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
- 
   const firebase = useFirebase();
 
-  
   const CscsOptions = [
     { value: "all-cscs-users", label: "All Cscs Card Users" },
     { value: "green-labourer", label: "Green Labourer Card Users" },
@@ -35,7 +33,10 @@ const Page = () => {
     { value: "black-manager", label: "Black Manager Card Users" },
     { value: "white-aqp", label: "White AQP Card Users" },
     { value: "white-pqp", label: "White PQP Card Users" },
-    { value: "health-and-safety-awareness", label: "Health & Safety Card Users" },
+    {
+      value: "health-and-safety-awareness",
+      label: "Health & Safety Card Users",
+    },
   ];
 
   const EssOptions = [
@@ -51,7 +52,6 @@ const Page = () => {
     { value: "white-aqp", label: "White AQP Card Users" },
     { value: "white-pqp", label: "White PQP Card Users" },
     { value: "white-acrib", label: "White ACRIB Card Users" },
-
   ];
 
   const handleCscsOptionClick = (option) => {
@@ -66,59 +66,91 @@ const Page = () => {
     setCardTypes(option.value);
   };
 
-  useEffect(() => {
-    if (form_type === 'cscs') {
-      firebase.fetchCscsData(cardTypes, setCscsUsers);
-    }
-  }, [cardTypes]);
+  // useEffect(() => {
+  //   if (form_type === 'cscs') {
+  //     firebase.fetchCscsData(cardTypes, setCscsUsers);
+  //   }
+  // }, [cardTypes]);
+
+  // useEffect(() => {
+  //   if (form_type === 'ess') {
+  //     firebase.fetchEssData(cardTypes, setEssUsers);
+  //   }
+  // }, [cardTypes]);
+
+  // useEffect(() => {
+  //   if (cardTypes === "all-cscs-users") {
+  //     firebase.fetchAllCscsEssData('cscs', CscsOptions.map(opt => opt.value), setCscsUsers, setIsLoading);
+  //   }
+  // }, [cardTypes]);
+
+  // useEffect(() => {
+  //   if (cardTypes === "all-ess-users") {
+  //     firebase.fetchAllCscsEssData('ess', EssOptions.map(opt => opt.value), setEssUsers, setIsLoading);
+  //   }
+  // }, [cardTypes]);
 
   useEffect(() => {
-    if (form_type === 'ess') {
-      firebase.fetchEssData(cardTypes, setEssUsers);
-    }
-  }, [cardTypes]);
+    setIsLoading(true);
 
-  useEffect(() => {
-    if (cardTypes === "all-cscs-users") {
-      firebase.fetchAllCscsEssData('cscs', CscsOptions.map(opt => opt.value), setCscsUsers, setIsLoading);
-    }
-  }, [cardTypes]);
+    const fetchData = async () => {
+      try {
+        if (form_type === "cscs") {
+          if (cardTypes === "all-cscs-users") {
+            await firebase.fetchAllCscsEssData(
+              "cscs",
+              CscsOptions.map((opt) => opt.value),
+              setCscsUsers,
+              setIsLoading
+            );
+          } else {
+            await firebase.fetchCscsData(cardTypes, setCscsUsers);
+            setIsLoading(false);
+          }
+        } else if (form_type === "ess") {
+          if (cardTypes === "all-ess-users") {
+            await firebase.fetchAllCscsEssData(
+              "ess",
+              EssOptions.map((opt) => opt.value),
+              setEssUsers,
+              setIsLoading
+            );
+          } else {
+            await firebase.fetchEssData(cardTypes, setEssUsers);
+            setIsLoading(false);
+          }
+        }
+      } catch (err) {
+        console.error("Fetch error:", err);
+        setIsLoading(false);
+      }
+    };
 
-  useEffect(() => {
-    if (cardTypes === "all-ess-users") {
-      firebase.fetchAllCscsEssData('ess', EssOptions.map(opt => opt.value), setEssUsers, setIsLoading);
-    }
-  }, [cardTypes]);
+    fetchData();
+  }, [form_type, cardTypes]);
 
-
-
-
-
- 
   return (
-    <div className='py-6 px-3'>
-      <div className='flex justify-center'>
-        {form_type === 'cscs' ? (
-          <span className='text-[24px] text-gray-800 text-center font-bold mb-6'>CSCS Users</span>
+    <div className="py-6 px-3">
+      <div className="flex justify-center">
+        {form_type === "cscs" ? (
+          <span className="text-[24px] text-gray-800 text-center font-bold mb-6">
+            CSCS Users
+          </span>
         ) : (
-          <span className='text-[24px] text-gray-800 text-center font-bold mb-6'>ESS Users</span>
+          <span className="text-[24px] text-gray-800 text-center font-bold mb-6">
+            ESS Users
+          </span>
         )}
       </div>
-      {form_type === 'cscs' ? (
+      {form_type === "cscs" ? (
         <div className="relative w-64">
-         
           <div
             onClick={() => setIsCscsOpen(!isCscsOpen)}
             className="flex items-center justify-between bg-gray-100 border mb-3 border-gray-300 rounded-lg px-4 py-2 cursor-pointer hover:bg-gray-200"
           >
             <span>{selectedCscs}</span>
-            {
-            
-            isCscsOpen? <FaAngleDown/>:<FaAngleUp/>
-            
-            }
+            {isCscsOpen ? <FaAngleDown /> : <FaAngleUp />}
           </div>
-  
 
           {isCscsOpen && (
             <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg">
@@ -142,11 +174,7 @@ const Page = () => {
           >
             <span>{selectedEss}</span>
             {/* <FaAngleDown/> */}
-            {
-            
-            isEssOpen? <FaAngleDown/>:<FaAngleUp/>
-            
-            }
+            {isEssOpen ? <FaAngleDown /> : <FaAngleUp />}
           </div>
           {isEssOpen && (
             <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg">
@@ -163,10 +191,22 @@ const Page = () => {
           )}
         </div>
       )}
-      {form_type === 'cscs' ? (
-        <CscsEssTable userData={cscsUsers} isLoading={isLoading} cardTypes={cardTypes} form_type={form_type} setUserData={setCscsUsers}  />
+      {form_type === "cscs" ? (
+        <CscsEssTable
+          userData={cscsUsers}
+          isLoading={isLoading}
+          cardTypes={cardTypes}
+          form_type={form_type}
+          setUserData={setCscsUsers}
+        />
       ) : (
-        <CscsEssTable userData={essUsers} isLoading={isLoading} cardTypes={cardTypes} form_type={form_type} setUserData={setEssUsers}     />
+        <CscsEssTable
+          userData={essUsers}
+          isLoading={isLoading}
+          cardTypes={cardTypes}
+          form_type={form_type}
+          setUserData={setEssUsers}
+        />
       )}
     </div>
   );

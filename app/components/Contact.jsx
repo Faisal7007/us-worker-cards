@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { IoIosMail, IoIosCall } from "react-icons/io";
@@ -9,7 +9,6 @@ import { toast, ToastContainer } from "react-toastify";
 import { motion } from "framer-motion";
 
 function Contact({ no_banner }) {
-
   const [formValues, setFormValues] = useState({
     name: "",
     email: "",
@@ -17,20 +16,15 @@ function Contact({ no_banner }) {
     description: "",
   });
 
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [contactUsData, setContactUsData] = useState([])
-  const [isLoading, setisLoading] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [contactUsData, setContactUsData] = useState([]);
+  const [isLoading, setisLoading] = useState(false);
   const [saved, setSaved] = useState(false);
-  const firebase = useFirebase()
-
-
-
-
+  const firebase = useFirebase();
 
   useEffect(() => {
-    firebase.fetchContactUsData(setContactUsData, setisLoading)
-
-  }, [])
+    firebase.fetchContactUsData(setContactUsData, setisLoading);
+  }, []);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormValues({ ...formValues, [name]: value });
@@ -42,14 +36,18 @@ function Contact({ no_banner }) {
       email: "",
       mobile: "",
       description: "",
-    })
-  }
+    });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const emailExists = contactUsData.some((user) => user.email === formValues.email.trim());
-    const phoneExists = contactUsData.some((user) => user.mobile === formValues.mobile.trim());
+    const emailExists = contactUsData.some(
+      (user) => user.email === formValues.email.trim()
+    );
+    const phoneExists = contactUsData.some(
+      (user) => user.mobile === formValues.mobile.trim()
+    );
 
     if (emailExists || phoneExists) {
       if (emailExists) {
@@ -67,39 +65,37 @@ function Contact({ no_banner }) {
           hideProgressBar: true,
           className: "bg-red-100 text-red-800 font-medium",
         });
-
       }
       return;
     }
     firebase.addContactUs(formValues, setIsSubmitting);
-    reset()
-
+    reset();
 
     // firebase.addContactUs(formValues,setIsSubmitting)
-
   };
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const autoSave = () => {
-    if (saved) return;
-    setSaved(true);
     try {
-      const emailExists = contactUsData.some((user) => user.email === formValues.email.trim());
-      const phoneExists = contactUsData.some((user) => user.phone === formValues.mobile.trim());
+      const emailExists = contactUsData.some(
+        (user) => user.email === formValues.email.trim()
+      );
+      const phoneExists = contactUsData.some(
+        (user) => user.mobile === formValues.mobile.trim()
+      );
 
       if (emailExists || phoneExists) {
-        // alert("Email or phone number already exists in the database.");
         return;
       }
-      firebase.autoAddContactUs(formValues, 'auto');
-      // console.log("on blur data saved successfully!");
+
+      if (formValues.email || formValues.mobile) {
+        firebase.autoAddContactUs(formValues, "auto");
+        console.log("Auto-saved on blur");
+      }
     } catch (error) {
-      // console.error("Error saving on blur data", error);
-    } finally {
-      setSaved(false);
+      console.error("Error in autoSave", error);
     }
   };
-
 
   const handleEmailBlur = () => {
     if (emailRegex.test(formValues.email.trim())) {
@@ -113,17 +109,18 @@ function Contact({ no_banner }) {
     }
   };
 
-
-
   const saveUserDetails = () => {
-    const emailExists = contactUsData.some((user) => user.email === formValues.email.trim());
-    const phoneExists = contactUsData.some((user) => user.phone === formValues.mobile.trim());
+    const emailExists = contactUsData.some(
+      (user) => user.email === formValues.email.trim()
+    );
+    const phoneExists = contactUsData.some(
+      (user) => user.phone === formValues.mobile.trim()
+    );
 
     if (emailExists || phoneExists) {
       //alert("Email or phone number already exists in the database. On URL change");
       return;
-    }
-    else {
+    } else {
       if (formValues.email || formValues.mobile) {
         try {
           firebase.autoAddContactUs(formValues, "auto");
@@ -133,12 +130,9 @@ function Contact({ no_banner }) {
         }
       }
     }
-
   };
 
-
   useEffect(() => {
-
     const handleUrlChange = () => {
       saveUserDetails();
     };
@@ -146,13 +140,11 @@ function Contact({ no_banner }) {
     // window.addEventListener("popstate", handleUrlChange); // For history navigation
     window.addEventListener("beforeunload", handleUrlChange); // For page refresh or close
 
-
     return () => {
       // window.removeEventListener("popstate", handleUrlChange);
       window.removeEventListener("beforeunload", handleUrlChange);
     };
   }, [formValues.email, formValues.mobile]);
-
 
   return (
     <div className={`bg-gray-50 ${no_banner ? "mt-0" : "mt-[80px]"}`}>
@@ -170,7 +162,9 @@ function Contact({ no_banner }) {
             viewport={{ once: false, amount: 0.2 }}
             className="w-full lg:w-1/2 bg-white p-6 rounded-xl shadow-sm space-y-6"
           >
-            <h2 className="text-2xl font-semibold text-purple_primary">Come, meet us!</h2>
+            <h2 className="text-2xl font-semibold text-purple_primary">
+              Come, meet us!
+            </h2>
 
             <a
               href="mailto:support@constructioncardservices.com"
@@ -211,22 +205,49 @@ function Contact({ no_banner }) {
             viewport={{ once: false, amount: 0.2 }}
             className="w-full lg:w-1/2 bg-white p-6 rounded-xl shadow-sm space-y-5"
           >
-            <h2 className="text-2xl font-semibold text-purple_primary">Message us, we’ll get back to you soon</h2>
+            <h2 className="text-2xl font-semibold text-purple_primary">
+              Message us, we’ll get back to you soon
+            </h2>
 
             <form onSubmit={handleSubmit} className="space-y-4">
               {[
-                { label: "Full Name", name: "name", type: "text", value: formValues.name },
-                { label: "Email", name: "email", type: "email", value: formValues.email },
-                { label: "Mobile Number", name: "mobile", type: "tel", value: formValues.mobile, pattern: "[0-9]{7,15}" },
+                {
+                  label: "Full Name",
+                  name: "name",
+                  type: "text",
+                  value: formValues.name,
+                },
+                {
+                  label: "Email",
+                  name: "email",
+                  type: "email",
+                  value: formValues.email,
+                },
+                {
+                  label: "Mobile Number",
+                  name: "mobile",
+                  type: "tel",
+                  value: formValues.mobile,
+                  pattern: "[0-9]{7,15}",
+                },
               ].map(({ label, name, type, value, pattern }) => (
                 <div key={name}>
-                  <label htmlFor={name} className="block text-gray-700 text-sm mb-1 font-medium">
+                  <label
+                    htmlFor={name}
+                    className="block text-gray-700 text-sm mb-1 font-medium"
+                  >
                     {label}
                   </label>
                   <input
                     value={value}
                     onChange={handleChange}
-                    onBlur={name === "email" ? handleEmailBlur : name === "mobile" ? handleMobileBlur : undefined}
+                    onBlur={
+                      name === "email"
+                        ? handleEmailBlur
+                        : name === "mobile"
+                        ? handleMobileBlur
+                        : undefined
+                    }
                     type={type}
                     id={name}
                     name={name}
@@ -239,7 +260,10 @@ function Contact({ no_banner }) {
               ))}
 
               <div>
-                <label htmlFor="description" className="block text-gray-700 text-sm mb-1 font-medium">
+                <label
+                  htmlFor="description"
+                  className="block text-gray-700 text-sm mb-1 font-medium"
+                >
                   Description
                 </label>
                 <textarea
@@ -265,7 +289,6 @@ function Contact({ no_banner }) {
         </div>
       </div>
     </div>
-
   );
 }
 
