@@ -53,6 +53,7 @@ const Page = () => {
           <CardForm titleOne='Green Labourer Card' titleTwo='Easy apply for CSCS Green Card - Labourers Card.' cardType='green-labourer' card="cscs" />
         </div>
       </div>
+
       <div className='flex justify-center mt-12'>
         <h1 className='capitalize text-[25px] text-white inline-block px-4 py-1 bg-purple_primary rounded-full  font-semibold text-center media-max-600px:text-[22px] media-max-600px:inline'>Eligibility Requirements</h1>
       </div>

@@ -51,7 +51,7 @@ const Page = () => {
       </div>
 
       <div className='flex justify-center mt-8'>
-        <div className=" flex gap-10">
+        <div className="flex flex-col md:flex-row gap-6 md:gap-10">
           <SmallCard icon={<FaHardHat className="size-6 text-white" />}
             title="CITB Test"
             button_text="Apply Now"

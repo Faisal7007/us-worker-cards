@@ -32,8 +32,8 @@ const EssPageComponent = ({ id, title_page, image_path, title_form_one, title_fo
 
       {/* Form */}
 
-      <div className='flex justify-between  items-center  mt-10 media-max-1360px:flex-col media-max-1360px:gap-8'>
-        <div className='hidden sm:block h-[380px] max-w-[660px]'>
+      <div className='flex flex-col sm:flex-row justify-between items-center mt-10 gap-8'>
+        <div className='w-full sm:max-w-[660px]'>
           <Image
             src={`${image_path}`}
             alt='card-image'
@@ -42,7 +42,7 @@ const EssPageComponent = ({ id, title_page, image_path, title_form_one, title_fo
             className='rounded-lg h-full w-full'
           />
         </div>
-        <div>
+        <div className="w-full sm:max-w-[660px]">
           <EssCardForm titleOne={`${title_form_one}`} titleTwo={`${title_form_two}`} cardType={card_type} card="ess" />
         </div>
       </div>

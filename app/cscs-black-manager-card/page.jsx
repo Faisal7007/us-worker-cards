@@ -44,21 +44,24 @@ const Page = () => {
         </div>
       </div>
 
-      <div className='flex justify-center mt-8'>
-
-        <div className=" flex gap-10">
-
-          <SmallCard icon={<FaHardHat className="size-6 text-white" />}
+      <div className="flex justify-center mt-8">
+        <div className="flex flex-col md:flex-row gap-6 md:gap-10">
+          <SmallCard
+            icon={<FaHardHat className="size-6 text-white" />}
             title="CITB Test"
             button_text="Apply Now"
-            link_to="/book-citb-test/default" />
+            link_to="/book-citb-test/default"
+          />
 
-          <SmallCard icon={<FaAward className="size-6 text-white" />}
+          <SmallCard
+            icon={<FaAward className="size-6 text-white" />}
             title="NVQ Level 4 or above"
             button_text="Apply Now"
-            link_to="/nvq-level-2" />
+            link_to="/nvq-level-2"
+          />
         </div>
       </div>
+
 
       <div className='mt-8 media-max-545px:text-[14px]'>
         <h1 className='capitalize text-[25px] text-black mb-6 font-bold'>Validity - 5 Years</h1>
