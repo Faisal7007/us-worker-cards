@@ -2,6 +2,21 @@
 import React, { useState } from "react";
 import { MdArrowRight } from "react-icons/md";
 import { useFirebase } from "../context/Firebase";
+import MapSelector from "./MapSelector";
+import testCentres from "./testCentres";
+
+
+const getDistance = (lat1, lon1, lat2, lon2) => {
+  const R = 3958.8;
+  const dLat = ((lat2 - lat1) * Math.PI) / 180;
+  const dLon = ((lon2 - lon1) * Math.PI) / 180;
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos((lat1 * Math.PI) / 180) *
+    Math.cos((lat2 * Math.PI) / 180) *
+    Math.sin(dLon / 2) ** 2;
+  return R * (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)));
+};
 
 const CitbForm = ({ test_center }) => {
   const [formData, setFormData] = useState({
@@ -18,7 +33,7 @@ const CitbForm = ({ test_center }) => {
     townCity: "",
     county: "",
     postcode: "",
-    testType: "",                  // Test Type (select dropdown)
+    testType: "normal",                  // Test Type (select dropdown)
     language: "",                 // Language (select dropdown)
     preferredTestDate: "",        // Preferred Test Date
     alternateTestDate: "",        // Alternate Test Date
@@ -50,6 +65,27 @@ const CitbForm = ({ test_center }) => {
   const [agreed, setAgreed] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showOverlayForm, setShowOverlayForm] = useState(false);
+  const [nearest, setNearest] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const handleLocationSelect = async (coords) => {
+    setLoading(true);
+    try {
+      const sorted = testCentres
+        .map((c) => ({
+          ...c,
+          distance: getDistance(coords.lat, coords.lng, c.lat, c.lng),
+        }))
+        .sort((a, b) => a.distance - b.distance)
+        .slice(0, 5);
+      console.log(sorted)
+      setNearest(sorted);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+
 
 
   const firebase = useFirebase()
@@ -100,18 +136,27 @@ const CitbForm = ({ test_center }) => {
 
       {showOverlayForm && (
         <form onSubmit={handleSubmit}>
-          <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50">
-            <div className="bg-white w-full max-w-xl p-6 rounded shadow-lg">
-              <h2 className="text-2xl font-semibold mb-4">Additional Information</h2>
+          <div className="fixed inset-0 z-50 bg-black bg-opacity-70 flex justify-center items-center px-4">
+            <div className="relative bg-white w-full max-w-2xl max-h-[90vh] overflow-y-auto p-6 rounded-2xl shadow-2xl scroll-smooth touch-auto">
+
+              {/* Spinner */}
+              {loading && (
+                <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 rounded-2xl">
+                  <div className="w-12 h-12 border-4 border-white border-t-purple-600 rounded-full animate-spin"></div>
+                </div>
+              )}
+
+              {/* Heading */}
+              <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">📋 Additional Information</h2>
 
               {/* Test Type */}
-              <div className="mb-4">
-                <label className="block text-md font-medium">Test Type</label>
+              <div className="mb-6">
+                <label className="block mb-2 text-sm font-medium text-gray-700">Test Type</label>
                 <select
                   name="testVariant"
                   value={formData.testVariant || ""}
                   onChange={handleChange}
-                  className="w-full border border-gray-500 py-3 px-3"
+                  className="w-full border rounded-md border-gray-300 py-3 px-4 focus:outline-none focus:ring-2 focus:ring-purple-500"
                   required
                 >
                   <option value="">Select a Test Type</option>
@@ -137,137 +182,141 @@ const CitbForm = ({ test_center }) => {
               </div>
 
               {/* Language */}
-              {
-                formData.testVariant == "Operative" ?
-                  <div className="mb-4">
-                    <label className="block text-md font-medium">Language</label>
-                    <select
-                      name="language"
-                      value={formData.language || ""}
-                      onChange={handleChange}
-                      className="w-full border border-gray-500 py-3 px-3"
-                      required
+              {formData.testVariant === "Operative" && (
+                <div className="mb-6">
+                  <label className="block mb-2 text-sm font-medium text-gray-700">Language</label>
+                  <select
+                    name="language"
+                    value={formData.language || ""}
+                    onChange={handleChange}
+                    className="w-full border rounded-md border-gray-300 py-3 px-4 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    required
+                  >
+                    <option value="">Select a Language</option>
+                    {[
+                      "English", "Voice Over English", "Bulgarian", "Czetch", "French", "German", "Hungarian",
+                      "Lithunian", "Polish", "Portuguese", "Punjabi", "Romanian", "Russian", "Spanish", "Welsh"
+                    ].map((lang) => (
+                      <option key={lang} value={lang}>{lang}</option>
+                    ))}
+                  </select>
+                </div>
+              )}
+
+              {/* Location & Centres */}
+              <div className="mb-6">
+                <MapSelector
+                  onLocationSelect={handleLocationSelect}
+                  onTestCenterSelect={(value) => setFormData((prev) => ({ ...prev, testCenter: value }))}
+                  nearestCentres={nearest}
+                />
+                <h3 className="text-lg font-semibold mt-4 mb-3 text-gray-800">Top 5 Nearest CITB Test Centres</h3>
+                {nearest.length === 0 ? (
+                  <p className="text-gray-500">No centres selected yet.</p>
+                ) : (
+                  nearest.map((centre, idx) => (
+                    <div
+                      key={idx}
+                      onClick={() => {
+                        setFormData((prev) => ({ ...prev, testCenter: centre.name }));
+                        document.getElementById("test-center-input").value = centre.name; // 👈 set input box value
+                      }}
+                      className={`mb-4 p-4 bg-gray-100 border rounded-lg shadow-sm cursor-pointer transition hover:shadow-md ${formData.testCenter === centre.name ? "border-blue-500 ring-2 ring-blue-400" : "border-gray-200"
+                        }`}
                     >
-                      <option value="">Select a Language</option>
-                      {[
-                        "English",
-                        "Voice Over English",
-                        "Bulgarian",
-                        "Czetch",
-                        "French",
-                        "German",
-                        "Hungarian",
-                        "Lithunian",
-                        "Polish",
-                        "Portuguese",
-                        "Punjabi",
-                        "Romanian",
-                        "Russian",
-                        "Spanish",
-                        "Welsh",
-                      ].map((lang) => (
-                        <option key={lang} value={lang}>{lang}</option>
-                      ))}
-                    </select>
-                  </div> : <></>
-              }
+                      <h4 className="font-semibold text-gray-800">{centre.name}</h4>
+                      <p className="text-gray-700">{centre.address}</p>
+                      <p className="text-sm text-gray-500">Distance: {centre.distance.toFixed(2)} miles</p>
+                    </div>
+                  ))
+                )}
 
-              <div className="mb-4">
-                <label className="block text-md font-medium">Test Center Name (Optional)</label>
-                <input
-                  id="testCenter"
-                  name="testCenter"
-                  value={formData.testCenter}
-                  onChange={handleChange}
-                  className="w-full border border-gray-500 py-3 px-3"
-                >
-                </input>
               </div>
 
-              {/* Preferred Test Date */}
-              <div className="mb-4">
-                <label className="block text-md font-medium">Preferred Test Date</label>
-                <input
-                  type="date"
-                  name="preferredTestDate"
-                  min={new Date(Date.now() + 86400000).toISOString().split("T")[0]}
-                  value={formData.preferredTestDate || ""}
-                  onChange={handleChange}
-                  className="w-full border border-gray-500 py-3 px-3"
-                  required
-                />
-              </div>
+              {/* Dates */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                <div>
+                  <label className="block mb-2 text-sm font-medium text-gray-700">Preferred Test Date</label>
+                  <input
+                    type="date"
+                    name="preferredTestDate"
+                    min={new Date(Date.now() + 86400000).toISOString().split("T")[0]}
+                    value={formData.preferredTestDate || ""}
+                    onChange={handleChange}
+                    className="w-full border rounded-md border-gray-300 py-3 px-4"
+                    required
+                  />
+                </div>
 
-              {/* Alternate Test Date */}
-              <div className="mb-4">
-                <label className="block text-md font-medium">Alternate Test Date</label>
-                <input
-                  type="date"
-                  name="alternateTestDate"
-                  min={new Date(Date.now() + 86400000).toISOString().split("T")[0]}
-                  value={formData.alternateTestDate || ""}
-                  onChange={handleChange}
-                  className="w-full border border-gray-500 py-3 px-3"
-                  required
-                />
+                <div>
+                  <label className="block mb-2 text-sm font-medium text-gray-700">Alternate Test Date</label>
+                  <input
+                    type="date"
+                    name="alternateTestDate"
+                    min={new Date(Date.now() + 86400000).toISOString().split("T")[0]}
+                    value={formData.alternateTestDate || ""}
+                    onChange={handleChange}
+                    className="w-full border rounded-md border-gray-300 py-3 px-4"
+                    required
+                  />
+                </div>
               </div>
 
               {/* Time Slot */}
-              <div className="mb-4">
-                <label className="block text-md font-medium">Time Slot</label>
+              <div className="mb-6">
+                <label className="block mb-2 text-sm font-medium text-gray-700">Time Slot</label>
                 <select
                   name="timeSlot"
                   value={formData.timeSlot || ""}
                   onChange={handleChange}
-                  className="w-full border border-gray-500 py-3 px-3"
+                  className="w-full border rounded-md border-gray-300 py-3 px-4"
                   required
                 >
+                  <option value="">Select Time</option>
                   <option value="morning">Morning</option>
                   <option value="afternoon">Afternoon</option>
                   <option value="evening">Evening</option>
                 </select>
               </div>
 
-              <div className="mb-4">
-                <label className="block text-md font-medium">Test variant</label>
+              {/* Test Variant (Price Option) */}
+              <div className="mb-6">
+                <label className="block mb-2 text-sm font-medium text-gray-700">Test Package</label>
                 <select
                   id="testType"
                   name="testType"
                   value={formData.testType}
                   onChange={handleChange}
-                  className="w-full border border-gray-500 py-3 px-3"
+                  className="w-full border rounded-md border-gray-300 py-3 px-4"
                   required
                 >
-                  <option value="normal">Take CITB Test £40</option>
-                  <option value="retake">Take CITB Test + Retake £60</option>
+                  <option value="normal">Take CITB Test – £40</option>
+                  <option value="retake">Take CITB Test + Retake – £60</option>
                 </select>
               </div>
 
-
-
-
               {/* Buttons */}
-              <div className="flex justify-between mt-6">
+              <div className="flex justify-between mt-8">
                 <button
                   type="button"
                   onClick={() => setShowOverlayForm(false)}
-                  className="bg-gray-300 px-4 py-2 rounded"
+                  className="bg-gray-200 text-gray-800 px-5 py-2 rounded-md hover:bg-gray-300 transition"
                 >
-                  Back
+                  ← Back
                 </button>
-
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="bg-purple_primary text-white px-4 py-2 rounded hover:bg-[#84286a]"
+                  className="bg-purple-600 text-white px-6 py-2 rounded-md hover:bg-purple-700 transition"
                 >
-                  Submit
+                  {isSubmitting ? "Submitting..." : "Submit"}
                 </button>
               </div>
             </div>
           </div>
         </form>
       )}
+
 
       <form
         onSubmit={(e) => {

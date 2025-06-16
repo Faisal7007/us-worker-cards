@@ -8,27 +8,38 @@ const page = () => {
     const [search, setSearch] = useState("");
 
     const filteredItems = items
-    .filter((item) => {
-        const query = search.toLowerCase().replace(/\s/g, "");
-        const titleMatch = item.title?.toLowerCase().includes(search.toLowerCase());
-        const postcodeMatch = item.postcode?.toLowerCase().replace(/\s/g, "").includes(query);
-        return titleMatch || postcodeMatch;
-    })
-    .sort((a, b) => {
-        const query = search.toLowerCase().replace(/\s/g, "");
-        const aStarts = a.title?.toLowerCase().startsWith(query) ||
-                        a.postcode?.toLowerCase().replace(/\s/g, "").startsWith(query);
-        const bStarts = b.title?.toLowerCase().startsWith(query) ||
-                        b.postcode?.toLowerCase().replace(/\s/g, "").startsWith(query);
-        return (bStarts ? 1 : 0) - (aStarts ? 1 : 0);
-    });
+        .filter((item) => {
+            const query = search.toLowerCase().replace(/\s/g, "");
+
+            const titleMatch = item.title?.toLowerCase().includes(search.toLowerCase());
+            const postcodeMatch = item.postcode?.toLowerCase().replace(/\s/g, "").includes(query);
+            const addressMatch = item.address?.toLowerCase().includes(search.toLowerCase());
+
+            return titleMatch || postcodeMatch || addressMatch;
+        })
+        .sort((a, b) => {
+            const query = search.toLowerCase().replace(/\s/g, "");
+
+            const aStarts =
+                a.title?.toLowerCase().startsWith(query) ||
+                a.postcode?.toLowerCase().replace(/\s/g, "").startsWith(query) ||
+                a.address?.toLowerCase().startsWith(query);
+
+            const bStarts =
+                b.title?.toLowerCase().startsWith(query) ||
+                b.postcode?.toLowerCase().replace(/\s/g, "").startsWith(query) ||
+                b.address?.toLowerCase().startsWith(query);
+
+            return (bStarts ? 1 : 0) - (aStarts ? 1 : 0);
+        });
+
 
 
     return (
         <div className='max-w-[1440px] mx-auto px-4 pt-8 mt-[102px]'>
             <h1 className='text-[30px] font-bold mb-2 capitalize'>Test Centers</h1>
             <p className='text-justify'>
-                Find a nearby test center and book your CITB Health, Safety, and Environment Test (also known as the CITB Touch Screen Test), 
+                Find a nearby test center and book your CITB Health, Safety, and Environment Test (also known as the CITB Touch Screen Test),
                 which is required to apply for a CSCS Card.
             </p>
             <div className='h-[1px] w-full bg-slate-300 my-6'></div>
