@@ -311,373 +311,170 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
       </form>
 
       <form
-        className="max-w-full mx-auto rounded space-y-6"
+        className="max-w-4xl mx-auto rounded space-y-5 px-4"
         onSubmit={(e) => { e.preventDefault(); setShowOverlay(true); }}
       >
         <ToastContainer />
 
-        <div className="pt-6">
-          <h2 className="text-[25px] bg-purple_primary text-white py-4 font-bold mb-6 text-center">
+        <div className="pt-4">
+          <h2 className="text-lg bg-purple_primary text-white py-3 font-semibold mb-4 text-center rounded">
             Easy Apply For <span className="uppercase">{form_type}</span> Card
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-4">
-            <div>
-              <label htmlFor="title" className="block text-md font-medium">
-                Title
-              </label>
-              <select
-                id="title"
-                name="title"
-                value={formData.title}
-                onChange={handleChange}
-                className="w-full border border-gray-500 py-4 px-3 mb-4"
-                required
-              >
-                <option value="" disabled>
-                  Please select the title
-                </option>
-                <option value="Mr">Mr</option>
-                <option value="Ms">Ms</option>
-                <option value="Mrs">Mrs</option>
-                <option value="Miss">Miss</option>
-                <option value="Dr">Dr</option>
-              </select>
-            </div>
 
-            <div>
-              <label htmlFor="firstName" className="block text-md font-medium">
-                First Name
-              </label>
-              <input
-                type="text"
-                id="firstName"
-                name="firstName"
-                placeholder="First Name"
-                value={formData.firstName}
-                onChange={handleChange}
-                className="w-full border border-gray-500 py-4 px-3"
-                required
-              />
-            </div>
-            <div>
-              <label htmlFor="middleName" className="block text-md font-medium">
-                Middle Name
-              </label>
-              <input
-                type="text"
-                id="middleName"
-                name="middleName"
-                placeholder="Middle Name"
-                value={formData.middleName}
-                onChange={handleChange}
-                className="w-full border border-gray-500 py-4 px-3"
-              />
-            </div>
-            <div>
-              <label htmlFor="lastName" className="block text-md font-medium">
-                Last Name
-              </label>
-              <input
-                type="text"
-                id="lastName"
-                name="lastName"
-                placeholder="Last Name"
-                value={formData.lastName}
-                onChange={handleChange}
-                className="w-full border border-gray-500 py-4 px-3"
-                required
-              />
-            </div>
-            <div>
-              <label htmlFor="dob" className="block text-md font-medium">
-                Date of Birth
-              </label>
-              <input
-                type="date"
-                id="dob"
-                name="dob"
-                value={formData.dob}
-                onChange={handleChange}
-                className="w-full border border-gray-500 py-4 px-3 mb-4"
-                required
-              />
-            </div>
-
-            <div>
-              <label
-                htmlFor="nationalInsuranceNumber"
-                className="block text-md font-medium"
-              >
-                National Insurance Number (Optional)
-              </label>
-              <input
-                type="text"
-                id="nationalInsuranceNumber"
-                name="nationalInsuranceNumber"
-                placeholder="e.g. QQ 123456 C"
-                value={formData.nationalInsuranceNumber}
-                onChange={handleChange}
-                className="w-full border border-gray-500 py-4 px-3 mb-4"
-              />
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            {[
+              { label: "Title", id: "title", type: "select", options: ["Mr", "Ms", "Mrs", "Miss", "Dr"], required: true },
+              { label: "First Name", id: "firstName", type: "text", placeholder: "First Name", required: true },
+              { label: "Middle Name", id: "middleName", type: "text", placeholder: "Middle Name" },
+              { label: "Last Name", id: "lastName", type: "text", placeholder: "Last Name", required: true },
+              { label: "Date of Birth", id: "dob", type: "date", required: true },
+              { label: "National Insurance Number (Optional)", id: "nationalInsuranceNumber", type: "text", placeholder: "e.g. QQ 123456 C" },
+            ].map((field, i) => (
+              <div key={i}>
+                <label htmlFor={field.id} className="block text-sm font-medium mb-1">{field.label}</label>
+                {field.type === "select" ? (
+                  <select
+                    id={field.id}
+                    name={field.id}
+                    value={formData[field.id]}
+                    onChange={handleChange}
+                    required={field.required}
+                    className="w-full border border-gray-400 py-2 px-3 rounded"
+                  >
+                    <option value="" disabled>Please select the title</option>
+                    {field.options.map((opt) => (
+                      <option key={opt} value={opt}>{opt}</option>
+                    ))}
+                  </select>
+                ) : (
+                  <input
+                    type={field.type}
+                    id={field.id}
+                    name={field.id}
+                    placeholder={field.placeholder || ""}
+                    value={formData[field.id]}
+                    onChange={handleChange}
+                    required={field.required}
+                    className="w-full border border-gray-400 py-2 px-3 rounded"
+                  />
+                )}
+              </div>
+            ))}
           </div>
 
-          <h2 className="text-2xl font-bold mb-6">Contact Details</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-4">
-            <div>
-              <label htmlFor="phoneNumber" className="block text-md font-medium">
-                Phone Number
-              </label>
-              <input
-                type="text"
-                id="phoneNumber"
-                name="phoneNumber"
-                placeholder="e.g. 2080995236"
-                value={formData.phoneNumber}
-                onChange={handleChange}
-                className="w-full border border-gray-500 py-4 px-3 mb-4"
-                required
-              />
-            </div>
-
-            <div>
-              <label htmlFor="email" className="block text-md font-medium">
-                Email Address
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="yourname@domain.com"
-                value={formData.email}
-                onChange={handleChange}
-                className="w-full border border-gray-500 py-4 px-3 mb-4"
-                required
-              />
-            </div>
+          <h2 className="text-md font-semibold text-gray-700 mb-3">Contact Details</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            {[
+              { id: "phoneNumber", placeholder: "e.g. 2080995236", type: "text" },
+              { id: "email", placeholder: "yourname@domain.com", type: "email" },
+            ].map(({ id, placeholder, type }) => (
+              <div key={id}>
+                <label htmlFor={id} className="block text-sm font-medium mb-1">{id === "phoneNumber" ? "Phone Number" : "Email Address"}</label>
+                <input
+                  type={type}
+                  id={id}
+                  name={id}
+                  placeholder={placeholder}
+                  value={formData[id]}
+                  onChange={handleChange}
+                  required
+                  className="w-full border border-gray-400 py-2 px-3 rounded"
+                />
+              </div>
+            ))}
           </div>
 
-          <h2 className="text-2xl font-bold mb-6">Address Details</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-4">
-            <div>
-              <label htmlFor="addressLine1" className="block text-md font-medium">
-                First Line of Address
-              </label>
-              <input
-                type="text"
-                id="addressLine1"
-                name="addressLine1"
-                placeholder="123 Main Street"
-                value={formData.addressLine1}
-                onChange={handleChange}
-                className="w-full border border-gray-500 py-4 px-3 mb-4"
-                required
-              />
-            </div>
-
-            <div>
-              <label htmlFor="town" className="block text-md font-medium">
-                Town
-              </label>
-              <input
-                type="text"
-                id="town"
-                name="town"
-                placeholder="e.g. Hounslow"
-                value={formData.town}
-                onChange={handleChange}
-                className="w-full border border-gray-500 py-4 px-3 mb-4"
-                required
-              />
-            </div>
-
-            <div>
-              <label htmlFor="city" className="block text-md font-medium">
-                City
-              </label>
-              <input
-                type="text"
-                id="city"
-                name="city"
-                placeholder="e.g. London"
-                value={formData.city}
-                onChange={handleChange}
-                className="w-full border border-gray-500 py-4 px-3 mb-4"
-                required
-              />
-            </div>
-
-            <div>
-              <label htmlFor="pincode" className="block text-md font-medium">
-                Pincode
-              </label>
-              <input
-                type="text"
-                id="pincode"
-                name="pincode"
-                placeholder="e.g. W1A 1AA"
-                value={formData.pincode}
-                onChange={handleChange}
-                className="w-full border border-gray-500 py-4 px-3 mb-4"
-                required
-              />
-            </div>
-
-            <div>
-              <label htmlFor="citbId" className="block text-md font-medium">
-                CITB Testing ID (Optional)
-              </label>
-              <input
-                type="text"
-                id="citbId"
-                name="citbId"
-                placeholder="e.g. 1234567890"
-                value={formData.citbId}
-                onChange={handleChange}
-                className="w-full border border-gray-500 py-4 px-3 mb-4"
-              />
-            </div>
+          <h2 className="text-md font-semibold text-gray-700 mb-3">Address Details</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            {[
+              { id: "addressLine1", label: "First Line of Address", placeholder: "123 Main Street" },
+              { id: "town", label: "Town", placeholder: "e.g. Hounslow" },
+              { id: "city", label: "City", placeholder: "e.g. London" },
+              { id: "pincode", label: "Pincode", placeholder: "e.g. W1A 1AA" },
+              { id: "citbId", label: "CITB Testing ID (Optional)", placeholder: "e.g. 1234567890", optional: true },
+            ].map(({ id, label, placeholder }) => (
+              <div key={id}>
+                <label htmlFor={id} className="block text-sm font-medium mb-1">{label}</label>
+                <input
+                  type="text"
+                  id={id}
+                  name={id}
+                  placeholder={placeholder}
+                  value={formData[id]}
+                  onChange={handleChange}
+                  required={!label.includes("Optional")}
+                  className="w-full border border-gray-400 py-2 px-3 rounded"
+                />
+              </div>
+            ))}
           </div>
 
-
-          <h2 className="text-2xl font-bold mb-6">Card Details</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-4">
-
-            {form_type == 'ess' ?
+          <h2 className="text-md font-semibold text-gray-700 mb-3">Card Details</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            {form_type === 'ess' && (
               <div>
-                <label htmlFor="variant" className="block text-md font-medium">
-                  Card Variant
-                </label>
+                <label htmlFor="variant" className="block text-sm font-medium mb-1">Card Variant</label>
                 <select
                   id="variant"
                   name="variant"
                   value={formData.variant}
                   onChange={handleChange}
-                  className="w-full border border-gray-500 py-4 px-3 mb-4"
                   required
+                  className="w-full border border-gray-400 py-2 px-3 rounded"
                 >
-                  <option value="" disabled>
-                    Please select the variant
-                  </option>
+                  <option value="" disabled>Please select the variant</option>
                   <option value="Physical + Digital">Physical + Digital</option>
                   <option value="Digital">Digital</option>
                 </select>
               </div>
-              : <></>}
-
+            )}
 
             <div className="relative">
-              <label htmlFor="email" className="block text-md font-medium">
-                Card Type
-              </label>
-
-              {
-                form_type === 'cscs' ? <div>
-                  <div
-                    onClick={() => setIsOpen(!isOpen)}
-                    className="border border-gray-500 py-4 px-3 cursor-pointer"
-                  >
-                    {formData.cardtype || 'Please select the card from the list'}
-                  </div>
-                  {isOpen && !isPreSelected ? (
-                    <div className="absolute top-full left-0 w-full bg-white border border-gray-500 max-h-48 overflow-y-auto">
-                      {cscsCardTypes.map((card) => (
-                        <div
-                          key={card.value}
-                          onClick={() => handleSelect(card.value)}
-                          className="py-2 px-3 hover:bg-gray-200 cursor-pointer"
-                        >
-                          {card.component}
-                        </div>
-                      ))}
+              <label htmlFor="cardtype" className="block text-sm font-medium mb-1">Card Type</label>
+              <div
+                onClick={() => setIsOpen(!isOpen)}
+                className="border border-gray-400 py-2 px-3 rounded cursor-pointer"
+              >
+                {formData.cardtype || 'Please select the card from the list'}
+              </div>
+              {isOpen && !isPreSelected && (
+                <div className="absolute top-full left-0 w-full bg-white border border-gray-400 max-h-48 overflow-y-auto z-10">
+                  {(form_type === 'cscs' ? cscsCardTypes : essCardTypes).map((card) => (
+                    <div
+                      key={card.value}
+                      onClick={() => handleSelect(card.value)}
+                      className="py-2 px-3 hover:bg-gray-100 cursor-pointer"
+                    >
+                      {card.component}
                     </div>
-                  ) : ''}
-                </div> : <div>
-                  <div
-                    onClick={() => setIsOpen(!isOpen)}
-                    className="border border-gray-500 py-4 px-3 cursor-pointer"
-                  >
-                    {formData.cardtype || 'Please select the card from the list'}
-                  </div>
-                  {isOpen && !isPreSelected ? (
-                    <div className="absolute top-full left-0 w-full bg-white border border-gray-500 max-h-48 overflow-y-auto">
-                      {essCardTypes.map((card) => (
-                        <div
-                          key={card.value}
-                          onClick={() => handleSelect(card.value)}
-                          className="py-2 px-3 hover:bg-gray-200 cursor-pointer"
-                        >
-                          {card.component}
-                        </div>
-                      ))}
-                    </div>
-                  ) : ''}
+                  ))}
                 </div>
-              }
-
+              )}
             </div>
-            <div className="h-[100px]">
-              <label className="block text-md font-medium mb-4">
-                Application Type
-              </label>
-              <div className="flex items-center space-x-6">
-                <label className="flex items-center">
-                  <input
-                    type="radio"
-                    name="applicationType"
-                    value="New Card"
-                    checked={formData.applicationType === "New Card"}
-                    onChange={handleChange}
-                    className="w-5 h-5 accent-purple_primary"
-                    required
 
-                  />
-                  <span className="ml-2">New Card</span>
-                </label>
-                <label className="flex items-center">
-                  <input
-                    type="radio"
-                    name="applicationType"
-                    value="Stolen"
-                    checked={formData.applicationType === "Stolen"}
-                    onChange={handleChange}
-                    className="w-5 h-5 accent-purple_primary"
-                  />
-                  <span className="ml-2">Stolen</span>
-                </label>
-                {
-                  // !["White Academically Qualified Person", "White Professionally Qualified Person", "Red Provisional Card", "Red Technical Supervisor/Manager Card"].includes(formData.cardtype) && (
-                  <label className="flex items-center">
+            <div className="md:col-span-2">
+              <label className="block text-sm font-medium mb-2">Application Type</label>
+              <div className="flex flex-wrap gap-4">
+                {["New Card", "Stolen", "Renew"].map((type) => (
+                  <label key={type} className="flex items-center text-sm gap-2">
                     <input
                       type="radio"
                       name="applicationType"
-                      value="Renew"
-                      checked={formData.applicationType === "Renew"}
+                      value={type}
+                      checked={formData.applicationType === type}
                       onChange={handleChange}
-                      className="w-5 h-5 accent-purple_primary"
+                      className="accent-purple_primary w-4 h-4"
                     />
-                    <span className="ml-2">
-                      Renew
-                    </span>
+                    {type}
                   </label>
-                  // )
-                }
-
-
-
-
-
-
+                ))}
               </div>
-              {
-                formData.applicationType === "Renew" &&
+              {formData.applicationType === "Renew" &&
                 ["White Academically Qualified Person", "White Professionally Qualified Person"].includes(formData.cardtype) && (
-                  <div className="text-orange-700 text-sm">
-                    Only Green, Gold advanced, Gold supervisor, Blue skilled and Black manager cards are renewable
+                  <div className="text-orange-600 text-xs mt-1">
+                    Only Green, Gold Advanced, Gold Supervisor, Blue Skilled and Black Manager cards are renewable.
                   </div>
-                )
-              }
-
+                )}
             </div>
           </div>
         </div>
@@ -687,26 +484,23 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
             id="agreeCheckbox"
             type="checkbox"
             onChange={handleCheckboxChange}
-            className="w-5 h-5 accent-purple_primary rounded focus:ring-purple_primary"
+            className="w-4 h-4 accent-purple_primary"
           />
-          <label
-            htmlFor="agreeCheckbox"
-            className="ml-2 text-sm text-gray-700 select-none media-max-545px:text-[12px]"
-          >
+          <label htmlFor="agreeCheckbox" className="ml-2 text-sm text-gray-700">
             I agree to the Terms and Conditions and Privacy Policy
           </label>
         </div>
+
         <button
           type="submit"
           disabled={!agreed || isSubmitting}
-          // onClick={}
-          className={`inline-flex items-center justify-center w-fit px-4 py-2 rounded ${agreed ? "bg-purple_primary text-white hover:bg-[#84286a]" : "bg-[#854c75] text-white cursor-not-allowed"
-            }`}
+          className={`inline-flex items-center gap-2 px-4 py-2 rounded text-sm ${agreed ? "bg-purple_primary text-white hover:bg-[#84286a]" : "bg-[#854c75] text-white cursor-not-allowed"}`}
         >
-          <span className="ml-2">Move Forward</span>
-          <MdArrowRight className="size-6" />
+          Move Forward
+          <MdArrowRight className="size-5" />
         </button>
       </form>
+
 
 
     </>

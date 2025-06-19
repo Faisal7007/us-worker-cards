@@ -103,7 +103,7 @@ export default function Home() {
                 icon: <FaIdCard className="size-8 text-white" />,
                 title: "Get a CSCS Card",
                 description:
-                  "Apply online for a CSCS Card, renew your CSCS Card, or request a replacement for a lost card. The CSCS Card booking fee is £54, which includes the £36 CSCS fee, a booking fee, and VAT.",
+                  "Apply online for a CSCS Card, renew your CSCS Card, or request a replacement for a lost card. Get a free consultation from our experts on whatsapp.",
                 link_to: "/apply-card-for/cscs",
               },
               {
@@ -166,75 +166,73 @@ export default function Home() {
 
 
         <div className="text-center mt-16 media-max-545px:mt-12">
-          <h2 className="text-[25px] font-bold inline-block mb-8  px-4 py-1 bg-purple_primary rounded-full text-white media-max-600px:text-[22px]">Your Guide to Booking the CITB Test</h2>
+          <h2 className="text-[25px] font-bold inline-block mb-8 px-4 py-1 bg-purple_primary rounded-full text-white media-max-600px:text-[22px]">
+            Your Guide to Booking the CITB Test
+          </h2>
         </div>
 
-
-
-        <div className="flex flex-col lg:flex-row lg:justify-center items-center gap-10 rounded-lg px-4 sm:px-6 lg:px-0">
+        <div className="flex flex-col lg:flex-row gap-10 items-center justify-center max-w-[1300px] mx-auto px-4 lg:px-0">
           {/* Left Image */}
           <motion.div
             initial={{ x: -60, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            viewport={{ once: false, amount: 0.3 }}
-            className="w-full lg:w-[40%] flex justify-center bg-purple_primary"
+            viewport={{ once: true, amount: 0.3 }}
+            className="w-full lg:w-[40%] bg-purple_primary rounded-lg overflow-hidden"
           >
             <Image
               src="/citb-img3.png"
               alt="CITB Test Booking"
               width={700}
               height={350}
-              className="rounded-lg w-full max-w-[500px] h-auto sm:h-[320px] object-cover"
+              className="w-full h-auto object-cover"
             />
           </motion.div>
-
 
           {/* Right Content */}
           <motion.div
             initial={{ x: 50, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            viewport={{ once: false, amount: 0.3 }}
-            className="w-full lg:w-1/2 text-[16px] sm:text-[15px] lg:text-[16px]"
+            viewport={{ once: true, amount: 0.3 }}
+            className="w-full lg:w-[50%] text-gray-700 text-justify text-[16px]"
           >
-            <h2 className="text-[25px] sm:text-[20px] font-bold text-purple_primary text-left mb-4">
+            <h3 className="text-[24px] font-bold text-purple_primary mb-4">
               Scheduling Your CITB Health, Safety & Environment Test
-            </h2>
-            <p className="text-gray-700 mb-5 text-justify">
-              Booking your CITB Touchscreen Test, officially called the CITB Health, Safety & Environment Test, is simpler with Construction Card Services.
+            </h3>
+            <p className="mb-5">
+              Booking your CITB Touchscreen Test is simpler with Construction Card Services.
             </p>
 
-            <ul className="pl-6 mb-4 text-gray-700 space-y-3">
-              <li className="flex items-start text-justify">
-                <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />
+            <ul className="space-y-3 pl-5 list-none">
+              <li className="flex items-start gap-2">
+                <FaHardHat className="text-purple_primary mt-1" />
                 <span>
                   Fill out the CITB Test Booking application
-                  <Link href="/book-citb-test/default" className="text-purple_primary ml-1 underline">here.</Link>
+                  <Link href="/book-citb-test/default" className="underline text-purple_primary ml-1">here</Link>.
                 </span>
               </li>
-              <li className="flex items-start text-justify">
-                <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />
+              <li className="flex items-start gap-2">
+                <FaHardHat className="text-purple_primary mt-1" />
                 <span>Select your preferred test centre and date.</span>
               </li>
-              <li className="flex items-start text-justify">
-                <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />
+              <li className="flex items-start gap-2">
+                <FaHardHat className="text-purple_primary mt-1" />
                 <span>Complete the payment and review your booking.</span>
               </li>
             </ul>
 
-            <p className="text-gray-700 mb-5 text-justify">
-              Within a few minutes, you will receive the confirmation via email and/or text at your registered email address. That’s it!
+            <p className="mt-4">
+              Within a few minutes, you will receive confirmation via email and/or text. That’s it!
             </p>
-            <p className="text-gray-700 text-justify">
-              <strong>Not sure which test to book?</strong> Find the correct test according to your occupation{" "}
-              <Link href="/trade-wise-test" className="text-purple_primary underline">
-                here
-              </Link>
-              .
+
+            <p className="mt-4">
+              <strong>Not sure which test to book?</strong> Find it according to your occupation{" "}
+              <Link href="/trade-wise-test" className="text-purple_primary underline">here</Link>.
             </p>
           </motion.div>
         </div>
+
 
 
 
@@ -267,15 +265,15 @@ export default function Home() {
 
 
             {/* Mobile View */}
-            <div className="hidden media-min-601px:hidden">
+            {/* <div className="hidden media-min-601px:hidden">
               <Image
                 src="/green-vertical.png"
                 alt="card-image-mobile"
                 width={400}
                 height={700}
                 className="rounded-lg w-full h-full object-cover"
-              />
-            </div>
+              /> */}
+            {/* </div> */}
           </motion.div>
 
 

@@ -89,30 +89,26 @@ const CscsForm = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="max-w-full mx-auto rounded space-y-6"
+      className="max-w-3xl mx-auto rounded space-y-6 px-4"
     >
       <ToastContainer />
-
-      <div className="pt-6">
-        <h2 className="text-[25px] bg-purple_primary text-white py-4 font-bold mb-6 text-center">
+      <div className="pt-4">
+        <h2 className="text-xl bg-purple_primary text-white py-3 font-semibold mb-5 text-center rounded">
           Book Your Course
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-4">
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-5">
           <div>
-            <label htmlFor="title" className="block text-md font-medium">
-              Title
-            </label>
+            <label htmlFor="title" className="block text-sm font-medium mb-1">Title</label>
             <select
               id="title"
               name="title"
               value={formData.title}
               onChange={handleChange}
-              className="w-full border border-gray-500 py-4 px-3 mb-4"
               required
+              className="w-full border border-gray-400 py-2 px-3 rounded-md"
             >
-              <option value="" disabled>
-                Please select an item in the list
-              </option>
+              <option value="" disabled>Please select an item in the list</option>
               <option value="Mr">Mr</option>
               <option value="Ms">Ms</option>
               <option value="Mrs">Mrs</option>
@@ -121,56 +117,26 @@ const CscsForm = () => {
             </select>
           </div>
 
-          <div>
-            <label htmlFor="firstName" className="block text-md font-medium">
-              First Name
-            </label>
-            <input
-              type="text"
-              id="firstName"
-              name="firstName"
-              placeholder="First Name"
-              value={formData.firstName}
-              onChange={handleChange}
-              className="w-full border border-gray-500 py-4 px-3"
-              required
-            />
-          </div>
-          <div>
-            <label htmlFor="middleName" className="block text-md font-medium">
-              Middle Name
-            </label>
-            <input
-              type="text"
-              id="middleName"
-              name="middleName"
-              placeholder="Middle Name"
-              value={formData.middleName}
-              onChange={handleChange}
-              className="w-full border border-gray-500 py-4 px-3"
-            />
-          </div>
-          <div>
-            <label htmlFor="lastName" className="block text-md font-medium">
-              Last Name
-            </label>
-            <input
-              type="text"
-              id="lastName"
-              name="lastName"
-              placeholder="Last Name"
-              value={formData.lastName}
-              onChange={handleChange}
-              className="w-full border border-gray-500 py-4 px-3"
-              required
-            />
-          </div>
+          {["firstName", "middleName", "lastName"].map((id, i) => (
+            <div key={id}>
+              <label htmlFor={id} className="block text-sm font-medium mb-1">
+                {id.replace(/([A-Z])/g, " $1").replace(/^./, str => str.toUpperCase())}
+              </label>
+              <input
+                type="text"
+                id={id}
+                name={id}
+                placeholder={id.replace(/([A-Z])/g, " $1")}
+                value={formData[id]}
+                onChange={handleChange}
+                required={id !== "middleName"}
+                className="w-full border border-gray-400 py-2 px-3 rounded-md"
+              />
+            </div>
+          ))}
 
-          <div className="col-span-1 md:col-span-2">
-            <label
-              htmlFor="nationalInsuranceNumber"
-              className="block text-md font-medium"
-            >
+          <div className="md:col-span-2">
+            <label htmlFor="nationalInsuranceNumber" className="block text-sm font-medium mb-1">
               National Insurance Number (Optional)
             </label>
             <input
@@ -180,83 +146,61 @@ const CscsForm = () => {
               placeholder="e.g. QQ 123456 C"
               value={formData.nationalInsuranceNumber}
               onChange={handleChange}
-              className="w-full border border-gray-500 py-4 px-3 mb-4"
+              className="w-full border border-gray-400 py-2 px-3 rounded-md"
             />
           </div>
         </div>
 
-        <h2 className="text-2xl font-bold mb-6">Contact Details</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-4">
-          <div>
-            <label htmlFor="phoneNumber" className="block text-md font-medium">
-              Phone Number
-            </label>
-            <input
-              type="text"
-              id="phoneNumber"
-              name="phoneNumber"
-              placeholder="e.g. 2080995236"
-              value={formData.phoneNumber}
-              onChange={handleChange}
-              className="w-full border border-gray-500 py-4 px-3 mb-4"
-              required
-            />
-          </div>
-
-          <div>
-            <label htmlFor="email" className="block text-md font-medium">
-              Email Address
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="yourname@domain.com"
-              value={formData.email}
-              onChange={handleChange}
-              className="w-full border border-gray-500 py-4 px-3 mb-4"
-              required
-            />
-          </div>
+        <h2 className="text-lg font-semibold mb-4 text-gray-700">Contact Details</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-5">
+          {[
+            { id: "phoneNumber", type: "text", placeholder: "e.g. 2080995236" },
+            { id: "email", type: "email", placeholder: "yourname@domain.com" },
+          ].map(({ id, type, placeholder }) => (
+            <div key={id}>
+              <label htmlFor={id} className="block text-sm font-medium mb-1">
+                {id === "phoneNumber" ? "Phone Number" : "Email Address"}
+              </label>
+              <input
+                type={type}
+                id={id}
+                name={id}
+                placeholder={placeholder}
+                value={formData[id]}
+                onChange={handleChange}
+                required
+                className="w-full border border-gray-400 py-2 px-3 rounded-md"
+              />
+            </div>
+          ))}
         </div>
 
-        <h2 className="text-2xl font-bold mb-6">Card Details</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-4">
-
+        <h2 className="text-lg font-semibold mb-4 text-gray-700">Card Details</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-5">
           <div>
-            <label className="block text-md font-medium mb-4">
-              How would you like to take the course
+            <label className="block text-sm font-medium mb-2">
+              How would you like to take the course?
             </label>
-            <div className="flex items-center space-x-6">
-              <label className="flex items-center">
-                <input
-                  type="radio"
-                  name="applicationMode"
-                  value="Online"
-                  checked={formData.applicationMode === "Online"}
-                  onChange={handleChange}
-                  className="w-5 h-5 accent-purple_primary"
-                  required
-                />
-                <span className="ml-2">Online</span>
-              </label>
-              <label className="flex items-center">
-                <input
-                  type="radio"
-                  name="applicationMode"
-                  value="Offline"
-                  checked={formData.applicationMode === "Offline"}
-                  onChange={handleChange}
-                  className="w-5 h-5 accent-purple_primary"
-                />
-                <span className="ml-2">Offline</span>
-              </label>
+            <div className="flex items-center gap-4">
+              {["Online", "Offline"].map((mode) => (
+                <label key={mode} className="flex items-center text-sm">
+                  <input
+                    type="radio"
+                    name="applicationMode"
+                    value={mode}
+                    checked={formData.applicationMode === mode}
+                    onChange={handleChange}
+                    className="accent-purple_primary w-4 h-4"
+                    required
+                  />
+                  <span className="ml-2">{mode}</span>
+                </label>
+              ))}
             </div>
           </div>
 
-
           <div>
-            <label htmlFor="assessmentDate" className="block text-md font-medium">
+            <label htmlFor="assessmentDate" className="block text-sm font-medium mb-1">
               Preferred Assessment Date
             </label>
             <input
@@ -265,37 +209,31 @@ const CscsForm = () => {
               name="assessmentDate"
               value={formData.assessmentDate}
               onChange={handleChange}
-              className="w-full border border-gray-500 py-4 px-3 mb-4"
+              className="w-full border border-gray-400 py-2 px-3 rounded-md"
               required
             />
           </div>
-
         </div>
-        {
-          formData?.applicationMode === "Offline" ? <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-4">
+
+        {formData?.applicationMode === "Offline" && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-5">
             <div>
-              <label htmlFor="location" className="block text-md font-medium">
-                Course Location
-              </label>
+              <label htmlFor="location" className="block text-sm font-medium mb-1">Course Location</label>
               <select
                 id="location"
                 name="location"
                 value={formData.location}
                 onChange={handleChange}
-                className="w-full border border-gray-500 py-4 px-3 mb-4"
                 required
+                className="w-full border border-gray-400 py-2 px-3 rounded-md"
               >
-                <option value="" disabled>
-                  Please select the test location
-                </option>
+                <option value="" disabled>Please select the test location</option>
                 <option value="Location 1">Main Hurak Center</option>
                 <option value="Location 2">Birmingham Hurak</option>
-                {/* <option value="Location 3">Location 3</option> */}
               </select>
             </div>
-          </div> : ''
-        }
-
+          </div>
+        )}
       </div>
 
       <div className="flex items-center mb-4">
@@ -303,27 +241,29 @@ const CscsForm = () => {
           id="agreeCheckbox"
           type="checkbox"
           onChange={handleCheckboxChange}
-          className="w-5 h-5 accent-purple_primary rounded focus:ring-purple_primary"
+          className="w-4 h-4 accent-purple_primary rounded focus:ring-purple_primary"
         />
         <label
           htmlFor="agreeCheckbox"
-          className="ml-2 text-sm text-gray-700 select-none media-max-545px:text-[12px]"
+          className="ml-2 text-sm text-gray-700 select-none"
         >
           I agree to the Terms and Conditions and Privacy Policy
         </label>
       </div>
+
       <button
         type="submit"
         disabled={!agreed}
-        className={`inline-flex items-center justify-center w-fit px-4 py-2 rounded media-max-545px:text-[14px]  ${agreed
-          ? "bg-purple_primary text-white hover:bg-[#84286a]"
-          : "bg-[#854c75] text-white cursor-not-allowed"
+        className={`inline-flex items-center gap-2 px-4 py-2 rounded text-sm ${agreed
+            ? "bg-purple_primary text-white hover:bg-[#84286a]"
+            : "bg-[#854c75] text-white cursor-not-allowed"
           }`}
       >
-        <span className="ml-2">{isSubmitting ? "Submitting..." : "Move Forward"}</span>
-        <MdArrowRight className="size-6" />
+        {isSubmitting ? "Submitting..." : "Move Forward"}
+        <MdArrowRight className="size-5" />
       </button>
     </form>
+
   );
 };
 

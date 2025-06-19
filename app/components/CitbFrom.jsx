@@ -326,29 +326,23 @@ const CitbForm = ({ test_center }) => {
         className="max-w-full mx-auto rounded space-y-6"
       >
 
-        <div className="pt-6">
+        <div className="pt-4 max-w-4xl mx-auto px-4">
+          <h2 className="text-xl bg-purple_primary text-white py-3 font-semibold mb-5 text-center rounded">
+            Candidate Undergoing the Test
+          </h2>
 
-
-
-
-          <h2 className="text-[25px] bg-purple_primary text-white py-4    font-bold mb-6 text-center">Candidate Undergoing the Test</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-4">
-
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-5">
             <div>
-              <label htmlFor="title" className="block text-md font-medium">
-                Title
-              </label>
+              <label htmlFor="title" className="block text-sm font-medium mb-1">Title</label>
               <select
                 id="title"
                 name="title"
                 value={formData.title}
                 onChange={handleChange}
-                className="w-full border border-gray-500  py-4 px-3 mb-4"
+                className="w-full border border-gray-400 py-2 px-3 rounded-md"
                 required
               >
-                <option value="" disabled>
-                  Please select the title
-                </option>
+                <option value="" disabled>Please select the title</option>
                 <option value="Mr">Mr</option>
                 <option value="Ms">Ms</option>
                 <option value="Mrs">Mrs</option>
@@ -357,126 +351,58 @@ const CitbForm = ({ test_center }) => {
               </select>
             </div>
 
-            <div>
-              <label htmlFor="firstName" className="block text-md font-medium">
-                First Name
-              </label>
-              <input
-                type="text"
-                id="firstName"
-                name="firstName"
-                placeholder="First Name"
-                value={formData.firstName}
-                onChange={handleChange}
-                className="w-full border border-gray-500 py-4 px-3"
-                required
-              />
-            </div>
-            <div>
-              <label htmlFor="middleName" className="block text-md font-medium">
-                Middle Name
-              </label>
-              <input
-                type="text"
-                id="middleName"
-                name="middleName"
-                placeholder="Middle Name"
-                value={formData.middleName}
-                onChange={handleChange}
-                className="w-full border border-gray-500 py-4 px-3"
-              />
-            </div>
-            <div>
-              <label htmlFor="lastName" className="block text-md font-medium">
-                Last Name
-              </label>
-              <input
-                type="text"
-                id="lastName"
-                name="lastName"
-                placeholder="Last Name"
-                value={formData.lastName}
-                onChange={handleChange}
-                className="w-full border border-gray-500 py-4 px-3"
-                required
-              />
-            </div>
-            <div>
-
-              <label htmlFor="dob" className="block text-md font-medium">
-                Date of Birth
-              </label>
-              <input
-                type="date"
-                id="dob"
-                name="dob"
-                value={formData.dob}
-                onChange={handleChange}
-                className="w-full border border-gray-500 py-4 px-3 mb-4"
-                required
-              />
-
-            </div>
-
-            <div>
-              <label htmlFor="nationalInsuranceNumber" className="block text-md font-medium">
-                National Insurance Number (Optional)
-              </label>
-              <input
-                type="text"
-                id="nationalInsuranceNumber"
-                name="nationalInsuranceNumber"
-                placeholder="e.g. QQ 123456 C"
-                value={formData.nationalInsuranceNumber}
-                onChange={handleChange}
-                className="w-full border border-gray-500 py-4 px-3 mb-4"
-              />
-            </div>
+            {[
+              { id: "firstName", label: "First Name", required: true },
+              { id: "middleName", label: "Middle Name" },
+              { id: "lastName", label: "Last Name", required: true },
+              { id: "dob", label: "Date of Birth", type: "date", required: true },
+              {
+                id: "nationalInsuranceNumber",
+                label: "National Insurance Number (Optional)",
+                placeholder: "e.g. QQ 123456 C",
+              },
+            ].map(({ id, label, type = "text", required = false, placeholder }) => (
+              <div key={id}>
+                <label htmlFor={id} className="block text-sm font-medium mb-1">{label}</label>
+                <input
+                  type={type}
+                  id={id}
+                  name={id}
+                  placeholder={placeholder || label}
+                  value={formData[id]}
+                  onChange={handleChange}
+                  required={required}
+                  className="w-full border border-gray-400 py-2 px-3 rounded-md"
+                />
+              </div>
+            ))}
           </div>
 
-          <h2 className="text-2xl font-bold mb-6">Contact Details</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-4">
-
-            <div>
-
-              <label htmlFor="phoneNumber" className="block text-md font-medium">
-                Phone Number
-              </label>
-              <input
-                type="text"
-                id="phoneNumber"
-                name="phoneNumber"
-                placeholder="e.g. 2080995236"
-                value={formData.phoneNumber}
-                onChange={handleChange}
-                className="w-full border border-gray-500 py-4 px-3 mb-4"
-                required
-              />
-            </div>
-
-            <div>
-
-              <label htmlFor="email" className="block text-md font-medium">
-                Email Address
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="yourname@domain.com"
-                value={formData.email}
-                onChange={handleChange}
-                className="w-full border border-gray-500 py-4 px-3 mb-4"
-                required
-              />
-            </div>
-
+          <h2 className="text-lg font-semibold mb-4 text-gray-700">Contact Details</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-5">
+            {["phoneNumber", "email"].map((id) => (
+              <div key={id}>
+                <label htmlFor={id} className="block text-sm font-medium mb-1 capitalize">
+                  {id === "phoneNumber" ? "Phone Number" : "Email Address"}
+                </label>
+                <input
+                  type={id === "email" ? "email" : "text"}
+                  id={id}
+                  name={id}
+                  placeholder={id === "email" ? "yourname@domain.com" : "e.g. 2080995236"}
+                  value={formData[id]}
+                  onChange={handleChange}
+                  required
+                  className="w-full border border-gray-400 py-2 px-3 rounded-md"
+                />
+              </div>
+            ))}
           </div>
-          <h2 className="text-2xl font-bold mb-6">Address</h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-4">
-            <div className="col-span-1 md:col-span-2">
-              <label htmlFor="houseNumber" className="block text-md font-medium">
+          <h2 className="text-lg font-semibold mb-4 text-gray-700">Address</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-5">
+            <div className="md:col-span-2">
+              <label htmlFor="houseNumber" className="block text-sm font-medium mb-1">
                 House Number and Street Name
               </label>
               <input
@@ -486,76 +412,34 @@ const CitbForm = ({ test_center }) => {
                 placeholder="Please fill out this field"
                 value={formData.houseNumber}
                 onChange={handleChange}
-                className="w-full border border-gray-500  py-4 px-3 mb-4"
                 required
+                className="w-full border border-gray-400 py-2 px-3 rounded-md"
               />
             </div>
 
-            <div>
-              <label htmlFor="locality" className="block text-md font-medium">
-                Locality (Optional)
-              </label>
-              <input
-                type="text"
-                id="locality"
-                name="locality"
-                placeholder="Locality"
-                value={formData.locality}
-                onChange={handleChange}
-                className="w-full border border-gray-500 py-4 px-3 mb-4"
-              />
-            </div>
-
-            <div>
-              <label htmlFor="townCity" className="block text-md font-medium">
-                Town/City
-              </label>
-              <input
-                type="text"
-                id="townCity"
-                name="townCity"
-                placeholder="Please fill out this field"
-                value={formData.townCity}
-                onChange={handleChange}
-                className="w-full border border-gray-500 py-4 px-3 mb-4"
-                required
-              />
-            </div>
-            <div>
-              <label htmlFor="county" className="block text-md font-medium">
-                Country
-              </label>
-              <input
-                type="text"
-                id="county"
-                name="county"
-                placeholder="Country"
-                value={formData.county}
-                onChange={handleChange}
-                className="w-full border border-gray-500 py-4 px-3 mb-4"
-              />
-
-            </div>
-
-            <div>
-
-
-              <label htmlFor="postcode" className="block text-md font-medium">
-                Postcode
-              </label>
-              <input
-                type="text"
-                id="postcode"
-                name="postcode"
-                placeholder="Postcode"
-                value={formData.postcode}
-                onChange={handleChange}
-                className="w-full border border-gray-500 py-4 px-3 "
-              />
-            </div>
+            {[
+              { id: "locality", label: "Locality (Optional)" },
+              { id: "townCity", label: "Town/City", required: true },
+              { id: "county", label: "Country" },
+              { id: "postcode", label: "Postcode" },
+            ].map(({ id, label, required = false }) => (
+              <div key={id}>
+                <label htmlFor={id} className="block text-sm font-medium mb-1">{label}</label>
+                <input
+                  type="text"
+                  id={id}
+                  name={id}
+                  placeholder={label}
+                  value={formData[id]}
+                  onChange={handleChange}
+                  required={required}
+                  className="w-full border border-gray-400 py-2 px-3 rounded-md"
+                />
+              </div>
+            ))}
           </div>
-
         </div>
+
 
         <div className="flex items-center mb-4">
           <input
