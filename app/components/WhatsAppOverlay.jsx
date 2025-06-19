@@ -12,7 +12,7 @@ export default function WhatsAppOverlay() {
         <div className="fixed bottom-4 right-4 z-[1000] bg-white shadow-md border border-gray-200 p-2 rounded-lg max-w-[320px] text-xs">
             <div className="flex flex-col items-center gap-2 relative">
                 <div className="flex flex-row items-start gap-2">
-                    <p className="font-semibold text-gray-800">Get Consultation
+                    <p className="font-semibold text-gray-800">Get Free Consultation 
                     </p>
 
                     <button

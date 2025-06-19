@@ -525,7 +525,7 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
 
             <div>
               <label htmlFor="citbId" className="block text-md font-medium">
-                CITB Testing ID
+                CITB Testing ID (Optional)
               </label>
               <input
                 type="text"
