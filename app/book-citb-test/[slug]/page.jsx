@@ -62,7 +62,7 @@ const page = () => {
         </div>
 
         {/* Form Section */}
-        <div className="max-w-2xl mx-auto bg-white p-6 shadow-md rounded-lg border border-gray-100">
+        <div className="max-w-2xl mx-auto bg-gray-200 p-6 shadow-md rounded-lg border border-gray-100">
           <CitbForm test_center={id} />
         </div>
 
