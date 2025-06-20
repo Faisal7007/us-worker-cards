@@ -147,44 +147,42 @@ function Contact({ no_banner }) {
   }, [formValues.email, formValues.mobile]);
 
   return (
-    <div className={`bg-gray-50 ${no_banner ? "mt-0" : "mt-[80px]"}`}>
+    <div className={`bg-gray-50 ${no_banner ? "mt-0" : "mt-[60px]"}`}>
       {!no_banner && <ContactUsBanner />}
 
-      <div className="max-w-[1280px] mx-auto px-4 pt-8">
+      <div className="max-w-[1200px] mx-auto px-4 pt-6">
         <ToastContainer />
 
-        <div className="pb-10 flex flex-col lg:flex-row justify-between gap-10">
+        <div className="pb-8 flex flex-col lg:flex-row justify-between gap-6">
           {/* Address Section */}
           <motion.div
             initial={{ x: -40, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: false, amount: 0.2 }}
-            className="w-full lg:w-1/2 bg-white p-6 rounded-xl shadow-sm space-y-6"
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true, amount: 0.3 }}
+            className="w-full lg:w-1/2 bg-white p-4 rounded-lg shadow space-y-4 text-sm"
           >
-            <h2 className="text-2xl font-semibold text-purple_primary">
-              Come, meet us!
-            </h2>
+            <h2 className="text-xl font-semibold text-purple_primary">Come, meet us!</h2>
 
             <a
               href="mailto:support@constructioncardservices.com"
-              className="text-base flex items-center text-gray-700 hover:text-purple_primary transition"
+              className="flex items-center text-gray-700 hover:text-purple_primary transition"
             >
-              <IoIosMail className="text-purple_primary mr-3" />
+              <IoIosMail className="text-purple_primary mr-2" />
               support@constructioncardservices.com
             </a>
 
-            <div className="text-base flex items-center text-gray-700">
-              <IoIosCall className="text-purple_primary mr-3" />
+            <div className="flex items-center text-gray-700">
+              <IoIosCall className="text-purple_primary mr-2" />
               +44 3030030136
             </div>
 
-            <div className="text-base flex items-center text-gray-700">
-              <IoLocation className="text-purple_primary mr-3" />
+            <div className="flex items-center text-gray-700">
+              <IoLocation className="text-purple_primary mr-2" />
               Dalton House, 60 Windsor Avenue, London SW19 2RR
             </div>
 
-            <div className="h-64 rounded-md overflow-hidden mt-4 shadow">
+            <div className="h-48 rounded-md overflow-hidden mt-2 shadow">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2488.5471223637405!2d-0.1892843234904513!3d51.411375517713836!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4876061fc2c0f7c7%3A0xdc0cdfd2caab07ff!2sDalton%20House%2C%2060%20Windsor%20Ave%2C%20London%20SW19%202RR%2C%20UK!5e0!3m2!1sen!2sin!4v1748694571025!5m2!1sen!2sin"
                 width="100%"
@@ -201,28 +199,18 @@ function Contact({ no_banner }) {
           <motion.div
             initial={{ x: 40, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: false, amount: 0.2 }}
-            className="w-full lg:w-1/2 bg-white p-6 rounded-xl shadow-sm space-y-5"
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true, amount: 0.3 }}
+            className="w-full lg:w-1/2 bg-white p-4 rounded-lg shadow space-y-4 text-sm"
           >
-            <h2 className="text-2xl font-semibold text-purple_primary">
+            <h2 className="text-xl font-semibold text-purple_primary">
               Message us, we’ll get back to you soon
             </h2>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-3">
               {[
-                {
-                  label: "Full Name",
-                  name: "name",
-                  type: "text",
-                  value: formValues.name,
-                },
-                {
-                  label: "Email",
-                  name: "email",
-                  type: "email",
-                  value: formValues.email,
-                },
+                { label: "Full Name", name: "name", type: "text", value: formValues.name },
+                { label: "Email", name: "email", type: "email", value: formValues.email },
                 {
                   label: "Mobile Number",
                   name: "mobile",
@@ -232,10 +220,7 @@ function Contact({ no_banner }) {
                 },
               ].map(({ label, name, type, value, pattern }) => (
                 <div key={name}>
-                  <label
-                    htmlFor={name}
-                    className="block text-gray-700 text-sm mb-1 font-medium"
-                  >
+                  <label htmlFor={name} className="block text-gray-700 mb-1 font-medium text-xs">
                     {label}
                   </label>
                   <input
@@ -245,16 +230,16 @@ function Contact({ no_banner }) {
                       name === "email"
                         ? handleEmailBlur
                         : name === "mobile"
-                        ? handleMobileBlur
-                        : undefined
+                          ? handleMobileBlur
+                          : undefined
                     }
                     type={type}
                     id={name}
                     name={name}
                     required
-                    placeholder={`Your ${label}`}
                     pattern={pattern}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-purple_primary focus:outline-none"
+                    placeholder={`Your ${label}`}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-purple_primary focus:outline-none text-sm"
                   />
                 </div>
               ))}
@@ -262,7 +247,7 @@ function Contact({ no_banner }) {
               <div>
                 <label
                   htmlFor="description"
-                  className="block text-gray-700 text-sm mb-1 font-medium"
+                  className="block text-gray-700 mb-1 font-medium text-xs"
                 >
                   Description
                 </label>
@@ -271,16 +256,16 @@ function Contact({ no_banner }) {
                   onChange={handleChange}
                   id="description"
                   name="description"
-                  rows="5"
-                  placeholder="Write a description..."
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm resize-none focus:ring-2 focus:ring-purple_primary focus:outline-none"
+                  rows="4"
+                  placeholder="Write a short message..."
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm resize-none focus:ring-2 focus:ring-purple_primary focus:outline-none text-sm"
                 ></textarea>
               </div>
 
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-3 bg-purple_primary text-white rounded-md font-semibold hover:bg-[#84286a] transition"
+                className="w-full py-2 bg-purple_primary text-white rounded-md font-semibold hover:bg-[#84286a] transition text-sm"
               >
                 {isSubmitting ? "Submitting..." : "Submit"}
               </button>
@@ -290,6 +275,7 @@ function Contact({ no_banner }) {
       </div>
     </div>
   );
+
 }
 
 export default Contact;

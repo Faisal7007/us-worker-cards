@@ -93,7 +93,7 @@ export default function Home() {
 
         <div className="mt-2 sm:mt-16">
           <div className="text-center ">
-            <h2 className="text-[25px] font-bold inline-block  px-4 py-1 bg-purple_primary rounded-full text-white media-max-600px:text-[22px] ">Our Services</h2>
+            <h2 className="text-[25px] font-bold inline-block  px-4 py-1 rounded-full text-black media-max-600px:text-[22px] ">Our Services</h2>
             <p className="text-lg text-gray-600 mt-4 media-max-545px:text-[14px]">Explore the various services we offer to help with your construction and safety needs.</p>
           </div>
 
@@ -166,7 +166,7 @@ export default function Home() {
 
 
         <div className="text-center mt-16 media-max-545px:mt-12">
-          <h2 className="text-[25px] font-bold inline-block mb-8 px-4 py-1 bg-purple_primary rounded-full text-white media-max-600px:text-[22px]">
+          <h2 className="text-[25px] font-bold inline-block mb-8 px-4 py-1 rounded-full text-black media-max-600px:text-[22px]">
             Your Guide to Booking the CITB Test
           </h2>
         </div>
@@ -241,7 +241,7 @@ export default function Home() {
 
 
         <div className="text-center mt-16 mb-8 media-max-545px:mt-12">
-          <h2 className="text-[25px] font-bold inline-block  px-4 py-1 bg-purple_primary rounded-full text-white media-max-600px:text-[22px]">Apply for CSCS Card</h2>
+          <h2 className="text-[25px] font-bold inline-block  px-4 py-1 rounded-full text-black media-max-600px:text-[22px]">Apply for CSCS Card</h2>
         </div>
 
         <div className="flex flex-col lg:flex-row lg:justify-center items-center lg:gap-10 gap-6 rounded-lg px-4 lg:px-0">

@@ -96,7 +96,7 @@ const Banner = () => {
               <div className="mt-6">
                 <Link
                   href="https://wa.me/447883317237?text=Hi%20there!%20I%20need%20help%20with%20Construction%20Card%20Services."
-                  className="gradient-border inline-block px-5 py-3 mt-4  text-white rounded-lg font-semibold shadow-md transition duration-200"
+                  className="gradient-border inline-block px-5 py-3 mt-4  text-white rounded-lg font-semibold shadow-md transition duration-200 hover:bg-green-500 hover:text-black"
                 >
                   💬 Got Stuck/Need Help
                 </Link>
@@ -109,7 +109,7 @@ const Banner = () => {
               <img
                 src={images[currentIndex]}
                 alt="Illustration"
-                className="w-64 h-80 object-cover rounded-xl shadow-xl cursor-pointer transition-transform duration-300 hover:scale-105"
+                className="w-64 h-82 object-cover rounded-xl shadow-xl cursor-pointer transition-transform duration-300 hover:scale-105 "
               />
             </Link>
           </div>

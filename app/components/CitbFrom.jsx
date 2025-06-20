@@ -320,48 +320,59 @@ const CitbForm = ({ test_center }) => {
 
       <form
         onSubmit={(e) => {
-          e.preventDefault();          // Prevent page reload
-          setShowOverlayForm(true);    // Your existing logic
+          e.preventDefault();
+          setShowOverlayForm(true);
         }}
         className="max-w-full mx-auto rounded space-y-6"
       >
-
         <div className="pt-4 max-w-4xl mx-auto px-4">
-          <h2 className="text-xl bg-purple_primary text-white py-3 font-semibold mb-5 text-center rounded">
+          <h2 className="text-lg bg-purple_primary text-white py-2 font-semibold mb-4 text-center rounded">
             Candidate Undergoing the Test
           </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-5">
+          <p className="text-lg font-semibold mb-3 text-gray-700">Name</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-4">
+            {/* <p>Title</p> */}
             <div>
-              <label htmlFor="title" className="block text-sm font-medium mb-1">Title</label>
+              {/* <label htmlFor="title" className="block text-sm font-medium mb-1">Name</label> */}
               <select
                 id="title"
                 name="title"
                 value={formData.title}
                 onChange={handleChange}
-                className="w-full border border-gray-400 py-2 px-3 rounded-md"
+                className={`w-full border border-gray-400 py-2 px-3 rounded-md ${formData.title === '' ? 'text-gray-400' : 'text-gray-900'
+                  }`}
                 required
               >
-                <option value="" disabled>Please select the title</option>
-                <option value="Mr">Mr</option>
-                <option value="Ms">Ms</option>
-                <option value="Mrs">Mrs</option>
-                <option value="Miss">Miss</option>
-                <option value="Dr">Dr</option>
+                <option value="" disabled hidden>
+                  Please select the title
+                </option>
+                <option className="text-gray-900" value="Mr">Mr</option>
+                <option className="text-gray-900" value="Ms">Ms</option>
+                <option className="text-gray-900" value="Mrs">Mrs</option>
+                <option className="text-gray-900" value="Miss">Miss</option>
+                <option className="text-gray-900" value="Dr">Dr</option>
               </select>
+
+
+
             </div>
 
-            {[
-              { id: "firstName", label: "First Name", required: true },
-              { id: "middleName", label: "Middle Name" },
-              { id: "lastName", label: "Last Name", required: true },
-              { id: "dob", label: "Date of Birth", type: "date", required: true },
-              {
-                id: "nationalInsuranceNumber",
-                label: "National Insurance Number (Optional)",
-                placeholder: "e.g. QQ 123456 C",
-              },
-            ].map(({ id, label, type = "text", required = false, placeholder }) => (
+            {[{ id: "firstName", label: "First Name", required: true }, { id: "middleName", label: "Middle Name" }, { id: "lastName", label: "Last Name", required: true }].map(({ id, label, type = "text", required = false, placeholder }) => (
+              <div key={id}>
+                {/* <label htmlFor={id} className="block text-sm font-medium mb-1">{label}</label> */}
+                <input
+                  type={type}
+                  id={id}
+                  name={id}
+                  placeholder={placeholder || label}
+                  value={formData[id]}
+                  onChange={handleChange}
+                  required={required}
+                  className="w-full border border-gray-400 py-2 px-3 rounded-md"
+                />
+              </div>
+            ))}
+            {[{ id: "dob", label: "Date of Birth", type: "date", required: true }, { id: "nationalInsuranceNumber", label: "National Insurance Number (Optional)", placeholder: "e.g. QQ 123456 C" }].map(({ id, label, type = "text", required = false, placeholder }) => (
               <div key={id}>
                 <label htmlFor={id} className="block text-sm font-medium mb-1">{label}</label>
                 <input
@@ -378,8 +389,8 @@ const CitbForm = ({ test_center }) => {
             ))}
           </div>
 
-          <h2 className="text-lg font-semibold mb-4 text-gray-700">Contact Details</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-5">
+          <h2 className="text-lg font-semibold mb-3 text-gray-700">Contact Details</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-4">
             {["phoneNumber", "email"].map((id) => (
               <div key={id}>
                 <label htmlFor={id} className="block text-sm font-medium mb-1 capitalize">
@@ -399,17 +410,17 @@ const CitbForm = ({ test_center }) => {
             ))}
           </div>
 
-          <h2 className="text-lg font-semibold mb-4 text-gray-700">Address</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-5">
-            <div className="md:col-span-2">
-              <label htmlFor="houseNumber" className="block text-sm font-medium mb-1">
+          <h2 className="text-lg font-semibold mb-3 text-gray-700">Address</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-4">
+            <div className="sm:col-span-2">
+              {/* <label htmlFor="houseNumber" className="block text-sm font-medium mb-1">
                 House Number and Street Name
-              </label>
+              </label> */}
               <input
                 type="text"
                 id="houseNumber"
                 name="houseNumber"
-                placeholder="Please fill out this field"
+                placeholder="House Number and Street Name"
                 value={formData.houseNumber}
                 onChange={handleChange}
                 required
@@ -417,14 +428,9 @@ const CitbForm = ({ test_center }) => {
               />
             </div>
 
-            {[
-              { id: "locality", label: "Locality (Optional)" },
-              { id: "townCity", label: "Town/City", required: true },
-              { id: "county", label: "Country" },
-              { id: "postcode", label: "Postcode" },
-            ].map(({ id, label, required = false }) => (
+            {[{ id: "locality", label: "Locality (Optional)" }, { id: "townCity", label: "Town/City", required: true }, { id: "county", label: "Country" }, { id: "postcode", label: "Postcode" }].map(({ id, label, required = false }) => (
               <div key={id}>
-                <label htmlFor={id} className="block text-sm font-medium mb-1">{label}</label>
+                {/* <label htmlFor={id} className="block text-sm font-medium mb-1">{label}</label> */}
                 <input
                   type="text"
                   id={id}
@@ -440,55 +446,30 @@ const CitbForm = ({ test_center }) => {
           </div>
         </div>
 
-
         <div className="flex items-center mb-4">
           <input
             id="agreeCheckbox"
             type="checkbox"
             onChange={handleCheckboxChange}
-            className="w-5 h-5 accent-purple_primary rounded  focus:ring-purple_primary"
+            className="w-5 h-5 accent-purple_primary rounded focus:ring-purple_primary"
           />
           <label
             htmlFor="agreeCheckbox"
-            className="ml-2 text-sm text-gray-700 select-none media-max-545px:text-[12px]"
+            className="ml-2 text-sm text-gray-700 select-none"
           >
             I agree to the Terms and Conditions and Privacy Policy
           </label>
         </div>
 
-        {/* <div className="mb-6">
-        <label htmlFor="testType" className="block text-md font-medium">
-          Choose Test Type
-        </label>
-        <select
-          id="testType"
-          name="testType"
-          value={formData.testType}
-          onChange={handleChange}
-          className="w-50% border border-gray-500 py-4 px-3"
-          required
-        >
-          <option value="" disabled>
-            Please select a test type
-          </option>
-          <option value="normal">Take CITB Test</option>
-          <option value="retake">Take CITB Test + Retake</option>
-        </select>
-      </div> */}
-
         <button
           type="submit"
           disabled={!agreed}
-          // onClick={() => setShowOverlayForm(true)}
-          className={`inline-flex items-center justify-center w-fit px-4 py-2 rounded media-max-545px:text-[14px] ${agreed
-            ? "bg-purple_primary text-white hover:bg-[#84286a]"
-            : "bg-gray-300 text-gray-600 cursor-not-allowed"
-            }`}
+          className={`inline-flex items-center justify-center w-fit px-4 py-2 rounded ${agreed ? "bg-purple_primary text-white hover:bg-[#84286a]" : "bg-gray-300 text-gray-600 cursor-not-allowed"}`}
         >
           Move Forward <MdArrowRight className="ml-2" />
         </button>
-
       </form>
+
     </>
   );
 };
