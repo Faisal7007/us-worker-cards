@@ -89,7 +89,7 @@ const Page = () => {
           <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />
           Date of registration (must be in the last 2 years)</p>
         <p className='my-6'></p>
-        <p ><Link href="#" className='text-purple_primary font-bold'>Contact Support</Link> if you're still not sure which test to take.</p>
+        <p ><Link href="mailto:support@constructioncardservices.com" className='text-purple_primary font-bold'>Contact Support</Link> if you're still not sure which test to take.</p>
       </div>
     </div>
   )

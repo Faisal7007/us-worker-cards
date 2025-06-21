@@ -321,12 +321,46 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
             Easy Apply For <span className="uppercase">{form_type}</span> Card
           </h2>
 
+          <h2 className="text-md font-semibold text-gray-700 mb-3">Name</h2>
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             {[
               { label: "Title", id: "title", type: "select", options: ["Mr", "Ms", "Mrs", "Miss", "Dr"], required: true },
               { label: "First Name", id: "firstName", type: "text", placeholder: "First Name", required: true },
               { label: "Middle Name", id: "middleName", type: "text", placeholder: "Middle Name" },
               { label: "Last Name", id: "lastName", type: "text", placeholder: "Last Name", required: true },
+            ].map((field, i) => (
+              <div key={i}>
+                {/* <label htmlFor={field.id} className="block text-sm font-medium mb-1">{field.label}</label> */}
+                {field.type === "select" ? (
+                  <select
+                    id={field.id}
+                    name={field.id}
+                    value={formData[field.id]}
+                    onChange={handleChange}
+                    required={field.required}
+                    className="w-full border border-gray-400 py-2 px-3 rounded"
+                  >
+                    <option value="" disabled>Please select the title</option>
+                    {field.options.map((opt) => (
+                      <option key={opt} value={opt}>{opt}</option>
+                    ))}
+                  </select>
+                ) : (
+                  <input
+                    type={field.type}
+                    id={field.id}
+                    name={field.id}
+                    placeholder={field.placeholder || ""}
+                    value={formData[field.id]}
+                    onChange={handleChange}
+                    required={field.required}
+                    className="w-full border border-gray-400 py-2 px-3 rounded"
+                  />
+                )}
+              </div>
+            ))}
+            {[
               { label: "Date of Birth", id: "dob", type: "date", required: true },
               { label: "National Insurance Number (Optional)", id: "nationalInsuranceNumber", type: "text", placeholder: "e.g. QQ 123456 C" },
             ].map((field, i) => (
@@ -394,7 +428,7 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
               { id: "citbId", label: "CITB Testing ID (Optional)", placeholder: "e.g. 1234567890", optional: true },
             ].map(({ id, label, placeholder }) => (
               <div key={id}>
-                <label htmlFor={id} className="block text-sm font-medium mb-1">{label}</label>
+                {/* <label htmlFor={id} className="block text-sm font-medium mb-1">{label}</label> */}
                 <input
                   type="text"
                   id={id}
@@ -413,7 +447,7 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             {form_type === 'ess' && (
               <div>
-                <label htmlFor="variant" className="block text-sm font-medium mb-1">Card Variant</label>
+                {/* <label htmlFor="variant" className="block text-sm font-medium mb-1">Card Variant</label> */}
                 <select
                   id="variant"
                   name="variant"
@@ -430,7 +464,7 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
             )}
 
             <div className="relative">
-              <label htmlFor="cardtype" className="block text-sm font-medium mb-1">Card Type</label>
+              {/* <label htmlFor="cardtype" className="block text-sm font-medium mb-1">Card Type</label> */}
               <div
                 onClick={() => setIsOpen(!isOpen)}
                 className="border border-gray-400 py-2 px-3 rounded cursor-pointer"

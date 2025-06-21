@@ -383,7 +383,7 @@ const EssPageComponent = ({ id, title_page, image_path, title_form_one, title_fo
         <p className="flex items-start mb-2">
           <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" /><span className='font-semibold mr-1'>Digital card :</span> 66 £ including 48 pound ESS fee+ VAT fee + booking fee</p>
 
-        <p><Link href="#" className='text-purple_primary font-bold mt-6'>Contact Support</Link> if you're still not sure which test to take.</p>
+        <p><Link href="mailto:support@constructioncardservices.com" className='text-purple_primary font-bold mt-6'>Contact Support</Link> if you're still not sure which test to take.</p>
 
 
 

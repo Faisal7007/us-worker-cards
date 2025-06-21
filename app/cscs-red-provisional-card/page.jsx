@@ -69,7 +69,7 @@ const Page = () => {
 
         <p className='mb-6 text-justify media-max-545px:text-[14px]'>This card is for people who are working through probationary periods while employers assess their suitability for employment. You can only apply for a provisional card if you have not held a CSCS card before and this card can only be applied for once. <span className='font-bold'>No qualification is required for this card.</span></p>
 
-        <p className='media-max-545px:text-[14px]' ><Link href="#" className='text-purple_primary font-bold'>Contact Support</Link> if you're still not sure which test to take.</p>
+        <p className='media-max-545px:text-[14px]' ><Link href="mailto:support@constructioncardservices.com" className='text-purple_primary font-bold'>Contact Support</Link> if you're still not sure which test to take.</p>
       </div>
 
 

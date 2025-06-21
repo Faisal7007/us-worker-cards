@@ -72,7 +72,7 @@ const Page = () => {
           Construction Related Supervisory/Technical NVQ or SVQ Level 3 or 4</p>
         <p className="flex items-start mb-6 text-justify">
           <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />Occupational Work Supervision NVQ or SVQ Level 3 (including proof of endorsed occupation).</p>
-        <p className='text-justify' ><Link href="#" className='text-purple_primary font-bold'>Contact Support</Link> if you're still not sure which test to take.</p>
+        <p className='text-justify' ><Link href="mailto:support@constructioncardservices.com" className='text-purple_primary font-bold'>Contact Support</Link> if you're still not sure which test to take.</p>
       </div>
     </div>
   )

@@ -52,7 +52,7 @@ const Page = () => {
         </p>
 
         <p className='mb-6 text-justify'>To apply for the card, applicants will need to supply a copy of their qualification and where possible evidence of the units achieved within the qualification. The CSCS Card booking is £54 which includes the £36 CSCS fee, booking fee and VAT.</p>
-        <p ><Link href="#" className='text-purple_primary font-bold'>Contact Support</Link> if you're still not sure which test to take.</p>
+        <p ><Link href="mailto:support@constructioncardservices.com" className='text-purple_primary font-bold'>Contact Support</Link> if you're still not sure which test to take.</p>
       </div>
     </div>
   )

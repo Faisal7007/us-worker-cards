@@ -80,7 +80,7 @@ const Page = () => {
           Completed an employer-sponsored apprenticeship which included the achievement of a City and Guilds of London Institute Advanced Craft Certificate.
         </p>
 
-        <p className=' text-justify media-max-545px:text-[14px]' ><Link href="#" className='text-purple_primary font-bold'>Contact Support</Link> if you're still not sure which test to take.</p>
+        <p className=' text-justify media-max-545px:text-[14px]' ><Link href="mailto:support@constructioncardservices.com" className='text-purple_primary font-bold'>Contact Support</Link> if you're still not sure which test to take.</p>
       </div>
 
 

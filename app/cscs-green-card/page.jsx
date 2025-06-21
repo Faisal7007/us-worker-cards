@@ -163,7 +163,7 @@ const Page = () => {
           Please visit the <Link href="/health-and-safety-awareness" className="text-purple_primary font-bold">Health and Safety Awareness Course</Link> to obtain one of the required qualifications listed above.
         </p>
         <p className="text-justify text-sm leading-relaxed media-max-545px:text-[14px]">
-          <Link href="#" className="text-purple_primary font-bold">Contact Support</Link> if you're still not sure which test to take.
+          <Link href="mailto:support@constructioncardservices.com" className="text-purple_primary font-bold">Contact Support</Link> if you're still not sure which test to take.
         </p>
 
       </div>

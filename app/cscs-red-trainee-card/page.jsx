@@ -90,7 +90,7 @@ const Page = () => {
           <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />
           Academic qualifications (i.e. Degree, HND or HNC) must be in the last five years. This is due to the difference in length of time to achieving this qualification.</p>
 
-        <p className='mt-4' ><Link href="#" className='text-purple_primary font-bold '>Contact Support</Link> if you're still not sure which test to take.</p>
+        <p className='mt-4' ><Link href="mailto:support@constructioncardservices.com" className='text-purple_primary font-bold '>Contact Support</Link> if you're still not sure which test to take.</p>
       </div>
     </div>
   )

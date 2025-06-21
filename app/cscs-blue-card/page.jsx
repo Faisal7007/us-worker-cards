@@ -98,7 +98,7 @@ const Page = () => {
             Applicants must pass the <Link href="/citb-test" className="font-bold text-purple_primary">CITB Health, Safety, and Environment test</Link> at the appropriate level for their occupation within the last two years. To identify the required test level, refer to our <Link href="#" className="font-bold text-purple_primary">Card Finder.</Link> The cost for booking a CSCS Card is £54, which covers the £36 CSCS fee, booking fee, and VAT.
           </p>
           <p className="text-justify">
-            <Link href="#" className="text-purple_primary font-bold">Contact Support</Link> if you're still not sure which test to take.
+            <Link href="mailto:support@constructioncardservices.com" className="text-purple_primary font-bold">Contact Support</Link> if you're still not sure which test to take.
           </p>
         </div>
 

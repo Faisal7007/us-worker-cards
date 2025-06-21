@@ -63,7 +63,7 @@ const Page = () => {
           <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" /> An up-to-date letter or email from the professional body confirming membership for the current calendar year</p>
         <p className="flex items-start mb-6">
           <FaHardHat className="text-purple_primary mr-2 mt-1 flex-shrink-0" />A receipt of payment for membership for the current calendar year</p>
-        <p><Link href="#" className='text-purple_primary font-bold'>Contact Support</Link> if you're still not sure which test to take.</p>
+        <p><Link href="mailto:support@constructioncardservices.com" className='text-purple_primary font-bold'>Contact Support</Link> if you're still not sure which test to take.</p>
       </div>
     </div>
   )
