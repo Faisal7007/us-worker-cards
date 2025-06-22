@@ -250,7 +250,8 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
     <>
 
       <form
-      // onSubmit={handleSubmit}
+        // onSubmit={handleSubmit}
+        className=""
       >
         {showOverlay && (
           <div className="fixed inset-0 bg-black bg-opacity-70 backdrop-blur-sm flex items-center justify-center z-50">
@@ -311,7 +312,7 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
       </form>
 
       <form
-        className="max-w-4xl mx-auto rounded space-y-5 px-4"
+        className="max-w-4xl bg-gray-200 mx-auto rounded space-y-5 px-4"
         onSubmit={(e) => { e.preventDefault(); setShowOverlay(true); }}
       >
         <ToastContainer />
@@ -433,7 +434,7 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
                   type="text"
                   id={id}
                   name={id}
-                  placeholder={placeholder}
+                  placeholder={label}
                   value={formData[id]}
                   onChange={handleChange}
                   required={!label.includes("Optional")}
