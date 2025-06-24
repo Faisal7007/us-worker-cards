@@ -16,16 +16,16 @@ const Footer = () => {
               viewport={{ once: false, amount: 0.4 }} className="flex flex-col items-center lg:items-start space-y-4">
               <Link href="/">
                 <Image
-                  className="cursor-pointer max-h-[80px] w-auto h-auto"
+                  className="cursor-pointer max-h-[350px] w-auto h-350"
                   src="/color-logo.png"
-                  width={100}
-                  height={100}
+                  width={350}
+                  height={350}
                   alt="logo"
                   priority={true}
                 />
               </Link>
 
-              <div className="w-full lg:w-72 sm:w-72 text-justify text-sm md:text-base media-max-545px:text-[14px]">
+              <div className="w-full lg:w-72 sm:w-72 text-justify text-gray-400 text-sm text-[10px] md:text-[10px] media-max-545px:text-[10px]">
                 Construction Card Services explicitly states that we are not part of, or associated with CSCS or CITB.
               </div>
             </motion.div>
