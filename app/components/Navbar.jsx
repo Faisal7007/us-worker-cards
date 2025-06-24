@@ -112,37 +112,30 @@ const Navbar = () => {
         }`}
     >
       <div className="max-w-[1440px] mx-auto px-6 lg:px-4">
-        <nav className="flex items-center justify-between py-4 lg:py-6">
-
+        <nav className="flex flex-wrap items-center justify-between py-4 lg:py-6 gap-4">
 
           {/* Logo */}
-          <div className="flex items-center gap-2">
-            <Link href="/" className="flex items-center">
-              <Image
-                src="/color-logo.png"
-                className="cursor-pointer max-h-[70px] w-auto"
-                width={100}
-                height={100}
-                priority
-                alt="Logo"
-              />
-            </Link>
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/color-logo.png"
+              className="cursor-pointer max-h-[70px] w-auto"
+              width={100}
+              height={100}
+              priority
+              alt="Logo"
+            />
+          </Link>
 
-
-            <div className="text-purple_primary font-bold flex flex-col ml-2 sm:ml-10 items-end gap-[2px]">
-
-              <div className="flex gap-2 items-center justify-center cursor-pointer">
-                <FaPhoneAlt />
-                <a href="tel:+443030030136" className="hover:underline text-sm">
-                  +44 3030030136
-                </a>
-              </div>
-              <p className="text-xs font-normal">Mon-Sat (9 AM to 7 PM)</p>
+          {/* Contact Info */}
+          <div className="text-purple_primary font-bold flex flex-col items-center lg:items-end gap-1">
+            <div className="flex gap-2 items-center justify-center cursor-pointer">
+              <FaPhoneAlt />
+              <a href="tel:+443030030136" className="hover:underline">
+                +44 3030030136
+              </a>
             </div>
+            <p className="text-sm font-normal">Mon-Sat (9 AM to 7 PM)</p>
           </div>
-
-
-
 
           {/* Mobile Menu Toggle */}
           <button
