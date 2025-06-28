@@ -3,6 +3,7 @@ import React from 'react'
 import { IoIosArrowForward } from "react-icons/io";
 import CardForm from '../components/CardForm';
 import Image from 'next/image';
+import Script from 'next/script';
 import { FaHardHat } from 'react-icons/fa';
 
 const Page = () => {

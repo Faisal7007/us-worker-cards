@@ -5,6 +5,7 @@ import CardForm from '../components/CardForm';
 import Image from 'next/image';
 import { FaAward, FaHardHat } from 'react-icons/fa';
 import SmallCard from '../components/SmallCard';
+import Script from 'next/script';
 
 const Page = () => {
   return (

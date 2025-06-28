@@ -8,6 +8,7 @@ import { FaAward, FaHardHat, FaIdCard, FaUsers } from "react-icons/fa";
 import { FaExclamationTriangle } from 'react-icons/fa';
 import HomeCard from '../components/HomeCard';
 import SmallCard from '../components/SmallCard';
+import Script from 'next/script';
 
 
 const Page = () => {

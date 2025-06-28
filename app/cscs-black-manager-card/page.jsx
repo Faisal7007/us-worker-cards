@@ -4,6 +4,7 @@ import { IoIosArrowForward } from "react-icons/io";
 import CardForm from '../components/CardForm';
 import Image from 'next/image';
 import { FaAward, FaHardHat } from 'react-icons/fa';
+import Script from 'next/script';
 import SmallCard from '../components/SmallCard';
 
 const Page = () => {

@@ -10,6 +10,7 @@ import HomeCard from '../components/HomeCard';
 import SmallCard from '../components/SmallCard';
 import { useFirebase } from '../context/Firebase';
 import { ToastContainer } from 'react-toastify';
+import Script from 'next/script';
 
 
 const Page = () => {
