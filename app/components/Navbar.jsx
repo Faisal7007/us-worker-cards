@@ -15,7 +15,7 @@ const DropdownMenu = ({ label, items, dropdownOpen, toggleDropdown, handleOption
     <div className="relative">
       <button
         onClick={() => toggleDropdown(label)}
-        className="inline-flex items-center py-1 px-0 text-purple_primary hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-0 after:h-[2px] after:bg-current after:transition-all after:duration-300 focus:outline-none media-max-935px:px-0 media-max-1022px:px-0"
+        className="inline-flex items-center font-semibold py-1 px-0 text-purple_primary hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-0 after:h-[2px] after:bg-current after:transition-all after:duration-300 focus:outline-none media-max-935px:px-0 media-max-1022px:px-0"
       >
         {label}
         <FaAngleDown className="ml-2" />
@@ -174,7 +174,7 @@ const Navbar = () => {
               <Link
                 href="/book-citb-test/default"
                 onClick={handleOptionClick}
-                className={`relative text-purple_primary font-semibold hover:text-purple-700 transition-all ${pathname === "/book-citb-test/default" ? "underline underline-offset-4" : ""
+                className={`relative text-purple_primary font-semibold hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-0 after:h-[2px] after:bg-current after:transition-all after:duration-300 focus:outline-none transition-all ${pathname === "/book-citb-test/default" ? "underline underline-offset-4" : ""
                   }`}
               >
                 CITB Test
@@ -226,7 +226,7 @@ const Navbar = () => {
               <Link
                 href="/group-booking"
                 onClick={handleOptionClick}
-                className={`relative text-purple_primary font-semibold hover:text-purple-700 transition-all ${pathname === "/group-booking" ? "underline underline-offset-4" : ""
+                className={`relative text-purple_primary font-semibold hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-0 after:h-[2px] after:bg-current after:transition-all after:duration-300 focus:outline-none transition-all ${pathname === "/group-booking" ? "underline underline-offset-4" : ""
                   }`}
               >
                 Group Booking
@@ -234,7 +234,7 @@ const Navbar = () => {
               <Link
                 href="/contact-us"
                 onClick={handleOptionClick}
-                className={`relative text-purple_primary font-semibold hover:text-purple-700 transition-all ${pathname === "/contact-us" ? "underline underline-offset-4" : ""
+                className={`relative text-purple_primary font-semibold hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-0 after:h-[2px] after:bg-current after:transition-all after:duration-300 focus:outline-none transition-all ${pathname === "/contact-us" ? "underline underline-offset-4" : ""
                   }`}
               >
                 Contact Us
