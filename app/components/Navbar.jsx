@@ -108,135 +108,159 @@ const Navbar = () => {
 
   return (
     <div
-      className={`bg-white fixed min-w-[100vw] top-0 right-0 z-50 shadow-lg transition-transform duration-500 ease-in-out ${showNavbar ? "translate-y-0" : "-translate-y-full"
+      className={`bg-white/90 backdrop-blur fixed min-w-[100vw] top-0 right-0 z-50 shadow-md border-b border-slate-200 transition-transform duration-500 ease-in-out ${showNavbar ? "translate-y-0" : "-translate-y-full"
         }`}
     >
-      <div className="max-w-[1440px] mx-auto px-6 lg:px-4">
-        <nav className="flex flex-wrap items-center justify-between py-4 lg:py-6 gap-4">
+      <div className="max-w-[1440px] mx-auto px-4 lg:px-6">
+
+        <nav className="flex w-full items-center justify-between py-3 lg:py-4 gap-2">
+
 
           {/* Logo */}
           <Link href="/" className="flex items-center">
             <Image
               src="/color-logo.png"
               className="cursor-pointer max-h-[70px] w-auto"
-              width={100}
-              height={100}
+              width={120}
+              height={120}
               priority
               alt="Logo"
             />
           </Link>
 
-          {/* Contact Info */}
-          <div className="text-purple_primary font-bold flex flex-col items-center lg:items-end gap-1">
-            <div className="flex gap-2 items-center justify-center cursor-pointer">
-              <FaPhoneAlt />
-              <a href="tel:+443030030136" className="hover:underline">
+          {/* Contact Info (all screens) */}
+          <div className="lg:hidden flex justify-center py-2 border-t border-slate-200 text-[15px] font-medium">
+            <div className="flex flex-col items-center text-purple_primary gap-0.5">
+              <div className="flex items-center gap-1.5">
+                <FaPhoneAlt className="text-purple_primary" />
+                <a href="tel:+443030030136" className="hover:underline">
+                  +44 3030030136
+                </a>
+              </div>
+              <p className="text-xs text-slate-500">Mon-Sat • 9 AM – 7 PM</p>
+            </div>
+          </div>
+
+          {/* Contact Info (desktop) */}
+          <div className="hidden lg:flex flex-col items-end text-right text-purple_primary font-semibold gap-0.5 text-[16px] lg:text-[17px] xl:text-[18px]">
+            <div className="flex items-center gap-1.5">
+              <FaPhoneAlt className="text-purple_primary" />
+              <a href="tel:+443030030136" className="hover:underline tracking-wide">
                 +44 3030030136
               </a>
             </div>
-            <p className="text-sm font-normal">Mon-Sat (9 AM to 7 PM)</p>
+            <p className="text-xs font-normal text-slate-500">Mon-Sat • 9 AM – 7 PM</p>
           </div>
 
-          {/* Mobile Menu Toggle */}
+          {/* Menu Toggle */}
           <button
             className="text-purple_primary text-2xl lg:hidden focus:outline-none"
             onClick={toggleMobileMenu}
           >
-            {isMobileMenuOpen ? <FaTimes size={28} /> : <FaBars size={28} />}
+            {isMobileMenuOpen ? <FaTimes size={26} /> : <FaBars size={26} />}
           </button>
 
           {/* Main Nav Links */}
           <div
-            className={`w-full lg:w-auto lg:flex lg:items-center ${isMobileMenuOpen
-              ? "block absolute top-full left-0 w-full bg-white text-purple_primary transition-all duration-500 pb-6 pt-6 px-6 shadow-lg"
+            className={`w-full lg:w-auto lg:flex lg:items-center transition-all duration-500 font-medium ${isMobileMenuOpen
+              ? "block absolute top-full left-0 w-full bg-white px-6 py-5 shadow-lg border-t border-slate-200"
               : "hidden"
               } lg:static lg:bg-transparent lg:p-0`}
           >
-
-            <div className="flex justify-start w-full">
-              <div
-                className="flex flex-col gap-4 lg:flex-row lg:items-center lg:gap-4"
-                ref={dropdownRef}
+            <div
+              className="flex flex-col lg:flex-row lg:items-center lg:gap-8 gap-4 w-full lg:w-auto text-[17px] lg:text-[18px] xl:text-[19px] tracking-tight"
+              ref={dropdownRef}
+            >
+              <Link
+                href="/book-citb-test/default"
+                onClick={handleOptionClick}
+                className={`relative text-purple_primary font-semibold hover:text-purple-700 transition-all ${pathname === "/book-citb-test/default" ? "underline underline-offset-4" : ""
+                  }`}
               >
+                CITB Test
+              </Link>
 
-                {/* Individual Links */}
-                <Link href="/book-citb-test/default" onClick={handleOptionClick}
-                  className={`relative text-purple_primary hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-0 after:h-[2px] after:bg-current after:transition-all after:duration-300 ${pathname === "/book-citb-test/default" ? "after:w-full underline-offset-2" : ""
-                    }`}
-                >
-                  CITB Test
-                </Link>
+              <DropdownMenu
+                label="CSCS Cards"
+                items={[
+                  { path: "/cscs-green-card", label: "Green Labourer" },
+                  { path: "/cscs-blue-card", label: "Blue Skilled" },
+                  { path: "/cscs-red-provisional-card", label: "Red Provisional" },
+                  { path: "/cscs-gold-advanced-craft-card", label: "Gold Advanced Craft" },
+                  { path: "/cscs-gold-supervisor-card", label: "Gold Supervisor" },
+                  { path: "/cscs-black-manager-card", label: "Black Manager" },
+                  { path: "/cscs-card-types", label: "All CSCS Cards" },
+                ]}
+                dropdownOpen={dropdownOpen}
+                toggleDropdown={toggleDropdown}
+                handleOptionClick={handleOptionClick}
+              />
 
-                {/* Dropdowns - CSCS Cards */}
-                <DropdownMenu
-                  label="CSCS Cards"
-                  items={[
-                    { path: "/cscs-green-card", label: "Green Labourer" },
-                    { path: "/cscs-blue-card", label: "Blue Skilled" },
-                    { path: "/cscs-red-provisional-card", label: "Red Provisional" },
-                    { path: "/cscs-gold-advanced-craft-card", label: "Gold Advanced Craft" },
-                    { path: "/cscs-gold-supervisor-card", label: "Gold Supervisor" },
-                    { path: "/cscs-black-manager-card", label: "Black Manager" },
-                    { path: "/cscs-card-types", label: "All CSCS Cards" },
-                  ]}
-                  dropdownOpen={dropdownOpen}
-                  toggleDropdown={toggleDropdown}
-                  handleOptionClick={handleOptionClick}
-                />
+              <DropdownMenu
+                label="ESS Cards"
+                items={[
+                  { path: "/ess-card/green", label: "Green Card" },
+                  { path: "/ess-card/blue-skilled", label: "Blue Skilled Card" },
+                  { path: "/ess-card/red-trainee", label: "Red Trainee Card" },
+                  { path: "/ess-card/gold-advanced", label: "Gold Advanced Card" },
+                  { path: "/ess-card/gold-supervisor", label: "Gold Supervisor Card" },
+                  { path: "/ess-card/manager", label: "Manager Card" },
+                  { path: "/ess-card-types", label: "All ESS Cards" },
+                ]}
+                dropdownOpen={dropdownOpen}
+                toggleDropdown={toggleDropdown}
+                handleOptionClick={handleOptionClick}
+              />
 
-                {/* Dropdowns - ESS Cards */}
-                <DropdownMenu
-                  label="ESS Cards"
-                  items={[
-                    { path: "/ess-card/green", label: "Green Card" },
-                    { path: "/ess-card/blue-skilled", label: "Blue Skilled Card" },
-                    { path: "/ess-card/red-trainee", label: "Red Trainee Card" },
-                    { path: "/ess-card/gold-advanced", label: "Gold Advanced Card" },
-                    { path: "/ess-card/gold-supervisor", label: "Gold Supervisor Card" },
-                    { path: "/ess-card/manager", label: "Manager Card" },
-                    { path: "/ess-card-types", label: "All ESS Cards" },
-                  ]}
-                  dropdownOpen={dropdownOpen}
-                  toggleDropdown={toggleDropdown}
-                  handleOptionClick={handleOptionClick}
-                />
+              <DropdownMenu
+                label="Construction Courses"
+                items={[
+                  { path: "/health-and-safety-awareness", label: "Health & Safety Awareness" },
+                  { path: "/nvq-level-2", label: "NVQs" },
+                ]}
+                dropdownOpen={dropdownOpen}
+                toggleDropdown={toggleDropdown}
+                handleOptionClick={handleOptionClick}
+              />
 
-                {/* Dropdowns - Construction Courses */}
-                <DropdownMenu
-                  label="Construction Courses"
-                  items={[
-                    { path: "/health-and-safety-awareness", label: "Health & Safety Awareness" },
-                    { path: "/nvq-level-2", label: "NVQs" },
-                  ]}
-                  dropdownOpen={dropdownOpen}
-                  toggleDropdown={toggleDropdown}
-                  handleOptionClick={handleOptionClick}
-                />
-
-                {/* Other Links */}
-                <Link
-                  href="/group-booking"
-                  className={`relative text-purple_primary hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-0 after:h-[2px] after:bg-current after:transition-all after:duration-300 ${pathname === "/group-booking" ? "after:w-full underline-offset-2" : ""
-                    }`}
-                  onClick={handleOptionClick}
-                >
-                  Group Booking
-                </Link>
-                <Link
-                  href="/contact-us"
-                  className={`relative text-purple_primary hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-[-2px] after:w-0 after:h-[2px] after:bg-current after:transition-all after:duration-300 ${pathname === "/contact-us" ? "after:w-full underline-offset-2" : ""
-                    }`}
-                  onClick={handleOptionClick}
-                >
-                  Contact Us
-                </Link>
-              </div>
+              <Link
+                href="/group-booking"
+                onClick={handleOptionClick}
+                className={`relative text-purple_primary font-semibold hover:text-purple-700 transition-all ${pathname === "/group-booking" ? "underline underline-offset-4" : ""
+                  }`}
+              >
+                Group Booking
+              </Link>
+              <Link
+                href="/contact-us"
+                onClick={handleOptionClick}
+                className={`relative text-purple_primary font-semibold hover:text-purple-700 transition-all ${pathname === "/contact-us" ? "underline underline-offset-4" : ""
+                  }`}
+              >
+                Contact Us
+              </Link>
             </div>
           </div>
         </nav>
+
+        {/* Mobile contact block */}
+        {/* <div className="lg:hidden flex justify-center py-2 border-t border-slate-200 text-[15px] font-medium">
+          <div className="flex flex-col items-center text-purple_primary gap-0.5">
+            <div className="flex items-center gap-1.5">
+              <FaPhoneAlt className="text-purple_primary" />
+              <a href="tel:+443030030136" className="hover:underline">
+                +44 3030030136
+              </a>
+            </div>
+            <p className="text-xs text-slate-500">Mon-Sat • 9 AM – 7 PM</p>
+          </div>
+        </div> */}
+
       </div>
     </div>
+
   );
+
 
 };
 

@@ -11,7 +11,20 @@ import SmallCard from '../components/SmallCard';
 
 
 const Page = () => {
-  return (
+  return (<>
+
+    <Script
+      src="https://www.googletagmanager.com/gtag/js?id=AW-17119060615"
+      strategy="afterInteractive"
+    />
+    <Script id="google-gtag" strategy="afterInteractive">
+      {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'AW-17119060615');
+        `}
+    </Script>
     <div className='max-w-[1440px] mx-auto px-4 pt-8 mt-[102px]'>
       <h1 className='text-[30px] font-bold mb-2 capitalize'>Blue Skilled Worker Card</h1>
       <Link href='/cscs-card-types' className='inline-flex items-center text-purple_primary media-max-545px:text-[14px]'><IoIosArrowForward /><span>Go to full card types list</span></Link>
@@ -104,6 +117,7 @@ const Page = () => {
 
       </div>
     </div>
+  </>
   )
 }
 
