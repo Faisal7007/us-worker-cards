@@ -147,10 +147,10 @@ function Contact({ no_banner }) {
   }, [formValues.email, formValues.mobile]);
 
   return (
-    <div className={`bg-gray-50 ${no_banner ? "mt-0" : "mt-[60px]"}`}>
+    <div className={`bg-gray-50 ${no_banner ? "pt-[80px]" : "pt-[140px]"}`}>
       {!no_banner && <ContactUsBanner />}
 
-      <div className="max-w-[1200px] mx-auto px-4 pt-6">
+      <div className="max-w-[1200px] mx-auto px-4">
         <ToastContainer />
 
         <div className="pb-8 flex flex-col lg:flex-row justify-between gap-6">
@@ -160,9 +160,9 @@ function Contact({ no_banner }) {
             whileInView={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true, amount: 0.3 }}
-            className="w-full lg:w-1/2 bg-white p-4 rounded-lg shadow space-y-4 text-sm"
+            className="w-full lg:w-1/2 bg-white p-4 sm:p-6 rounded-lg shadow space-y-4 text-sm"
           >
-            <h2 className="text-xl font-semibold text-purple_primary">Come, meet us!</h2>
+            <h2 className="text-lg sm:text-xl font-semibold text-purple_primary">Come, meet us!</h2>
 
             <a
               href="mailto:support@constructioncardservices.com"
@@ -201,13 +201,13 @@ function Contact({ no_banner }) {
             whileInView={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true, amount: 0.3 }}
-            className="w-full lg:w-1/2 bg-white p-4 rounded-lg shadow space-y-4 text-sm"
+            className="w-full lg:w-1/2 bg-white p-4 sm:p-6 rounded-lg shadow space-y-4 text-sm"
           >
-            <h2 className="text-xl font-semibold text-purple_primary">
+            <h2 className="text-lg sm:text-xl font-semibold text-purple_primary">
               Message us, we’ll get back to you soon
             </h2>
 
-            <form onSubmit={handleSubmit} className="space-y-3">
+            <form onSubmit={handleSubmit} className="space-y-4">
               {[
                 { label: "Full Name", name: "name", type: "text", value: formValues.name },
                 { label: "Email", name: "email", type: "email", value: formValues.email },
@@ -220,7 +220,7 @@ function Contact({ no_banner }) {
                 },
               ].map(({ label, name, type, value, pattern }) => (
                 <div key={name}>
-                  <label htmlFor={name} className="block text-gray-700 mb-1 font-medium text-xs">
+                  <label htmlFor={name} className="block text-gray-700 mb-1 font-medium text-xs sm:text-sm">
                     {label}
                   </label>
                   <input
@@ -239,16 +239,13 @@ function Contact({ no_banner }) {
                     required
                     pattern={pattern}
                     placeholder={`Your ${label}`}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-purple_primary focus:outline-none text-sm"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-purple_primary focus:outline-none text-sm sm:text-base"
                   />
                 </div>
               ))}
 
               <div>
-                <label
-                  htmlFor="description"
-                  className="block text-gray-700 mb-1 font-medium text-xs"
-                >
+                <label htmlFor="description" className="block text-gray-700 mb-1 font-medium text-xs sm:text-sm">
                   Description
                 </label>
                 <textarea
@@ -258,14 +255,14 @@ function Contact({ no_banner }) {
                   name="description"
                   rows="4"
                   placeholder="Write a short message..."
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm resize-none focus:ring-2 focus:ring-purple_primary focus:outline-none text-sm"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm resize-none focus:ring-2 focus:ring-purple_primary focus:outline-none text-sm sm:text-base"
                 ></textarea>
               </div>
 
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-2 bg-purple_primary text-white rounded-md font-semibold hover:bg-[#84286a] transition text-sm"
+                className="w-full py-2 bg-purple_primary text-white rounded-md font-semibold hover:bg-[#84286a] transition text-sm sm:text-base"
               >
                 {isSubmitting ? "Submitting..." : "Submit"}
               </button>
@@ -274,7 +271,9 @@ function Contact({ no_banner }) {
         </div>
       </div>
     </div>
+
   );
+
 
 }
 

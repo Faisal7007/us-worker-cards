@@ -164,66 +164,38 @@ export const FirebaseProvider = ({ children }) => {
     }
   };
 
-  // const fetchAllCscsEssData = async (isCard, cardTypes, setAllUsers, setIsLoading) => {
-  //   try {
-  //     setIsLoading(true);
-  //     let allUsers = [];
 
-  //     for (const cardType of cardTypes) {
-  //       const docRef = doc(firestore, `${isCard}-cards-users`, cardType);
-  //       const usersCollection = collection(docRef, "users");
-  //       const querySnapshot = await getDocs(usersCollection);
-
-  //       const users = querySnapshot.docs.map((doc) => ({
-  //         id: doc.id,
-  //         cardType,
-  //         ...doc.data(),
-  //       }));
-
-  //       allUsers = [...allUsers, ...users];
-  //     }
-
-  //     allUsers.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-
-  //     setAllUsers(allUsers);
-  //   } catch (error) {
-  //     console.error("Error fetching users:", error);
-  //     toast.error("Failed to fetch user data.");
-  //   } finally {
-  //     setIsLoading(false);
-  //   }
-  // };
 
 
   const fetchAllCscsEssData = async (isCard, cardTypes, setAllUsers, setIsLoading) => {
-  try {
-    setIsLoading(true);
+    try {
+      setIsLoading(true);
 
-    const promises = cardTypes.map(async (cardType) => {
-      const docRef = doc(firestore, `${isCard}-cards-users`, cardType);
-      const usersCollection = collection(docRef, "users");
-      const querySnapshot = await getDocs(usersCollection);
+      const promises = cardTypes.map(async (cardType) => {
+        const docRef = doc(firestore, `${isCard}-cards-users`, cardType);
+        const usersCollection = collection(docRef, "users");
+        const querySnapshot = await getDocs(usersCollection);
 
-      return querySnapshot.docs.map((doc) => ({
-        id: doc.id,
-        cardType,
-        ...doc.data(),
-      }));
-    });
+        return querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          cardType,
+          ...doc.data(),
+        }));
+      });
 
-    const results = await Promise.all(promises);
-    const allUsers = results.flat();
+      const results = await Promise.all(promises);
+      const allUsers = results.flat();
 
-    allUsers.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+      allUsers.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
-    setAllUsers(allUsers);
-  } catch (error) {
-    console.error("Error fetching users:", error);
-    toast.error("Failed to fetch user data.");
-  } finally {
-    setIsLoading(false);
-  }
-};
+      setAllUsers(allUsers);
+    } catch (error) {
+      console.error("Error fetching users:", error);
+      toast.error("Failed to fetch user data.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const AutoaddCscsData = async (firstName, lastName, email, phone, cardType, submit_type) => {
     try {
@@ -257,16 +229,19 @@ export const FirebaseProvider = ({ children }) => {
 
       const deletePromises = [];
 
-      // Iterate over each cardType
-      cardTypes.forEach((cardType) => {
-        // Iterate over each user ID for the current cardType
-        userIds.forEach((id) => {
-          const userDocRef = doc(firestore, "cscs-cards-users", cardType, "users", id);
-          deletePromises.push(deleteDoc(userDocRef)); // Add delete operation to the array
-        });
-      });
+      for (let i = 0; i < cardTypes.length; i++) {
+        const cardType = cardTypes[i];
+        const id = userIds[i];
 
-      await Promise.all(deletePromises); // Execute all delete operations in parallel
+        if (cardType && id) {
+          const userDocRef = doc(firestore, "cscs-cards-users", cardType, "users", id);
+          deletePromises.push(deleteDoc(userDocRef));
+        } else {
+          console.warn(`Skipping deletion: Missing cardType or userId at index ${i}`);
+        }
+      }
+
+      await Promise.all(deletePromises);
 
       toast.success("Selected users deleted successfully");
     } catch (error) {
@@ -279,34 +254,6 @@ export const FirebaseProvider = ({ children }) => {
 
 
 
-
-
-
-  // const addEssData = async (firstName, lastName, email, phone, cardType,setIsSubmitting,submit_type) => {
-  //   try {
-  //     setIsSubmitting(true)
-  //     const data = {
-  //       firstName,
-  //       lastName,
-  //       email,
-  //       phone,
-  //       createdAt: new Date().toISOString(),
-  //       cardType:cardType,
-
-  //       submitType:submit_type
-  //     };
-
-  //     const docRef = doc(firestore, "ess-cards-users", cardType);
-  //     await addDoc(collection(docRef, "users"), data); 
-  //     toast.success("Form Submitted Successfully");
-  //   } catch (error) {
-
-  //     toast("Error adding data!");
-  //   }
-  //   finally{
-  //     setIsSubmitting(false)
-  //   }
-  // };
 
 
 
@@ -415,24 +362,27 @@ export const FirebaseProvider = ({ children }) => {
 
 
   const deleteEssData = async (cardTypes, userIds, setIsDeleting) => {
-    console.log("Card Types:", cardTypes); // Example: ['green-labourer', 'blue-skilled']
-    console.log("User IDs:", userIds);     // Example: ['KnDpqYxlmJlXMAxgBbNU', '4ka0jJb7erYKDyk5txSN']
+    console.log("Card Types:", cardTypes);
+    console.log("User IDs:", userIds);
 
     try {
       setIsDeleting(true);
 
       const deletePromises = [];
 
-      // Iterate over each cardType
-      cardTypes.forEach((cardType) => {
-        // Iterate over each user ID for the current cardType
-        userIds.forEach((id) => {
-          const userDocRef = doc(firestore, "ess-cards-users", cardType, "users", id);
-          deletePromises.push(deleteDoc(userDocRef)); // Add delete operation to the array
-        });
-      });
+      for (let i = 0; i < cardTypes.length; i++) {
+        const cardType = cardTypes[i];
+        const id = userIds[i];
 
-      await Promise.all(deletePromises); // Execute all delete operations in parallel
+        if (cardType && id) {
+          const userDocRef = doc(firestore, "ess-cards-users", cardType, "users", id);
+          deletePromises.push(deleteDoc(userDocRef));
+        } else {
+          console.warn(`Skipping deletion: Missing cardType or userId at index ${i}`);
+        }
+      }
+
+      await Promise.all(deletePromises);
 
       toast.success("Selected users deleted successfully");
     } catch (error) {
@@ -442,6 +392,7 @@ export const FirebaseProvider = ({ children }) => {
       setIsDeleting(false);
     }
   };
+
 
 
 
@@ -523,6 +474,8 @@ export const FirebaseProvider = ({ children }) => {
 
 
   const deleteCscsApplications = async (formType, selectedIds) => {
+    console.log(formType, "formType");
+    console.log(selectedIds, "IDS")
     if (selectedIds.length === 0) {
       toast.error("No applications selected for deletion!");
       return;
@@ -531,7 +484,7 @@ export const FirebaseProvider = ({ children }) => {
     const batch = writeBatch(firestore);
     try {
       selectedIds.forEach((id) => {
-        const docRef = doc(firestore, `cscs-cards-applicants/${formType}/users`, id);
+        const docRef = doc(firestore, "cscs-cards-users", formType, "users", id);
         batch.delete(docRef);
       });
 
@@ -542,6 +495,7 @@ export const FirebaseProvider = ({ children }) => {
       toast.error("Error deleting applications!");
     }
   };
+
 
 
   const deleteEssApplications = async (formType, selectedIds) => {
@@ -553,17 +507,18 @@ export const FirebaseProvider = ({ children }) => {
     const batch = writeBatch(firestore);
     try {
       selectedIds.forEach((id) => {
-        const docRef = doc(firestore, `ess-cards-applicants/${formType}/users`, id);
+        const docRef = doc(firestore, "ess-cards-users", formType, "users", id);
         batch.delete(docRef);
       });
 
       await batch.commit();
       toast.success("Selected applications deleted successfully!");
     } catch (error) {
-      console.error("Error deleting CSCS applications:", error);
+      console.error("Error deleting ESS applications:", error);
       toast.error("Error deleting applications!");
     }
   };
+
 
 
   const applyForESSCard = async (title, firstName, middleName, lastName, dob, nationalInsuranceNumber, phoneNumber, email, cardType, applicationType, formType) => {

@@ -47,32 +47,24 @@ const CscsEssTable = ({ userData, isLoading, form_type, setUserData }) => {
 
   // Handle checkbox selection
   const handleCheckboxChange = (userId, cardType) => {
-    setSelectedUsers((prevSelected) =>
-      prevSelected.includes(userId)
-        ? prevSelected.filter((id) => id !== userId)
-        : [...prevSelected, userId]
-    );
-
-    setSelectedCardTypes((prevSelected) =>
-      prevSelected.includes(cardType)
-        ? prevSelected.filter((id) => id !== cardType)
-        : [...prevSelected, cardType]
-    );
+    setSelectedUsers((prevSelected) => {
+      const exists = prevSelected.find((u) => u.id === userId);
+      if (exists) {
+        return prevSelected.filter((u) => u.id !== userId);
+      } else {
+        return [...prevSelected, { id: userId, cardType }];
+      }
+    });
   };
 
   console.log(selectedCardTypes);
 
   // Handle select all checkboxes
   const handleSelectAll = () => {
-    if (
-      selectedUsers.length === filteredUserData.length ||
-      selectedCardTypes.length === filteredUserData.length
-    ) {
+    if (selectedUsers.length === filteredUserData.length) {
       setSelectedUsers([]);
-      setSelectedCardTypes([]);
     } else {
-      setSelectedUsers(filteredUserData.map((user) => user.id));
-      setSelectedCardTypes(filteredUserData.map((user) => user.cardType));
+      setSelectedUsers(filteredUserData.map((user) => ({ id: user.id, cardType: user.cardType })));
     }
   };
 
@@ -102,30 +94,22 @@ const CscsEssTable = ({ userData, isLoading, form_type, setUserData }) => {
     try {
       setIsDeleting(true);
 
+      const cardTypes = selectedUsers.map((u) => u.cardType);
+      const userIds = selectedUsers.map((u) => u.id);
+
       if (form_type === "cscs") {
-        console.log(selectedCardTypes, "selectedCardTypes");
-        await firebase.deleteCscsData(
-          selectedCardTypes,
-          selectedUsers,
-          setIsDeleting
-        );
+        await firebase.deleteCscsData(cardTypes, userIds, setIsDeleting);
       } else if (form_type === "ess") {
-        console.log(selectedCardTypes, "selectedCardTypes");
-        await firebase.deleteEssData(
-          selectedCardTypes,
-          selectedUsers,
-          setIsDeleting
-        );
+        await firebase.deleteEssData(cardTypes, userIds, setIsDeleting);
       }
 
-      // Remove deleted users from the contactedData state
-      setUserData((prevData) =>
-        prevData.filter((user) => !selectedUsers.includes(user.id))
-      );
+      console.log(form_type, "formtype")
 
-      // toast.success("Selected messages deleted successfully!");
+      setUserData((prevData) =>
+        prevData.filter((user) => !userIds.includes(user.id))
+      );
     } catch (error) {
-      // toast.error("Error deleting messages!");
+      toast.error("Error deleting messages!");
     } finally {
       setSelectedUsers([]);
       setIsDeleting(false);
@@ -205,11 +189,10 @@ const CscsEssTable = ({ userData, isLoading, form_type, setUserData }) => {
                 <td className="border border-gray-300 px-4 py-2 flex gap-2 items-center">
                   {index + 1}
                   <p
-                    className={`before:content-['•'] before:text-2xl before:mr-2 ${
-                      user.submitType === "auto"
-                        ? "before:text-orange-500"
-                        : "before:text-green-500"
-                    }`}
+                    className={`before:content-['•'] before:text-2xl before:mr-2 ${user.submitType === "auto"
+                      ? "before:text-orange-500"
+                      : "before:text-green-500"
+                      }`}
                   ></p>
                 </td>
                 <td className="border border-gray-300 px-4 py-2">

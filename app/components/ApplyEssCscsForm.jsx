@@ -160,7 +160,10 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
       if (cardtype)
         setImagePath(cardImageMap[cardtype]);
       else if (imagePath) setImagePath(imagePath);
-      else setImagePath("/green-card-img.png")
+      else {
+        if (form_type === 'cscs') setImagePath("/green-card-img.png")
+        else setImagePath("/ess-green-labourer-img.png")
+      }
     }
     console.log(imagePath)
     setGetCardType(cardtype)
