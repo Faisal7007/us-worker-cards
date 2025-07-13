@@ -100,7 +100,8 @@ export const FirebaseProvider = ({ children }) => {
         pincode,
         citbId,
         cardtype,
-        variant
+        variant,
+        applicationType
       } = formData;
 
       console.log("Calling From, CSCS", formData);
@@ -123,8 +124,11 @@ export const FirebaseProvider = ({ children }) => {
         citbId,
         cardtype,
         variant,
+        applicationType,
         submitType: submit_type,
+        status: 'completed',
         createdAt: new Date().toISOString(),
+        completedAt: new Date().toISOString(),
       };
 
       await addDoc(usersCollection, data); // ➕ Always create new entry
@@ -257,6 +261,70 @@ export const FirebaseProvider = ({ children }) => {
 
 
 
+  // Save progressive form data to permanent collections
+  const saveProgressiveFormData = async (formData, step, formType) => {
+    try {
+      const {
+        title,
+        firstName,
+        middleName,
+        lastName,
+        dob,
+        nationalInsuranceNumber,
+        phoneNumber,
+        email,
+        addressLine1,
+        town,
+        city,
+        pincode,
+        citbId,
+        cardtype,
+        variant,
+        applicationType
+      } = formData;
+
+      // Prepare data with same structure as final submissions
+      const data = {
+        title,
+        firstName,
+        middleName,
+        lastName,
+        dob,
+        nationalInsuranceNumber,
+        phone: formType === 'cscs' ? phoneNumber : phoneNumber, // CSCS uses 'phone', ESS uses 'phoneNumber'
+        email,
+        addressLine1,
+        town,
+        city,
+        pincode,
+        citbId,
+        cardtype,
+        variant,
+        applicationType,
+        step: step,
+        formType: formType,
+        lastUpdated: new Date().toISOString(),
+        status: 'in_progress',
+        submitType: 'progressive_save'
+      };
+
+      // Save to the same collections as final submissions
+      if (formType === 'cscs') {
+        const usersCollection = collection(firestore, "cscs-cards-users", "cscs", "users");
+        await addDoc(usersCollection, data);
+      } else if (formType === 'ess') {
+        const usersCollection = collection(firestore, "ess-cards-users", "ess", "users");
+        await addDoc(usersCollection, data);
+      }
+
+      console.log(`Progressive form data saved for step ${step} in ${formType} collection:`, data);
+      return true;
+    } catch (error) {
+      console.error("Error saving progressive form data:", error);
+      return false;
+    }
+  };
+
   const addEssData = async (formData, submit_type) => {
     try {
       const {
@@ -275,6 +343,7 @@ export const FirebaseProvider = ({ children }) => {
         citbId,
         cardtype,
         variant,
+        applicationType
       } = formData;
 
       const usersCollection = collection(firestore, "ess-cards-users", "ess", "users");
@@ -295,8 +364,11 @@ export const FirebaseProvider = ({ children }) => {
         citbId,
         cardtype,
         variant,
+        applicationType,
         submitType: submit_type,
+        status: 'completed',
         createdAt: new Date().toISOString(),
+        completedAt: new Date().toISOString(),
       };
 
       await addDoc(usersCollection, data); // ➕ Always add new document
@@ -1098,7 +1170,7 @@ export const FirebaseProvider = ({ children }) => {
   };
 
   return (
-    <FirebaseContext.Provider value={{ addCscsData, AutoaddCscsData, addEssData, AutoaddEssData, deleteCscsData, applyForESSCard, applyForCSCSCard, deleteCscsApplications, deleteEssApplications, applyForCITBTest, deleteCitbApplications, fetchApplicantsData, applyForHealthAndSafetyCourse, fetchHealthAndSafetyApplicants, fetchAllCscsEssData, fetchCscsData, fetchEssData, deleteEssData, fetchCscsEssApplicants, fetchCscsEssApplicantById, fetchCITBTestApplicants, fetchCitbApplicantById, fetchHealthAndSafetyApplicantById, deleteHealthAndSafetyApplications, addGroupBooking, fetchGroupBooking, fetchGroupBookingById, deleteGroupBookings, addContactUs, autoAddContactUs, fetchContactUsData, fetchContactUsDataById, deleteContactUsMessages, LoginUser, onAuthChange, logOut, ForgotPassword, addNVQ, autoAddNVQ, fetchNVQData, fetchNVQDataById, deleteNVQMessages }}>
+    <FirebaseContext.Provider value={{ addCscsData, AutoaddCscsData, addEssData, AutoaddEssData, deleteCscsData, applyForESSCard, applyForCSCSCard, deleteCscsApplications, deleteEssApplications, applyForCITBTest, deleteCitbApplications, fetchApplicantsData, applyForHealthAndSafetyCourse, fetchHealthAndSafetyApplicants, fetchAllCscsEssData, fetchCscsData, fetchEssData, deleteEssData, fetchCscsEssApplicants, fetchCscsEssApplicantById, fetchCITBTestApplicants, fetchCitbApplicantById, fetchHealthAndSafetyApplicantById, deleteHealthAndSafetyApplications, addGroupBooking, fetchGroupBooking, fetchGroupBookingById, deleteGroupBookings, addContactUs, autoAddContactUs, fetchContactUsData, fetchContactUsDataById, deleteContactUsMessages, LoginUser, onAuthChange, logOut, ForgotPassword, addNVQ, autoAddNVQ, fetchNVQData, fetchNVQDataById, deleteNVQMessages, saveProgressiveFormData }}>
       {children}
     </FirebaseContext.Provider>
   );

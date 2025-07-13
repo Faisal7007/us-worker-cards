@@ -1,13 +1,14 @@
 "use client";
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { MdArrowRight } from "react-icons/md";
+import { MdArrowRight, MdArrowLeft } from "react-icons/md";
 import CardForList from "./CardForList";
 import { UserContext } from "../context-api/UserContext";
 import { useFirebase } from "../context/Firebase";
-import GenericCardDetailsView from "./GenericCardDetailsView";
+
 import { ToastContainer } from "react-toastify";
 
 const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImagePath }) => {
+  const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({
     title: "",
     firstName: "",
@@ -26,7 +27,6 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
     applicationType: "",
     variant: ""
   });
-
 
   // console.log(formData.cardtype,"Card Types")
 
@@ -93,8 +93,6 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
     "Red Technical Supervisor/Manager Card": "/red-supervisor-card-img.png"
   };
 
-
-
   const [agreed, setAgreed] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isPreSelected, setIsPreSelected] = useState(false)
@@ -103,9 +101,10 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
   const [showOverlay, setShowOverlay] = useState(false);
 
   const { idx, essId, setIdx, setEssId } = useContext(UserContext);
+  const firebase = useFirebase();
+
   // console.log(essId,"ess id Context Api")
   // console.log(idx,"cscs id Context Api")
-
 
   useEffect(() => {
     if (idx) {
@@ -119,8 +118,6 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
       setIdx(null)
     )
   }, [idx]);
-
-
 
   useEffect(() => {
     if (essId) {
@@ -169,7 +166,6 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
     setGetCardType(cardtype)
 
   }, []);
-
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -228,10 +224,39 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
     setIdx(null);
   };
 
-  const firebase = useFirebase()
-  // console.log(firebase)
+  // Save form data progressively
+  const saveFormData = async (step) => {
+    try {
+      const dataToSave = {
+        ...formData,
+        step: step,
+        formType: form_type,
+        lastUpdated: new Date().toISOString(),
+      };
+
+      // Save to Firebase progressive data collection
+      await firebase.saveProgressiveFormData(dataToSave, step, form_type);
+
+      // Also save to localStorage as backup
+      localStorage.setItem(`formData_${form_type}_${step}`, JSON.stringify(dataToSave));
+
+      console.log(`Form data saved for step ${step}:`, dataToSave);
+    } catch (error) {
+      console.error("Error saving form data:", error);
+    }
+  };
+
+  const handleNext = async (step) => {
+    await saveFormData(step);
+    setCurrentStep(step + 1);
+  };
+
+  const handlePrevious = (step) => {
+    setCurrentStep(step - 1);
+  };
+
   const handleSubmit = async (e) => {
-    if (e && e.preventDefault) e.preventDefault(); // Safe check for event
+    if (e && e.preventDefault) e.preventDefault();
 
     if (form_type === 'cscs') {
       await firebase.addCscsData(formData, "manual");
@@ -244,221 +269,29 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
     resetForm();
   };
 
+  // Render Step 1: Card Details and Personal Information
+  const renderStep1 = () => (
+    <div className="max-w-4xl bg-gray-200 mx-auto rounded space-y-5 px-4">
+      <div className="pt-4">
+        <h2 className="text-lg text-gray-800 py-3 font-semibold mb-4 text-center rounded">
+          Step 1: Card Details & Personal Information
+        </h2>
 
+        <div className="bg-white p-6 rounded-lg shadow-md mb-6">
+          {/* <h3 className="text-lg font-semibold text-gray-800 mb-4">📋 Card Selection</h3>
+          <p className="text-gray-600 mb-4">Please select your card type and application type to proceed.</p> */}
 
-
-
-  return (
-
-    <>
-
-      <form
-        // onSubmit={handleSubmit}
-        className=""
-      >
-        {showOverlay && (
-          <div className="fixed inset-0 bg-black bg-opacity-70 backdrop-blur-sm flex items-center justify-center z-50">
-            <div className="bg-white p-8 rounded-2xl shadow-2xl w-[95%] max-w-3xl border border-gray-200">
-              <h2 className="text-2xl font-semibold text-purple_primary mb-8 text-center">
-                🔍 Review & Confirm Your Details
-              </h2>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-800">
-                {[
-                  { label: "Title", value: formData.title },
-                  { label: "DOB", value: formData.dob },
-                  { label: "Full Name", value: `${formData.firstName} ${formData.middleName} ${formData.lastName}`, span: 2 },
-                  { label: "Phone Number", value: formData.phoneNumber },
-                  { label: "Email", value: formData.email },
-                  { label: "National Insurance No.", value: formData.nationalInsuranceNumber, span: 2 },
-                  {
-                    label: "Address",
-                    value: `${formData.addressLine1}, ${formData.town}, ${formData.city} - ${formData.pincode}`,
-                    span: 2
-                  },
-                  { label: "CITB ID", value: formData.citbId },
-                  { label: "Card Variant", value: formData.variant },
-                  { label: "Card Type", value: formData.cardtype },
-                  { label: "Application Type", value: formData.applicationType, span: 2 },
-                ].map((item, idx) => (
-                  <div
-                    key={idx}
-                    className={`bg-gray-100 rounded-lg px-4 py-3 ${item.span === 2 ? "col-span-2" : ""} border border-gray-200`}
-                  >
-                    <p className="text-xs font-medium text-gray-500">{item.label}</p>
-                    <p className="text-sm font-semibold text-gray-800 break-words">{item.value || "—"}</p>
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-10 flex justify-end gap-4">
-                <button
-                  className="px-5 py-2 rounded-full border border-gray-400 text-gray-700 hover:bg-gray-100 transition"
-                  onClick={() => setShowOverlay(false)}
-                >
-                  Cancel
-                </button>
-                <button
-                  className="px-5 py-2 rounded-full bg-purple_primary text-white hover:bg-[#84286a] transition flex items-center gap-2"
-                  onClick={() => {
-                    setShowOverlay(false);
-                    handleSubmit();
-                  }}
-                >
-                  Confirm & Submit
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
-
-      </form>
-
-      <form
-        className="max-w-4xl bg-gray-200 mx-auto rounded space-y-5 px-4"
-        onSubmit={(e) => { e.preventDefault(); setShowOverlay(true); }}
-      >
-        <ToastContainer />
-
-        <div className="pt-4">
-          <h2 className="text-lg bg-purple_primary text-white py-3 font-semibold mb-4 text-center rounded">
-            Easy Apply For <span className="uppercase">{form_type}</span> Card
-          </h2>
-
-          <h2 className="text-md font-semibold text-gray-700 mb-3">Name</h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-            {[
-              { label: "Title", id: "title", type: "select", options: ["Mr", "Ms", "Mrs", "Miss", "Dr"], required: true },
-              { label: "First Name", id: "firstName", type: "text", placeholder: "First Name", required: true },
-              { label: "Middle Name", id: "middleName", type: "text", placeholder: "Middle Name" },
-              { label: "Last Name", id: "lastName", type: "text", placeholder: "Last Name", required: true },
-            ].map((field, i) => (
-              <div key={i}>
-                {/* <label htmlFor={field.id} className="block text-sm font-medium mb-1">{field.label}</label> */}
-                {field.type === "select" ? (
-                  <select
-                    id={field.id}
-                    name={field.id}
-                    value={formData[field.id]}
-                    onChange={handleChange}
-                    required={field.required}
-                    className="w-full border border-gray-400 py-2 px-3 rounded"
-                  >
-                    <option value="" disabled>Please select the title</option>
-                    {field.options.map((opt) => (
-                      <option key={opt} value={opt}>{opt}</option>
-                    ))}
-                  </select>
-                ) : (
-                  <input
-                    type={field.type}
-                    id={field.id}
-                    name={field.id}
-                    placeholder={field.placeholder || ""}
-                    value={formData[field.id]}
-                    onChange={handleChange}
-                    required={field.required}
-                    className="w-full border border-gray-400 py-2 px-3 rounded"
-                  />
-                )}
-              </div>
-            ))}
-            {[
-              { label: "Date of Birth", id: "dob", type: "date", required: true },
-              { label: "National Insurance Number (Optional)", id: "nationalInsuranceNumber", type: "text", placeholder: "e.g. QQ 123456 C" },
-            ].map((field, i) => (
-              <div key={i}>
-                <label htmlFor={field.id} className="block text-sm font-medium mb-1">{field.label}</label>
-                {field.type === "select" ? (
-                  <select
-                    id={field.id}
-                    name={field.id}
-                    value={formData[field.id]}
-                    onChange={handleChange}
-                    required={field.required}
-                    className="w-full border border-gray-400 py-2 px-3 rounded"
-                  >
-                    <option value="" disabled>Please select the title</option>
-                    {field.options.map((opt) => (
-                      <option key={opt} value={opt}>{opt}</option>
-                    ))}
-                  </select>
-                ) : (
-                  <input
-                    type={field.type}
-                    id={field.id}
-                    name={field.id}
-                    placeholder={field.placeholder || ""}
-                    value={formData[field.id]}
-                    onChange={handleChange}
-                    required={field.required}
-                    className="w-full border border-gray-400 py-2 px-3 rounded"
-                  />
-                )}
-              </div>
-            ))}
-          </div>
-
-          <h2 className="text-md font-semibold text-gray-700 mb-3">Contact Details</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-            {[
-              { id: "phoneNumber", placeholder: "e.g. 2080995236", type: "text" },
-              { id: "email", placeholder: "yourname@domain.com", type: "email" },
-            ].map(({ id, placeholder, type }) => (
-              <div key={id}>
-                <label htmlFor={id} className="block text-sm font-medium mb-1">{id === "phoneNumber" ? "Phone Number" : "Email Address"}</label>
-                <input
-                  type={type}
-                  id={id}
-                  name={id}
-                  placeholder={placeholder}
-                  value={formData[id]}
-                  onChange={handleChange}
-                  required
-                  className="w-full border border-gray-400 py-2 px-3 rounded"
-                />
-              </div>
-            ))}
-          </div>
-
-          <h2 className="text-md font-semibold text-gray-700 mb-3">Address Details</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-            {[
-              { id: "addressLine1", label: "First Line of Address", placeholder: "123 Main Street" },
-              { id: "town", label: "Town", placeholder: "e.g. Hounslow" },
-              { id: "city", label: "City", placeholder: "e.g. London" },
-              { id: "pincode", label: "Pincode", placeholder: "e.g. W1A 1AA" },
-              { id: "citbId", label: "CITB Testing ID (Optional)", placeholder: "e.g. 1234567890", optional: true },
-            ].map(({ id, label, placeholder }) => (
-              <div key={id}>
-                {/* <label htmlFor={id} className="block text-sm font-medium mb-1">{label}</label> */}
-                <input
-                  type="text"
-                  id={id}
-                  name={id}
-                  placeholder={label}
-                  value={formData[id]}
-                  onChange={handleChange}
-                  required={!label.includes("Optional")}
-                  className="w-full border border-gray-400 py-2 px-3 rounded"
-                />
-              </div>
-            ))}
-          </div>
-
-          <h2 className="text-md font-semibold text-gray-700 mb-3">Card Details</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             {form_type === 'ess' && (
               <div>
-                {/* <label htmlFor="variant" className="block text-sm font-medium mb-1">Card Variant</label> */}
+                <label className="block text-sm font-medium mb-2 text-gray-700">Card Variant</label>
                 <select
                   id="variant"
                   name="variant"
                   value={formData.variant}
                   onChange={handleChange}
                   required
-                  className="w-full border border-gray-400 py-2 px-3 rounded"
+                  className="w-full border border-gray-400 py-2 px-3 rounded focus:ring-2 focus:ring-primary-purple focus:border-primary-purple placeholder:text-gray-500"
                 >
                   <option value="" disabled>Please select the variant</option>
                   <option value="Physical + Digital">Physical + Digital</option>
@@ -468,20 +301,20 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
             )}
 
             <div className="relative">
-              {/* <label htmlFor="cardtype" className="block text-sm font-medium mb-1">Card Type</label> */}
+              <label className="block text-sm font-medium mb-2 text-gray-700">Card Type</label>
               <div
                 onClick={() => setIsOpen(!isOpen)}
-                className="border border-gray-400 py-2 px-3 rounded cursor-pointer"
+                className="border text-gray-500 border-gray-400 py-2 px-3 rounded cursor-pointer hover:border-primary-purple focus:ring-2 focus:ring-primary-purple"
               >
                 {formData.cardtype || 'Please select the card from the list'}
               </div>
               {isOpen && !isPreSelected && (
-                <div className="absolute top-full left-0 w-full bg-white border border-gray-400 max-h-48 overflow-y-auto z-10">
+                <div className="absolute top-full left-0 w-full bg-white border border-gray-400 max-h-48 overflow-y-auto z-10 shadow-lg rounded">
                   {(form_type === 'cscs' ? cscsCardTypes : essCardTypes).map((card) => (
                     <div
                       key={card.value}
                       onClick={() => handleSelect(card.value)}
-                      className="py-2 px-3 hover:bg-gray-100 cursor-pointer"
+                      className="py-2 px-3 hover:bg-gray-100 cursor-pointer border-b border-gray-100"
                     >
                       {card.component}
                     </div>
@@ -489,60 +322,339 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
                 </div>
               )}
             </div>
+          </div>
 
-            <div className="md:col-span-2">
-              <label className="block text-sm font-medium mb-2">Application Type</label>
-              <div className="flex flex-wrap gap-4">
-                {["New Card", "Stolen", "Renew"].map((type) => (
-                  <label key={type} className="flex items-center text-sm gap-2">
-                    <input
-                      type="radio"
-                      name="applicationType"
-                      value={type}
-                      checked={formData.applicationType === type}
-                      onChange={handleChange}
-                      className="accent-purple_primary w-4 h-4"
-                    />
-                    {type}
-                  </label>
-                ))}
-              </div>
-              {formData.applicationType === "Renew" &&
-                ["White Academically Qualified Person", "White Professionally Qualified Person"].includes(formData.cardtype) && (
-                  <div className="text-orange-600 text-xs mt-1">
-                    Only Green, Gold Advanced, Gold Supervisor, Blue Skilled and Black Manager cards are renewable.
-                  </div>
+          <div className="mb-4">
+            <label className="block text-sm font-medium mb-2 text-gray-700">Application Type</label>
+            <div className="flex flex-wrap gap-4">
+              {["New Card", "Stolen", "Renew"].map((type) => (
+                <label key={type} className="flex items-center text-sm gap-2 cursor-pointer">
+                  <input
+                    type="radio"
+                    name="applicationType"
+                    value={type}
+                    checked={formData.applicationType === type}
+                    onChange={handleChange}
+                    className="accent-primary-purple w-4 h-4"
+                  />
+                  <span className="text-gray-700">{type}</span>
+                </label>
+              ))}
+            </div>
+            {formData.applicationType === "Renew" &&
+              ["White Academically Qualified Person", "White Professionally Qualified Person"].includes(formData.cardtype) && (
+                <div className="text-orange-600 text-xs mt-2 p-2 bg-orange-50 rounded">
+                  ⚠️ Only Green, Gold Advanced, Gold Supervisor, Blue Skilled and Black Manager cards are renewable.
+                </div>
+              )}
+          </div>
+        </div>
+
+        <div className="bg-white p-6 rounded-lg shadow-md mb-6">
+          {/* <h3 className="text-lg font-semibold text-gray-800 mb-4">👤 Personal Information</h3>
+          <p className="text-gray-600 mb-4">Please provide your personal details accurately.</p> */}
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            {[
+              { label: "Title", id: "title", type: "select", options: ["Mr", "Ms", "Mrs", "Miss", "Dr"], required: true },
+              { label: "First Name", id: "firstName", type: "text", placeholder: "Enter your first name", required: true },
+              { label: "Middle Name", id: "middleName", type: "text", placeholder: "Enter your middle name (optional)" },
+              { label: "Last Name", id: "lastName", type: "text", placeholder: "Enter your last name", required: true },
+            ].map((field, i) => (
+              <div key={i}>
+                <label htmlFor={field.id} className="block text-sm font-medium mb-1 text-gray-700">{field.label}</label>
+                {field.type === "select" ? (
+                  <select
+                    id={field.id}
+                    name={field.id}
+                    value={formData[field.id]}
+                    onChange={handleChange}
+                    required={field.required}
+                    className={`w-full border border-gray-400 py-2 px-3 rounded focus:ring-2 focus:ring-primary-purple focus:border-primary-purple ${formData[field.id] ? 'text-gray-900' : 'text-gray-500'}`}
+                  >
+                    <option value="" disabled>Please select the title</option>
+                    {field.options.map((opt) => (
+                      <option key={opt} value={opt}>{opt}</option>
+                    ))}
+                  </select>
+                ) : (
+                  <input
+                    type={field.type}
+                    id={field.id}
+                    name={field.id}
+                    placeholder={field.placeholder || ""}
+                    value={formData[field.id]}
+                    onChange={handleChange}
+                    required={field.required}
+                    className="w-full border border-gray-400 py-2 px-3 rounded focus:ring-2 focus:ring-primary-purple focus:border-primary-purple placeholder:text-gray-500"
+                  />
                 )}
+              </div>
+            ))}
+            {[
+              { label: "Date of Birth", id: "dob", type: "date", required: true },
+            ].map((field, i) => (
+              <div key={i}>
+                <label htmlFor={field.id} className="block text-sm font-medium mb-1 text-gray-700">{field.label}</label>
+                <input
+                  type={field.type}
+                  id={field.id}
+                  name={field.id}
+                  placeholder={field.placeholder || ""}
+                  value={formData[field.id]}
+                  onChange={handleChange}
+                  required={field.required}
+                  className={`w-full border border-gray-400 py-2 px-3 rounded focus:ring-2 focus:ring-purple_primary focus:border-purple_primary ${formData[field.id] ? 'text-gray-900' : 'text-gray-500'}`}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="bg-white p-6 rounded-lg shadow-md mb-6">
+          {/* <h3 className="text-lg font-semibold text-gray-800 mb-4">📞 Contact Details</h3>
+          <p className="text-gray-600 mb-4">We'll use these details to contact you about your application.</p> */}
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {[
+              { id: "phoneNumber", placeholder: "e.g. 2080995236", type: "text", label: "Phone Number" },
+              { id: "email", placeholder: "yourname@domain.com", type: "email", label: "Email Address" },
+            ].map(({ id, placeholder, type, label }) => (
+              <div key={id}>
+                <label htmlFor={id} className="block text-sm font-medium mb-1 text-gray-700">{label}</label>
+                <input
+                  type={type}
+                  id={id}
+                  name={id}
+                  placeholder={placeholder}
+                  value={formData[id]}
+                  onChange={handleChange}
+                  required
+                  className="w-full border border-gray-400 py-2 px-3 rounded focus:ring-2 focus:ring-primary-purple focus:border-primary-purple placeholder:text-gray-500"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="bg-white p-6 rounded-lg shadow-md mb-6">
+          <div className="flex items-start gap-3">
+            <input
+              id="agreeCheckboxStep1"
+              type="checkbox"
+              onChange={handleCheckboxChange}
+              className="w-5 h-5 accent-primary-purple mt-0.5"
+            />
+            <div>
+              <label htmlFor="agreeCheckboxStep1" className="text-sm text-gray-700 cursor-pointer">
+                I accept the <span className="text-purple_primary underline">Terms and Conditions</span> and <span className="text-purple_primary underline">Privacy Policy</span>
+              </label>
+              <p className="text-xs text-gray-500 mt-1">By checking this box, you confirm that you have read and agree to our terms.</p>
             </div>
           </div>
         </div>
 
-        <div className="flex items-center mb-4">
-          <input
-            id="agreeCheckbox"
-            type="checkbox"
-            onChange={handleCheckboxChange}
-            className="w-4 h-4 accent-purple_primary"
-          />
-          <label htmlFor="agreeCheckbox" className="ml-2 text-sm text-gray-700">
-            I agree to the Terms and Conditions and Privacy Policy
-          </label>
+        <div className="flex justify-end">
+          <button
+            type="button"
+            onClick={() => handleNext(1)}
+            disabled={!formData.cardtype || !formData.applicationType || !formData.title || !formData.firstName || !formData.lastName || !formData.dob || !formData.phoneNumber || !formData.email || !agreed}
+            className={`inline-flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${!formData.cardtype || !formData.applicationType || !formData.title || !formData.firstName || !formData.lastName || !formData.dob || !formData.phoneNumber || !formData.email || !agreed ? "bg-gray-400 text-white cursor-not-allowed" : "bg-purple_primary text-white hover:bg-purple_primary/90 shadow-md hover:shadow-lg"}`}
+          >
+            Continue
+            <MdArrowRight className="size-5" />
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+
+  // Render Step 2: Address Details
+  const renderStep2 = () => (
+    <div className="max-w-4xl bg-gray-200 mx-auto rounded space-y-5 px-4">
+      <div className="pt-4">
+        <h2 className="text-lg text-gray-800 py-3 font-semibold mb-4 text-center rounded">
+          Step 2: Address & Additional Details
+        </h2>
+
+        <div className="bg-white p-6 rounded-lg shadow-md mb-6">
+          <h3 className="text-lg font-semibold text-gray-800 mb-4">🏠 Address Information</h3>
+          <p className="text-gray-600 mb-4">Please provide your current address where you'd like to receive your card.</p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {[
+              { id: "addressLine1", label: "First Line of Address", placeholder: "123 Main Street" },
+              { id: "town", label: "Town", placeholder: "e.g. Hounslow" },
+              { id: "city", label: "City", placeholder: "e.g. London" },
+              { id: "pincode", label: "Pincode", placeholder: "e.g. W1A 1AA" },
+            ].map(({ id, label, placeholder }) => (
+              <div key={id}>
+                <label htmlFor={id} className="block text-sm font-medium mb-1 text-gray-700">{label}</label>
+                <input
+                  type="text"
+                  id={id}
+                  name={id}
+                  placeholder={placeholder}
+                  value={formData[id]}
+                  onChange={handleChange}
+                  required
+                  className="w-full border border-gray-400 py-2 px-3 rounded focus:ring-2 focus:ring-primary-purple focus:border-primary-purple placeholder:text-gray-500"
+                />
+              </div>
+            ))}
+          </div>
         </div>
 
-        <button
-          type="submit"
-          disabled={!agreed || isSubmitting}
-          className={`inline-flex items-center gap-2 px-4 py-2 rounded text-sm ${agreed ? "bg-purple_primary text-white hover:bg-[#84286a]" : "bg-[#854c75] text-white cursor-not-allowed"}`}
-        >
-          Move Forward
-          <MdArrowRight className="size-5" />
-        </button>
-      </form>
+        <div className="bg-white p-6 rounded-lg shadow-md mb-6">
+          <h3 className="text-lg font-semibold text-gray-800 mb-4">📋 Additional Information</h3>
+          <p className="text-gray-600 mb-4">Please provide any additional details that may help with your application.</p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label htmlFor="nationalInsuranceNumber" className="block text-sm font-medium mb-1 text-gray-700">
+                National Insurance Number (Optional)
+              </label>
+              <input
+                type="text"
+                id="nationalInsuranceNumber"
+                name="nationalInsuranceNumber"
+                placeholder="e.g. QQ 123456 C"
+                value={formData.nationalInsuranceNumber}
+                onChange={handleChange}
+                className="w-full border border-gray-400 py-2 px-3 rounded focus:ring-2 focus:ring-primary-purple focus:border-primary-purple placeholder:text-gray-500"
+              />
+              <p className="text-xs text-gray-500 mt-1">This helps us verify your identity</p>
+            </div>
+
+            <div>
+              <label htmlFor="citbId" className="block text-sm font-medium mb-1 text-gray-700">
+                CITB Testing ID (Optional)
+              </label>
+              <input
+                type="text"
+                id="citbId"
+                name="citbId"
+                placeholder="e.g. 1234567890"
+                value={formData.citbId}
+                onChange={handleChange}
+                className="w-full border border-gray-400 py-2 px-3 rounded focus:ring-2 focus:ring-primary-purple focus:border-primary-purple placeholder:text-gray-500"
+              />
+              <p className="text-xs text-gray-500 mt-1">If you have already taken the CITB test</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex flex-col sm:flex-row justify-between gap-4">
+          <button
+            type="button"
+            onClick={() => handlePrevious(2)}
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg text-sm font-medium bg-purple_primary text-white hover:bg-purple_primary/90 transition-all duration-200 shadow-md hover:shadow-lg w-full sm:w-auto"
+          >
+            <MdArrowLeft className="size-5" />
+            Back to Personal Details
+          </button>
+          <button
+            type="button"
+            onClick={() => handleNext(2)}
+            disabled={!formData.addressLine1 || !formData.town || !formData.city || !formData.pincode}
+            className={`inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200 w-full sm:w-auto ${!formData.addressLine1 || !formData.town || !formData.city || !formData.pincode ? "bg-gray-400 text-white cursor-not-allowed" : "bg-purple_primary text-white hover:bg-purple_primary shadow-md hover:shadow-lg"}`}
+          >
+            Review & Submit
+            <MdArrowRight className="size-5" />
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+
+  // Render Step 3: Review and Submit
+  const renderStep3 = () => (
+    <div className="max-w-4xl bg-gray-200 mx-auto rounded space-y-4 sm:space-y-5 px-3 sm:px-4">
+      <div className="pt-4">
+        <h2 className="text-lg text-gray-800 py-3 font-semibold mb-4 text-center rounded">
+          Step 3: Review & Submit Application
+        </h2>
+
+        <div className="bg-white p-4 sm:p-6 rounded-lg shadow-md mb-4 sm:mb-6">
+          <h3 className="text-lg font-semibold text-gray-800 mb-4">✅ Review Your Information</h3>
+          <p className="text-gray-600 mb-6">Please review all your details carefully before submitting. You can go back to make changes if needed.</p>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4 text-sm text-gray-800">
+            {[
+              { label: "Title", value: formData.title, icon: "👤" },
+              { label: "Date of Birth", value: formData.dob, icon: "📅" },
+              { label: "Full Name", value: `${formData.firstName} ${formData.middleName} ${formData.lastName}`.trim(), span: 2, icon: "👤" },
+              { label: "Phone Number", value: formData.phoneNumber, icon: "📞" },
+              { label: "Email Address", value: formData.email, icon: "📧" },
+              { label: "National Insurance No.", value: formData.nationalInsuranceNumber || "Not provided", span: 2, icon: "🆔" },
+              {
+                label: "Address",
+                value: `${formData.addressLine1}, ${formData.town}, ${formData.city} - ${formData.pincode}`,
+                span: 2,
+                icon: "🏠"
+              },
+              { label: "CITB Testing ID", value: formData.citbId || "Not provided", icon: "🎯" },
+              { label: "Card Variant", value: formData.variant || "N/A", icon: "🎨" },
+              { label: "Card Type", value: formData.cardtype, icon: "🪪" },
+              { label: "Application Type", value: formData.applicationType, span: 2, icon: "📝" },
+            ].map((item, idx) => (
+              <div
+                key={idx}
+                className={`bg-gray-50 rounded-lg px-3 sm:px-4 py-3 ${item.span === 2 ? "col-span-1 lg:col-span-2" : ""} border border-gray-200 hover:bg-gray-100 transition-colors`}
+              >
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="text-sm flex-shrink-0">{item.icon}</span>
+                  <p className="text-xs font-medium text-gray-500 truncate">{item.label}</p>
+                </div>
+                <p className="text-sm font-semibold text-gray-800 break-words leading-relaxed">{item.value || "—"}</p>
+              </div>
+            ))}
+          </div>
+        </div>
 
 
+        <div className="bg-white p-4 sm:p-6 rounded-lg shadow-md mb-4 sm:mb-6">
+          <div className="flex flex-col sm:flex-row justify-between gap-3 sm:gap-4">
+            <button
+              type="button"
+              onClick={() => handlePrevious(3)}
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg text-sm font-medium bg-purple_primary text-white hover:bg-purple_primary/90 transition-all duration-200 shadow-md hover:shadow-lg w-full sm:w-auto"
+            >
+              <MdArrowLeft className="size-5" />
+              Back to Address Details
+            </button>
+            <button
+              type="button"
+              disabled={isSubmitting}
+              onClick={handleSubmit}
+              className={`inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200 w-full sm:w-auto ${isSubmitting ? "bg-gray-400 text-white cursor-not-allowed" : "bg-purple_primary text-white hover:bg-purple_primary/90 shadow-md hover:shadow-lg"}`}
+            >
+              {isSubmitting ? (
+                <>
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                  Processing...
+                </>
+              ) : (
+                <>
+                  Submit Application
+                  <MdArrowRight className="size-5" />
+                </>
+              )}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 
+  return (
+    <>
+      <ToastContainer />
+
+      {currentStep === 1 && renderStep1()}
+      {currentStep === 2 && renderStep2()}
+      {currentStep === 3 && renderStep3()}
     </>
-
   );
 };
 

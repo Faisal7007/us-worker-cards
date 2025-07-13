@@ -1,7 +1,6 @@
 "use client"
 import Link from 'next/link'
 import React, { useContext, useState } from 'react'
-import { IoIosArrowForward } from 'react-icons/io'
 // import CscsForm from '../components/CscsForm'
 import Image from 'next/image'
 import { FaHardHat } from 'react-icons/fa'
@@ -9,7 +8,6 @@ import { GoDotFill } from 'react-icons/go'
 import ApplyEssCscsForm from '@/app/components/ApplyEssCscsForm'
 import { useParams } from 'next/navigation'
 import GenericCardDetailsView from '@/app/components/GenericCardDetailsView'
-import { useSearchParams } from 'next/navigation'
 import { UserContext } from '@/app/context-api/UserContext'
 
 const page = () => {
