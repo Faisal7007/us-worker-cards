@@ -33,19 +33,24 @@ const page = () => {
         <GenericCardDetailsView getCardType={getCardType} />
       ) : (
         <div>
-          <h1 className="text-[30px] sm:text-[24px] font-bold mb-2 capitalize">
-            Apply For <span className="uppercase text-purple_primary">{form_type}</span> Card
-          </h1>
+          <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+            <h1 className="text-[32px] sm:text-[26px] font-bold mb-3 capitalize text-gray-800">
+              Apply for <span className="uppercase text-purple_primary">{form_type}</span> Card
+            </h1>
 
-          <div className="h-[1px] w-full bg-slate-300 my-4"></div>
+            <div className="h-[2px] w-20 bg-purple_primary mb-6"></div>
 
-          <p className="text-gray-700 text-justify">
-            To apply for a <span className="uppercase">{form_type}</span> Card, the applicant must have completed the
-            CITB HS&E Test within the past two years. If you have not taken the test,{" "}
-            <Link href="/book-citb-test/default" className="text-purple_primary font-semibold underline">
-              you can schedule an appointment.
-            </Link>
-          </p>
+            <p className="text-gray-700 text-[16px] sm:text-[15px] leading-relaxed text-justify">
+              To apply for a <span className="uppercase font-medium">{form_type}</span> Card, the applicant must have completed the
+              CITB HS&E Test within the past two years. If you have not taken the test,{" "}
+              <Link
+                href="/book-citb-test/default"
+                className="text-purple_primary font-semibold underline hover:text-purple-700 transition-colors duration-200"
+              >
+                you can schedule an appointment.
+              </Link>
+            </p>
+          </div>
 
           <div className="mt-6 mb-8">
             <ApplyEssCscsForm
@@ -57,12 +62,12 @@ const page = () => {
           </div>
 
           <div className="text-center py-8">
-            <h2 className="text-[22px] sm:text-[20px] font-bold inline-block px-5 py-2 bg-purple_primary rounded-full text-white shadow-md">
-              Apply for <span className="uppercase">{form_type}</span> Card
+            <h2 className="text-[22px] sm:text-[20px] font-bold px-5 py-2">
+              Steps to get <span className="uppercase">{form_type}</span> Card
             </h2>
           </div>
 
-          <div className="flex flex-col lg:flex-row lg:justify-between items-center lg:items-start gap-8 rounded-lg px-2">
+          <div className="flex flex-col lg:flex-row lg:justify-between items-center lg:items-start gap-8 rounded-2xl px-6 py-6 mx-auto max-w-7xl bg-white shadow-lg">
             {/* Left Side - Image */}
             <div className="w-full lg:max-w-[520px]">
               <Image
@@ -75,12 +80,12 @@ const page = () => {
             </div>
 
             {/* Right Side - Content */}
-            <div className="w-full text-justify text-[16px] sm:text-[15px] text-gray-800">
-              <ul className="space-y-4">
+            <div className="w-full text-justify text-[16px] sm:text-[15px] text-gray-700">
+              <ul className="space-y-5">
                 <li className="flex items-start gap-3">
                   <FaHardHat className="text-purple_primary mt-1 flex-shrink-0" />
                   <span>
-                    Fill the application and choose the <span className="uppercase">{form_type}</span> Card based on your qualification.
+                    Fill the application and choose the <span className="uppercase font-medium">{form_type}</span> Card based on your qualification.
                   </span>
                 </li>
 
@@ -99,14 +104,14 @@ const page = () => {
                 <li className="flex items-start gap-3 pl-6">
                   <GoDotFill className="text-purple_primary mt-1 flex-shrink-0" />
                   <span>
-                    If replacing your existing <span className="uppercase">{form_type}</span> card, select <strong>Lost Card</strong>.
+                    If replacing your existing <span className="uppercase font-medium">{form_type}</span> card, select <strong>Lost Card</strong>.
                   </span>
                 </li>
 
                 <li className="flex items-start gap-3">
                   <FaHardHat className="text-purple_primary mt-1 flex-shrink-0" />
                   <span>
-                    To continue, click <strong>Submit Application</strong> to add your CITB Test ID, expired <span className="uppercase">{form_type}</span> Card number (for Renew Card), and address.
+                    To continue, click <strong>Submit Application</strong> to add your CITB Test ID, expired <span className="uppercase font-medium">{form_type}</span> Card number (for Renew Card), and address.
                   </span>
                 </li>
 
@@ -118,12 +123,13 @@ const page = () => {
                 <li className="flex items-start gap-3">
                   <FaHardHat className="text-purple_primary mt-1 flex-shrink-0" />
                   <span>
-                    Once approved, you'll receive your <span className="uppercase">{form_type}</span> Card in approximately 7 working days.
+                    Once approved, you'll receive your <span className="uppercase font-medium">{form_type}</span> Card in approximately 7 working days.
                   </span>
                 </li>
               </ul>
             </div>
           </div>
+
         </div>
       )}
     </div>
