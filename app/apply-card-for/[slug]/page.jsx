@@ -33,10 +33,10 @@ const page = () => {
         <div>
           <div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
             <h1 className="text-[32px] sm:text-[26px] font-bold mb-3 capitalize text-gray-800">
-              Apply for <span className="uppercase text-purple_primary">{form_type}</span> Card
+              Apply for <span className="uppercase">{form_type}</span> Card
             </h1>
 
-            <div className="h-[2px] w-20 bg-purple_primary mb-6"></div>
+            {/* <div className="h-[2px] w-20 bg-purple_primary mb-6"></div> */}
 
             <p className="text-gray-700 text-[16px] sm:text-[15px] leading-relaxed text-justify">
               To apply for a <span className="uppercase font-medium">{form_type}</span> Card, the applicant must have completed the
