@@ -59,13 +59,13 @@ const page = () => {
             />
           </div>
 
-          <div className="text-center py-8">
-            <h2 className="text-[22px] sm:text-[20px] font-bold px-5 py-2">
+          <div className="text-center py-2 sm:py-5">
+            <h2 className="text-[22px] sm:text-[20px] font-bold px-5 py-0">
               Steps to get <span className="uppercase">{form_type}</span> Card
             </h2>
           </div>
 
-          <div className="flex flex-col lg:flex-row lg:justify-between items-center lg:items-start gap-8 rounded-2xl px-6 py-6 mx-auto max-w-7xl bg-white shadow-lg">
+          <div className="flex flex-col lg:flex-row lg:justify-between items-center lg:items-start gap-8 rounded-2xl px-6 py-1 sm:py-8 mx-auto max-w-7xl bg-white shadow-lg">
             {/* Left Side - Image */}
             <div className="w-full lg:max-w-[520px]">
               <Image
@@ -79,7 +79,7 @@ const page = () => {
 
             {/* Right Side - Content */}
             <div className="w-full text-justify text-[16px] sm:text-[15px] text-gray-700">
-              <ul className="space-y-5">
+              <ul className="space-y-3 sm:space-y-5">
                 <li className="flex items-start gap-3">
                   <FaHardHat className="text-purple_primary mt-1 flex-shrink-0" />
                   <span>

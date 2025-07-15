@@ -447,7 +447,7 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
             />
             <div>
               <label htmlFor="agreeCheckboxStep1" className="text-sm text-gray-700 cursor-pointer">
-                I accept the <span className="text-purple_primary underline">Terms and Conditions</span> and <span className="text-purple_primary underline">Privacy Policy</span>
+                I accept the <span className="">Terms and Conditions</span> and <span className="">Privacy Policy</span>
               </label>
               <p className="text-xs text-gray-500 mt-1">By checking this box, you confirm that you have read and agree to our terms.</p>
             </div>
