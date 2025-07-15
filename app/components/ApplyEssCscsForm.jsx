@@ -335,7 +335,7 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
                     value={type}
                     checked={formData.applicationType === type}
                     onChange={handleChange}
-                    className="accent-primary-purple w-4 h-4"
+                    className="accent-primary-purple w-5 h-5"
                   />
                   <span className="text-gray-700">{type}</span>
                 </label>
@@ -357,9 +357,9 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             {[
               { label: "Title", id: "title", type: "select", options: ["Mr", "Ms", "Mrs", "Miss", "Dr"], required: true },
-              { label: "First Name", id: "firstName", type: "text", placeholder: "Enter your first name", required: true },
-              { label: "Middle Name", id: "middleName", type: "text", placeholder: "Enter your middle name (optional)" },
-              { label: "Last Name", id: "lastName", type: "text", placeholder: "Enter your last name", required: true },
+              { label: "First Name", id: "firstName", type: "text", placeholder: "Enter first name", required: true },
+              { label: "Middle Name", id: "middleName", type: "text", placeholder: "Enter middle name (optional)" },
+              { label: "Last Name", id: "lastName", type: "text", placeholder: "Enter last name", required: true },
             ].map((field, i) => (
               <div key={i}>
                 <label htmlFor={field.id} className="block text-sm font-medium mb-1 text-gray-700">{field.label}</label>
