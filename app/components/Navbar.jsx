@@ -1,5 +1,3 @@
-
-
 "use client";
 import Image from "next/image";
 import Link from "next/link";
@@ -49,6 +47,47 @@ const Navbar = () => {
   const lastScrollY = useRef(0);
   const dropdownRef = useRef(null);
   const pathname = usePathname();
+  const mobileMenuRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutsideMobileMenu = (event) => {
+      if (
+        mobileMenuRef.current &&
+        !mobileMenuRef.current.contains(event.target) &&
+        isMobileMenuOpen // Only on mobile menu open
+      ) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutsideMobileMenu);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutsideMobileMenu);
+    };
+  }, [isMobileMenuOpen]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > lastScrollY.current && currentScrollY > 50) {
+        setShowNavbar(false); // Hide navbar on scroll down
+        setIsMobileMenuOpen(false); // Close mobile menu on scroll down
+      } else {
+        setShowNavbar(true); // Show navbar on scroll up
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+
 
 
   useEffect(() => {
@@ -162,11 +201,13 @@ const Navbar = () => {
 
           {/* Main Nav Links */}
           <div
+            ref={mobileMenuRef}
             className={`w-full lg:w-auto lg:flex lg:items-center transition-all duration-500 font-medium ${isMobileMenuOpen
               ? "block absolute top-full left-0 w-full bg-white px-6 py-5 shadow-lg border-t border-slate-200"
               : "hidden"
               } lg:static lg:bg-transparent lg:p-0`}
           >
+
             <div
               className="flex flex-col lg:flex-row lg:items-center lg:gap-8 gap-4 w-full lg:w-auto text-[17px] lg:text-[18px] xl:text-[19px] tracking-tight"
               ref={dropdownRef}
