@@ -306,7 +306,7 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
                 onClick={() => setIsOpen(!isOpen)}
                 className="border text-gray-500 border-gray-400 py-2 px-3 rounded cursor-pointer hover:border-primary-purple focus:ring-2 focus:ring-primary-purple"
               >
-                {formData.cardtype || 'Please select the card from the list'}
+                {formData.cardtype || 'Please select the card from list'}
               </div>
               {isOpen && !isPreSelected && (
                 <div className="absolute top-full left-0 w-full bg-white border border-gray-400 max-h-48 overflow-y-auto z-10 shadow-lg rounded">
@@ -335,7 +335,7 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
                     value={type}
                     checked={formData.applicationType === type}
                     onChange={handleChange}
-                    className="accent-primary-purple w-5 h-5"
+                    className="accent-primary-purple w-4 h-4"
                   />
                   <span className="text-gray-700">{type}</span>
                 </label>
@@ -447,7 +447,7 @@ const ApplyEssCscsForm = ({ form_type, setOpenDetails, setGetCardType, setImageP
             />
             <div>
               <label htmlFor="agreeCheckboxStep1" className="text-sm text-gray-700 cursor-pointer">
-                I accept the <span className="">Terms and Conditions</span> and <span className="">Privacy Policy</span>
+                I accept the <span className="text-purple_primary underline">Terms and Conditions</span> and <span className="text-purple_primary underline">Privacy Policy</span>
               </label>
               <p className="text-xs text-gray-500 mt-1">By checking this box, you confirm that you have read and agree to our terms.</p>
             </div>
