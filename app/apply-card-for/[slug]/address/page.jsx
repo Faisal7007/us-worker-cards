@@ -38,7 +38,14 @@ const AddressStepPage = () => {
         if (saved) {
             setFormData(prev => ({ ...prev, ...JSON.parse(saved) }));
         }
+        // Scroll to top when component mounts
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }, [form_type]);
+
+    // Scroll to top when step changes
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, [currentStep]);
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -61,6 +68,8 @@ const AddressStepPage = () => {
     const handleNext = async () => {
         await saveFormData(2);
         setCurrentStep(3);
+        // Scroll to top when moving to review step
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
     const handlePrevious = () => {
@@ -91,7 +100,7 @@ const AddressStepPage = () => {
 
     // Step 2: Address & Additional Details
     const renderStep2 = () => (
-        <div className="max-w-4xl bg-gray-200 mx-auto rounded space-y-5 px-4">
+        <div className="max-w-4xl bg-gray-200 mx-auto rounded space-y-5 px-4 mt-20 sm:mt-32">
             <div className="pt-4">
                 <h2 className="text-lg text-gray-800 py-3 font-semibold mb-4 text-center rounded">
                     Step 2: Address & Additional Details
@@ -183,7 +192,7 @@ const AddressStepPage = () => {
 
     // Step 3: Review & Submit
     const renderStep3 = () => (
-        <div className="max-w-4xl bg-gray-200 mx-auto rounded space-y-4 sm:space-y-5 px-3 sm:px-4">
+        <div className="max-w-4xl bg-gray-200 mx-auto rounded space-y-4 sm:space-y-5 px-3 sm:px-4 mt-20 sm:mt-32">
             <div className="pt-4">
                 <h2 className="text-lg text-gray-800 py-3 font-semibold mb-4 text-center rounded">
                     Step 3: Review & Submit Application
@@ -223,7 +232,7 @@ const AddressStepPage = () => {
                         ))}
                     </div>
                 </div>
-                <div className="bg-white p-4 sm:p-6 rounded-lg shadow-md mb-4 sm:mb-6">
+                <div className="p-4 sm:p-6 rounded-lg mb-4 sm:mb-6">
                     <div className="flex flex-col sm:flex-row justify-between gap-3 sm:gap-4">
                         <button
                             type="button"
