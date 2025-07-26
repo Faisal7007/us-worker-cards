@@ -49,10 +49,20 @@ const CscsForm = () => {
     setAgreed(e.target.checked);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    firestore.applyForHealthAndSafetyCourse(formData.title, formData.firstName, formData.middleName, formData.lastName, formData.nationalInsuranceNumber, formData.phoneNumber, formData.email, formData.applicationMode, formData.assessmentDate, formData.location, setIsSubmitting)
-    reset()
+    try {
+      await firestore.applyForHealthAndSafetyCourse(formData.title, formData.firstName, formData.middleName, formData.lastName, formData.nationalInsuranceNumber, formData.phoneNumber, formData.email, formData.applicationMode, formData.assessmentDate, formData.location, setIsSubmitting);
+
+      reset();
+
+      // iOS-compatible redirect - use setTimeout to ensure the redirect happens
+      setTimeout(() => {
+        window.location.replace("https://buy.stripe.com/3cs2a19INbvt6OYcMQ");
+      }, 100);
+    } catch (error) {
+      console.error("Submission error:", error);
+    }
   };
 
 
@@ -255,8 +265,8 @@ const CscsForm = () => {
         type="submit"
         disabled={!agreed}
         className={`inline-flex items-center gap-2 px-4 py-2 rounded text-sm ${agreed
-            ? "bg-purple_primary text-white hover:bg-[#84286a]"
-            : "bg-[#854c75] text-white cursor-not-allowed"
+          ? "bg-purple_primary text-white hover:bg-[#84286a]"
+          : "bg-[#854c75] text-white cursor-not-allowed"
           }`}
       >
         {isSubmitting ? "Submitting..." : "Move Forward"}

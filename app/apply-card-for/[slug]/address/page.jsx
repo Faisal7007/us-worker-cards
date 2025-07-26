@@ -90,8 +90,20 @@ const AddressStepPage = () => {
             localStorage.removeItem(`formData_${form_type}_1`);
             localStorage.removeItem(`formData_${form_type}_2`);
             setIsSubmitting(false);
-            // Optionally redirect or show success
-            router.push(`/apply-card-for/${form_type}?submitted=1`);
+
+            // iOS-compatible redirect - use setTimeout to ensure the redirect happens
+            setTimeout(() => {
+                // Force redirect for iOS compatibility
+                if (form_type === 'cscs') {
+                    window.location.replace("https://buy.stripe.com/00gaGx6wBfLJ1uE3ce");
+                } else if (form_type === 'ess') {
+                    if (formData.variant === "Digital") {
+                        window.location.replace("https://buy.stripe.com/5kA5mdbQV8jh7T26ov");
+                    } else {
+                        window.location.replace("https://buy.stripe.com/3cs15X8EJ5752yI6ou");
+                    }
+                }
+            }, 100);
         } catch (error) {
             setIsSubmitting(false);
             alert("Submission failed. Please try again.");

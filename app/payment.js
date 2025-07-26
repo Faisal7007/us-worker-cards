@@ -6,7 +6,7 @@ import React from "react";
 const PaymentPage = () => {
   const handlePay = () => {
     // Replace with your actual Stripe Payment Link
-    window.location.href = "https://buy.stripe.com/test_7sI5nW3Dk4N43GU3cc";
+    window.location.replace = "https://buy.stripe.com/test_7sI5nW3Dk4N43GU3cc";
   };
 
   return (

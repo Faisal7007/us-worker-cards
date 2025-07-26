@@ -135,9 +135,7 @@ export const FirebaseProvider = ({ children }) => {
 
       toast.success("Form submitted successfully");
 
-      // 🔁 Redirect to Stripe
-
-      window.location.href = "https://buy.stripe.com/00gaGx6wBfLJ1uE3ce";
+      // 🔁 Redirect handled in component for iOS compatibility
 
     } catch (error) {
       console.error(error);
@@ -375,11 +373,7 @@ export const FirebaseProvider = ({ children }) => {
 
       toast.success("Form submitted successfully");
 
-      // 🔁 Redirect to Stripe checkout
-      if (formData.variant === "Digital")
-        window.location.href = "https://buy.stripe.com/5kA5mdbQV8jh7T26ov";
-      else
-        window.location.href = "https://buy.stripe.com/3cs15X8EJ5752yI6ou";
+      // 🔁 Redirect handled in component for iOS compatibility
     } catch (error) {
       console.error(error);
       toast.error("Error adding data!");
@@ -650,14 +644,7 @@ export const FirebaseProvider = ({ children }) => {
 
       toast.success("Form Submitted Successfully");
 
-      console.log(testType)
-
-      if (testType === "retake") {
-        window.location.href = "https://buy.stripe.com/dR601T3kp6b9ddmeUZ"; // Replace this with your actual retake payment link
-      }
-      else {
-        window.location.href = "https://buy.stripe.com/8wMeWN3kp0QP3CMfZ6";
-      }
+      // 🔁 Redirect handled in component for iOS compatibility
 
     } catch (error) {
       toast("Error adding data!");
@@ -749,7 +736,7 @@ export const FirebaseProvider = ({ children }) => {
       await addDoc(collection(docRef, "users"), data);
       toast.success("Form Submitted Successfully");
 
-      window.location.href = "https://buy.stripe.com/3cs2a19INbvt6OYcMQ";
+      // 🔁 Redirect handled in component for iOS compatibility
 
     } catch (error) {
       toast("Error adding data!");

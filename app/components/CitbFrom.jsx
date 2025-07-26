@@ -98,36 +98,49 @@ const CitbForm = ({ test_center }) => {
     setAgreed(e.target.checked);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    firebase.applyForCITBTest(
-      formData.title,
-      formData.firstName,
-      formData.middleName,
-      formData.lastName,
-      formData.dob,
-      formData.nationalInsuranceNumber,
-      formData.phoneNumber,
-      formData.email,
-      formData.houseNumber,
-      formData.locality,
-      formData.townCity,
-      formData.county,
-      formData.postcode,
-      formData.testVariant,              // Newly added
-      formData.language,              // Newly added
-      formData.preferredTestDate,     // Newly added
-      formData.alternateTestDate,     // Newly added
-      formData.timeSlot,              // Newly added
-      formData.testType,
-      formData.testCenter,
-      test_center,
-      setIsSubmitting
-    );
+    try {
+      await firebase.applyForCITBTest(
+        formData.title,
+        formData.firstName,
+        formData.middleName,
+        formData.lastName,
+        formData.dob,
+        formData.nationalInsuranceNumber,
+        formData.phoneNumber,
+        formData.email,
+        formData.houseNumber,
+        formData.locality,
+        formData.townCity,
+        formData.county,
+        formData.postcode,
+        formData.testVariant,              // Newly added
+        formData.language,              // Newly added
+        formData.preferredTestDate,     // Newly added
+        formData.alternateTestDate,     // Newly added
+        formData.timeSlot,              // Newly added
+        formData.testType,
+        formData.testCenter,
+        test_center,
+        setIsSubmitting
+      );
 
-    reset();
+      reset();
+
+      // iOS-compatible redirect - use setTimeout to ensure the redirect happens
+      setTimeout(() => {
+        if (formData.testType === "retake") {
+          window.location.replace("https://buy.stripe.com/dR601T3kp6b9ddmeUZ");
+        } else {
+          window.location.replace("https://buy.stripe.com/8wMeWN3kp0QP3CMfZ6");
+        }
+      }, 100);
+    } catch (error) {
+      console.error("Submission error:", error);
+    }
   };
 
 
