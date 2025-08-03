@@ -1,10 +1,9 @@
 "use client";
 import React, { useState } from "react";
-import { MdArrowRight } from "react-icons/md";
+import { MdArrowRight, MdArrowLeft } from "react-icons/md";
 import { useFirebase } from "../context/Firebase";
 import MapSelector from "./MapSelector";
 import testCentres from "./testCentres";
-
 
 const getDistance = (lat1, lon1, lat2, lon2) => {
   const R = 3958.8;
@@ -19,6 +18,7 @@ const getDistance = (lat1, lon1, lat2, lon2) => {
 };
 
 const CitbForm = ({ test_center }) => {
+  const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({
     title: "",
     firstName: "",
@@ -33,16 +33,14 @@ const CitbForm = ({ test_center }) => {
     townCity: "",
     county: "",
     postcode: "",
-    testType: "normal",                  // Test Type (select dropdown)
-    language: "",                 // Language (select dropdown)
-    preferredTestDate: "",        // Preferred Test Date
-    alternateTestDate: "",        // Alternate Test Date
-    timeSlot: "",                 // Time Slot (morning, afternoon, evening)
+    testType: "normal",
+    language: "",
+    preferredTestDate: "",
+    alternateTestDate: "",
+    timeSlot: "",
     testVariant: "",
     testCenter: ""
   });
-
-
 
   const reset = () => {
     setFormData({
@@ -58,13 +56,20 @@ const CitbForm = ({ test_center }) => {
       locality: "",
       townCity: "",
       county: "",
-      postcode: ""
-    })
-  }
+      postcode: "",
+      testType: "normal",
+      language: "",
+      preferredTestDate: "",
+      alternateTestDate: "",
+      timeSlot: "",
+      testVariant: "",
+      testCenter: ""
+    });
+    setCurrentStep(1);
+  };
 
   const [agreed, setAgreed] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showOverlayForm, setShowOverlayForm] = useState(false);
   const [nearest, setNearest] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -78,17 +83,14 @@ const CitbForm = ({ test_center }) => {
         }))
         .sort((a, b) => a.distance - b.distance)
         .slice(0, 5);
-      console.log(sorted)
+      console.log(sorted);
       setNearest(sorted);
     } finally {
       setLoading(false);
     }
   };
 
-
-
-
-  const firebase = useFirebase()
+  const firebase = useFirebase();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -96,6 +98,14 @@ const CitbForm = ({ test_center }) => {
 
   const handleCheckboxChange = (e) => {
     setAgreed(e.target.checked);
+  };
+
+  const handleNext = () => {
+    setCurrentStep(currentStep + 1);
+  };
+
+  const handlePrevious = () => {
+    setCurrentStep(currentStep - 1);
   };
 
   const handleSubmit = async (e) => {
@@ -117,11 +127,11 @@ const CitbForm = ({ test_center }) => {
         formData.townCity,
         formData.county,
         formData.postcode,
-        formData.testVariant,              // Newly added
-        formData.language,              // Newly added
-        formData.preferredTestDate,     // Newly added
-        formData.alternateTestDate,     // Newly added
-        formData.timeSlot,              // Newly added
+        formData.testVariant,
+        formData.language,
+        formData.preferredTestDate,
+        formData.alternateTestDate,
+        formData.timeSlot,
         formData.testType,
         formData.testCenter,
         test_center,
@@ -143,346 +153,437 @@ const CitbForm = ({ test_center }) => {
     }
   };
 
+  // Step 1: Test Details & Personal Information
+  const renderStep1 = () => (
+    <div className="max-w-4xl bg-gray-200 mx-auto rounded space-y-5 px-4">
+      <div className="pt-4">
+        <h2 className="text-lg text-gray-800 py-3 font-semibold mb-4 text-center rounded">
+          Step 1: Test Details & Personal Information
+        </h2>
 
-  return (
-    <>
-      {showOverlayForm && (
-        <form onSubmit={handleSubmit}>
-          <div className="fixed inset-0 z-50 bg-black bg-opacity-70 flex justify-center items-center px-4">
-            <div className="relative bg-white w-full max-w-2xl max-h-[90vh] overflow-y-auto p-6 rounded-2xl shadow-2xl scroll-smooth touch-auto">
+        <div className="bg-white p-6 rounded-lg shadow-md mb-6">
+          <h3 className="text-lg font-semibold text-gray-800 mb-4">📋 Test Information</h3>
+          <p className="text-gray-600 mb-4">Please select your test details and preferences.</p>
 
-              {/* Spinner */}
-              {loading && (
-                <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 rounded-2xl">
-                  <div className="w-12 h-12 border-4 border-white border-t-purple-600 rounded-full animate-spin"></div>
-                </div>
-              )}
-
-              {/* Heading */}
-              <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">📋 Additional Information</h2>
-
-              {/* Test Type */}
-              <div className="mb-6">
-                <label className="block mb-2 text-sm font-medium text-gray-700">Test Type</label>
-                <select
-                  name="testVariant"
-                  value={formData.testVariant || ""}
-                  onChange={handleChange}
-                  className="w-full border rounded-md border-gray-300 py-3 px-4 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                  required
-                >
-                  <option value="">Select a Test Type</option>
-                  {[
-                    "Operative",
-                    "Managers and Professionals",
-                    "Supervisors Test",
-                    "Working at Height Test",
-                    "Plumbing or Gas Test",
-                    "Highway Works Test",
-                    "Demolition Test",
-                    "HVACR Test (Domestic Heating and Plumbing)",
-                    "HVACR Test (Ductwork)",
-                    "HVACR Test (Pipelifting and Welding)",
-                    "HVACR Test (Refrigeration and Air Conditioning)",
-                    "HVACR Test (Services and Facilities)",
-                    "Lift and Escalators Test",
-                    "Tunnelling Test",
-                  ].map((type) => (
-                    <option key={type} value={type}>{type}</option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Language */}
-              {formData.testVariant === "Operative" && (
-                <div className="mb-6">
-                  <label className="block mb-2 text-sm font-medium text-gray-700">Language</label>
-                  <select
-                    name="language"
-                    value={formData.language || ""}
-                    onChange={handleChange}
-                    className="w-full border rounded-md border-gray-300 py-3 px-4 focus:outline-none focus:ring-2 focus:ring-purple-500"
-                    required
-                  >
-                    <option value="">Select a Language</option>
-                    {[
-                      "English", "Voice Over English", "Bulgarian", "Czetch", "French", "German", "Hungarian",
-                      "Lithunian", "Polish", "Portuguese", "Punjabi", "Romanian", "Russian", "Spanish", "Welsh"
-                    ].map((lang) => (
-                      <option key={lang} value={lang}>{lang}</option>
-                    ))}
-                  </select>
-                </div>
-              )}
-
-              {/* Location & Centres */}
-              <div className="mb-6">
-                <MapSelector
-                  onLocationSelect={handleLocationSelect}
-                  onTestCenterSelect={(value) => setFormData((prev) => ({ ...prev, testCenter: value }))}
-                  nearestCentres={nearest}
-                />
-                <h3 className="text-lg font-semibold mt-4 mb-3 text-gray-800">Top 5 Nearest CITB Test Centres</h3>
-                {nearest.length === 0 ? (
-                  <p className="text-gray-500">No centres selected yet.</p>
-                ) : (
-                  nearest.map((centre, idx) => (
-                    <div
-                      key={idx}
-                      onClick={() => {
-                        setFormData((prev) => ({ ...prev, testCenter: centre.name }));
-                        document.getElementById("test-center-input").value = centre.name; // 👈 set input box value
-                      }}
-                      className={`mb-4 p-4 bg-gray-100 border rounded-lg shadow-sm cursor-pointer transition hover:shadow-md ${formData.testCenter === centre.name ? "border-blue-500 ring-2 ring-blue-400" : "border-gray-200"
-                        }`}
-                    >
-                      <h4 className="font-semibold text-gray-800">{centre.name}</h4>
-                      <p className="text-gray-700">{centre.address}</p>
-                      <p className="text-sm text-gray-500">Distance: {centre.distance.toFixed(2)} miles</p>
-                    </div>
-                  ))
-                )}
-
-              </div>
-
-              {/* Dates */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                <div>
-                  <label className="block mb-2 text-sm font-medium text-gray-700">Preferred Test Date</label>
-                  <input
-                    type="date"
-                    name="preferredTestDate"
-                    min={new Date(Date.now() + 86400000).toISOString().split("T")[0]}
-                    value={formData.preferredTestDate || ""}
-                    onChange={handleChange}
-                    className="w-full border rounded-md border-gray-300 py-3 px-4"
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label className="block mb-2 text-sm font-medium text-gray-700">Alternate Test Date</label>
-                  <input
-                    type="date"
-                    name="alternateTestDate"
-                    min={new Date(Date.now() + 86400000).toISOString().split("T")[0]}
-                    value={formData.alternateTestDate || ""}
-                    onChange={handleChange}
-                    className="w-full border rounded-md border-gray-300 py-3 px-4"
-                    required
-                  />
-                </div>
-              </div>
-
-              {/* Time Slot */}
-              <div className="mb-6">
-                <label className="block mb-2 text-sm font-medium text-gray-700">Time Slot</label>
-                <select
-                  name="timeSlot"
-                  value={formData.timeSlot || ""}
-                  onChange={handleChange}
-                  className="w-full border rounded-md border-gray-300 py-3 px-4"
-                  required
-                >
-                  <option value="">Select Time</option>
-                  <option value="morning">Morning</option>
-                  <option value="afternoon">Afternoon</option>
-                  <option value="evening">Evening</option>
-                </select>
-              </div>
-
-              {/* Test Variant (Price Option) */}
-              <div className="mb-6">
-                <label className="block mb-2 text-sm font-medium text-gray-700">Test Package</label>
-                <select
-                  id="testType"
-                  name="testType"
-                  value={formData.testType}
-                  onChange={handleChange}
-                  className="w-full border rounded-md border-gray-300 py-3 px-4"
-                  required
-                >
-                  <option value="normal">Take CITB Test – £40</option>
-                  <option value="retake">Take CITB Test + Retake – £60</option>
-                </select>
-              </div>
-
-              {/* Buttons */}
-              <div className="flex justify-between mt-8">
-                <button
-                  type="button"
-                  onClick={() => setShowOverlayForm(false)}
-                  className="bg-gray-200 text-gray-800 px-5 py-2 rounded-md hover:bg-gray-300 transition"
-                >
-                  ← Back
-                </button>
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="bg-purple-600 text-white px-6 py-2 rounded-md hover:bg-purple-700 transition"
-                >
-                  {isSubmitting ? "Submitting..." : "Submit"}
-                </button>
-              </div>
-            </div>
-          </div>
-        </form>
-      )}
-
-
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          setShowOverlayForm(true);
-        }}
-        className="max-w-full mx-auto rounded space-y-6"
-      >
-        <div className="pt-4 max-w-4xl mx-auto px-4">
-          <h2 className="text-lg bg-purple_primary text-white py-2 font-semibold mb-4 text-center rounded">
-            Candidate Undergoing the Test
-          </h2>
-          <p className="text-lg font-semibold mb-3 text-gray-700">Name</p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-4">
-            {/* <p>Title</p> */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div>
-              {/* <label htmlFor="title" className="block text-sm font-medium mb-1">Name</label> */}
+              <label className="block text-sm font-medium mb-2 text-gray-700">Test Type</label>
               <select
-                id="title"
-                name="title"
-                value={formData.title}
+                name="testVariant"
+                value={formData.testVariant || ""}
                 onChange={handleChange}
-                className={`w-full border border-gray-400 py-2 px-3 rounded-md ${formData.title === '' ? 'text-gray-400' : 'text-gray-900'
-                  }`}
+                className="w-full border border-gray-400 py-2 px-3 rounded focus:ring-2 focus:ring-primary-purple focus:border-primary-purple placeholder:text-gray-500"
                 required
               >
-                <option value="" disabled hidden>
-                  Please select the title
-                </option>
-                <option className="text-gray-900" value="Mr">Mr</option>
-                <option className="text-gray-900" value="Ms">Ms</option>
-                <option className="text-gray-900" value="Mrs">Mrs</option>
-                <option className="text-gray-900" value="Miss">Miss</option>
-                <option className="text-gray-900" value="Dr">Dr</option>
+                <option value="">Select a Test Type</option>
+                {[
+                  "Operative",
+                  "Managers and Professionals",
+                  "Supervisors Test",
+                  "Working at Height Test",
+                  "Plumbing or Gas Test",
+                  "Highway Works Test",
+                  "Demolition Test",
+                  "HVACR Test (Domestic Heating and Plumbing)",
+                  "HVACR Test (Ductwork)",
+                  "HVACR Test (Pipelifting and Welding)",
+                  "HVACR Test (Refrigeration and Air Conditioning)",
+                  "HVACR Test (Services and Facilities)",
+                  "Lift and Escalators Test",
+                  "Tunnelling Test",
+                ].map((type) => (
+                  <option key={type} value={type}>{type}</option>
+                ))}
               </select>
-
-
-
             </div>
 
-            {[{ id: "firstName", label: "First Name", required: true }, { id: "middleName", label: "Middle Name" }, { id: "lastName", label: "Last Name", required: true }].map(({ id, label, type = "text", required = false, placeholder }) => (
-              <div key={id}>
-                {/* <label htmlFor={id} className="block text-sm font-medium mb-1">{label}</label> */}
-                <input
-                  type={type}
-                  id={id}
-                  name={id}
-                  placeholder={placeholder || label}
-                  value={formData[id]}
-                  onChange={handleChange}
-                  required={required}
-                  className="w-full border border-gray-400 py-2 px-3 rounded-md"
-                />
-              </div>
-            ))}
-            {[{ id: "dob", label: "Date of Birth", type: "date", required: true }, { id: "nationalInsuranceNumber", label: "National Insurance Number (Optional)", placeholder: "e.g. QQ 123456 C" }].map(({ id, label, type = "text", required = false, placeholder }) => (
-              <div key={id}>
-                <label htmlFor={id} className="block text-sm font-medium mb-1">{label}</label>
-                <input
-                  type={type}
-                  id={id}
-                  name={id}
-                  placeholder={placeholder || label}
-                  value={formData[id]}
-                  onChange={handleChange}
-                  required={required}
-                  className="w-full border border-gray-400 py-2 px-3 rounded-md"
-                />
-              </div>
-            ))}
-          </div>
-
-          <h2 className="text-lg font-semibold mb-3 text-gray-700">Contact Details</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-4">
-            {["phoneNumber", "email"].map((id) => (
-              <div key={id}>
-                <label htmlFor={id} className="block text-sm font-medium mb-1 capitalize">
-                  {id === "phoneNumber" ? "Phone Number" : "Email Address"}
-                </label>
-                <input
-                  type={id === "email" ? "email" : "text"}
-                  id={id}
-                  name={id}
-                  placeholder={id === "email" ? "yourname@domain.com" : "e.g. 2080995236"}
-                  value={formData[id]}
-                  onChange={handleChange}
-                  required
-                  className="w-full border border-gray-400 py-2 px-3 rounded-md"
-                />
-              </div>
-            ))}
-          </div>
-
-          <h2 className="text-lg font-semibold mb-3 text-gray-700">Address</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-4">
-            <div className="sm:col-span-2">
-              {/* <label htmlFor="houseNumber" className="block text-sm font-medium mb-1">
-                House Number and Street Name
-              </label> */}
-              <input
-                type="text"
-                id="houseNumber"
-                name="houseNumber"
-                placeholder="House Number and Street Name"
-                value={formData.houseNumber}
+            <div>
+              <label className="block text-sm font-medium mb-2 text-gray-700">Test Package</label>
+              <select
+                name="testType"
+                value={formData.testType}
                 onChange={handleChange}
+                className="w-full border border-gray-400 py-2 px-3 rounded focus:ring-2 focus:ring-primary-purple focus:border-primary-purple placeholder:text-gray-500"
                 required
-                className="w-full border border-gray-400 py-2 px-3 rounded-md"
+              >
+                <option value="normal">Take CITB Test – £40</option>
+                <option value="retake">Take CITB Test + Retake – £60</option>
+              </select>
+            </div>
+          </div>
+
+          {formData.testVariant === "Operative" && (
+            <div className="mb-4">
+              <label className="block text-sm font-medium mb-2 text-gray-700">Language</label>
+              <select
+                name="language"
+                value={formData.language || ""}
+                onChange={handleChange}
+                className="w-full border border-gray-400 py-2 px-3 rounded focus:ring-2 focus:ring-primary-purple focus:border-primary-purple placeholder:text-gray-500"
+                required
+              >
+                <option value="">Select a Language</option>
+                {[
+                  "English", "Voice Over English", "Bulgarian", "Czetch", "French", "German", "Hungarian",
+                  "Lithunian", "Polish", "Portuguese", "Punjabi", "Romanian", "Russian", "Spanish", "Welsh"
+                ].map((lang) => (
+                  <option key={lang} value={lang}>{lang}</option>
+                ))}
+              </select>
+            </div>
+          )}
+
+          <div className="mb-4">
+            <label className="block text-sm font-medium mb-2 text-gray-700">Time Slot</label>
+            <select
+              name="timeSlot"
+              value={formData.timeSlot || ""}
+              onChange={handleChange}
+              className="w-full border border-gray-400 py-2 px-3 rounded focus:ring-2 focus:ring-primary-purple focus:border-primary-purple placeholder:text-gray-500"
+              required
+            >
+              <option value="">Select Time</option>
+              <option value="morning">Morning</option>
+              <option value="afternoon">Afternoon</option>
+              <option value="evening">Evening</option>
+            </select>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div>
+              <label className="block text-sm font-medium mb-2 text-gray-700">Preferred Test Date</label>
+              <input
+                type="date"
+                name="preferredTestDate"
+                min={new Date(Date.now() + 86400000).toISOString().split("T")[0]}
+                value={formData.preferredTestDate || ""}
+                onChange={handleChange}
+                className="w-full border border-gray-400 py-2 px-3 rounded focus:ring-2 focus:ring-primary-purple focus:border-primary-purple placeholder:text-gray-500"
+                required
               />
             </div>
 
-            {[{ id: "locality", label: "Locality (Optional)" }, { id: "townCity", label: "Town/City", required: true }, { id: "county", label: "Country" }, { id: "postcode", label: "Postcode" }].map(({ id, label, required = false }) => (
+            <div>
+              <label className="block text-sm font-medium mb-2 text-gray-700">Alternate Test Date</label>
+              <input
+                type="date"
+                name="alternateTestDate"
+                min={new Date(Date.now() + 86400000).toISOString().split("T")[0]}
+                value={formData.alternateTestDate || ""}
+                onChange={handleChange}
+                className="w-full border border-gray-400 py-2 px-3 rounded focus:ring-2 focus:ring-primary-purple focus:border-primary-purple placeholder:text-gray-500"
+                required
+              />
+            </div>
+          </div>
+
+          <div className="mb-4">
+            <MapSelector
+              onLocationSelect={handleLocationSelect}
+              onTestCenterSelect={(value) => setFormData((prev) => ({ ...prev, testCenter: value }))}
+              nearestCentres={nearest}
+            />
+            <h4 className="text-md font-semibold mt-4 mb-3 text-gray-800">Top 5 Nearest CITB Test Centres</h4>
+            {nearest.length === 0 ? (
+              <p className="text-gray-500">No centres selected yet.</p>
+            ) : (
+              nearest.map((centre, idx) => (
+                <div
+                  key={idx}
+                  onClick={() => {
+                    setFormData((prev) => ({ ...prev, testCenter: centre.name }));
+                    document.getElementById("test-center-input").value = centre.name;
+                  }}
+                  className={`mb-3 p-3 bg-gray-100 border rounded-lg shadow-sm cursor-pointer transition hover:shadow-md ${formData.testCenter === centre.name ? "border-blue-500 ring-2 ring-blue-400" : "border-gray-200"}`}
+                >
+                  <h5 className="font-semibold text-gray-800">{centre.name}</h5>
+                  <p className="text-gray-700 text-sm">{centre.address}</p>
+                  <p className="text-xs text-gray-500">Distance: {centre.distance.toFixed(2)} miles</p>
+                </div>
+              ))
+            )}
+          </div>
+        </div>
+
+        <div className="bg-white p-6 rounded-lg shadow-md mb-6">
+          <h3 className="text-lg font-semibold text-gray-800 mb-4">👤 Personal Information</h3>
+          <p className="text-gray-600 mb-4">Please provide your personal details accurately.</p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            {[
+              { label: "Title", id: "title", type: "select", options: ["Mr", "Ms", "Mrs", "Miss", "Dr"], required: true },
+              { label: "First Name", id: "firstName", type: "text", placeholder: "Enter first name", required: true },
+              { label: "Middle Name", id: "middleName", type: "text", placeholder: "Enter middle name (optional)" },
+              { label: "Last Name", id: "lastName", type: "text", placeholder: "Enter last name", required: true },
+            ].map((field, i) => (
+              <div key={i}>
+                <label htmlFor={field.id} className="block text-sm font-medium mb-1 text-gray-700">{field.label}</label>
+                {field.type === "select" ? (
+                  <select
+                    id={field.id}
+                    name={field.id}
+                    value={formData[field.id]}
+                    onChange={handleChange}
+                    required={field.required}
+                    className={`w-full border border-gray-400 py-2 px-3 rounded focus:ring-2 focus:ring-primary-purple focus:border-primary-purple ${formData[field.id] ? 'text-gray-900' : 'text-gray-500'}`}
+                  >
+                    <option value="" disabled>Please select the title</option>
+                    {field.options.map((opt) => (
+                      <option key={opt} value={opt}>{opt}</option>
+                    ))}
+                  </select>
+                ) : (
+                  <input
+                    type={field.type}
+                    id={field.id}
+                    name={field.id}
+                    placeholder={field.placeholder || ""}
+                    value={formData[field.id]}
+                    onChange={handleChange}
+                    required={field.required}
+                    className="w-full border border-gray-400 py-2 px-3 rounded focus:ring-2 focus:ring-primary-purple focus:border-primary-purple placeholder:text-gray-500"
+                  />
+                )}
+              </div>
+            ))}
+            {[
+              { label: "Date of Birth", id: "dob", type: "date", required: true },
+            ].map((field, i) => (
+              <div key={i}>
+                <label htmlFor={field.id} className="block text-sm font-medium mb-1 text-gray-700">{field.label}</label>
+                <input
+                  type={field.type}
+                  id={field.id}
+                  name={field.id}
+                  placeholder={field.placeholder || ""}
+                  value={formData[field.id]}
+                  onChange={handleChange}
+                  required={field.required}
+                  className={`w-full border border-gray-400 py-2 px-3 rounded focus:ring-2 focus:ring-purple_primary focus:border-purple_primary ${formData[field.id] ? 'text-gray-900' : 'text-gray-500'}`}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="bg-white p-6 rounded-lg shadow-md mb-6">
+          <h3 className="text-lg font-semibold text-gray-800 mb-4">📞 Contact Details</h3>
+          <p className="text-gray-600 mb-4">We'll use these details to contact you about your test.</p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {[
+              { id: "phoneNumber", placeholder: "e.g. 2080995236", type: "text", label: "Phone Number" },
+              { id: "email", placeholder: "yourname@domain.com", type: "email", label: "Email Address" },
+            ].map(({ id, placeholder, type, label }) => (
               <div key={id}>
-                {/* <label htmlFor={id} className="block text-sm font-medium mb-1">{label}</label> */}
+                <label htmlFor={id} className="block text-sm font-medium mb-1 text-gray-700">{label}</label>
+                <input
+                  type={type}
+                  id={id}
+                  name={id}
+                  placeholder={placeholder}
+                  value={formData[id]}
+                  onChange={handleChange}
+                  required
+                  className="w-full border border-gray-400 py-2 px-3 rounded focus:ring-2 focus:ring-primary-purple focus:border-primary-purple placeholder:text-gray-500"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="bg-white p-6 rounded-lg shadow-md mb-6">
+          <div className="flex items-start gap-3">
+            <input
+              id="agreeCheckboxStep1"
+              type="checkbox"
+              onChange={handleCheckboxChange}
+              className="w-5 h-5 accent-primary-purple mt-0.5"
+            />
+            <div>
+              <label htmlFor="agreeCheckboxStep1" className="text-sm text-gray-700 cursor-pointer">
+                I accept the <span className="text-purple_primary underline">Terms and Conditions</span> and <span className="text-purple_primary underline">Privacy Policy</span>
+              </label>
+              <p className="text-xs text-gray-500 mt-1">By checking this box, you confirm that you have read and agree to our terms.</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex justify-end">
+          <button
+            type="button"
+            onClick={handleNext}
+            disabled={!formData.testVariant || !formData.testType || !formData.timeSlot || !formData.preferredTestDate || !formData.alternateTestDate || !formData.testCenter || !formData.title || !formData.firstName || !formData.lastName || !formData.dob || !formData.phoneNumber || !formData.email || !agreed}
+            className={`inline-flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${!formData.testVariant || !formData.testType || !formData.timeSlot || !formData.preferredTestDate || !formData.alternateTestDate || !formData.testCenter || !formData.title || !formData.firstName || !formData.lastName || !formData.dob || !formData.phoneNumber || !formData.email || !agreed ? "bg-gray-400 text-white cursor-not-allowed" : "bg-purple_primary text-white hover:bg-purple_primary/90 shadow-md hover:shadow-lg"}`}
+          >
+            Continue
+            <MdArrowRight className="size-5" />
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+
+  // Step 2: Address & Additional Details
+  const renderStep2 = () => (
+    <div className="max-w-4xl bg-gray-200 mx-auto rounded space-y-5 px-4 mt-20 sm:mt-32">
+      <div className="pt-4">
+        <h2 className="text-lg text-gray-800 py-3 font-semibold mb-4 text-center rounded">
+          Step 2: Address & Additional Details
+        </h2>
+        <div className="bg-white p-6 rounded-lg shadow-md mb-6">
+          <h3 className="text-lg font-semibold text-gray-800 mb-4">🏠 Address Information</h3>
+          <p className="text-gray-600 mb-4">Please provide your current address where you'd like to receive your test confirmation.</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {[
+              { id: "houseNumber", label: "House Number and Street Name", placeholder: "123 Main Street" },
+              { id: "locality", label: "Locality (Optional)", placeholder: "e.g. Hounslow" },
+              { id: "townCity", label: "Town/City", placeholder: "e.g. London" },
+              { id: "county", label: "Country", placeholder: "e.g. England" },
+              { id: "postcode", label: "Postcode", placeholder: "e.g. W1A 1AA" },
+            ].map(({ id, label, placeholder }) => (
+              <div key={id} className={id === "houseNumber" ? "md:col-span-2" : ""}>
+                <label htmlFor={id} className="block text-sm font-medium mb-1 text-gray-700">{label}</label>
                 <input
                   type="text"
                   id={id}
                   name={id}
-                  placeholder={label}
+                  placeholder={placeholder}
                   value={formData[id]}
                   onChange={handleChange}
-                  required={required}
-                  className="w-full border border-gray-400 py-2 px-3 rounded-md"
+                  required={id !== "locality"}
+                  className="w-full border border-gray-400 py-2 px-3 rounded focus:ring-2 focus:ring-primary-purple focus:border-primary-purple placeholder:text-gray-500"
                 />
               </div>
             ))}
           </div>
         </div>
-
-        <div className="flex items-center mb-4">
-          <input
-            id="agreeCheckbox"
-            type="checkbox"
-            onChange={handleCheckboxChange}
-            className="w-5 h-5 accent-purple_primary rounded focus:ring-purple_primary"
-          />
-          <label
-            htmlFor="agreeCheckbox"
-            className="ml-2 text-sm text-gray-700 select-none"
-          >
-            I agree to the Terms and Conditions and Privacy Policy
-          </label>
+        <div className="bg-white p-6 rounded-lg shadow-md mb-6">
+          <h3 className="text-lg font-semibold text-gray-800 mb-4">📋 Additional Information</h3>
+          <p className="text-gray-600 mb-4">Please provide any additional details that may help with your test booking.</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label htmlFor="nationalInsuranceNumber" className="block text-sm font-medium mb-1 text-gray-700">
+                National Insurance Number (Optional)
+              </label>
+              <input
+                type="text"
+                id="nationalInsuranceNumber"
+                name="nationalInsuranceNumber"
+                placeholder="e.g. QQ 123456 C"
+                value={formData.nationalInsuranceNumber}
+                onChange={handleChange}
+                className="w-full border border-gray-400 py-2 px-3 rounded focus:ring-2 focus:ring-primary-purple focus:border-primary-purple placeholder:text-gray-500"
+              />
+              <p className="text-xs text-gray-500 mt-1">This helps us verify your identity</p>
+            </div>
+          </div>
         </div>
+        <div className="flex flex-col sm:flex-row justify-between gap-4">
+          <button
+            type="button"
+            onClick={handlePrevious}
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg text-sm font-medium bg-purple_primary text-white hover:bg-purple_primary/90 transition-all duration-200 shadow-md hover:shadow-lg w-full sm:w-auto"
+          >
+            <MdArrowLeft className="size-5" />
+            Back to Test Details
+          </button>
+          <button
+            type="button"
+            onClick={handleNext}
+            disabled={!formData.houseNumber || !formData.townCity || !formData.county || !formData.postcode}
+            className={`inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200 w-full sm:w-auto ${!formData.houseNumber || !formData.townCity || !formData.county || !formData.postcode ? "bg-gray-400 text-white cursor-not-allowed" : "bg-purple_primary text-white hover:bg-purple_primary shadow-md hover:shadow-lg"}`}
+          >
+            Review & Submit
+            <MdArrowRight className="size-5" />
+          </button>
+        </div>
+      </div>
+    </div>
+  );
 
-        <button
-          type="submit"
-          disabled={!agreed}
-          className={`inline-flex items-center justify-center w-fit px-4 py-2 rounded ${agreed ? "bg-purple_primary text-white hover:bg-[#84286a]" : "bg-gray-300 text-gray-600 cursor-not-allowed"}`}
-        >
-          Move Forward <MdArrowRight className="ml-2" />
-        </button>
-      </form>
+  // Step 3: Review & Submit
+  const renderStep3 = () => (
+    <div className="max-w-4xl bg-gray-200 mx-auto rounded space-y-4 sm:space-y-5 px-3 sm:px-4 mt-20 sm:mt-32">
+      <div className="pt-4">
+        <h2 className="text-lg text-gray-800 py-3 font-semibold mb-4 text-center rounded">
+          Step 3: Review & Submit Application
+        </h2>
+        <div className="bg-white p-4 sm:p-6 rounded-lg shadow-md mb-4 sm:mb-6">
+          <h3 className="text-lg font-semibold text-gray-800 mb-4">✅ Review Your Information</h3>
+          <p className="text-gray-600 mb-6">Please review all your details carefully before submitting. You can go back to make changes if needed.</p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4 text-sm text-gray-800">
+            {[
+              { label: "Title", value: formData.title, icon: "👤" },
+              { label: "Date of Birth", value: formData.dob, icon: "📅" },
+              { label: "Full Name", value: `${formData.firstName} ${formData.middleName} ${formData.lastName}`.trim(), span: 2, icon: "👤" },
+              { label: "Phone Number", value: formData.phoneNumber, icon: "📞" },
+              { label: "Email Address", value: formData.email, icon: "📧" },
+              { label: "National Insurance No.", value: formData.nationalInsuranceNumber || "Not provided", span: 2, icon: "🆔" },
+              {
+                label: "Address",
+                value: `${formData.houseNumber}, ${formData.locality ? formData.locality + ', ' : ''}${formData.townCity}, ${formData.county} - ${formData.postcode}`,
+                span: 2,
+                icon: "🏠"
+              },
+              { label: "Test Type", value: formData.testVariant, icon: "🎯" },
+              { label: "Test Package", value: formData.testType === "normal" ? "Take CITB Test – £40" : "Take CITB Test + Retake – £60", icon: "📦" },
+              { label: "Language", value: formData.language || "N/A", icon: "🌐" },
+              { label: "Time Slot", value: formData.timeSlot, icon: "⏰" },
+              { label: "Preferred Date", value: formData.preferredTestDate, icon: "📅" },
+              { label: "Alternate Date", value: formData.alternateTestDate, icon: "📅" },
+              { label: "Test Center", value: formData.testCenter, span: 2, icon: "🏢" },
+            ].map((item, idx) => (
+              <div
+                key={idx}
+                className={`bg-gray-50 rounded-lg px-3 sm:px-4 py-3 ${item.span === 2 ? "col-span-1 lg:col-span-2" : ""} border border-gray-200 hover:bg-gray-100 transition-colors`}
+              >
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="text-sm flex-shrink-0">{item.icon}</span>
+                  <p className="text-xs font-medium text-gray-500 truncate">{item.label}</p>
+                </div>
+                <p className="text-sm font-semibold text-gray-800 break-words leading-relaxed">{item.value || "—"}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="p-4 sm:p-6 rounded-lg mb-4 sm:mb-6">
+          <div className="flex flex-col sm:flex-row justify-between gap-3 sm:gap-4">
+            <button
+              type="button"
+              onClick={handlePrevious}
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg text-sm font-medium bg-purple_primary text-white hover:bg-purple_primary/90 transition-all duration-200 shadow-md hover:shadow-lg w-full sm:w-auto"
+            >
+              <MdArrowLeft className="size-5" />
+              Back to Address Details
+            </button>
+            <button
+              type="submit"
+              onClick={handleSubmit}
+              disabled={isSubmitting}
+              className={`inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200 w-full sm:w-auto ${isSubmitting ? "bg-gray-400 text-white cursor-not-allowed" : "bg-purple_primary text-white hover:bg-purple_primary shadow-md hover:shadow-lg"}`}
+            >
+              {isSubmitting ? "Submitting..." : "Submit Application"}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 
+  return (
+    <>
+      {loading && (
+        <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
+          <div className="w-12 h-12 border-4 border-white border-t-purple-600 rounded-full animate-spin"></div>
+        </div>
+      )}
+
+      {currentStep === 1 && renderStep1()}
+      {currentStep === 2 && renderStep2()}
+      {currentStep === 3 && renderStep3()}
     </>
   );
 };
+
 export default CitbForm;
