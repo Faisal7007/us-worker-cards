@@ -72,6 +72,7 @@ const CitbForm = ({ test_center }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [nearest, setNearest] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [showLocationSuggestions, setShowLocationSuggestions] = useState(false);
 
   const handleLocationSelect = async (coords) => {
     setLoading(true);
@@ -102,14 +103,14 @@ const CitbForm = ({ test_center }) => {
 
   const handleNext = () => {
     setCurrentStep(currentStep + 1);
-    // Scroll to top when moving to next step
-    window.scrollTo({ top: 10, behavior: 'smooth' });
+    // Scroll to where the form content appears
+    window.scrollTo({ top: 600, behavior: 'smooth' });
   };
 
   const handlePrevious = () => {
     setCurrentStep(currentStep - 1);
-    // Scroll to top when moving to previous step
-    window.scrollTo({ top: 10, behavior: 'smooth' });
+    // Scroll to where the form content appears
+    window.scrollTo({ top: 600, behavior: 'smooth' });
   };
 
   const handleSubmit = async (e) => {
@@ -159,13 +160,13 @@ const CitbForm = ({ test_center }) => {
 
   // Step 1: Test Details & Personal Information
   const renderStep1 = () => (
-    <div className="max-w-4xl bg-gray-200 mx-auto rounded space-y-5 px-4">
+    <div className="max-w-4xl bg-gray-200 mx-auto rounded space-y-5 px-2 sm:px-4">
       <div className="pt-4">
         <h2 className="text-lg text-gray-800 py-3 font-semibold mb-4 text-center rounded">
           Step 1: Test Details & Personal Information
         </h2>
 
-        <div className="bg-white p-6 rounded-lg shadow-md mb-6">
+        <div className="bg-white p-4 sm:p-6 rounded-lg shadow-md mb-6">
           <h3 className="text-lg font-semibold text-gray-800 mb-4">📋 Test Information</h3>
           <p className="text-gray-600 mb-4">Please select your test details and preferences.</p>
 
@@ -287,29 +288,45 @@ const CitbForm = ({ test_center }) => {
               onTestCenterSelect={(value) => setFormData((prev) => ({ ...prev, testCenter: value }))}
               nearestCentres={nearest}
             />
-            <h4 className="text-md font-semibold mt-4 mb-3 text-gray-800">Top 5 Nearest CITB Test Centres</h4>
-            {nearest.length === 0 ? (
-              <p className="text-gray-500">No centres selected yet.</p>
-            ) : (
-              nearest.map((centre, idx) => (
-                <div
-                  key={idx}
-                  onClick={() => {
-                    setFormData((prev) => ({ ...prev, testCenter: centre.name }));
-                    document.getElementById("test-center-input").value = centre.name;
-                  }}
-                  className={`mb-3 p-3 bg-gray-100 border rounded-lg shadow-sm cursor-pointer transition hover:shadow-md ${formData.testCenter === centre.name ? "border-blue-500 ring-2 ring-blue-400" : "border-gray-200"}`}
-                >
-                  <h5 className="font-semibold text-gray-800">{centre.name}</h5>
-                  <p className="text-gray-700 text-sm">{centre.address}</p>
-                  <p className="text-xs text-gray-500">Distance: {centre.distance.toFixed(2)} miles</p>
+
+            {nearest.length > 0 && (
+              <div className="mt-4">
+                <div className="flex items-center justify-between mb-3">
+                  <h4 className="text-md font-semibold text-gray-800">Top 5 Nearest CITB Test Centres</h4>
+                  <button
+                    type="button"
+                    onClick={() => setShowLocationSuggestions(!showLocationSuggestions)}
+                    className="text-sm text-purple_primary hover:text-purple_primary/80 font-medium"
+                  >
+                    {showLocationSuggestions ? 'Hide' : 'Show'} Centres
+                  </button>
                 </div>
-              ))
+
+                {showLocationSuggestions && (
+                  <div className="space-y-2">
+                    {nearest.map((centre, idx) => (
+                      <div
+                        key={idx}
+                        onClick={() => {
+                          setFormData((prev) => ({ ...prev, testCenter: centre.name }));
+                          document.getElementById("test-center-input").value = centre.name;
+                          setShowLocationSuggestions(false);
+                        }}
+                        className={`p-3 bg-gray-100 border rounded-lg shadow-sm cursor-pointer transition hover:shadow-md ${formData.testCenter === centre.name ? "border-blue-500 ring-2 ring-blue-400" : "border-gray-200"}`}
+                      >
+                        <h5 className="font-semibold text-gray-800 text-sm">{centre.name}</h5>
+                        <p className="text-gray-700 text-xs">{centre.address}</p>
+                        <p className="text-xs text-gray-500">Distance: {centre.distance.toFixed(2)} miles</p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
             )}
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-md mb-6">
+        <div className="bg-white p-4 sm:p-6 rounded-lg shadow-md mb-6">
           <h3 className="text-lg font-semibold text-gray-800 mb-4">👤 Personal Information</h3>
           <p className="text-gray-600 mb-4">Please provide your personal details accurately.</p>
 
@@ -370,7 +387,7 @@ const CitbForm = ({ test_center }) => {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-md mb-6">
+        <div className="bg-white p-4 sm:p-6 rounded-lg shadow-md mb-6">
           <h3 className="text-lg font-semibold text-gray-800 mb-4">📞 Contact Details</h3>
           <p className="text-gray-600 mb-4">We'll use these details to contact you about your test.</p>
 
@@ -396,7 +413,7 @@ const CitbForm = ({ test_center }) => {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-md mb-6">
+        <div className="bg-white p-4 sm:p-6 rounded-lg shadow-md mb-6">
           <div className="flex items-start gap-3">
             <input
               id="agreeCheckboxStep1"
@@ -430,12 +447,12 @@ const CitbForm = ({ test_center }) => {
 
   // Step 2: Address & Additional Details
   const renderStep2 = () => (
-    <div className="max-w-4xl bg-gray-200 mx-auto rounded space-y-5 px-4 mt-20 sm:mt-32">
+    <div className="max-w-4xl bg-gray-200 mx-auto rounded space-y-5 px-2 sm:px-4 mt-8 sm:mt-32">
       <div className="pt-4">
         <h2 className="text-lg text-gray-800 py-3 font-semibold mb-4 text-center rounded">
           Step 2: Address & Additional Details
         </h2>
-        <div className="bg-white p-6 rounded-lg shadow-md mb-6">
+        <div className="bg-white p-4 sm:p-6 rounded-lg shadow-md mb-6">
           <h3 className="text-lg font-semibold text-gray-800 mb-4">🏠 Address Information</h3>
           <p className="text-gray-600 mb-4">Please provide your current address where you'd like to receive your test confirmation.</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -462,7 +479,7 @@ const CitbForm = ({ test_center }) => {
             ))}
           </div>
         </div>
-        <div className="bg-white p-6 rounded-lg shadow-md mb-6">
+        <div className="bg-white p-4 sm:p-6 rounded-lg shadow-md mb-6">
           <h3 className="text-lg font-semibold text-gray-800 mb-4">📋 Additional Information</h3>
           <p className="text-gray-600 mb-4">Please provide any additional details that may help with your test booking.</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -508,7 +525,7 @@ const CitbForm = ({ test_center }) => {
 
   // Step 3: Review & Submit
   const renderStep3 = () => (
-    <div className="max-w-4xl bg-gray-200 mx-auto rounded space-y-4 sm:space-y-5 px-3 sm:px-4 mt-20 sm:mt-32">
+    <div className="max-w-4xl bg-gray-200 mx-auto rounded space-y-4 sm:space-y-5 px-2 sm:px-4 mt-8 sm:mt-32">
       <div className="pt-4">
         <h2 className="text-lg text-gray-800 py-3 font-semibold mb-4 text-center rounded">
           Step 3: Review & Submit Application
