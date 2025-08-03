@@ -17,25 +17,25 @@ const page = () => {
   const id = params.slug;
 
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center px-4 sm:px-6 pt-[100px] pb-16 bg-gray-50">
+    <div className="min-h-screen flex flex-col justify-center items-center sm:px-6 pt-[100px] pb-16 bg-gray-50">
       <ToastContainer />
 
-      <div className="w-full max-w-[1280px] mx-auto space-y-12">
+      <div className="w-full max-w-[1440px] mx-auto space-y-12">
         {/* Header Section */}
-        <div className="w-fit max-w-[95vw] mt-10 bg-white px-6 sm:px-10 py-6 rounded-xl shadow border border-gray-200 text-center mx-auto">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
+        <div className="mx-auto px-4 sm:px-6 lg:px-4 max-w-4xl">
+          <h1 className="text-[32px] sm:text-[26px] font-bold mb-3 capitalize text-gray-800">
             Book a CITB Health, <br />
             Safety & Environment Test{" "}
             {id === "default" ? "" : id ? `in ${id} Test Center` : ""}
           </h1>
-          <h3 className="mt-2 text-base sm:text-lg font-medium text-purple_primary">
+          <h3 className="mt-2 text-base sm:text-lg font-medium">
             Required for CSCS Card
           </h3>
         </div>
 
 
         {/* Intro Text */}
-        <div className="max-w-2xl mx-auto bg-white px-6 py-5 rounded-lg shadow-sm border border-gray-100 text-sm sm:text-base text-gray-700 text-justify space-y-4">
+        <div className="max-w-4xl mx-auto bg-white px-6 py-5 rounded-lg shadow-sm border border-gray-100 text-sm sm:text-base text-gray-700 text-justify space-y-4">
           <h2 className="font-semibold text-gray-800 text-base sm:text-lg md:text-xl">
             The HS&E test from CITB is a key requirement for obtaining a CSCS Card.
           </h2>
@@ -62,7 +62,7 @@ const page = () => {
         </div>
 
         {/* Form Section */}
-        <div className="max-w-2xl mx-auto bg-gray-200 p-6 shadow-md rounded-lg border border-gray-100">
+        <div className="max-w-4xl mx-auto bg-gray-200 p-6 shadow-md rounded-lg border border-gray-100">
           <CitbForm test_center={id} />
         </div>
 

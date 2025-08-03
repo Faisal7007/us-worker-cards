@@ -104,13 +104,13 @@ const CitbForm = ({ test_center }) => {
   const handleNext = () => {
     setCurrentStep(currentStep + 1);
     // Scroll to where the form content appears
-    window.scrollTo({ top: 600, behavior: 'smooth' });
+    window.scrollTo({ top: 450, behavior: 'smooth' });
   };
 
   const handlePrevious = () => {
     setCurrentStep(currentStep - 1);
     // Scroll to where the form content appears
-    window.scrollTo({ top: 600, behavior: 'smooth' });
+    window.scrollTo({ top: 450, behavior: 'smooth' });
   };
 
   const handleSubmit = async (e) => {
@@ -167,8 +167,8 @@ const CitbForm = ({ test_center }) => {
         </h2>
 
         <div className="bg-white p-4 sm:p-6 rounded-lg shadow-md mb-6">
-          <h3 className="text-lg font-semibold text-gray-800 mb-4">📋 Test Information</h3>
-          <p className="text-gray-600 mb-4">Please select your test details and preferences.</p>
+          {/* <h3 className="text-lg font-semibold text-gray-800 mb-4">📋 Test Information</h3>
+          <p className="text-gray-600 mb-4">Please select your test details and preferences.</p> */}
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div>
@@ -327,8 +327,8 @@ const CitbForm = ({ test_center }) => {
         </div>
 
         <div className="bg-white p-4 sm:p-6 rounded-lg shadow-md mb-6">
-          <h3 className="text-lg font-semibold text-gray-800 mb-4">👤 Personal Information</h3>
-          <p className="text-gray-600 mb-4">Please provide your personal details accurately.</p>
+          {/* <h3 className="text-lg font-semibold text-gray-800 mb-4">👤 Personal Information</h3>
+          <p className="text-gray-600 mb-4">Please provide your personal details accurately.</p> */}
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             {[
@@ -388,8 +388,8 @@ const CitbForm = ({ test_center }) => {
         </div>
 
         <div className="bg-white p-4 sm:p-6 rounded-lg shadow-md mb-6">
-          <h3 className="text-lg font-semibold text-gray-800 mb-4">📞 Contact Details</h3>
-          <p className="text-gray-600 mb-4">We'll use these details to contact you about your test.</p>
+          {/* <h3 className="text-lg font-semibold text-gray-800 mb-4">📞 Contact Details</h3>
+          <p className="text-gray-600 mb-4">We'll use these details to contact you about your test.</p> */}
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
@@ -447,9 +447,9 @@ const CitbForm = ({ test_center }) => {
 
   // Step 2: Address & Additional Details
   const renderStep2 = () => (
-    <div className="max-w-4xl bg-gray-200 mx-auto rounded space-y-5 px-2 sm:px-4 mt-8 sm:mt-32">
-      <div className="pt-4">
-        <h2 className="text-lg text-gray-800 py-3 font-semibold mb-4 text-center rounded">
+    <div className="max-w-4xl bg-gray-200 mx-auto rounded px-2 sm:px-4 mt-2 sm:mt-5">
+      <div className="pt-0">
+        <h2 className="text-lg text-gray-800 font-semibold mb-2 text-center rounded">
           Step 2: Address & Additional Details
         </h2>
         <div className="bg-white p-4 sm:p-6 rounded-lg shadow-md mb-6">
@@ -525,9 +525,9 @@ const CitbForm = ({ test_center }) => {
 
   // Step 3: Review & Submit
   const renderStep3 = () => (
-    <div className="max-w-4xl bg-gray-200 mx-auto rounded space-y-4 sm:space-y-5 px-2 sm:px-4 mt-8 sm:mt-32">
+    <div className="max-w-4xl bg-gray-200 mx-auto rounded space-y-4 sm:space-y-5 px-2 sm:px-4 mt-4 sm:mt-4">
       <div className="pt-4">
-        <h2 className="text-lg text-gray-800 py-3 font-semibold mb-4 text-center rounded">
+        <h2 className="text-lg text-gray-800 font-semibold mb-4 text-center rounded">
           Step 3: Review & Submit Application
         </h2>
         <div className="bg-white p-4 sm:p-6 rounded-lg shadow-md mb-4 sm:mb-6">
