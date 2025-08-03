@@ -102,10 +102,14 @@ const CitbForm = ({ test_center }) => {
 
   const handleNext = () => {
     setCurrentStep(currentStep + 1);
+    // Scroll to top when moving to next step
+    window.scrollTo({ top: 10, behavior: 'smooth' });
   };
 
   const handlePrevious = () => {
     setCurrentStep(currentStep - 1);
+    // Scroll to top when moving to previous step
+    window.scrollTo({ top: 10, behavior: 'smooth' });
   };
 
   const handleSubmit = async (e) => {
