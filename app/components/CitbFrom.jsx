@@ -202,19 +202,6 @@ const CitbForm = ({ test_center }) => {
               </select>
             </div>
 
-            <div>
-              <label className="block text-sm font-medium mb-2 text-gray-700">Test Package</label>
-              <select
-                name="testType"
-                value={formData.testType}
-                onChange={handleChange}
-                className="w-full border border-gray-400 py-2 px-3 rounded focus:ring-2 focus:ring-primary-purple focus:border-primary-purple placeholder:text-gray-500"
-                required
-              >
-                <option value="normal">Take CITB Test – £40</option>
-                <option value="retake">Take CITB Test + Retake – £60</option>
-              </select>
-            </div>
           </div>
 
           {formData.testVariant === "Operative" && (
@@ -500,6 +487,20 @@ const CitbForm = ({ test_center }) => {
             </div>
           </div>
         </div>
+        <div>
+          <label className="block text-sm font-medium mb-2 text-gray-700">Test Package</label>
+          <select
+            name="testType"
+            value={formData.testType}
+            onChange={handleChange}
+            className="w-full border border-gray-400 py-2 px-3 rounded focus:ring-2 focus:ring-primary-purple focus:border-primary-purple placeholder:text-gray-500"
+            required
+          >
+            <option value="normal">Take CITB Test – £40</option>
+            <option value="retake">Take CITB Test + Retake – £60</option>
+          </select>
+        </div>
+        <br />
         <div className="flex flex-col sm:flex-row justify-between gap-4">
           <button
             type="button"

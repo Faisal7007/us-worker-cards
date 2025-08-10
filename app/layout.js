@@ -45,7 +45,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="./favicon.ico" />
+        <link rel="icon" href="./favicon.jpg" />
         {/* Google Tag Manager Script */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=AW-17119060615"

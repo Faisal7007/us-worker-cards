@@ -73,28 +73,36 @@ const Footer = () => {
             </motion.div>
 
             {/* CSCS Cards */}
-            <div className="mb-2 lg:mb-0 flex flex-col items-center sm:items-start">
-              <h3 className="text-lg font-semibold mb-4 text-center sm:text-left">
-                CSCS Cards
-              </h3>
-              <div className="space-y-2 text-center sm:text-left">
-                {[{ title: 'Green Labourer Card', link: 'cscs-green-card' },
-                { title: 'Blue Skilled Card', link: 'cscs-blue-card' },
-                { title: 'Gold Supervisor Card', link: 'cscs-gold-supervisor-card' },
-                { title: 'Black Manager Card', link: 'cscs-black-manager-card' }].map(
-                  (elem, id) => (
-                    <div key={id} className="text-sm">
-                      <Link
-                        href={`/${elem.link}`}
-                        className="text-purple_primary hover:text-black transition-colors duration-300"
-                      >
-                        {elem.title}
-                      </Link>
-                    </div>
-                  )
-                )}
+            <motion.div
+              initial={{ x: 50, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.8, ease: 'easeOut' }}
+              viewport={{ once: false, amount: 0.3 }}
+              className="relative flex flex-col items-center"
+            >
+              <div className="mb-2 lg:mb-0 flex flex-col items-center sm:items-start">
+                <h3 className="text-lg font-semibold mb-4 text-center sm:text-left">
+                  CSCS Cards
+                </h3>
+                <div className="space-y-2 text-center sm:text-left">
+                  {[{ title: 'Green Labourer Card', link: 'cscs-green-card' },
+                  { title: 'Blue Skilled Card', link: 'cscs-blue-card' },
+                  { title: 'Gold Supervisor Card', link: 'cscs-gold-supervisor-card' },
+                  { title: 'Black Manager Card', link: 'cscs-black-manager-card' }].map(
+                    (elem, id) => (
+                      <div key={id} className="text-sm">
+                        <Link
+                          href={`/${elem.link}`}
+                          className="text-purple_primary hover:text-black transition-colors duration-300"
+                        >
+                          {elem.title}
+                        </Link>
+                      </div>
+                    )
+                  )}
+                </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Social Media / Payment */}
             <motion.div
