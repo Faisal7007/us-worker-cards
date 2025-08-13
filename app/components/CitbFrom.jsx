@@ -43,6 +43,12 @@ const CitbForm = ({ test_center }) => {
     testCenter: ""
   });
 
+  const [agreed, setAgreed] = useState(false);
+  const [nearest, setNearest] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [showLocationSuggestions, setShowLocationSuggestions] = useState(false);
+  const [showValidation, setShowValidation] = useState(false);
+
   // Load saved data from localStorage on component mount
   useEffect(() => {
     const saved = localStorage.getItem(`citbFormData_${test_center}_1`);
@@ -50,6 +56,13 @@ const CitbForm = ({ test_center }) => {
       setFormData(prev => ({ ...prev, ...JSON.parse(saved) }));
     }
   }, [test_center]);
+
+  // Hide validation messages when all fields are filled
+  useEffect(() => {
+    if (showValidation && getMissingFields().length === 0) {
+      setShowValidation(false);
+    }
+  }, [formData, agreed, showValidation]);
 
   const saveFormData = async (step) => {
     try {
@@ -90,10 +103,6 @@ const CitbForm = ({ test_center }) => {
     });
   };
 
-  const [agreed, setAgreed] = useState(false);
-  const [nearest, setNearest] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [showLocationSuggestions, setShowLocationSuggestions] = useState(false);
 
   const handleLocationSelect = async (coords) => {
     setLoading(true);
@@ -123,6 +132,21 @@ const CitbForm = ({ test_center }) => {
   };
 
   const handleNext = async () => {
+    // Check if all required fields are filled
+    const missingFields = getMissingFields();
+
+    if (missingFields.length > 0) {
+      setShowValidation(true);
+      // Scroll to first missing field
+      const firstMissingField = missingFields[0];
+      const element = document.getElementById(firstMissingField);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        element.focus();
+      }
+      return;
+    }
+
     try {
       // Save to localStorage for Step 2 first
       await saveFormData(1);
@@ -167,6 +191,53 @@ const CitbForm = ({ test_center }) => {
     }
   };
 
+  const getMissingFields = () => {
+    const missing = [];
+
+    if (!formData.testVariant) missing.push('testVariant');
+    if (!formData.timeSlot) missing.push('timeSlot');
+    if (!formData.preferredTestDate) missing.push('preferredTestDate');
+    if (!formData.alternateTestDate) missing.push('alternateTestDate');
+    if (!formData.testCenter) missing.push('testCenter');
+    if (!formData.title) missing.push('title');
+    if (!formData.firstName) missing.push('firstName');
+    if (!formData.lastName) missing.push('lastName');
+    if (!formData.dob) missing.push('dob');
+    if (!formData.phoneNumber) missing.push('phoneNumber');
+    if (!formData.email) missing.push('email');
+    if (!agreed) missing.push('agreed');
+
+    // Check language requirement for Operative test
+    if (formData.testVariant === "Operative" && !formData.language) {
+      missing.push('language');
+    }
+
+    return missing;
+  };
+
+  const isFieldMissing = (fieldName) => {
+    return showValidation && getMissingFields().includes(fieldName);
+  };
+
+  const getFieldLabel = (fieldName) => {
+    const labels = {
+      testVariant: 'Test Type',
+      timeSlot: 'Time Slot',
+      preferredTestDate: 'Preferred Test Date',
+      alternateTestDate: 'Alternate Test Date',
+      testCenter: 'Test Center',
+      title: 'Title',
+      firstName: 'First Name',
+      lastName: 'Last Name',
+      dob: 'Date of Birth',
+      phoneNumber: 'Phone Number',
+      email: 'Email Address',
+      language: 'Language',
+      agreed: 'Terms and Conditions'
+    };
+    return labels[fieldName] || fieldName;
+  };
+
   // Step 1: Test Details & Personal Information
   const renderStep1 = () => (
     <div className="max-w-4xl bg-gray-200 mx-auto rounded space-y-5 px-2 sm:px-4">
@@ -175,15 +246,39 @@ const CitbForm = ({ test_center }) => {
           Step 1: Test Details & Personal Information
         </h2>
 
+        {/* Validation Messages */}
+        {showValidation && (
+          <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
+            <div className="flex items-center mb-2">
+              <svg className="w-5 h-5 text-red-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+              </svg>
+              <h3 className="text-lg font-medium text-red-800">Please complete the following fields:</h3>
+            </div>
+            <ul className="list-disc list-inside space-y-1 text-red-700">
+              {getMissingFields().map((field) => (
+                <li key={field} className="text-sm">
+                  {getFieldLabel(field)}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
         <div className="bg-white p-4 sm:p-6 rounded-lg shadow-md mb-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div>
-              <label className="block text-sm font-medium mb-2 text-gray-700">Test Type</label>
+              <label className={`block text-sm font-medium mb-2 ${isFieldMissing('testVariant') ? 'text-red-600' : 'text-gray-700'}`}>
+                Test Type {isFieldMissing('testVariant') && <span className="text-red-500">*</span>}
+              </label>
               <select
                 name="testVariant"
                 value={formData.testVariant || ""}
                 onChange={handleChange}
-                className="w-full border border-gray-400 py-2 px-3 rounded focus:ring-2 focus:ring-primary-purple focus:border-primary-purple placeholder:text-gray-500"
+                className={`w-full border py-2 px-3 rounded focus:ring-2 focus:ring-primary-purple focus:border-primary-purple placeholder:text-gray-500 ${isFieldMissing('testVariant')
+                    ? 'border-red-500 focus:ring-red-400 focus:border-red-500'
+                    : 'border-gray-400 focus:ring-primary-purple focus:border-primary-purple'
+                  }`}
                 required
               >
                 <option value="">Select a Test Type</option>
@@ -211,12 +306,17 @@ const CitbForm = ({ test_center }) => {
 
           {formData.testVariant === "Operative" && (
             <div className="mb-4">
-              <label className="block text-sm font-medium mb-2 text-gray-700">Language</label>
+              <label className={`block text-sm font-medium mb-2 ${isFieldMissing('language') ? 'text-red-600' : 'text-gray-700'}`}>
+                Language {isFieldMissing('language') && <span className="text-red-500">*</span>}
+              </label>
               <select
                 name="language"
                 value={formData.language || ""}
                 onChange={handleChange}
-                className="w-full border border-gray-400 py-2 px-3 rounded focus:ring-2 focus:ring-primary-purple focus:border-primary-purple placeholder:text-gray-500"
+                className={`w-full border py-2 px-3 rounded focus:ring-2 focus:ring-primary-purple focus:border-primary-purple placeholder:text-gray-500 ${isFieldMissing('language')
+                    ? 'border-red-500 focus:ring-red-400 focus:border-red-500'
+                    : 'border-gray-400 focus:ring-primary-purple focus:border-primary-purple'
+                  }`}
                 required
               >
                 <option value="">Select a Language</option>
@@ -231,12 +331,17 @@ const CitbForm = ({ test_center }) => {
           )}
 
           <div className="mb-4">
-            <label className="block text-sm font-medium mb-2 text-gray-700">Time Slot</label>
+            <label className={`block text-sm font-medium mb-2 ${isFieldMissing('timeSlot') ? 'text-red-600' : 'text-gray-700'}`}>
+              Time Slot {isFieldMissing('timeSlot') && <span className="text-red-500">*</span>}
+            </label>
             <select
               name="timeSlot"
               value={formData.timeSlot || ""}
               onChange={handleChange}
-              className="w-full border border-gray-400 py-2 px-3 rounded focus:ring-2 focus:ring-primary-purple focus:border-primary-purple placeholder:text-gray-500"
+              className={`w-full border py-2 px-3 rounded focus:ring-2 focus:ring-primary-purple focus:border-primary-purple placeholder:text-gray-500 ${isFieldMissing('timeSlot')
+                  ? 'border-red-500 focus:ring-red-400 focus:border-red-500'
+                  : 'border-gray-400 focus:ring-primary-purple focus:border-primary-purple'
+                }`}
               required
             >
               <option value="">Select Time</option>
@@ -248,27 +353,37 @@ const CitbForm = ({ test_center }) => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div>
-              <label className="block text-sm font-medium mb-2 text-gray-700">Preferred Test Date</label>
+              <label className={`block text-sm font-medium mb-2 ${isFieldMissing('preferredTestDate') ? 'text-red-600' : 'text-gray-700'}`}>
+                Preferred Test Date {isFieldMissing('preferredTestDate') && <span className="text-red-500">*</span>}
+              </label>
               <input
                 type="date"
                 name="preferredTestDate"
                 min={new Date(Date.now() + 86400000).toISOString().split("T")[0]}
                 value={formData.preferredTestDate || ""}
                 onChange={handleChange}
-                className="w-full border border-gray-400 py-2 px-3 rounded focus:ring-2 focus:ring-primary-purple focus:border-primary-purple placeholder:text-gray-500"
+                className={`w-full border py-2 px-3 rounded focus:ring-2 focus:ring-primary-purple focus:border-primary-purple placeholder:text-gray-500 ${isFieldMissing('preferredTestDate')
+                    ? 'border-red-500 focus:ring-red-400 focus:border-red-500'
+                    : 'border-gray-400 focus:ring-primary-purple focus:border-primary-purple'
+                  }`}
                 required
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-2 text-gray-700">Alternate Test Date</label>
+              <label className={`block text-sm font-medium mb-2 ${isFieldMissing('alternateTestDate') ? 'text-red-600' : 'text-gray-700'}`}>
+                Alternate Test Date {isFieldMissing('alternateTestDate') && <span className="text-red-500">*</span>}
+              </label>
               <input
                 type="date"
                 name="alternateTestDate"
                 min={new Date(Date.now() + 86400000).toISOString().split("T")[0]}
                 value={formData.alternateTestDate || ""}
                 onChange={handleChange}
-                className="w-full border border-gray-400 py-2 px-3 rounded focus:ring-2 focus:ring-primary-purple focus:border-primary-purple placeholder:text-gray-500"
+                className={`w-full border py-2 px-3 rounded focus:ring-2 focus:ring-primary-purple focus:border-primary-purple placeholder:text-gray-500 ${isFieldMissing('alternateTestDate')
+                    ? 'border-red-500 focus:ring-red-400 focus:border-red-500'
+                    : 'border-gray-400 focus:ring-primary-purple focus:border-primary-purple'
+                  }`}
                 required
               />
             </div>
@@ -327,7 +442,9 @@ const CitbForm = ({ test_center }) => {
               { label: "Last Name", id: "lastName", type: "text", placeholder: "Enter last name", required: true },
             ].map((field, i) => (
               <div key={i}>
-                <label htmlFor={field.id} className="block text-sm font-medium mb-1 text-gray-700">{field.label}</label>
+                <label htmlFor={field.id} className={`block text-sm font-medium mb-1 ${isFieldMissing(field.id) ? 'text-red-600' : 'text-gray-700'}`}>
+                  {field.label} {isFieldMissing(field.id) && <span className="text-red-500">*</span>}
+                </label>
                 {field.type === "select" ? (
                   <select
                     id={field.id}
@@ -335,7 +452,10 @@ const CitbForm = ({ test_center }) => {
                     value={formData[field.id]}
                     onChange={handleChange}
                     required={field.required}
-                    className={`w-full border border-gray-400 py-2 px-3 rounded focus:ring-2 focus:ring-primary-purple focus:border-primary-purple ${formData[field.id] ? 'text-gray-900' : 'text-gray-500'}`}
+                    className={`w-full border py-2 px-3 rounded focus:ring-2 focus:ring-primary-purple focus:border-primary-purple ${formData[field.id] ? 'text-gray-900' : 'text-gray-500'} ${isFieldMissing(field.id)
+                        ? 'border-red-500 focus:ring-red-400 focus:border-red-500'
+                        : 'border-gray-400 focus:ring-primary-purple focus:border-primary-purple'
+                      }`}
                   >
                     <option value="" disabled>Please select the title</option>
                     {field.options.map((opt) => (
@@ -351,7 +471,10 @@ const CitbForm = ({ test_center }) => {
                     value={formData[field.id]}
                     onChange={handleChange}
                     required={field.required}
-                    className="w-full border border-gray-400 py-2 px-3 rounded focus:ring-2 focus:ring-primary-purple focus:border-primary-purple placeholder:text-gray-500"
+                    className={`w-full border py-2 px-3 rounded focus:ring-2 focus:ring-primary-purple focus:border-primary-purple placeholder:text-gray-500 ${isFieldMissing(field.id)
+                        ? 'border-red-500 focus:ring-red-400 focus:border-red-500'
+                        : 'border-gray-400 focus:ring-primary-purple focus:border-primary-purple'
+                      }`}
                   />
                 )}
               </div>
@@ -360,7 +483,9 @@ const CitbForm = ({ test_center }) => {
               { label: "Date of Birth", id: "dob", type: "date", required: true },
             ].map((field, i) => (
               <div key={i}>
-                <label htmlFor={field.id} className="block text-sm font-medium mb-1 text-gray-700">{field.label}</label>
+                <label htmlFor={field.id} className={`block text-sm font-medium mb-1 ${isFieldMissing(field.id) ? 'text-red-600' : 'text-gray-700'}`}>
+                  {field.label} {isFieldMissing(field.id) && <span className="text-red-500">*</span>}
+                </label>
                 <input
                   type={field.type}
                   id={field.id}
@@ -369,7 +494,10 @@ const CitbForm = ({ test_center }) => {
                   value={formData[field.id]}
                   onChange={handleChange}
                   required={field.required}
-                  className={`w-full border border-gray-400 py-2 px-3 rounded focus:ring-2 focus:ring-purple_primary focus:border-purple_primary ${formData[field.id] ? 'text-gray-900' : 'text-gray-500'}`}
+                  className={`w-full border py-2 px-3 rounded focus:ring-2 focus:ring-purple_primary focus:border-purple_primary ${formData[field.id] ? 'text-gray-900' : 'text-gray-500'} ${isFieldMissing(field.id)
+                      ? 'border-red-500 focus:ring-red-400 focus:border-red-500'
+                      : 'border-gray-400 focus:ring-purple_primary focus:border-purple_primary'
+                    }`}
                 />
               </div>
             ))}
@@ -383,7 +511,9 @@ const CitbForm = ({ test_center }) => {
               { id: "email", placeholder: "yourname@domain.com", type: "email", label: "Email Address" },
             ].map(({ id, placeholder, type, label }) => (
               <div key={id}>
-                <label htmlFor={id} className="block text-sm font-medium mb-1 text-gray-700">{label}</label>
+                <label htmlFor={id} className={`block text-sm font-medium mb-1 ${isFieldMissing(id) ? 'text-red-600' : 'text-gray-700'}`}>
+                  {label} {isFieldMissing(id) && <span className="text-red-500">*</span>}
+                </label>
                 <input
                   type={type}
                   id={id}
@@ -392,7 +522,10 @@ const CitbForm = ({ test_center }) => {
                   value={formData[id]}
                   onChange={handleChange}
                   required
-                  className="w-full border border-gray-400 py-2 px-3 rounded focus:ring-2 focus:ring-primary-purple focus:border-primary-purple placeholder:text-gray-500"
+                  className={`w-full border py-2 px-3 rounded focus:ring-2 focus:ring-primary-purple focus:border-primary-purple placeholder:text-gray-500 ${isFieldMissing(id)
+                      ? 'border-red-500 focus:ring-red-400 focus:border-red-500'
+                      : 'border-gray-400 focus:ring-primary-purple focus:border-primary-purple'
+                    }`}
                 />
               </div>
             ))}
@@ -405,11 +538,12 @@ const CitbForm = ({ test_center }) => {
               id="agreeCheckboxStep1"
               type="checkbox"
               onChange={handleCheckboxChange}
-              className="w-5 h-5 accent-primary-purple mt-0.5"
+              className={`w-5 h-5 mt-0.5 ${isFieldMissing('agreed') ? 'accent-red-500' : 'accent-primary-purple'}`}
             />
             <div>
-              <label htmlFor="agreeCheckboxStep1" className="text-sm text-gray-700 cursor-pointer">
+              <label htmlFor="agreeCheckboxStep1" className={`text-sm cursor-pointer ${isFieldMissing('agreed') ? 'text-red-600' : 'text-gray-700'}`}>
                 I accept the <span className="text-purple_primary underline">Terms and Conditions</span> and <span className="text-purple_primary underline">Privacy Policy</span>
+                {isFieldMissing('agreed') && <span className="text-red-500 ml-1">*</span>}
               </label>
               <p className="text-xs text-gray-500 mt-1">By checking this box, you confirm that you have read and agree to our terms.</p>
             </div>
@@ -420,8 +554,7 @@ const CitbForm = ({ test_center }) => {
           <button
             type="button"
             onClick={handleNext}
-            disabled={!formData.testVariant || !formData.timeSlot || !formData.preferredTestDate || !formData.alternateTestDate || !formData.testCenter || !formData.title || !formData.firstName || !formData.lastName || !formData.dob || !formData.phoneNumber || !formData.email || !agreed}
-            className={`inline-flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${!formData.testVariant || !formData.timeSlot || !formData.preferredTestDate || !formData.alternateTestDate || !formData.testCenter || !formData.title || !formData.firstName || !formData.lastName || !formData.dob || !formData.phoneNumber || !formData.email || !agreed ? "bg-gray-400 text-white cursor-not-allowed" : "bg-purple_primary text-white hover:bg-purple_primary/90 shadow-md hover:shadow-lg"}`}
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200 bg-purple_primary text-white hover:bg-purple_primary/90 shadow-md hover:shadow-lg"
           >
             Continue
             <MdArrowRight className="size-5" />

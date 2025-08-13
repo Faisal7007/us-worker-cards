@@ -35,6 +35,7 @@ const CitbAddressStepPage = () => {
     });
     const [currentStep, setCurrentStep] = useState(2); // 2: Address, 3: Review
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [showValidation, setShowValidation] = useState(false);
 
     useEffect(() => {
         // Load from localStorage
@@ -50,6 +51,13 @@ const CitbAddressStepPage = () => {
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }, [currentStep]);
+
+    // Hide validation messages when all fields are filled
+    useEffect(() => {
+        if (showValidation && getMissingFields().length === 0) {
+            setShowValidation(false);
+        }
+    }, [formData, showValidation]);
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -70,10 +78,50 @@ const CitbAddressStepPage = () => {
     };
 
     const handleNext = async () => {
+        // Check if all required fields are filled
+        const missingFields = getMissingFields();
+
+        if (missingFields.length > 0) {
+            setShowValidation(true);
+            // Scroll to first missing field
+            const firstMissingField = missingFields[0];
+            const element = document.getElementById(firstMissingField);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                element.focus();
+            }
+            return;
+        }
+
         await saveFormData(2);
         setCurrentStep(3);
         // Scroll to top when moving to review step
         window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    const getMissingFields = () => {
+        const missing = [];
+
+        if (!formData.houseNumber) missing.push('houseNumber');
+        if (!formData.townCity) missing.push('townCity');
+        if (!formData.county) missing.push('county');
+        if (!formData.postcode) missing.push('postcode');
+
+        return missing;
+    };
+
+    const getFieldLabel = (fieldName) => {
+        const labels = {
+            houseNumber: 'House Number and Street Name',
+            townCity: 'Town/City',
+            county: 'Country',
+            postcode: 'Postcode'
+        };
+        return labels[fieldName] || fieldName;
+    };
+
+    const isFieldMissing = (fieldName) => {
+        return showValidation && getMissingFields().includes(fieldName);
     };
 
     const handlePrevious = () => {
@@ -137,6 +185,25 @@ const CitbAddressStepPage = () => {
                 <h2 className="text-lg text-gray-800 py-3 font-semibold mb-4 text-center rounded">
                     Step 2: Address & Additional Details
                 </h2>
+
+                {/* Validation Messages */}
+                {showValidation && (
+                    <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
+                        <div className="flex items-center mb-2">
+                            <svg className="w-5 h-5 text-red-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                            </svg>
+                            <h3 className="text-lg font-medium text-red-800">Please complete the following fields:</h3>
+                        </div>
+                        <ul className="list-disc list-inside space-y-1 text-red-700">
+                            {getMissingFields().map((field) => (
+                                <li key={field} className="text-sm">
+                                    {getFieldLabel(field)}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
                 <div className="bg-white p-6 rounded-lg shadow-md mb-6">
                     <h3 className="text-lg font-semibold text-gray-800 mb-4">🏠 Address Information</h3>
                     <p className="text-gray-600 mb-4">Please provide your current address where you'd like to receive your test confirmation.</p>
@@ -149,7 +216,9 @@ const CitbAddressStepPage = () => {
                             { id: "postcode", label: "Postcode", placeholder: "e.g. W1A 1AA" },
                         ].map(({ id, label, placeholder }) => (
                             <div key={id} className={id === "houseNumber" ? "md:col-span-2" : ""}>
-                                <label htmlFor={id} className="block text-sm font-medium mb-1 text-gray-700">{label}</label>
+                                <label htmlFor={id} className={`block text-sm font-medium mb-1 ${isFieldMissing(id) ? 'text-red-600' : 'text-gray-700'}`}>
+                                    {label} {isFieldMissing(id) && id !== "locality" && <span className="text-red-500">*</span>}
+                                </label>
                                 <input
                                     type="text"
                                     id={id}
@@ -158,7 +227,10 @@ const CitbAddressStepPage = () => {
                                     value={formData[id]}
                                     onChange={handleChange}
                                     required={id !== "locality"}
-                                    className="w-full border border-gray-400 py-2 px-3 rounded focus:ring-2 focus:ring-primary-purple focus:border-primary-purple placeholder:text-gray-500"
+                                    className={`w-full border py-2 px-3 rounded focus:ring-2 focus:ring-primary-purple focus:border-primary-purple placeholder:text-gray-500 ${isFieldMissing(id) && id !== "locality"
+                                            ? 'border-red-500 focus:ring-red-400 focus:border-red-500'
+                                            : 'border-gray-400 focus:ring-primary-purple focus:border-primary-purple'
+                                        }`}
                                 />
                             </div>
                         ))}
@@ -211,8 +283,7 @@ const CitbAddressStepPage = () => {
                     <button
                         type="button"
                         onClick={handleNext}
-                        disabled={!formData.houseNumber || !formData.townCity || !formData.county || !formData.postcode}
-                        className={`inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200 w-full sm:w-auto ${!formData.houseNumber || !formData.townCity || !formData.county || !formData.postcode ? "bg-gray-400 text-white cursor-not-allowed" : "bg-purple_primary text-white hover:bg-purple_primary shadow-md hover:shadow-lg"}`}
+                        className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200 w-full sm:w-auto bg-purple_primary text-white hover:bg-purple_primary shadow-md hover:shadow-lg"
                     >
                         Review & Submit
                         <MdArrowRight className="size-5" />
