@@ -612,9 +612,14 @@ export const FirebaseProvider = ({ children }) => {
     }
   };
 
-  const applyForCITBTest = async (title, firstName, middleName, lastName, dob, nationalInsuranceNumber, phoneNumber, email, fullAddress, locality, city, country, postcode, testVariant, language, preferredTestDate, alternateTestDate, timeSlot, testType, testCenter, test_center, setIsSubmitting) => {
+
+
+
+
+  const applyForCITBTest = async (title, firstName, middleName, lastName, dob, nationalInsuranceNumber, phoneNumber, email, fullAddress, locality, city, country, postcode, testVariant, language, preferredTestDate, alternateTestDate, timeSlot, testType, testCenter, test_center, setIsSubmitting, isFirstStep = false) => {
     try {
-      setIsSubmitting(true)
+      if (setIsSubmitting) setIsSubmitting(true);
+
       const data = {
         title,
         firstName,
@@ -624,11 +629,11 @@ export const FirebaseProvider = ({ children }) => {
         nationalInsuranceNumber,
         phoneNumber,
         email,
-        fullAddress,
-        locality,
-        city,
-        country,
-        postcode,
+        fullAddress: fullAddress || "",
+        locality: locality || "",
+        city: city || "",
+        country: country || "",
+        postcode: postcode || "",
         testVariant,
         preferredTestDate,
         alternateTestDate,
@@ -636,21 +641,25 @@ export const FirebaseProvider = ({ children }) => {
         language,
         testType,
         testCenter,
+        step: isFirstStep ? "step1" : "completed",
         createdAt: new Date().toISOString(),
       };
 
       const docRef = doc(firestore, "citb-test-applicants", 'all-applicants');
       await addDoc(collection(docRef, "users"), data);
 
-      toast.success("Form Submitted Successfully");
-
-      // 🔁 Redirect handled in component for iOS compatibility
+      if (isFirstStep) {
+        toast.success("CITB Test application started successfully!");
+      } else {
+        toast.success("Form Submitted Successfully");
+        // 🔁 Redirect handled in component for iOS compatibility
+      }
 
     } catch (error) {
       toast("Error adding data!");
     }
     finally {
-      setIsSubmitting && setIsSubmitting(false);
+      if (setIsSubmitting) setIsSubmitting(false);
     }
   };
 

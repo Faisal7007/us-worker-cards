@@ -1,9 +1,10 @@
 "use client";
-import React, { useState } from "react";
-import { MdArrowRight, MdArrowLeft } from "react-icons/md";
+import React, { useState, useEffect } from "react";
+import { MdArrowRight } from "react-icons/md";
 import { useFirebase } from "../context/Firebase";
 import MapSelector from "./MapSelector";
 import testCentres from "./testCentres";
+import { useRouter } from "next/navigation";
 
 const getDistance = (lat1, lon1, lat2, lon2) => {
   const R = 3958.8;
@@ -18,7 +19,7 @@ const getDistance = (lat1, lon1, lat2, lon2) => {
 };
 
 const CitbForm = ({ test_center }) => {
-  const [currentStep, setCurrentStep] = useState(1);
+  const router = useRouter();
   const [formData, setFormData] = useState({
     title: "",
     firstName: "",
@@ -41,6 +42,28 @@ const CitbForm = ({ test_center }) => {
     testVariant: "",
     testCenter: ""
   });
+
+  // Load saved data from localStorage on component mount
+  useEffect(() => {
+    const saved = localStorage.getItem(`citbFormData_${test_center}_1`);
+    if (saved) {
+      setFormData(prev => ({ ...prev, ...JSON.parse(saved) }));
+    }
+  }, [test_center]);
+
+  const saveFormData = async (step) => {
+    try {
+      const dataToSave = {
+        ...formData,
+        step: step,
+        testCenter: test_center,
+        lastUpdated: new Date().toISOString(),
+      };
+      localStorage.setItem(`citbFormData_${test_center}_${step}`, JSON.stringify(dataToSave));
+    } catch (error) {
+      console.error("Error saving form data:", error);
+    }
+  };
 
   const reset = () => {
     setFormData({
@@ -65,11 +88,9 @@ const CitbForm = ({ test_center }) => {
       testVariant: "",
       testCenter: ""
     });
-    setCurrentStep(1);
   };
 
   const [agreed, setAgreed] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [nearest, setNearest] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showLocationSuggestions, setShowLocationSuggestions] = useState(false);
@@ -101,24 +122,16 @@ const CitbForm = ({ test_center }) => {
     setAgreed(e.target.checked);
   };
 
-  const handleNext = () => {
-    setCurrentStep(currentStep + 1);
-    // Scroll to where the form content appears
-    window.scrollTo({ top: 450, behavior: 'smooth' });
-  };
-
-  const handlePrevious = () => {
-    setCurrentStep(currentStep - 1);
-    // Scroll to where the form content appears
-    window.scrollTo({ top: 450, behavior: 'smooth' });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
+  const handleNext = async () => {
     try {
-      await firebase.applyForCITBTest(
+      // Save to localStorage for Step 2 first
+      await saveFormData(1);
+
+      // Navigate to address page immediately
+      router.push(`/book-citb-test/${test_center}/address`);
+
+      // Store first form data in database with empty address fields (fire and forget)
+      firebase.applyForCITBTest(
         formData.title,
         formData.firstName,
         formData.middleName,
@@ -127,11 +140,11 @@ const CitbForm = ({ test_center }) => {
         formData.nationalInsuranceNumber,
         formData.phoneNumber,
         formData.email,
-        formData.houseNumber,
-        formData.locality,
-        formData.townCity,
-        formData.county,
-        formData.postcode,
+        "", // fullAddress - empty for first step
+        "", // locality - empty for first step
+        "", // city - empty for first step
+        "", // country - empty for first step
+        "", // postcode - empty for first step
         formData.testVariant,
         formData.language,
         formData.preferredTestDate,
@@ -140,21 +153,17 @@ const CitbForm = ({ test_center }) => {
         formData.testType,
         formData.testCenter,
         test_center,
-        setIsSubmitting
-      );
+        null, // setIsSubmitting - not needed for first step
+        true // isFirstStep - true to indicate this is step 1
+      ).catch(error => {
+        console.error("Error saving CITB test data:", error);
+        // Error handling without blocking navigation
+      });
 
-      reset();
-
-      // iOS-compatible redirect - use setTimeout to ensure the redirect happens
-      setTimeout(() => {
-        if (formData.testType === "retake") {
-          window.location.replace("https://buy.stripe.com/dR601T3kp6b9ddmeUZ");
-        } else {
-          window.location.replace("https://buy.stripe.com/8wMeWN3kp0QP3CMfZ6");
-        }
-      }, 100);
     } catch (error) {
-      console.error("Submission error:", error);
+      console.error("Error saving form data:", error);
+      // Still navigate even if localStorage save fails
+      router.push(`/book-citb-test/${test_center}/address`);
     }
   };
 
@@ -167,9 +176,6 @@ const CitbForm = ({ test_center }) => {
         </h2>
 
         <div className="bg-white p-4 sm:p-6 rounded-lg shadow-md mb-6">
-          {/* <h3 className="text-lg font-semibold text-gray-800 mb-4">📋 Test Information</h3>
-          <p className="text-gray-600 mb-4">Please select your test details and preferences.</p> */}
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div>
               <label className="block text-sm font-medium mb-2 text-gray-700">Test Type</label>
@@ -201,7 +207,6 @@ const CitbForm = ({ test_center }) => {
                 ))}
               </select>
             </div>
-
           </div>
 
           {formData.testVariant === "Operative" && (
@@ -314,9 +319,6 @@ const CitbForm = ({ test_center }) => {
         </div>
 
         <div className="bg-white p-4 sm:p-6 rounded-lg shadow-md mb-6">
-          {/* <h3 className="text-lg font-semibold text-gray-800 mb-4">👤 Personal Information</h3>
-          <p className="text-gray-600 mb-4">Please provide your personal details accurately.</p> */}
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             {[
               { label: "Title", id: "title", type: "select", options: ["Mr", "Ms", "Mrs", "Miss", "Dr"], required: true },
@@ -375,9 +377,6 @@ const CitbForm = ({ test_center }) => {
         </div>
 
         <div className="bg-white p-4 sm:p-6 rounded-lg shadow-md mb-6">
-          {/* <h3 className="text-lg font-semibold text-gray-800 mb-4">📞 Contact Details</h3>
-          <p className="text-gray-600 mb-4">We'll use these details to contact you about your test.</p> */}
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
               { id: "phoneNumber", placeholder: "e.g. 2080995236", type: "text", label: "Phone Number" },
@@ -421,173 +420,12 @@ const CitbForm = ({ test_center }) => {
           <button
             type="button"
             onClick={handleNext}
-            disabled={!formData.testVariant || !formData.testType || !formData.timeSlot || !formData.preferredTestDate || !formData.alternateTestDate || !formData.testCenter || !formData.title || !formData.firstName || !formData.lastName || !formData.dob || !formData.phoneNumber || !formData.email || !agreed}
-            className={`inline-flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${!formData.testVariant || !formData.testType || !formData.timeSlot || !formData.preferredTestDate || !formData.alternateTestDate || !formData.testCenter || !formData.title || !formData.firstName || !formData.lastName || !formData.dob || !formData.phoneNumber || !formData.email || !agreed ? "bg-gray-400 text-white cursor-not-allowed" : "bg-purple_primary text-white hover:bg-purple_primary/90 shadow-md hover:shadow-lg"}`}
+            disabled={!formData.testVariant || !formData.timeSlot || !formData.preferredTestDate || !formData.alternateTestDate || !formData.testCenter || !formData.title || !formData.firstName || !formData.lastName || !formData.dob || !formData.phoneNumber || !formData.email || !agreed}
+            className={`inline-flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${!formData.testVariant || !formData.timeSlot || !formData.preferredTestDate || !formData.alternateTestDate || !formData.testCenter || !formData.title || !formData.firstName || !formData.lastName || !formData.dob || !formData.phoneNumber || !formData.email || !agreed ? "bg-gray-400 text-white cursor-not-allowed" : "bg-purple_primary text-white hover:bg-purple_primary/90 shadow-md hover:shadow-lg"}`}
           >
             Continue
             <MdArrowRight className="size-5" />
           </button>
-        </div>
-      </div>
-    </div>
-  );
-
-  // Step 2: Address & Additional Details
-  const renderStep2 = () => (
-    <div className="max-w-4xl bg-gray-200 mx-auto rounded px-2 sm:px-4 mt-2 sm:mt-5">
-      <div className="pt-0">
-        <h2 className="text-lg text-gray-800 font-semibold mb-2 text-center rounded">
-          Step 2: Address & Additional Details
-        </h2>
-        <div className="bg-white p-4 sm:p-6 rounded-lg shadow-md mb-6">
-          <h3 className="text-lg font-semibold text-gray-800 mb-4">🏠 Address Information</h3>
-          <p className="text-gray-600 mb-4">Please provide your current address where you'd like to receive your test confirmation.</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {[
-              { id: "houseNumber", label: "House Number and Street Name", placeholder: "123 Main Street" },
-              { id: "locality", label: "Locality (Optional)", placeholder: "e.g. Hounslow" },
-              { id: "townCity", label: "Town/City", placeholder: "e.g. London" },
-              { id: "county", label: "Country", placeholder: "e.g. England" },
-              { id: "postcode", label: "Postcode", placeholder: "e.g. W1A 1AA" },
-            ].map(({ id, label, placeholder }) => (
-              <div key={id} className={id === "houseNumber" ? "md:col-span-2" : ""}>
-                <label htmlFor={id} className="block text-sm font-medium mb-1 text-gray-700">{label}</label>
-                <input
-                  type="text"
-                  id={id}
-                  name={id}
-                  placeholder={placeholder}
-                  value={formData[id]}
-                  onChange={handleChange}
-                  required={id !== "locality"}
-                  className="w-full border border-gray-400 py-2 px-3 rounded focus:ring-2 focus:ring-primary-purple focus:border-primary-purple placeholder:text-gray-500"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="bg-white p-4 sm:p-6 rounded-lg shadow-md mb-6">
-          <h3 className="text-lg font-semibold text-gray-800 mb-4">📋 Additional Information</h3>
-          <p className="text-gray-600 mb-4">Please provide any additional details that may help with your test booking.</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label htmlFor="nationalInsuranceNumber" className="block text-sm font-medium mb-1 text-gray-700">
-                National Insurance Number (Optional)
-              </label>
-              <input
-                type="text"
-                id="nationalInsuranceNumber"
-                name="nationalInsuranceNumber"
-                placeholder="e.g. QQ 123456 C"
-                value={formData.nationalInsuranceNumber}
-                onChange={handleChange}
-                className="w-full border border-gray-400 py-2 px-3 rounded focus:ring-2 focus:ring-primary-purple focus:border-primary-purple placeholder:text-gray-500"
-              />
-              <p className="text-xs text-gray-500 mt-1">This helps us verify your identity</p>
-            </div>
-          </div>
-        </div>
-        <div>
-          <label className="block text-sm font-medium mb-2 text-gray-700">Test Package</label>
-          <select
-            name="testType"
-            value={formData.testType}
-            onChange={handleChange}
-            className="w-full border border-gray-400 py-2 px-3 rounded focus:ring-2 focus:ring-primary-purple focus:border-primary-purple placeholder:text-gray-500"
-            required
-          >
-            <option value="normal">Take CITB Test – £40</option>
-            <option value="retake">Take CITB Test + Retake – £60</option>
-          </select>
-        </div>
-        <br />
-        <div className="flex flex-col sm:flex-row justify-between gap-4">
-          <button
-            type="button"
-            onClick={handlePrevious}
-            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg text-sm font-medium bg-purple_primary text-white hover:bg-purple_primary/90 transition-all duration-200 shadow-md hover:shadow-lg w-full sm:w-auto"
-          >
-            <MdArrowLeft className="size-5" />
-            Back to Test Details
-          </button>
-          <button
-            type="button"
-            onClick={handleNext}
-            disabled={!formData.houseNumber || !formData.townCity || !formData.county || !formData.postcode}
-            className={`inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200 w-full sm:w-auto ${!formData.houseNumber || !formData.townCity || !formData.county || !formData.postcode ? "bg-gray-400 text-white cursor-not-allowed" : "bg-purple_primary text-white hover:bg-purple_primary shadow-md hover:shadow-lg"}`}
-          >
-            Review & Submit
-            <MdArrowRight className="size-5" />
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-
-  // Step 3: Review & Submit
-  const renderStep3 = () => (
-    <div className="max-w-4xl bg-gray-200 mx-auto rounded space-y-4 sm:space-y-5 px-2 sm:px-4 mt-4 sm:mt-4">
-      <div className="pt-4">
-        <h2 className="text-lg text-gray-800 font-semibold mb-4 text-center rounded">
-          Step 3: Review & Submit Application
-        </h2>
-        <div className="bg-white p-4 sm:p-6 rounded-lg shadow-md mb-4 sm:mb-6">
-          <h3 className="text-lg font-semibold text-gray-800 mb-4">✅ Review Your Information</h3>
-          <p className="text-gray-600 mb-6">Please review all your details carefully before submitting. You can go back to make changes if needed.</p>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4 text-sm text-gray-800">
-            {[
-              { label: "Title", value: formData.title, icon: "👤" },
-              { label: "Date of Birth", value: formData.dob, icon: "📅" },
-              { label: "Full Name", value: `${formData.firstName} ${formData.middleName} ${formData.lastName}`.trim(), span: 2, icon: "👤" },
-              { label: "Phone Number", value: formData.phoneNumber, icon: "📞" },
-              { label: "Email Address", value: formData.email, icon: "📧" },
-              { label: "National Insurance No.", value: formData.nationalInsuranceNumber || "Not provided", span: 2, icon: "🆔" },
-              {
-                label: "Address",
-                value: `${formData.houseNumber}, ${formData.locality ? formData.locality + ', ' : ''}${formData.townCity}, ${formData.county} - ${formData.postcode}`,
-                span: 2,
-                icon: "🏠"
-              },
-              { label: "Test Type", value: formData.testVariant, icon: "🎯" },
-              { label: "Test Package", value: formData.testType === "normal" ? "Take CITB Test – £40" : "Take CITB Test + Retake – £60", icon: "📦" },
-              { label: "Language", value: formData.language || "N/A", icon: "🌐" },
-              { label: "Time Slot", value: formData.timeSlot, icon: "⏰" },
-              { label: "Preferred Date", value: formData.preferredTestDate, icon: "📅" },
-              { label: "Alternate Date", value: formData.alternateTestDate, icon: "📅" },
-              { label: "Test Center", value: formData.testCenter, span: 2, icon: "🏢" },
-            ].map((item, idx) => (
-              <div
-                key={idx}
-                className={`bg-gray-50 rounded-lg px-3 sm:px-4 py-3 ${item.span === 2 ? "col-span-1 lg:col-span-2" : ""} border border-gray-200 hover:bg-gray-100 transition-colors`}
-              >
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="text-sm flex-shrink-0">{item.icon}</span>
-                  <p className="text-xs font-medium text-gray-500 truncate">{item.label}</p>
-                </div>
-                <p className="text-sm font-semibold text-gray-800 break-words leading-relaxed">{item.value || "—"}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="p-4 sm:p-6 rounded-lg mb-4 sm:mb-6">
-          <div className="flex flex-col sm:flex-row justify-between gap-3 sm:gap-4">
-            <button
-              type="button"
-              onClick={handlePrevious}
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg text-sm font-medium bg-purple_primary text-white hover:bg-purple_primary/90 transition-all duration-200 shadow-md hover:shadow-lg w-full sm:w-auto"
-            >
-              <MdArrowLeft className="size-5" />
-              Back to Address Details
-            </button>
-            <button
-              type="submit"
-              onClick={handleSubmit}
-              disabled={isSubmitting}
-              className={`inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200 w-full sm:w-auto ${isSubmitting ? "bg-gray-400 text-white cursor-not-allowed" : "bg-purple_primary text-white hover:bg-purple_primary shadow-md hover:shadow-lg"}`}
-            >
-              {isSubmitting ? "Submitting..." : "Submit Application"}
-            </button>
-          </div>
         </div>
       </div>
     </div>
@@ -601,9 +439,7 @@ const CitbForm = ({ test_center }) => {
         </div>
       )}
 
-      {currentStep === 1 && renderStep1()}
-      {currentStep === 2 && renderStep2()}
-      {currentStep === 3 && renderStep3()}
+      {renderStep1()}
     </>
   );
 };
