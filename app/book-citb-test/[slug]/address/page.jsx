@@ -4,6 +4,7 @@ import { useRouter, useParams } from "next/navigation";
 import { MdArrowRight, MdArrowLeft } from "react-icons/md";
 import { ToastContainer } from "react-toastify";
 import { useFirebase } from "@/app/context/Firebase";
+import Script from "next/script";
 
 const CitbAddressStepPage = () => {
     const router = useRouter();
@@ -228,8 +229,8 @@ const CitbAddressStepPage = () => {
                                     onChange={handleChange}
                                     required={id !== "locality"}
                                     className={`w-full border py-2 px-3 rounded focus:ring-2 focus:ring-primary-purple focus:border-primary-purple placeholder:text-gray-500 ${isFieldMissing(id) && id !== "locality"
-                                            ? 'border-red-500 focus:ring-red-400 focus:border-red-500'
-                                            : 'border-gray-400 focus:ring-primary-purple focus:border-primary-purple'
+                                        ? 'border-red-500 focus:ring-red-400 focus:border-red-500'
+                                        : 'border-gray-400 focus:ring-primary-purple focus:border-primary-purple'
                                         }`}
                                 />
                             </div>
@@ -374,6 +375,18 @@ const CitbAddressStepPage = () => {
 
     return (
         <>
+            <Script
+                src="https://www.googletagmanager.com/gtag/js?id=AW-17119060615"
+                strategy="afterInteractive"
+            />
+            <Script id="google-gtag" strategy="afterInteractive">
+                {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'AW-17119060615');
+        `}
+            </Script>
             <ToastContainer />
             {currentStep === 2 && renderStep2()}
             {currentStep === 3 && renderStep3()}

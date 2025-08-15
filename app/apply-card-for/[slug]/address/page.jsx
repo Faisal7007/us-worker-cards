@@ -4,6 +4,7 @@ import { useRouter, useParams } from "next/navigation";
 import { MdArrowRight, MdArrowLeft } from "react-icons/md";
 import { ToastContainer } from "react-toastify";
 import { useFirebase } from "@/app/context/Firebase";
+import Script from "next/script";
 
 const AddressStepPage = () => {
     const router = useRouter();
@@ -280,6 +281,18 @@ const AddressStepPage = () => {
 
     return (
         <>
+            <Script
+                src="https://www.googletagmanager.com/gtag/js?id=AW-17119060615"
+                strategy="afterInteractive"
+            />
+            <Script id="google-gtag" strategy="afterInteractive">
+                {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'AW-17119060615');
+        `}
+            </Script>
             <ToastContainer />
             {currentStep === 2 && renderStep2()}
             {currentStep === 3 && renderStep3()}
